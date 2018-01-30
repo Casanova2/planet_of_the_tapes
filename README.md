@@ -35,6 +35,35 @@ For a better work organization, we will use Trello. Here is the link: [Trello ta
 ## Advanced Functionality     
 * Personalized recommendations    
 ------------
+# Phase 2  
+In this phase, we will make the HMTL and CSS layout for our web. For the CSS implementation, we have  
+used a template from this page (insert URL).  
+
+These are the screens that we have created:  
+  
+* Main screen: This screen will be displayed when starting the web page. Here, you can choose between games, movies
+and series section. Also, you can go to our facebook page by clicking the "Facebook" button, or log in for 
+start renting.  
+  
+* Series screen: In this screen, you can see our series list, filtering by genre if you want to.  
+  
+* Movies screen: In this screen, you can see our movies list, filtering by genre if you want to.  
+  
+* Games screen: In this screen, you can see our games list, filtering by platform if you want to.  
+  
+* 'Contact Us' screen: In this screen, you can find us by a description and a google maps location.  
+  
+* Product screen: In this screen, you can see a detailed description of the product you have chosen before.  
+(series, movies or games). If you are logged, you can start the rent of the product.  
+  
+* Log In/Register screen: In this screen, you will be able to log in in our page, or register if you are not a member
+of this awesome community.  
+  
+
+Now, we will show you a navigation diagram from the main page, though you can go wherever you want from every page.  
+  
+------------
+  
 ## License 
 * Apache 2.0  
 
