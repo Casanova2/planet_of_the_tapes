@@ -1,3 +1,9 @@
 .defaultimg {
     filter: brightness(65%);
 }
+
+@media (min-width: 992px){
+    html:not(.sticky-header-active) #header.header-transparent .header-nav-main nav > ul > li > a {
+        color: #000;
+    }
+}
