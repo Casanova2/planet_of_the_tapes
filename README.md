@@ -51,6 +51,7 @@ start renting.
   
 * Product screen: In this screen, you can see a detailed description of the product you have chosen before.  
 (series, movies or games). If you are logged, you can start the rent of the product.  
+[Product Image](productPage.png)
   
 * Log In/Register screen: In this screen, you will be able to log in in our page, or register if you are not a member
 of this awesome community.  
