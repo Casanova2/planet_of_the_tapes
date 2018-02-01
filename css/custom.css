@@ -7,3 +7,31 @@
         color: #000;
     }
 }
+
+html #footer.color-custom {
+	background: #B0C6C6;
+	border-top-color: #B0C6C6;
+}
+
+html #footer.color-custom .footer-ribbon {
+	background: #66A1AB;
+}
+
+html #footer.color-custom .footer-ribbon:before {
+	border-right-color: #66A1AB;
+}
+
+html #footer.color-custom .footer-copyright {
+	background: #66A1AB;
+	border-top-color: #66A1AB;
+}
+
+@media (min-width: 992px) {
+	#header .header-nav.header-nav-stripe nav > ul > li:hover > a, #header .header-nav.header-nav-stripe nav > ul > li.open > a {
+	    background-color: #66A1AB;
+	}
+}
+
+.margin-custom {
+	margin-top: 3em;
+}
