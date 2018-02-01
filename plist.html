@@ -7,14 +7,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Planet Of The Tapes | Movies</title>
+    <title>Planet Of The Tapes | Main Page</title>
 
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Porto - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
+    <meta name="keywords" content="movies, series, videogames, videoclub, torrent" />
+    <meta name="description" content="Planet of the tapes">
+    <meta name="author" content="planet_of_the_tapes">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/completemonkey.png" type="image/x-icon" />
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
     <!-- Mobile Metas -->
@@ -61,9 +61,8 @@
 
 <body>
 
-    <!-- HEADER -->
     <div class="body">
-        <header id="header" class="header-narrow header-transparent" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '1'}">
+        <header id="header" class="header-narrow" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 0, 'stickySetTop': '0'}">
             <div class="header-body">
                 <div class="header-container container">
                     <div class="header-row">
@@ -71,13 +70,23 @@
                             <div class="header-row">
                                 <div class="header-logo">
                                     <a href="index.html">
-											<img alt="Porto" width="300" height="100" src="img/logo.png">
+											<img alt="planet_of_the_tapes" width="300" height="100" src="img/logo.png">
 										</a>
                                 </div>
                             </div>
                         </div>
                         <div class="header-column justify-content-end">
                             <div class="header-row">
+                                <!--<div class="header-search d-none d-md-block">
+                                    <form id="searchForm" action="page-search-results.html" method="get">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="q" id="q" placeholder="Search..." required>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-light" type="submit"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>-->
                                 <div class="header-nav header-nav-stripe">
                                     <div class="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                         <nav class="collapse">
@@ -115,15 +124,9 @@
                                             </ul>
                                         </nav>
                                     </div>
-                                    <ul class="header-social-icons social-icons d-none d-sm-block">
-                                        <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="social-icons-instagram"><a href="http://www.instagram.com/" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                                        <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                                    </ul>
                                     <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">
-											<i class="fa fa-bars"></i>
-										</button>
+										<i class="fa fa-bars"></i>
+									</button>
                                 </div>
                             </div>
                         </div>
@@ -133,42 +136,26 @@
         </header>
         <!-- END HEADER -->
 
-        <div role="main" class="main">
-            <section class="page-header">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <ul class="breadcrumb">
-                                <ul> </ul>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h1> </h1>
-                            <h1> </h1>
-                        </div>
-                    </div>
-                </div>
-            </section>
+        <div class="container">
 
-            <div class="container">
+            <p></p>
+            <div class="heading heading-border heading-middle-border heading-middle-border-center">
+                <h2><strong>Movies</strong></h2>
+            </div>
 
-                <h2>Movies</h2>
+            <ul id="portfolioLoadMoreFilter" class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
+                <li class="nav-item" data-option-value="*"><a class="nav-link active" href="#">Show All</a></li>
+                <li class="nav-item" data-option-value=".terror"><a class="nav-link" href="#">Terror</a></li>
+                <li class="nav-item" data-option-value=".comedy"><a class="nav-link" href="#">Romantic Comedy</a></li>
+                <li class="nav-item" data-option-value=".fantasy"><a class="nav-link" href="#">Fantasy</a></li>
+                <li class="nav-item" data-option-value=".scifi"><a class="nav-link" href="#">Sci-Fi</a></li>
+            </ul>
 
-                <ul id="portfolioLoadMoreFilter" class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
-                    <li class="nav-item" data-option-value="*"><a class="nav-link active" href="#">Show All</a></li>
-                    <li class="nav-item" data-option-value=".terror"><a class="nav-link" href="#">Terror</a></li>
-                    <li class="nav-item" data-option-value=".comedy"><a class="nav-link" href="#">Romantic Comedy</a></li>
-                    <li class="nav-item" data-option-value=".fantasy"><a class="nav-link" href="#">Fantasy</a></li>
-                    <li class="nav-item" data-option-value=".scifi"><a class="nav-link" href="#">Sci-Fi</a></li>
-                </ul>
-
-                <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
-                    <div id="portfolioLoadMoreWrapper" class="row portfolio-list sort-destination" data-sort-id="portfolio" data-total-pages="3">
-                        <div class="col-12 col-sm-6 col-lg-3 isotope-item terror">
-                            <div class="portfolio-item">
-                                <a href="product.html">
+            <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+                <div id="portfolioLoadMoreWrapper" class="row portfolio-list sort-destination" data-sort-id="portfolio" data-total-pages="3">
+                    <div class="col-12 col-sm-6 col-lg-3 isotope-item terror">
+                        <div class="portfolio-item">
+                            <a href="product.html">
 										<span class="thumb-info thumb-info-lighten">
 											<span class="thumb-info-wrapper">
 												<img src="img/Films/Alien.jpg" class="img-fluid" alt="">
@@ -182,11 +169,11 @@
 											</span>
 										</span>
 									</a>
-                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-lg-3 isotope-item scifi">
-                            <div class="portfolio-item">
-                                <a href="product.html">
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3 isotope-item scifi">
+                        <div class="portfolio-item">
+                            <a href="product.html">
 										<span class="thumb-info thumb-info-lighten thumb-info-no-zoom">
 											<span class="thumb-info-wrapper">
 												<span class="owl-carousel owl-theme nav-inside m-0" data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut', 'autoplay': true, 'autoplayTimeout': 3000}">
@@ -208,11 +195,11 @@
 											</span>
 										</span>
 									</a>
-                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-lg-3 isotope-item fantasy">
-                            <div class="portfolio-item">
-                                <a href="product.html">
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3 isotope-item fantasy">
+                        <div class="portfolio-item">
+                            <a href="product.html">
 										<span class="thumb-info thumb-info-lighten">
 											<span class="thumb-info-wrapper">
 												<img src="img/Films/TLOTR_FL.jpg" class="img-fluid" alt="">
@@ -226,11 +213,11 @@
 											</span>
 										</span>
 									</a>
-                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-lg-3 isotope-item comedy">
-                            <div class="portfolio-item">
-                                <a href="product.html">
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3 isotope-item comedy">
+                        <div class="portfolio-item">
+                            <a href="product.html">
 										<span class="thumb-info thumb-info-lighten">
 											<span class="thumb-info-wrapper">
 												<img src="img/Films/BridgetJonesDiary.jpg" class="img-fluid" alt="">
@@ -244,11 +231,11 @@
 											</span>
 										</span>
 									</a>
-                            </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-lg-3 isotope-item scifi">
-                            <div class="portfolio-item">
-                                <a href="product.html">
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-3 isotope-item scifi">
+                        <div class="portfolio-item">
+                            <a href="product.html">
 										<span class="thumb-info thumb-info-lighten">
 											<span class="thumb-info-wrapper">
 												<img src="img/Films/BTTF.jpg" class="img-fluid" alt="">
@@ -262,116 +249,105 @@
 											</span>
 										</span>
 									</a>
-                            </div>
                         </div>
                     </div>
-
-                    <div id="portfolioLoadMoreBtnWrapper" class="row">
-                        <div class="col">
-
-                            <div id="portfolioLoadMoreLoader" class="portfolio-load-more-loader">
-                                <div class="bounce-loader">
-                                    <div class="bounce1"></div>
-                                    <div class="bounce2"></div>
-                                    <div class="bounce3"></div>
-                                </div>
-                            </div>
-
-                            <button id="portfolioLoadMore" type="button" class="btn btn-3d btn-light btn-lg btn-block text-1 text-uppercase outline-none mb-5 p-3">Load More...</button>
-                        </div>
-                    </div>
-
                 </div>
+
+                <div id="portfolioLoadMoreBtnWrapper" class="row">
+                    <div class="col">
+
+                        <div id="portfolioLoadMoreLoader" class="portfolio-load-more-loader">
+                            <div class="bounce-loader">
+                                <div class="bounce1"></div>
+                                <div class="bounce2"></div>
+                                <div class="bounce3"></div>
+                            </div>
+                        </div>
+
+                        <button id="portfolioLoadMore" type="button" class="btn btn-3d btn-light btn-lg btn-block text-1 text-uppercase outline-none mb-5 p-3">Load More...</button>
+                    </div>
+                </div>
+
             </div>
         </div>
+    </div>
 
 
 
-        <!-- FOOTER -->
-        <footer id="footer" class="light">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-ribbon">
-                        <span>Get in Touch</span>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="newsletter">
-                            <h4>Newsletter</h4>
-                            <p>Keep up on our always evolving product features and technology. Enter your e-mail and subscribe to our newsletter.</p>
+    <!-- FOOTER -->
+    <footer id="footer" class="color-custom">
+        <div class="container">
+            <div class="row">
+                <div class="footer-ribbon">
+                    <span>Get in Touch</span>
+                </div>
+                <div class="col-lg-6">
+                    <div class="newsletter">
+                        <h4>Newsletter</h4>
+                        <p>Keep up on our always evolving product features and technology. Enter your e-mail and subscribe to our newsletter.</p>
 
-                            <div class="alert alert-success d-none" id="newsletterSuccess">
-                                <strong>Success!</strong> You've been added to our email list.
+                        <div class="alert alert-success d-none" id="newsletterSuccess">
+                            <strong>Success!</strong> You've been added to our email list.
+                        </div>
+
+                        <div class="alert alert-danger d-none" id="newsletterError"></div>
+
+                        <form id="newsletterForm" action="php/newsletter-subscribe.php" method="POST">
+                            <div class="input-group">
+                                <input class="form-control form-control-sm" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="text">
+                                <span class="input-group-btn">
+                                            <button class="btn btn-light" type="submit">Go!</button>
+                                        </span>
                             </div>
-
-                            <div class="alert alert-danger d-none" id="newsletterError"></div>
-
-                            <form id="newsletterForm" action="php/newsletter-subscribe.php" method="POST">
-                                <div class="input-group">
-                                    <input class="form-control form-control-sm" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="text">
-                                    <span class="input-group-btn">
-											<button class="btn btn-light" type="submit">Go!</button>
-										</span>
-                                </div>
-                            </form>
-                        </div>
+                        </form>
                     </div>
-                    <div class="col-lg-3">
-                        <h4>Latest News</h4>
-                        <div id="tweet" class="twitter" data-plugin-tweets data-plugin-options="{'username': '', 'count': 2}">
-                            <p>Please wait...</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="contact-details">
-                            <h4>Contact Us</h4>
-                            <ul class="contact">
-                                <li>
-                                    <p><i class="fa fa-map-marker"></i> <strong>Address:</strong> Calle Tulipán, 28933 Móstoles, Madrid, Spain</p>
-                                </li>
-                                <li>
-                                    <p><i class="fa fa-phone"></i> <strong>Phone:</strong> (+34) 677 238 461</p>
-                                </li>
-                                <li>
-                                    <p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:planetofthetapes@gmail.com">planetofthetapes@gmail.com</a></p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2">
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-details">
+                        <h4>Contact Us</h4>
+                        <ul class="contact">
+                            <li>
+                                <p><i class="fa fa-map-marker"></i> <strong>Address:</strong> Calle Tulipán, 28933 Móstoles, Madrid, Spain</p>
+                            </li>
+                            <li>
+                                <p><i class="fa fa-phone"></i> <strong>Phone:</strong> (+34) 677 238 461</p>
+                            </li>
+                            <li>
+                                <p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:planetofthetapes@gmail.com">planetofthetapes@gmail.com</a></p>
+                            </li>
+                        </ul>
                         <h4>Follow Us</h4>
                         <ul class="social-icons">
                             <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                             <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li class="social-icons-instagram"><a href="http://www.instagram.com/" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                            <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="footer-copyright">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-1">
-                            <a href="index.html" class="logo">
-									<img alt="Porto Website Template" class="img-fluid" src="img/completemonkey.png">
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-1">
+                        <a href="index.html" class="logo">
+									<img alt="planet_of_the_tapes" class="img-fluid" src="img/completemonkey.png">
 								</a>
-                        </div>
-                        <div class="col-lg-7">
-                            <p>© Copyright 2017. All Rights Reserved.</p>
-                        </div>
-                        <div class="col-lg-4">
-                            <nav id="sub-menu">
-                                <ul>
-                                    <li><a href="page-faq.html">FAQ's</a></li>
-                                    <li><a href="contact-us.html">Contact</a></li>
-                                </ul>
-                            </nav>
-                        </div>
+                    </div>
+                    <div class="col-lg-7">
+                        <a href="https://github.com/Casanova2/planet_of_the_tapes/" class="fa fa-5x fa-github"></a>
+                        <!--<p>© Copyright 2018. All Rights Reserved.</p>-->
+                    </div>
+                    <div class="col-lg-4">
+                        <nav id="sub-menu">
+                            <ul>
+                                <li><a href="contact-us.html">Contact</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
     <!-- Vendor -->
     <script src="vendor/jquery/jquery.min.js"></script>

@@ -7,14 +7,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Planet Of The Tapes | Main Page</title>
+    <title>Planet Of The Tapes | Contact Page</title>
 
-    <meta name="keywords" content="HTML5 Template" />
-    <meta name="description" content="Porto - Responsive HTML5 Template">
-    <meta name="author" content="okler.net">
+    <meta name="keywords" content="movies, series, videogames, videoclub, torrent" />
+    <meta name="description" content="Planet of the tapes">
+    <meta name="author" content="planet_of_the_tapes">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/completemonkey.png" type="image/x-icon" />
     <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
     <!-- Mobile Metas -->
@@ -62,7 +62,7 @@
 <body>
 
     <div class="body">
-        <header id="header" class="header-narrow header-transparent" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 1, 'stickySetTop': '1'}">
+        <header id="header" class="header-narrow" data-plugin-options="{'stickyEnabled': true, 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyStartAt': 0, 'stickySetTop': '0'}">
             <div class="header-body">
                 <div class="header-container container">
                     <div class="header-row">
@@ -70,13 +70,23 @@
                             <div class="header-row">
                                 <div class="header-logo">
                                     <a href="index.html">
-											<img alt="Porto" width="300" height="100" src="img/logo.png">
+											<img alt="planet_of_the_tapes" width="300" height="100" src="img/logo.png">
 										</a>
                                 </div>
                             </div>
                         </div>
                         <div class="header-column justify-content-end">
                             <div class="header-row">
+                                <!--<div class="header-search d-none d-md-block">
+                                    <form id="searchForm" action="page-search-results.html" method="get">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="q" id="q" placeholder="Search..." required>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-light" type="submit"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>-->
                                 <div class="header-nav header-nav-stripe">
                                     <div class="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                         <nav class="collapse">
@@ -114,15 +124,9 @@
                                             </ul>
                                         </nav>
                                     </div>
-                                    <ul class="header-social-icons social-icons d-none d-sm-block">
-                                        <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="social-icons-instagram"><a href="http://www.instagram.com/" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                                        <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                                    </ul>
                                     <button class="btn header-btn-collapse-nav" data-toggle="collapse" data-target=".header-nav-main nav">
-											<i class="fa fa-bars"></i>
-										</button>
+										<i class="fa fa-bars"></i>
+									</button>
                                 </div>
                             </div>
                         </div>
@@ -131,116 +135,97 @@
             </div>
         </header>
         <!-- END HEADER -->
-        
+
         <div role="main" class="main">
 
-				<!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
-				<div id="googlemaps" class="google-map"></div>
+            <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
+            <div id="googlemaps" class="google-map"></div>
 
-				<div class="container">
+            <div class="container">
 
-					<div class="row">
-						<div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6">
 
-							<div class="alert alert-success d-none mt-4" id="contactSuccess">
-								<strong>Success!</strong> Your message has been sent to us.
-							</div>
+                        <div class="alert alert-success d-none mt-4" id="contactSuccess">
+                            <strong>Success!</strong> Your message has been sent to us.
+                        </div>
 
-							<div class="alert alert-danger d-none mt-4" id="contactError">
-								<strong>Error!</strong> There was an error sending your message.
-								<span class="text-1 mt-2 d-block" id="mailErrorMessage"></span>
-							</div>
+                        <div class="alert alert-danger d-none mt-4" id="contactError">
+                            <strong>Error!</strong> There was an error sending your message.
+                            <span class="text-1 mt-2 d-block" id="mailErrorMessage"></span>
+                        </div>
 
-							<h2 class="mb-3 mt-2"><strong>Contact</strong> Us</h2>
+                        <h2 class="mb-3 mt-2"><strong>Contact</strong> Us</h2>
 
-							<form id="contactForm" action="php/contact-form.php" method="POST">
-								<div class="form-row">
-									<div class="form-group col-lg-6">
-										<label>Your name *</label>
-										<input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
-									</div>
-									<div class="form-group col-lg-6">
-										<label>Your email address *</label>
-										<input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group col">
-										<label>Subject</label>
-										<input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group col">
-										<label>Message *</label>
-										<textarea maxlength="5000" data-msg-required="Please enter your message." rows="5" class="form-control" name="message" id="message" required></textarea>
-									</div>
-								</div>
-								<div class="form-row">
-									<div class="form-group col">
-										<input type="submit" value="Send Message" class="btn btn-primary btn-lg" data-loading-text="Loading...">
-									</div>
-								</div>
-							</form>
-						</div>
-						<div class="col-lg-6">
+                        <form id="contactForm" action="php/contact-form.php" method="POST">
+                            <div class="form-row">
+                                <div class="form-group col-lg-6">
+                                    <label>Your name *</label>
+                                    <input type="text" value="" data-msg-required="Please enter your name." maxlength="100" class="form-control" name="name" id="name" required>
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label>Your email address *</label>
+                                    <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Subject</label>
+                                    <input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <label>Message *</label>
+                                    <textarea maxlength="5000" data-msg-required="Please enter your message." rows="5" class="form-control" name="message" id="message" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <input type="submit" value="Send Message" class="btn btn-primary btn-lg" data-loading-text="Loading...">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6">
 
-							<h4 class="heading-primary mt-4">Get in <strong>Touch</strong></h4>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h4 class="heading-primary mt-4">Get in <strong>Touch</strong></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
-							<hr>
+                        <hr>
 
-							<h4 class="heading-primary">The <strong>Office</strong></h4>
-							<ul class="list list-icons list-icons-style-3 mt-4">
-								<li><i class="fa fa-map-marker"></i> <strong>Address:</strong> Calle Tulipán, 28933 Móstoles, Madrid, Spain</li>
-								<li><i class="fa fa-phone"></i> <strong>Phone:</strong> (+34) 677 238 461</li>
-								<li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com">planetofthetapes@gmail.com</a></li>
-							</ul>
+                        <h4 class="heading-primary">The <strong>Office</strong></h4>
+                        <ul class="list list-icons list-icons-style-3 mt-4">
+                            <li><i class="fa fa-map-marker"></i> <strong>Address:</strong> Calle Tulipán, 28933 Móstoles, Madrid, Spain</li>
+                            <li><i class="fa fa-phone"></i> <strong>Phone:</strong> (+34) 677 238 461</li>
+                            <li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com">planetofthetapes@gmail.com</a></li>
+                        </ul>
 
-							<hr>
+                        <hr>
 
-							<h4 class="heading-primary">Business <strong>Hours</strong></h4>
-							<ul class="list list-icons list-dark mt-4">
-								<li><i class="fa fa-clock-o"></i> Monday - Friday - 9am to 5pm</li>
-								<li><i class="fa fa-clock-o"></i> Saturday - 9am to 2pm</li>
-								<li><i class="fa fa-clock-o"></i> Sunday - Closed</li>
-							</ul>
+                        <h4 class="heading-primary">Business <strong>Hours</strong></h4>
+                        <ul class="list list-icons list-dark mt-4">
+                            <li><i class="fa fa-clock-o"></i> Monday - Friday - 9am to 5pm</li>
+                            <li><i class="fa fa-clock-o"></i> Saturday - 9am to 2pm</li>
+                            <li><i class="fa fa-clock-o"></i> Sunday - Closed</li>
+                        </ul>
 
-						</div>
+                    </div>
 
-					</div>
+                </div>
 
-				</div>
+            </div>
 
-			</div>
+        </div>
 
-			<section class="call-to-action call-to-action-default with-button-arrow content-align-center call-to-action-in-footer">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-9 col-lg-9">
-							<div class="call-to-action-content">
-								<h3>Porto is <strong>everything</strong> you need to create an <strong>awesome</strong> website!</h3>
-								<p class="mb-0">The <strong>#1 Selling</strong> HTML Site Template on ThemeForest</p>
-							</div>
-						</div>
-						<div class="col-md-3 col-lg-3">
-							<div class="call-to-action-btn">
-								<a href="http://themeforest.net/item/porto-responsive-html5-template/4106987" target="_blank" class="btn btn-lg btn-primary">Buy Now!</a><span class="arrow hlb d-none d-md-block" data-appear-animation="rotateInUpLeft" style="top: -40px; left: 70%;"></span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-        
-        
-         <!-- FOOTER -->
-        <footer id="footer" class="light">
+        <!-- FOOTER -->
+        <footer id="footer" class="color-custom">
             <div class="container">
                 <div class="row">
                     <div class="footer-ribbon">
                         <span>Get in Touch</span>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-6">
                         <div class="newsletter">
                             <h4>Newsletter</h4>
                             <p>Keep up on our always evolving product features and technology. Enter your e-mail and subscribe to our newsletter.</p>
@@ -255,16 +240,10 @@
                                 <div class="input-group">
                                     <input class="form-control form-control-sm" placeholder="Email Address" name="newsletterEmail" id="newsletterEmail" type="text">
                                     <span class="input-group-btn">
-											<button class="btn btn-light" type="submit">Go!</button>
-										</span>
+                                            <button class="btn btn-light" type="submit">Go!</button>
+                                        </span>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <h4>Latest News</h4>
-                        <div id="tweet" class="twitter" data-plugin-tweets data-plugin-options="{'username': '', 'count': 2}">
-                            <p>Please wait...</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
@@ -281,16 +260,12 @@
                                     <p><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:planetofthetapes@gmail.com">planetofthetapes@gmail.com</a></p>
                                 </li>
                             </ul>
+                            <h4>Follow Us</h4>
+                            <ul class="social-icons">
+                                <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                                <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            </ul>
                         </div>
-                    </div>
-                    <div class="col-lg-2">
-                        <h4>Follow Us</h4>
-                        <ul class="social-icons">
-                            <li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                            <li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                            <li class="social-icons-instagram"><a href="http://www.instagram.com/" target="_blank" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                            <li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -299,16 +274,16 @@
                     <div class="row">
                         <div class="col-lg-1">
                             <a href="index.html" class="logo">
-									<img alt="Porto Website Template" class="img-fluid" src="img/completemonkey.png">
+									<img alt="planet_of_the_tapes" class="img-fluid" src="img/completemonkey.png">
 								</a>
                         </div>
                         <div class="col-lg-7">
-                            <p>© Copyright 2017. All Rights Reserved.</p>
+                            <a href="https://github.com/Casanova2/planet_of_the_tapes/" class="fa fa-5x fa-github"></a>
+                            <!--<p>© Copyright 2018. All Rights Reserved.</p>-->
                         </div>
                         <div class="col-lg-4">
                             <nav id="sub-menu">
                                 <ul>
-                                    <li><a href="page-faq.html">FAQ's</a></li>
                                     <li><a href="contact-us.html">Contact</a></li>
                                 </ul>
                             </nav>
@@ -366,5 +341,3 @@
 </body>
 
 </html>
-
-    
