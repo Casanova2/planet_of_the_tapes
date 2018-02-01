@@ -44,21 +44,25 @@ These are the screens that we have created:
 * Main screen: This screen will be displayed when starting the web page. Here, you can choose between games, movies
 and series section. Also, you can go to our facebook page by clicking the "Facebook" button, or log in for 
 start renting.  
-[Main Page Image](mainPage.png)  
+[Main Page Image](screenshots/mainPage.png)  
   
 * Product List screen: In this screen, we can see the product list depends on series, movies or videogames.  
-[Product List Image](productsPage.png)  
+[Product List Image](screenshots/productsPage.png)  
   
 * Product screen: In this screen, you can see a detailed description of the product you have chosen before.  
 (series, movies or games). If you are logged, you can start the rent of the product.  
-[Product Image](productPage.PNG)
+
   
 * Log In/Register screen: In this screen, you will be able to log in in our page, or register if you are not a member
 of this awesome community.  
-[Log In/Register Image](loginPage.png)  
+[Log In/Register Image](screenshots/loginPage.png)  
 
 * Contact screen: Here, the users can know more about us and where we are.  
-[contact Image](contactPage.png)
+[Contact Image](screenshots/contactPage.png)  
+  
+* Cart screen: You will go to this screen only if you are a registered user. Here, you can see your orders and pay for them.  
+[Cart and Checkout Image](screenshots/cartPage.png)  
+
 
 Now, we will show you a navigation diagram from the main page, though you can go wherever you want from every page.  
   
