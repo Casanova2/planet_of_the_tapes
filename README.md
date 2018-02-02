@@ -41,31 +41,58 @@ used a template from this page (insert URL).
 
 These are the screens that we have created:  
   
-* Main screen: This screen will be displayed when starting the web page. Here, you can choose between games, movies
-and series section. Also, you can go to our facebook page by clicking the "Facebook" button, or log in for 
-start renting.  
+* Main screen[index]: This screen will be displayed when starting the web page. Here, you can choose between games, movies
+and series section. Also, you can go to our facebook page by clicking the "Facebook" button, or log in for start renting.  
 [Main Page Image](screenshots/mainPage.png)  
   
-* Product List screen: In this screen, we can see the product list depends on series, movies or videogames.  
+* Product List screen[products]: In this screen, we can see the product list depends on series, movies or videogames.  
 [Product List Image](screenshots/productsPage.png)  
   
-* Product screen: In this screen, you can see a detailed description of the product you have chosen before.  
+* Product screen[product]: In this screen, you can see a detailed description of the product you have chosen before.  
 (series, movies or games). If you are logged, you can start the rent of the product.   
 [Product Image](screenshots/productPage.png)
 
   
-* Log In/Register screen: In this screen, you will be able to log in in our page, or register if you are not a member
-of this awesome community.  
+* Log In/Register screen[register]: In this screen, you will be able to log in in our page, or register if you are not a member of this awesome community.  
 [Log In/Register Image](screenshots/loginPage.png)  
 
-* Contact screen: Here, the users can know more about us and where we are.  
+* Contact screen[contact]: Here, the users can know more about us and where we are.  
 [Contact Image](screenshots/contactPage.png)  
   
-* Cart screen: You will go to this screen only if you are a registered user. Here, you can see your orders and pay for them.  
+* Cart screen[cart]: You will go to this screen only if you are a registered user. Here, you can see your orders and pay for them.  
 [Cart and Checkout Image](screenshots/cartPage.png)  
 
 
 Now, we will show you a navigation diagram from the main page, though you can go wherever you want from every page.  
+  
+  digraph G {
+    index -> products;
+    index -> product;
+    index -> contact;
+    index -> cart;
+    index -> register;
+    products -> index;
+    products -> product;
+    products -> contact;
+    products -> register;
+    products -> cart;
+    product -> index;
+    product -> contact;
+    product -> register;
+    product -> products;
+    contact -> cart;
+    contact -> index;
+    contact -> register;
+    contact -> products;
+    cart -> index;
+    cart -> products;
+    cart -> contact;
+    register -> index;
+    register -> products;
+    register -> contact;
+    register -> products;
+  
+  }
   
 ------------
   
