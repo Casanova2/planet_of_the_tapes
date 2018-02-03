@@ -35,9 +35,9 @@ For a better work organization, we will use Trello. Here is the link: [Trello ta
 ## Advanced Functionality     
 * Personalized recommendations    
 ------------
+
 # Phase 2  
-In this phase, we will make the HMTL and CSS layout for our web. For the CSS implementation, we have  
-used a template from this page (insert URL).  
+In this phase, we will show you the layouts for our web. We have made only the HTML and CSS implementation.
 
 These are the screens that we have created:  
   
@@ -63,36 +63,10 @@ and series section. Also, you can go to our facebook page by clicking the "Faceb
 [Cart and Checkout Image](screenshots/cartPage.png)  
 
 
-Now, we will show you a navigation diagram from the main page, though you can go wherever you want from every page.  
+Now, we will show you a simple navigation diagram from the main page, though you can go wherever you want from every page.  
+[Navigation Diagram](screenshots/NavigationDiagram.png)  
   
-  digraph G {
-    index -> products;
-    index -> product;
-    index -> contact;
-    index -> cart;
-    index -> register;
-    products -> index;
-    products -> product;
-    products -> contact;
-    products -> register;
-    products -> cart;
-    product -> index;
-    product -> contact;
-    product -> register;
-    product -> products;
-    contact -> cart;
-    contact -> index;
-    contact -> register;
-    contact -> products;
-    cart -> index;
-    cart -> products;
-    cart -> contact;
-    register -> index;
-    register -> products;
-    register -> contact;
-    register -> products;
-  
-  }
+
   
 ------------
   
