@@ -35,3 +35,9 @@ html #footer.color-custom .footer-copyright {
 .margin-custom {
 	margin-top: 3em;
 }
+
+.col-centered {
+
+    float: none;
+    margin: 0 auto;
+}
