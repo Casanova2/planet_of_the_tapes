@@ -32,13 +32,14 @@ public class Product {
 	private String type;
 	private String genre;
 	private int stock;
-	private float pbuy ;
-	private float prent;
+	private double pbuy ;
+	private double prent;
 	private int score;
 	private String trailer;
 	private String director;
 	private String cast;
 	private int year;
+	private String urlimg;
 	
 
 
@@ -47,8 +48,8 @@ public class Product {
 
 
 
-	public Product(Integer id, String name, String description, String type, String genre, int stock, float pbuy,
-		float prent, int score, String trailer, String director, String cast, int year) {
+	public Product(String name, String description, String type, String genre, int stock, double pbuy,
+		double prent, int score, String trailer, String director, String cast, int year, String ulrimg) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -63,6 +64,7 @@ public class Product {
 		this.director = director;
 		this.cast = cast;
 		this.year = year;
+		this.urlimg = urlimg;
 	}
 
 
@@ -139,7 +141,7 @@ public class Product {
 
 
 
-	public float getPbuy() {
+	public double getPbuy() {
 		return pbuy;
 	}
 
@@ -151,7 +153,7 @@ public class Product {
 
 
 
-	public float getPrent() {
+	public double getPrent() {
 		return prent;
 	}
 
@@ -219,6 +221,18 @@ public class Product {
 
 	public void setYear(int year) {
 		this.year = year;
+	}
+
+
+
+	public String getUrlimg() {
+		return urlimg;
+	}
+
+
+
+	public void setUrlimg(String urlimg) {
+		this.urlimg = urlimg;
 	}
 	
 	

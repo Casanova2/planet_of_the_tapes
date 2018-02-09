@@ -10,24 +10,27 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ProductRepository /*extends JpaRepository<Product, Integer>*/{
-	/*
+import com.planet_of_the_tapes.entity.Product;
+
+public interface ProductRepository extends JpaRepository<Product, Integer>{
+
 	Product findByName(String name);
 	
 	Product findByNameLikeIgnoreCase(String name);
-
-	List<Product> findByDirector(String director);
-
-	List<Product> findByCast(String cast);
-
-	List<Product> findByType(ProductType productType);
 	
-	List<Product> findByGenre(Genre genre);
+	Product findByGenre (String genre);
 	
-	Page<Product> findByProductType(ProductType productType, Pageable page);
+	Product findByType (String type);
+	
+	List<Product> findGroupByGenre(String genre);
+	
+	List<Product> findGroupByType(String type);
+	
+	List<Product> findGroupByTypeAndByGenre(String type, String genre);
+	
+	
+	Page<Product> findByGenre(String genre, Pageable page);
 
-	Page<Product> findByTitleLikeIgnoreCase(String title, Pageable page);
+	Page<Product> findByNameLikeIgnoreCase(String name, Pageable page);
 	
-	Page<Product> findByTitleLikeIgnoreCaseOrGenreNameLikeIgnoreCaseOrDirectorLikeIgnoreCaseOrCastLikeIgnoreCase(String title, String genre_name, String director, String cast, Pageable page);	
-*/
 }
