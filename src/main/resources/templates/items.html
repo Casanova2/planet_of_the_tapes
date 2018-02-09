@@ -1,0 +1,20 @@
+<div class="col-12 col-sm-6 col-lg-3 isotope-item terror" data-appear-animation="fadeInUp" data-appear-animation-delay="0" data-appear-animation-duration="0.5s">
+  	<div class="portfolio-item">
+		<a href="/{{id}}">
+			<span class="thumb-info thumb-info-lighten">
+				<span class="thumb-info-wrapper">
+				{{#urlimg}}
+					<img src="/img/Films/{{urlimg}}" class="img-fluid" alt="{{name}}">{{/urlimg}} {{^picture}}
+                    <img src="/img/Films/Alien.jpg" class="img-responsive" /> {{/picture}}
+					<span class="thumb-info-title">
+						<span class="thumb-info-inner">{{name}}</span>
+						<span class="thumb-info-type">{{genre}}</span>
+					</span>
+					<span class="thumb-info-action">
+						<span class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+					</span>
+				</span>
+			</span>
+		</a>
+    </div>
+</div>
