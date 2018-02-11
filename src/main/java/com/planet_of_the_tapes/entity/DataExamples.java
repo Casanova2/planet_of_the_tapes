@@ -27,7 +27,7 @@ public class DataExamples {
 		// Data declaration
 
 		User user1, user2, user3;
-		Product prod1, prod2, prod3, prod4, prod5, prod6;
+		Product prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12, prod13, prod14, prod15, prod16, prod17, prod18;
 
 	// Users creation
 			user1 = new User("carlos", "1234", "4567891", "elmio@gmail.com",
@@ -77,10 +77,63 @@ public class DataExamples {
 					2018, "img/Games/pc-monsterhunter.jpg");
 			productRepository.save(prod6);
 			
+			prod7 = new Product("Blade Runner: 2049", "Thirty years after the events of the first film, a new blade runner, LAPD Officer K (Ryan Gosling), unearths a long-buried secret that has the potential to plunge what's left of society into chaos.",
+					"Movie", "Sci-Fi", 5, 20.0, 3.0, 83, "https://www.youtube.com/watch?v=6T2b0mp2hco", "Denis Villeneuve",
+					"Harrison Ford, Ryan Gosling, Ana de Armas", 2017, "img/Films/BladeRunner2049.jpg" );
+			productRepository.save(prod7);
 			
+			prod8 = new Product("Back to the Future", " It stars Marty McFly, who is sent back in time to 1955, where he meets his future parents in high school and accidentally becomes his mother's romantic interest.",
+					"Movie", "Sci-Fi", 5, 20.0, 3.0, 88, "https://www.youtube.com/watch?v=qvsgGtivCgs", "Robert Zemeckis", "Michael J. Fox, Christopher Lloyd",
+					1985, "img/Films/BTTF.jpg");
+			productRepository.save(prod8);
 			
+			prod9 = new Product("Hannibal", "Based on characters and elements appearing in Thomas Harris' novels Red Dragon and Hannibal, with focus on the relationship between FBI special investigator Will Graham and Dr. Hannibal Lecter, a forensic psychiatrist destined to become Graham's most cunning enemy and at the same time, the only person who can understand him.",
+					"Serie", "Sci-Fi", 4, 15.0, 2.0, 75, "https://www.youtube.com/watch?v=pDTzn8y-5kM", "Bryan Fuller", "Hugh Dancy, Mads Mikkelsen", 2015, "img/Series/Hannibal.jpg");
+			productRepository.save(prod9);
 			
+			prod10 = new Product("La que se Avecina", "The show is set in Mirador de Montepinar, a condominium located in the suburbs of Madrid.",
+					"Serie", "Commedy", 4, 15.0, 2.0, 84, "https://www.youtube.com/watch?v=Z5XnA7xCoZk", "Alberto Caballero, Laura Caballero", "Jose Luis Gil, Cristina Castaño, Jordi Sanchez, Pablo Chiapella, Ernesto Sevilla, Paz Padilla and more",
+					2007, "img/Series/LQSA.jpg");
+			productRepository.save(prod10);
 			
+			prod11 = new Product("Mario Kart 8 Deluxe", "players control characters from the Mario franchise and participate in kart racing on various race tracks, using items to hinder opponents or gain advantages.",
+					"Game", "Arcade", 5, 50.0, 5.0, 86, "https://www.youtube.com/watch?v=tKlRN2YpxRE", "Nintendo", "Mario and Company", 2017, "img/Games/switch-kart8.jpg");
+			productRepository.save(prod11);
+			
+			prod12 = new Product("Uncharted 4: A thief's End", " Following Uncharted 3: Drake's Deception, it is the final Uncharted game to feature protagonist Nathan Drake. Drake, retired from fortune hunting with his wife Elena, reunites with his estranged older brother Sam and longtime partner Sully to search for Captain Henry Avery's lost treasure.",
+					"Game", "Action", 5, 50.0, 5.0, 91, "https://www.youtube.com/watch?v=WNDGQMz1fJQ", "Naughty Dog", "Nathan Drake, Victor Sullivan, Elena", 2017, "img/Games/ps4-uncharted4.jpg");
+			productRepository.save(prod12);
+			
+			prod13 = new Product("The shining", "The Shining is about Jack Torrance, an aspiring writer and recovering alcoholic, who accepts a position as the off-season caretaker of the isolated historic Overlook Hotel in the Colorado Rockies.",
+					"Movie", "Terror", 5, 20.0, 3.0, 89, "https://www.youtube.com/watch?v=5Cb3ik6zP2I", "Stanley Kubrick", "Jack Nicholson, Shelley Duvall, Danny Lloyd",
+					1980, "img/Films/Shining.jpg");
+			productRepository.save(prod13);
+			
+			prod14 = new Product("The proposal", "The plot centers on a Canadian executive who learns that she may face deportation from the U.S. because of her expired visa.", 
+					"Movie", "Romantic Commedy", 5, 20.0, 3.0, 70, "https://www.youtube.com/watch?v=RFL8b1p1ELY", "Anne Fletcher", "Ryan Reynolds, Sandra Bullock",
+					2009, "img/Films/TheProposal.jpg");
+			productRepository.save(prod14);
+			
+			prod15 = new Product("Sons of Anarchy", "The series explores vigilantism, government corruption and racism, and depicts an outlaw motorcycle club as an analogy for human transformation.",
+					"Serie", "Drama", 4, 15.0, 2.0, 95, "https://www.youtube.com/watch?v=_03DBXL3Srw", "Kurt Sutter", "Charlie Hunnam, Katey Sagal, Kim Coates, Drea de Matteo, Theo Rossi and more", 
+					2008, "img/Series/sons.jpg");
+			productRepository.save(prod15);
+			
+			prod16 = new Product("Rick And Morty", "The series follows the misadventures of cynical mad scientist Rick Sanchez and his fretful, easily influenced grandson Morty Smith, who split their time between domestic life and interdimensional adventures.",
+					"serie", "Sci-Fi", 4, 15.0, 2.0, 99, "https://www.youtube.com/watch?v=WNhH00OIPP0", "Justin Roiland and Dan Harmon", "Justin Roiland, Chris Parnell, Spencer Grammer, and Sarah Chalke",
+					2013, "img/Series/rick-and-morty.png");
+			productRepository.save(prod16);
+			
+			prod17 = new Product("Gears of War 4", "Gears of War 4 takes place 25 years after the events of Gears of War 3. Although the use of the Imulsion Countermeasure weapon destroyed all Imulsion on the planet Sera, killing the Locust and the Lambent in the process, the weapon forced humanity to adapt to new ways of survival after knocking out the use of fossil fuels",
+					"Game", "Action", 5, 50.0, 5.0, 80, "https://www.youtube.com/watch?v=XrfVfRV0zSg", "The Coalition, Microsoft Studios", "Angel Desai, Justina Machado, Jimmy Smits, John DiMaggio", 
+					2016, "img/Games/xone-gears4.jpg");
+			productRepository.save(prod17);
+			
+			prod18 = new Product("Halo 5", "Halo 5: Guardians takes place in the year 2558, and is set eight months after the events of Halo 4. The game follows the human fireteams Blue Team and Fireteam Osiris.",
+					"Game", "Action", 5, 50.0, 5.0, 75, "https://www.youtube.com/watch?v=Rh_NXwqFvHc", "343 Industries", "Brittany Uomoleale, Michelle Lukes, Laura Bailey, Steve Downes",
+					2015, "img/Games/xone-halo5.png");
+			productRepository.save(prod18);
+					
 	}
 	
 }
