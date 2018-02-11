@@ -77,7 +77,7 @@ public class DataExamples {
 					2018, "img/Games/pc-monsterhunter.jpg");
 			productRepository.save(prod6);
 			
-			prod7 = new Product("Blade Runner: 2049", "Thirty years after the events of the first film, a new blade runner, LAPD Officer K (Ryan Gosling), unearths a long-buried secret that has the potential to plunge what's left of society into chaos.",
+			prod7 = new Product("Blade Runner: 2049", "Thirty years after the events of the first film, a new blade runner, LAPD Officer K, unearths a long-buried secret that has the potential to plunge what's left of society into chaos.",
 					"Movie", "Sci-Fi", 5, 20.0, 3.0, 83, "https://www.youtube.com/watch?v=6T2b0mp2hco", "Denis Villeneuve",
 					"Harrison Ford, Ryan Gosling, Ana de Armas", 2017, "img/Films/BladeRunner2049.jpg" );
 			productRepository.save(prod7);
@@ -87,7 +87,7 @@ public class DataExamples {
 					1985, "img/Films/BTTF.jpg");
 			productRepository.save(prod8);
 			
-			prod9 = new Product("Hannibal", "Based on characters and elements appearing in Thomas Harris' novels Red Dragon and Hannibal, with focus on the relationship between FBI special investigator Will Graham and Dr. Hannibal Lecter, a forensic psychiatrist destined to become Graham's most cunning enemy and at the same time, the only person who can understand him.",
+			prod9 = new Product("Hannibal", "Focus on the relationship between FBI special investigator Will Graham and Dr. Hannibal Lecter, a forensic psychiatrist destined to become Graham's most cunning enemy and at the same time.",
 					"Serie", "Sci-Fi", 4, 15.0, 2.0, 75, "https://www.youtube.com/watch?v=pDTzn8y-5kM", "Bryan Fuller", "Hugh Dancy, Mads Mikkelsen", 2015, "img/Series/Hannibal.jpg");
 			productRepository.save(prod9);
 			
@@ -100,7 +100,7 @@ public class DataExamples {
 					"Game", "Arcade", 5, 50.0, 5.0, 86, "https://www.youtube.com/watch?v=tKlRN2YpxRE", "Nintendo", "Mario and Company", 2017, "img/Games/switch-kart8.jpg");
 			productRepository.save(prod11);
 			
-			prod12 = new Product("Uncharted 4: A thief's End", " Following Uncharted 3: Drake's Deception, it is the final Uncharted game to feature protagonist Nathan Drake. Drake, retired from fortune hunting with his wife Elena, reunites with his estranged older brother Sam and longtime partner Sully to search for Captain Henry Avery's lost treasure.",
+			prod12 = new Product("Uncharted 4: A thief's End", "It is the final Uncharted game to feature protagonist Nathan Drake. Drake, reunites with his estranged older brother Sam and longtime partner Sully to search for Captain Henry Avery's lost treasure.",
 					"Game", "Action", 5, 50.0, 5.0, 91, "https://www.youtube.com/watch?v=WNDGQMz1fJQ", "Naughty Dog", "Nathan Drake, Victor Sullivan, Elena", 2017, "img/Games/ps4-uncharted4.jpg");
 			productRepository.save(prod12);
 			
@@ -119,12 +119,12 @@ public class DataExamples {
 					2008, "img/Series/sons.jpg");
 			productRepository.save(prod15);
 			
-			prod16 = new Product("Rick And Morty", "The series follows the misadventures of cynical mad scientist Rick Sanchez and his fretful, easily influenced grandson Morty Smith, who split their time between domestic life and interdimensional adventures.",
+			prod16 = new Product("Rick And Morty", "The series follows the misadventures of cynical mad scientist Rick Sanchez and his fretful, easily influenced grandson Morty Smith.",
 					"serie", "Sci-Fi", 4, 15.0, 2.0, 99, "https://www.youtube.com/watch?v=WNhH00OIPP0", "Justin Roiland and Dan Harmon", "Justin Roiland, Chris Parnell, Spencer Grammer, and Sarah Chalke",
 					2013, "img/Series/rick-and-morty.png");
 			productRepository.save(prod16);
 			
-			prod17 = new Product("Gears of War 4", "Gears of War 4 takes place 25 years after the events of Gears of War 3. Although the use of the Imulsion Countermeasure weapon destroyed all Imulsion on the planet Sera, killing the Locust and the Lambent in the process, the weapon forced humanity to adapt to new ways of survival after knocking out the use of fossil fuels",
+			prod17 = new Product("Gears of War 4", "Gears of War 4 takes place 25 years after the events of Gears of War 3. Although the use of the Imulsion Countermeasure weapon destroyed all Imulsion on the planet Sera, killing the Locust and the Lambent in the process.",
 					"Game", "Action", 5, 50.0, 5.0, 80, "https://www.youtube.com/watch?v=XrfVfRV0zSg", "The Coalition, Microsoft Studios", "Angel Desai, Justina Machado, Jimmy Smits, John DiMaggio", 
 					2016, "img/Games/xone-gears4.jpg");
 			productRepository.save(prod17);
