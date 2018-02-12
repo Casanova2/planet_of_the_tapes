@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -24,7 +25,8 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	
+	@ManyToMany(mappedBy="products")
+	private List<Pedido> pedidos;
 
 	@Column(unique = true)
 	private String name;
@@ -49,7 +51,7 @@ public class Product {
 
 
 	public Product(String name, String description, String type, String genre, int stock, double pbuy,
-		double prent, int score, String trailer, String director, String cast, int year, String ulrimg) {
+		double prent, int score, String trailer, String director, String cast, int year, String urlimg) {
 		super();
 		this.id = id;
 		this.name = name;

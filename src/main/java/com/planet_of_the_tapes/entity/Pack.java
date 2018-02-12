@@ -19,64 +19,67 @@ import javax.persistence.OneToMany;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
-public class Pedido {
+public class Pack {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
+	@Column(unique = true)
+	private String name;
+	private String price;
 	
-	@ManyToMany
+	@OneToMany
 	private List<Product> products;
 	
-	@Column(unique = true)
-	private String state;
-	private String pay;
-	private String type;
-	
 
-	protected Pedido() {
+	public Pack(Integer id, String name, String price) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
 	}
 
-public Pedido(Integer id, User user, List<Product> products, String state, String pay, String type) {
-	this.id = id;
-	this.state = state;
-	this.pay = pay;
-	this.type = type;
-}
-
-public Integer getId() {
-	return id;
-}
-
-public void setId(Integer id) {
-	this.id = id;
-}
 
 
-public String getState() {
-	return state;
-}
+	public Integer getId() {
+		return id;
+	}
 
-public void setState(String state) {
-	this.state = state;
-}
 
-public String getPay() {
-	return pay;
-}
 
-public void setPay(String pay) {
-	this.pay = pay;
-}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-public String getType() {
-	return type;
-}
 
-public void setType(String type) {
-	this.type = type;
-}
 
+	public String getName() {
+		return name;
+	}
+
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+
+	public String getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
+
+
+
+	protected Pack() {
+		
+	}
 
 }
