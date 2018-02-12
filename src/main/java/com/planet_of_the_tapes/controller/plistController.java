@@ -34,7 +34,7 @@ public class plistController {
 	
 	@RequestMapping("/plist")
 	public String plist(Model model, HttpServletRequest request) {
-		Page<Product> products = productRepository.findAll(new PageRequest(0, 2));
+		Page<Product> products = productRepository.findAll(new PageRequest(0, 4));
 		//List<Product> products = productRepository.findAll();
 		products.toString();
 		model.addAttribute("products",products);
