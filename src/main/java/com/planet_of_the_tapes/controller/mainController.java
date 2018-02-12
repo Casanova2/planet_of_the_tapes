@@ -37,15 +37,4 @@ public class mainController {
 		model.addAttribute("videogames",videogames);
 		return "index";
 	}
-	
-	@RequestMapping("/admin")
-	public String admin(Model model, HttpServletRequest request) {
-		User user = userRepository.findById(3);
-		User loggedAdmin = userRepository.findByName("Ruben");
-		model.addAttribute("admin", loggedAdmin);
-		model.addAttribute("user",user);
-		
-		
-		return "/admin/admin-dashboard";
-	}
 }
