@@ -25,15 +25,19 @@ public class adminController {
 	private ProductRepository productRepository;
 	
 	@RequestMapping("/admin")
-	public String admin(Model model, HttpServletRequest request) {
+	public String admin(Model model) {
 		
 		//Esto no debe ir asi, tiene que ir en una clase privada donde se llame cada constantemente.
 		User user = userRepository.findById(3);
 		User loggedAdmin = userRepository.findByName("Ruben");
+		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
+		int numberProducts = products.getNumberOfElements();
+		
 		model.addAttribute("admin", loggedAdmin);
 		model.addAttribute("user",user);
-		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
+		
 		model.addAttribute("products",products);
+		model.addAttribute("numberProducts",numberProducts);
 		
 		return "/admin/admin-dashboard";
 	}
@@ -44,6 +48,7 @@ public class adminController {
 		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
 		Page<Product> videogames = productRepository.findGroupByType("Videogame", new PageRequest(0, 4));
 		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
+		int numberProducts = products.getNumberOfElements();
 		
 		//Esto no debe ir asi, tiene que ir en una clase privada donde se llame cada constantemente.
 		User user = userRepository.findById(3);
@@ -55,6 +60,7 @@ public class adminController {
 		model.addAttribute("series",series);
 		model.addAttribute("movies",movies);
 		model.addAttribute("videogames",videogames);
+		model.addAttribute("numberProducts",numberProducts);
 		return "/admin/admin-products";
 	}
 	
@@ -65,6 +71,10 @@ public class adminController {
 		User loggedAdmin = userRepository.findByName("Ruben");
 		model.addAttribute("admin", loggedAdmin);
 		model.addAttribute("user",user);
+		
+		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
+		int numberProducts = products.getNumberOfElements();
+		model.addAttribute("numberProducts",numberProducts);
 		return "/admin/admin-user";
 	}
 }
