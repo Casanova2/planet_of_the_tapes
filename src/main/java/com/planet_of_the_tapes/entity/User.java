@@ -31,6 +31,7 @@ public class User {
 	private String telephone;
 	private boolean viewTelephone;
 	private String address;
+	private String role;
 	
 	//@OneToMany
 	//private List<Order> orders;
@@ -44,7 +45,7 @@ public class User {
 	protected User() {
 	}
 
-	public User(String name, String password, String dni, String email, String telephone, String address) {
+	public User(String name, String password, String dni, String email, String telephone, String address, String role) {
 
 		this.name = name;
 		this.password= password;
@@ -52,10 +53,20 @@ public class User {
 		this.email = email;
 		this.telephone = telephone;
 		this.setViewTelephone(false);
+		this.address = address;
+		this.role = role;
 	}
 
 	public Integer getId() {
 		return id;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public void setId(Integer id) {
@@ -124,7 +135,8 @@ public class User {
 				"\n name: " + this.name +
 				"\n email: " + this.email +
 				"\n telephone: " + this.telephone +
-				"\n view telephone: " + this.isViewTelephone();
+				"\n view telephone: " + this.isViewTelephone() +
+				"\n role: " + this.role;
 	}
 
 }
