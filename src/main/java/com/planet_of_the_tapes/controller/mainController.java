@@ -29,23 +29,12 @@ public class mainController {
 	
 	@RequestMapping("/")
 	public String index(Model model) {
-		Page<Product> series = productRepository.findGroupByType("Serie", new PageRequest(0, 2));
-		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 2));
-		Page<Product> videogames = productRepository.findGroupByType("Videogame", new PageRequest(0, 2));
+		Page<Product> series = productRepository.findGroupByType("Serie", new PageRequest(0, 4));
+		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
+		Page<Product> videogames = productRepository.findGroupByType("Videogame", new PageRequest(0, 4));
 		model.addAttribute("series",series);
 		model.addAttribute("movies",movies);
 		model.addAttribute("videogames",videogames);
 		return "index";
-	}
-	
-	@RequestMapping("/admin")
-	public String admin(Model model, HttpServletRequest request) {
-		User user = userRepository.findById(3);
-		User loggedAdmin = userRepository.findByName("Ruben");
-		model.addAttribute("admin", loggedAdmin);
-		model.addAttribute("user",user);
-		
-		
-		return "/admin/admin-dashboard";
 	}
 }
