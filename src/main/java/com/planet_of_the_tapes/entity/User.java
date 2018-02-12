@@ -34,14 +34,9 @@ public class User {
 	private String role;
 	private String avatar;
 	
-	//@OneToMany
-	//private List<Order> orders;
+	@OneToMany
+	private List<Pedido> orders;
 
-//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-//	private List<Fine> penalties;
-
-//	@ElementCollection(fetch = FetchType.EAGER)
-//	private List<String> roles;
 
 	protected User() {
 	}
