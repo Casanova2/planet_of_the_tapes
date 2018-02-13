@@ -15,8 +15,7 @@ import com.planet_of_the_tapes.entity.Product;
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 
 	Product findByName(String name);
-	
-	Product findOne(Integer id);
+
 	
 	Product findByNameLikeIgnoreCase(String name);
 	
