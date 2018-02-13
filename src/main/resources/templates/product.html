@@ -14,7 +14,7 @@
                     <div class="portfolio-title">
                         <div class="row">
                             <div class="col-lg-10 text-center">
-                                <h2 class="mb-0">{{Producto.name}}</h2>
+                                <h2 class="mb-0">{{producto.name}}</h2>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                     <div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut', 'autoplay': true, 'autoplayTimeout': 3000}">
                         <div>
                             <span class="img-thumbnail d-block">
-								<img alt="" class="img-fluid" src="img/Films/BladeRunner2049.jpg">
+								<img alt="" class="img-fluid" src="/{{producto.urlimg}}">
 							</span>
                         </div>
                     </div>
@@ -42,38 +42,38 @@
                             <div class="col-md-6 text-left text-lg-right">
                                 <ul>
                                     <li>
-                                        <a href="#" data-tooltip data-original-title="Like"><i class="fa fa-heart"></i>14</a>
+                                        <a href="#" data-tooltip data-original-title="Like"><i class="fa fa-heart"></i>{{producto.score}}</a>
                                     </li>
                                     <li>
                                         <i class="fa fa-calendar"></i> October 6, 2017
                                     </li>
                                     <li>
-                                        <i class="fa fa-tags"></i> <a href="#">Genre</a>, <a href="#">Sci-Fi</a>
+                                        <i class="fa fa-tags"></i> <a href="#">Genre</a>, <a href="#">{{producto.genre}}</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
-                    <p class="mt-2">Thirty years after the events of the first film, a new blade runner, LAPD Officer K (Ryan Gosling), unearths a long-buried secret that has the potential to plunge what's left of society into chaos. K's discovery leads him on a quest to find Rick Deckard (Harrison Ford), a former LAPD blade runner who has been missing for 30 years.</p>
+                    <p class="mt-2">{{producto.description}}</p>
 
-                    <a href="https://www.youtube.com/watch?v=6T2b0mp2hco" target="_blank" class="btn btn-primary btn-icon"><i class="fa fa-external-link"></i>Watch the Trailer</a> <span class="arrow hlb appear-animation" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800"></span>
+                    <a href={{producto.trailer}} target="_blank" class="btn btn-primary btn-icon"><i class="fa fa-external-link"></i>Watch the Trailer</a> <span class="arrow hlb appear-animation" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800"></span>
 
                     <ul class="portfolio-details">
                         <li>
                             <h5 class="mt-2 mb-1">Director</h5>
-                            <p>Denis Villeneuve</p>
+                            <p>{{producto.director}}</p>
                         </li>
                         <li>
                             <h5 class="mt-2 mb-1">Stars</h5>
-                            <p>Harrison Ford, Ryan Gosling, Ana de Armas</p>
+                            <p>{{producto.cast}}</p>
                         </li>
 
                         <li>
                             <h5 class="mt-2 mb-1">Prices</h5>
                             <!--<form enctype="multipart/form-data" method="post" class="cart">-->
                                 <div class="rent-product">
-                                    <a>2.99 €</a>
+                                    <a>{{producto.prent}}</a>
                                 </div>
                                 <a href="cart.html" class="btn btn-success pt-2 pb-2 pr-3 pl-3">Rent</a>
                             <!--</form>-->
@@ -81,7 +81,7 @@
                         <li>
                             <!--<form enctype="multipart/form-data" method="post" class="cart">-->
                                 <div class="buy-product">
-                                    <a>12.95 €</a>
+                                    <a>{{producto.pbuy}}</a>
                                 </div>
                                 <a href="cart.html" class="btn btn-primary pt-2 pb-2 pr-3 pl-3">Buy</a>
                             <!--</form>-->

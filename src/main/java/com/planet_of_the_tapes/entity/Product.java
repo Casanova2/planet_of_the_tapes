@@ -52,8 +52,6 @@ public class Product {
 
 	public Product(String name, String description, String type, String genre, int stock, double pbuy,
 		double prent, int score, String trailer, String director, String cast, int year, String urlimg) {
-		super();
-		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.type = type;

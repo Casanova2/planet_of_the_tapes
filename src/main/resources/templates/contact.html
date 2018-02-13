@@ -1,5 +1,6 @@
 {{>head}}
 
+   
 <body>
 
     <div class="body">
@@ -9,7 +10,38 @@
         <div role="main" class="main">
 
             <!-- Google Maps - Go to the bottom of the page to change settings and map location. -->
-            <div id="googlemaps" class="google-map"></div>
+            <div id="googlemaps" class="google-map">
+			<div id="map"></div>          
+			<script>
+			      var map;
+			      function initMap() {
+			        map = new google.maps.Map(document.getElementById('map'), {
+			          center: {lat: 40.3359104, lng: -3.8790321},
+			          zoom: 16
+			        });
+			        map.data.setStyle(function(feature) {
+				          return {
+				            title: feature.getProperty('name'),
+				            optimized: false
+				          };
+				        });
+				        map.data.addGeoJson(cities);
+			      }			      
+			      marker = new google.maps.Marker({
+	                    map: map,
+	                    position: new google.maps.LatLng(40.4335419, -3.6472188000000187)
+	                });
+			      var cities = {
+			    	        type: 'FeatureCollection',
+			    	        features: [{
+			    	          type: 'Feature',
+			    	          geometry: {type: 'Point', coordinates: [40.3359104, -3.8790321]},
+			    	          properties: {name: 'POTT'}
+			    	        }]
+			      };
+			 </script>
+			 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAq7XzgKFazBJqIthS2Ojq5-LjkrAurhG8&callback=initMap"async defer></script>
+			 </div>
 
             <div class="container">
 
@@ -27,7 +59,7 @@
 
                         <h2 class="mb-3 mt-2"><strong>Contact</strong> Us</h2>
 
-                        <form id="contactForm" action="php/contact-form.php" method="POST">
+                        <form id="contactForm" action="/simpleemail" method="POST">
                             <div class="form-row">
                                 <div class="form-group col-lg-6">
                                     <label>Your name *</label>
@@ -47,12 +79,12 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label>Message *</label>
-                                    <textarea maxlength="5000" data-msg-required="Please enter your message." rows="5" class="form-control" name="message" id="message" required></textarea>
+                                    <textarea maxlength="5000" data-msg-required="Please enter your message." rows="5" class="form-control" name="body" id="message" required></textarea>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col">
-                                    <input type="submit" value="Send Message" class="btn btn-primary btn-lg" data-loading-text="Loading...">
+                                    <input type="submit" value="Send Message" class="btn btn-primary btn-lg" data-loading-text="Loading..." >
                                 </div>
                             </div>
                         </form>
@@ -60,7 +92,7 @@
                     <div class="col-lg-6">
 
                         <h4 class="heading-primary mt-4">Get in <strong>Touch</strong></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget leo at velit imperdiet varius. In eu ipsum vitae velit congue iaculis vitae at risus. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <p>Contact us if you have any question or suggestion to improve our site.</p>
 
                         <hr>
 
