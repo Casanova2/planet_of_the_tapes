@@ -32,6 +32,7 @@ public class User {
 	private boolean viewTelephone;
 	private String address;
 	private String role;
+	private String avatar;
 	
 	@OneToMany
 	private List<Pedido> orders;
@@ -40,7 +41,7 @@ public class User {
 	protected User() {
 	}
 
-	public User(String name, String password, String dni, String email, String telephone, String address, String role) {
+	public User(String name, String password, String dni, String email, String telephone, String address, String role, String avatar) {
 
 		this.name = name;
 		this.password= password;
@@ -50,10 +51,19 @@ public class User {
 		this.setViewTelephone(false);
 		this.address = address;
 		this.role = role;
+		this.avatar = avatar;
 	}
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
 	public String getRole() {

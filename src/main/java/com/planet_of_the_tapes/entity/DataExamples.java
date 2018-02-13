@@ -31,16 +31,16 @@ public class DataExamples {
 
 	// Users creation
 			user1 = new User("carlos", "1234", "4567891", "elmio@gmail.com",
-					"656565066", "calle falsa 123", "ROLE_USER");
+					"656565066", "calle falsa 123", "ROLE_USER", "");
 			userRepository.save(user1);
 			
 			
 			user2 = new User("raul", "4321", "7894561", "eltuyo@gmail.com",
-					"606000000", "calle falsa 123", "ROLE_ADMIN");
+					"606000000", "calle falsa 123", "ROLE_ADMIN", "");
 			userRepository.save(user2);
 			
 			user3 = new User("Rubén", "4321", "7894561", "eltuyo@gmail.com",
-					"606000000", "calle falsa 123", "ROLE_ADMIN");
+					"606000000", "calle falsa 123", "ROLE_ADMIN" , "img/admin/avatar/ruben.png");
 			userRepository.save(user3);
 			
 	// Products Creation
