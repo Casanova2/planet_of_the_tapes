@@ -14,7 +14,7 @@
                     <div class="portfolio-title">
                         <div class="row">
                             <div class="col-lg-10 text-center">
-                                <h2 class="mb-0">{{Producto.name}}</h2>
+                                <h2 class="mb-0">{{producto.name}}</h2>
                             </div>
                         </div>
                     </div>
@@ -26,7 +26,7 @@
                     <div class="owl-carousel owl-theme" data-plugin-options="{'items': 1, 'margin': 10, 'animateOut': 'fadeOut', 'autoplay': true, 'autoplayTimeout': 3000}">
                         <div>
                             <span class="img-thumbnail d-block">
-								<img alt="" class="img-fluid" src="img/Films/BladeRunner2049.jpg">
+								<img alt="" class="img-fluid" src="{{producto.urlimg}}">
 							</span>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                                         <i class="fa fa-calendar"></i> October 6, 2017
                                     </li>
                                     <li>
-                                        <i class="fa fa-tags"></i> <a href="#">Genre</a>, <a href="#">Sci-Fi</a>
+                                        <i class="fa fa-tags"></i> <a href="#">Genre</a>, <a href="#">{{producto.genre}}</a>
                                     </li>
                                 </ul>
                             </div>

@@ -32,10 +32,10 @@ public class productController {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	/*@RequestMapping("/{id}")
+	@RequestMapping("product/{id}")
 	public String plist(Model model, @PathVariable Integer id) {
 		Product producto = productRepository.findOne(id);
 		model.addAttribute("producto",producto);
 		return "product";
-	}*/
+	}
 }
