@@ -49,13 +49,13 @@ public class DataExamples {
 			prod1 = new Product("Alien", "The film's title refers to a highly aggressive extraterrestrial creature that stalks and attacks the crew of a spaceship.",
 					"Movie", "Terror", 5, 20.0, 3.0, 90, "https://www.youtube.com/watch?v=jQ5lPt9edzQ",
 					"Ridley Scott", "Sigourney Weaver, Tom Skerritt, Veronica Cartwright, Harry Dean Stanton, John Hurt, Ian Holm and Yaphet Kotto",
-					 1979, "/img/Films/Alien.jpg");
+					 1979, "img/Films/Alien.jpg");
 			productRepository.save(prod1);
 			
 			prod2 = new Product("The Lord Of The Rings: The Fellowship of the Ring", "Set in Middle-earth, the story tells of the Dark Lord Sauron, who is seeking the One Ring. The fate of Middle-earth hangs in the balance as Frodo and eight companios.",
 				    "Movie", "Fantasy", 5, 20.0, 3.0, 99, "https://www.youtube.com/watch?v=V75dMMIW2B4", 
 				    "Peter Jackson", "Elijah Wood, Ian McKellen, Sean Astin, Viggo Mortensen, John Rhys-Davies, Orlando Bloom, Sean Bean, Liv Tyler, Cate Blanchett, Christopher Lee, Hugo Weaving, Sala Baker,Andy Serkis",
-				    2001, "/img/Films/TLOTR_FL.jpg");
+				    2001, "img/Films/TLOTR_FL.jpg");
 			productRepository.save(prod2);
 			
 			prod7 = new Product("Blade Runner: 2049", "Thirty years after the events of the first film, a new blade runner, LAPD Officer K, unearths a long-buried secret that has the potential to plunge what's left of society into chaos.",
