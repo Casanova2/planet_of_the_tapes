@@ -1,0 +1,71 @@
+{{>head}}
+
+<body>
+
+	{{>header}}
+
+    <div class="body">
+
+        <div role="main" class="main">
+            <div class="featured-boxes">
+                <div class="row">
+                    <div class="col-md-6 col-centered">
+                        
+                        <div class="featured-box featured-box-primary text-left mt-2">
+                            <div class="box-content" style="text-align: center">
+                                <h4 class="heading-primary"><span>Sign In</span></h4>
+
+                                <form id="register-form" action="/register/add" method="post">
+                                    <div class="form-row">
+                                        <div class="form-group col">
+                                            Name: <input type="text" class="form-control for -control-lg" name="name" placeholder="name">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                    	<div class="form-group col">
+                                            Password: <input type="password" class="form-control for -control-lg" name="password" placeholder="password">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col">
+                                            DNI: <input type="text" class="form-control for -control-lg" name="dni" placeholder="dni">
+                                        </div>
+                                    </div>
+                                        <div class="form-group col">
+                                            Email: <input type="email" class="form-control for -control-lg" name="email" placeholder="email">
+                                        </div>
+                                    </div>
+                                     <div class="form-row">
+                                        <div class="form-group col">
+                                            Telephone: <input type="text" class="form-control for -control-lg" name="telephone" placeholder="telephone">
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col">
+                                            Address: <input type="text" class="form-control for -control-lg" name="address" placeholder="address">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+ 											<div class="col-sm-4 text-right">
+                                                    <button type="submit" class="btn float-right btn-primary btn-lg">Sign Up
+                                                        <i class="fa fa-angle-right ml-1">
+                                                        </i>
+                                                    </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="mt-lg mb-lg line-thru text-center text-uppercase">
+										<span>or</span>
+									</span>
+									<a href="/login"><button id="login_register_btn" type="button" class="btn btn-link">Do you have an account already?</button></a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        {{>footer}}

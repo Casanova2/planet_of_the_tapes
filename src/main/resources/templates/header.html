@@ -52,11 +52,33 @@
 													Contact
 												</a>
                                         </li>
+                                        {{#unlogged}}
                                         <li class="">
                                             <a class="nav-link" href="login.html">
 													Login
 												</a>
                                         </li>
+                                        {{/unlogged}}{{#logged}}
+                                        
+                                         <div class="col-lg-7">
+											<div class="row">
+												<div class="col-lg-4 col-lg-offset-7 paddingNone userDropdownMenu">
+													<ul class="nav navbar-nav">
+														<li class="dropdown userdropmenu">
+															<a data-toggle="dropdown">{{#user}} {{ name }} {{/user}}</a>
+																<ul class="dropdown-menu userdrop">
+																	<li><a href="/user_profile">Profile <span class="glyphicon glyphicon-user"></span></a></li>
+																	{{#admin}}
+																	<li><a href="/admin/">Admin Pannel <span class="glyphicon glyphicon-cog"></span></a></li>
+																	{{/admin}}
+																	<li><a href="/logout">Log out <span class="glyphicon glyphicon-log-out"></span></a></li>
+																</ul>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										{{/logged}}
                                     </ul>
                                 </nav>
                             </div>

@@ -14,7 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User {
@@ -25,35 +25,36 @@ public class User {
 
 	@Column(unique = true)
 	private String name;
-	private String password;
+	private String passwordHash;
 	private String dni;
 	private String email;
 	private String telephone;
 	private boolean viewTelephone;
 	private String address;
-	private String role;
 	private String avatar;
+
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
 	
 	@OneToMany
 	private List<Pedido> orders;
 
-
 	protected User() {
 	}
 
-	public User(String name, String password, String dni, String email, String telephone, String address, String role, String avatar) {
+	public User(String name, String passwordHash, String dni, String email, String telephone, String address, String avatar, String... roles) {
 
 		this.name = name;
-		this.password= password;
+		this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash) ;
 		this.dni = dni;
 		this.email = email;
 		this.telephone = telephone;
 		this.setViewTelephone(false);
 		this.address = address;
-		this.role = role;
 		this.avatar = avatar;
+		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}
@@ -66,24 +67,37 @@ public class User {
 		this.avatar = avatar;
 	}
 
-	public String getRole() {
-		return role;
+
+	public List<String> getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+	public List<Pedido> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Pedido> orders) {
+		this.orders = orders;
+	}
+
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getPassword() {
-		return password;
+	public String getPasswordHash() {
+		return passwordHash;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String passwordHash) {
+		this.passwordHash = passwordHash;
 	}
 
 	public String getDni() {
@@ -140,8 +154,7 @@ public class User {
 				"\n name: " + this.name +
 				"\n email: " + this.email +
 				"\n telephone: " + this.telephone +
-				"\n view telephone: " + this.isViewTelephone() +
-				"\n role: " + this.role;
+				"\n view telephone: " + this.isViewTelephone();
 	}
 
 }

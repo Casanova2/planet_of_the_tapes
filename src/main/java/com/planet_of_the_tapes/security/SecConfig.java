@@ -28,16 +28,9 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/cart").permitAll();
 		http.authorizeRequests().antMatchers("/selectpay").permitAll();
 
-		// PRIVATE PAGES
-		http.authorizeRequests().antMatchers("/admin/css/**", "/admin/js/**", "/admin/img/**", "/admin/fonts/**")
-				.hasAnyRole("ADMIN");
-		http.authorizeRequests().antMatchers("/user_profile", "/user_profile/edit/**").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/{id}/reserve").hasAnyRole("USER");
-		http.authorizeRequests().antMatchers("/admin/", "/admin/**").hasAnyRole("ADMIN");
-
 		// LOGIN
 		http.formLogin().loginPage("/login");
-		http.formLogin().usernameParameter("email");
+		http.formLogin().usernameParameter("name");
 		http.formLogin().passwordParameter("password");
 		http.formLogin().defaultSuccessUrl("/");
 		http.formLogin().failureUrl("/loginError");

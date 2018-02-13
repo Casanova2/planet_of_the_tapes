@@ -28,7 +28,17 @@ public class mainController {
 	private ProductRepository productRepository;
 	
 	@RequestMapping("/")
-	public String index(Model model) {
+	public String index(Model model, HttpServletRequest request) {
+		
+		if (request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
+			User loggedUser = userRepository.findByName(request.getUserPrincipal().getName());
+			model.addAttribute("user", loggedUser);
+			model.addAttribute("logged", true);
+		} else
+			model.addAttribute("unlogged", true);
+		if (request.isUserInRole("ADMIN"))
+			model.addAttribute("admin", true);
+		
 		Page<Product> series = productRepository.findGroupByType("Serie", new PageRequest(0, 4));
 		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
 		Page<Product> videogames = productRepository.findGroupByType("Videogame", new PageRequest(0, 4));
