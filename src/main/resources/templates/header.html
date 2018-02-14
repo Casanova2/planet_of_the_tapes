@@ -60,25 +60,60 @@
                                         </li>
                                         {{/unlogged}}{{#logged}}
                                         
-                                         <div class="col-lg-7">
-											<div class="row">
-												<div class="col-lg-4 col-lg-offset-7 paddingNone userDropdownMenu">
-													<ul class="nav navbar-nav">
-														<li class="dropdown userdropmenu">
-															<a data-toggle="dropdown">{{#user}} {{ name }} {{/user}}</a>
-																<ul class="dropdown-menu userdrop">
-																	<li><a href="/user_profile">Profile <span class="glyphicon glyphicon-user"></span></a></li>
-																	{{#admin}}
-																	<li><a href="/admin/">Admin Pannel <span class="glyphicon glyphicon-cog"></span></a></li>
-																	{{/admin}}
-																	<li><a href="/logout">Log out <span class="glyphicon glyphicon-log-out"></span></a></li>
-																</ul>
+                                        <li>
+                                        	<div id="userbox" class="userbox">
+												<a href="#" data-toggle="dropdown">
+													<figure class="profile-picture">
+														<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle" data-lock-picture="{{user.avatar}}" />
+													</figure>
+													<div class="profile-info" data-lock-name="John Doe" data-lock-email="{{user.email}}">
+														<span class="name">{{#user}} {{ name }} {{/user}}</span>
+														<span class="name">{{user.roles}}</span>
+													</div>
+									
+													<i class="fa custom-caret"></i>
+												</a>
+									
+												<div class="dropdown-menu">
+													<ul class="list-unstyled">
+														<li class="divider"></li>
+														<li>
+															<a role="menuitem" tabindex="-1" href="/user_profile"><i class="fa fa-user"></i> My Profile</a>
+														</li>
+														
+														<li>
+														{{#admin}}
+															<a role="menuitem" tabindex="-1" href="/admin"><i class="fa fa-user"></i> Admin Pannel</a>
+														{{/admin}}
+														</li>
+														<li>
+															<a role="menuitem" tabindex="-1" href="/logout"><i class="fa fa-power-off"></i> Logout</a>
 														</li>
 													</ul>
 												</div>
 											</div>
-										</div>
+                                        	<div class="col-lg-7">
+												<div class="row">
+													<div class="col-lg-4 col-lg-offset-7 paddingNone userDropdownMenu">
+														<ul class="nav navbar-nav">
+															<li class="dropdown userdropmenu">
+																<a data-toggle="dropdown">{{#user}} {{ name }} {{/user}}</a>
+																	<ul class="dropdown-menu userdrop">
+																		<li><a href="/user_profile">Profile <span class="glyphicon glyphicon-user"></span></a></li>
+																		{{#admin}}
+																		<li><a href="/admin">Admin Pannel <span class="glyphicon glyphicon-cog"></span></a></li>
+																		{{/admin}}
+																		<li><a href="/logout">Log out <span class="glyphicon glyphicon-log-out"></span></a></li>
+																	</ul>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
 										{{/logged}}
+                                        </li>
+                                        
+                                         
                                     </ul>
                                 </nav>
                             </div>

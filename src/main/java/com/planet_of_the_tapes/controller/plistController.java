@@ -31,9 +31,15 @@ public class plistController {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private masterController masterSession;
 	
 	@RequestMapping("/plist")
 	public String plist(Model model, HttpServletRequest request) {
+		masterSession.session(model, request);
+		
 		Page<Product> products = productRepository.findAll(new PageRequest(0, 4));
 		//List<Product> products = productRepository.findAll();
 		products.toString();
