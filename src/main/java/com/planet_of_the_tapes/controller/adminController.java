@@ -32,9 +32,6 @@ public class adminController {
 	public String admin(Model model,HttpServletRequest request) {
 		masterSession.session(model, request);
 		
-		User user = userRepository.findById(3);
-		model.addAttribute("user",user);
-		
 		model.addAttribute("products",productRepository.findAll());
 		model.addAttribute("numberProducts",productRepository.findAll().size());
 		
@@ -48,35 +45,32 @@ public class adminController {
 		Page<Product> series = productRepository.findGroupByType("Serie", new PageRequest(0, 4));
 		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
 		Page<Product> videogames = productRepository.findGroupByType("Videogame", new PageRequest(0, 4));
-		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
-		int numberProducts = products.getNumberOfElements();
-		
-		User user = userRepository.findById(3);
-		model.addAttribute("user",user);
-		
-		model.addAttribute("products",products);
+
 		model.addAttribute("series",series);
 		model.addAttribute("movies",movies);
 		model.addAttribute("videogames",videogames);
-		model.addAttribute("numberProducts",numberProducts);
+		
+		model.addAttribute("products",productRepository.findAll());
+		model.addAttribute("numberProducts",productRepository.findAll().size());
 		return "/admin/admin-products";
 	}
 	
 	@RequestMapping("/admin-user")
 	public String adminuserprofile(Model model, HttpServletRequest request) {
 		masterSession.session(model, request);
-		User user = userRepository.findById(3);
-		model.addAttribute("user",user);
 		
-		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
-		int numberProducts = products.getNumberOfElements();
-		model.addAttribute("numberProducts",numberProducts);
+		model.addAttribute("products",productRepository.findAll());
+		model.addAttribute("numberProducts",productRepository.findAll().size());
+		
 		return "/admin/admin-user";
 	}
 	
 	@RequestMapping("/add-product")
 	public String addUser(Model model, HttpServletRequest request) {
-		this.userLogin(model);
+		masterSession.session(model, request);
+		
+		model.addAttribute("products",productRepository.findAll());
+		model.addAttribute("numberProducts",productRepository.findAll().size());
 		return "/admin/admin-add-user";
 	}
 	
@@ -97,11 +91,5 @@ public class adminController {
 		redirectAttrs.addFlashAttribute("messages", "Añadido nuevo usuario.");
 
 		return "redirect:/admin-product";
-	}
-	
-	private void userLogin (Model model) {
-		User user = userRepository.findById(3);
-		model.addAttribute("user",user);
-		model.addAttribute("numberProducts",productRepository.findAll().size());
 	}
 }
