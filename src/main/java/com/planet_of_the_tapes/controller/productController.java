@@ -33,9 +33,38 @@ public class productController {
 	private ProductRepository productRepository;
 	
 	@RequestMapping("product/{id}")
-	public String plist(Model model, @PathVariable Integer id) {
+	public String product(Model model, @PathVariable Integer id) {
 		Product producto = productRepository.findOne(id);
+		Page<Product> products = productRepository.findByGenre(producto.getGenre(), new PageRequest(0, 4));
 		model.addAttribute("producto",producto);
+		model.addAttribute("relate",products );
 		return "product";
 	}
+	
+	@RequestMapping("moreMovies")
+	public String moreMovies(Model model) {
+
+		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
+		model.addAttribute("item",movies);
+
+		return "listItems";
+	}
+	
+	/*@RequestMapping(value = "/moreGames")
+	public String moreGames(Model model, @RequestParam int page) {
+
+		Page<Resource> revistas = resourceRepository.findByResourceType(type, new PageRequest(page, 2));
+		model.addAttribute("items", revistas);
+
+		return "listItemsPage";
+	}*/
+	
+	/*@RequestMapping(value = "/moreMovies")
+	public String moreMovies(Model model, @RequestParam int page) {
+
+		Page<Resource> movies = resourceRepository.findByResourceType(type, new PageRequest(page, 2));
+		model.addAttribute("items", revistas);
+
+		return "listItemsPage";
+	}*/
 }
