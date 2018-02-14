@@ -33,12 +33,12 @@ public class adminController {
 		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
 		int numberProducts = products.getNumberOfElements();
 		
+		
 		model.addAttribute("admin", loggedAdmin);
 		model.addAttribute("user",user);
 		
 		model.addAttribute("products",products);
-		model.addAttribute("numberProducts",numberProducts);
-		
+
 		return "/admin/admin-dashboard";
 	}
 	
