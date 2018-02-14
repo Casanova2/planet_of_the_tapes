@@ -33,24 +33,12 @@ public class adminController {
 		masterSession.session(model, request);
 		
 		User user = userRepository.findById(3);
-<<<<<<< HEAD
-		User loggedAdmin = userRepository.findByName("Ruben");
-		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
-		int numberProducts = products.getNumberOfElements();
-		
-		
-		model.addAttribute("admin", loggedAdmin);
-		model.addAttribute("user",user);
-		
-		model.addAttribute("products",products);
 
-=======
 		model.addAttribute("user",user);
 		
 		model.addAttribute("products",productRepository.findAll());
 		model.addAttribute("numberProducts",productRepository.findAll().size());
 		
->>>>>>> 76f5b1cd12e6fe4d4c525de65559906a5abbde73
 		return "/admin/admin-dashboard";
 	}
 	
