@@ -8,6 +8,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.planet_of_the_tapes.entity.Product;
 import com.planet_of_the_tapes.entity.User;
@@ -23,37 +25,33 @@ public class adminController {
 	private UserRepository userRepository;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private masterController masterSession;
 	
 	@RequestMapping("/admin")
-	public String admin(Model model) {
+	public String admin(Model model,HttpServletRequest request) {
+		masterSession.session(model, request);
 		
-		//Esto no debe ir asi, tiene que ir en una clase privada donde se llame cada constantemente.
 		User user = userRepository.findById(3);
-		User loggedAdmin = userRepository.findByName("Ruben");
-		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
-		int numberProducts = products.getNumberOfElements();
-		
-		model.addAttribute("admin", loggedAdmin);
 		model.addAttribute("user",user);
 		
-		model.addAttribute("products",products);
-		model.addAttribute("numberProducts",numberProducts);
+		model.addAttribute("products",productRepository.findAll());
+		model.addAttribute("numberProducts",productRepository.findAll().size());
 		
 		return "/admin/admin-dashboard";
 	}
 	
 	@RequestMapping("/admin-products")
-	public String adminproducts(Model model) {
+	public String adminproducts(Model model, HttpServletRequest request) {
+		masterSession.session(model, request);
+		
 		Page<Product> series = productRepository.findGroupByType("Serie", new PageRequest(0, 4));
 		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
 		Page<Product> videogames = productRepository.findGroupByType("Videogame", new PageRequest(0, 4));
 		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
 		int numberProducts = products.getNumberOfElements();
 		
-		//Esto no debe ir asi, tiene que ir en una clase privada donde se llame cada constantemente.
 		User user = userRepository.findById(3);
-		User loggedAdmin = userRepository.findByName("Ruben");
-		model.addAttribute("admin", loggedAdmin);
 		model.addAttribute("user",user);
 		
 		model.addAttribute("products",products);
@@ -65,16 +63,45 @@ public class adminController {
 	}
 	
 	@RequestMapping("/admin-user")
-	public String adminuserprofile(Model model) {
-		//Esto no debe ir asi, tiene que ir en una clase privada donde se llame cada constantemente.
+	public String adminuserprofile(Model model, HttpServletRequest request) {
+		masterSession.session(model, request);
 		User user = userRepository.findById(3);
-		User loggedAdmin = userRepository.findByName("Ruben");
-		model.addAttribute("admin", loggedAdmin);
 		model.addAttribute("user",user);
 		
 		Page<Product> products = productRepository.findAll(new PageRequest(0, 18));
 		int numberProducts = products.getNumberOfElements();
 		model.addAttribute("numberProducts",numberProducts);
 		return "/admin/admin-user";
+	}
+	
+	@RequestMapping("/add-product")
+	public String addUser(Model model, HttpServletRequest request) {
+		this.userLogin(model);
+		return "/admin/admin-add-user";
+	}
+	
+	@RequestMapping("/admin/users/add/action")
+	public String addUserAction(@RequestParam String name, @RequestParam String description, @RequestParam String type,
+			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy,
+			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
+			@RequestParam String cast,@RequestParam int year,@RequestParam String urlimg,HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+
+		Product product = new Product(name, description, type, genre, stock, pbuy, prent, score,trailer,director,cast,year,urlimg);
+
+		try {
+			productRepository.save(product);
+		} catch (Exception e) {
+			return "redirect:/admin-product/addError";
+		}
+		redirectAttrs.addFlashAttribute("messages", "Añadido nuevo usuario.");
+
+		return "redirect:/admin-product";
+	}
+	
+	private void userLogin (Model model) {
+		User user = userRepository.findById(3);
+		model.addAttribute("user",user);
+		model.addAttribute("numberProducts",productRepository.findAll().size());
 	}
 }
