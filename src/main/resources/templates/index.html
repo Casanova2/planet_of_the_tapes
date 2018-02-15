@@ -62,6 +62,9 @@
                     <a href="plist.html">
                         <h2><strong>Series</strong></h2>
                     </a>
+                    <form id="series" role="form" method="post" action="/mostrarplistseries">
+                        <input onclick="mostrar_plist_series();" type="button" value="Submit form">
+                    </form>
                 </div>
 
                 <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
@@ -81,8 +84,12 @@
             <div class="container">
 
                 <div class="heading heading-border heading-middle-border heading-middle-border-center">
-                    <a href="plist.html">
+                    
+                    <a type="button">
                         <h2><strong>Movies</strong></h2>
+                        <form id="movies" role="form" method="post" action="/mostrarplistmovies">
+	                        <input onclick="mostrar_plist_movies();" type="button" value="Submit form">
+	                    </form>
                     </a>
                 </div>
 
@@ -106,6 +113,9 @@
                     <a href="plist.html">
                         <h2><strong>Videogames</strong></h2>
                     </a>
+                    <form id="videogames" role="form" method="post" action="/mostrarplistvideogames">
+                        <input onclick="mostrar_plist_videogames();" type="button" value="Submit form">
+                    </form>
                 </div>
 
                 <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
