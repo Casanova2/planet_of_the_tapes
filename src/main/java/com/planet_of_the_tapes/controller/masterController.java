@@ -18,17 +18,17 @@ public class masterController {
 	@Autowired
 	private ProductRepository productRepository;
 	
-	public String session (Model model,HttpServletRequest request) {
+	public void session (Model model,HttpServletRequest request) {
 		if (request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
 			User loggedUser = userRepository.findByName(request.getUserPrincipal().getName());
 			model.addAttribute("user", loggedUser);
 			model.addAttribute("logged", true);
 		} else
 			model.addAttribute("unlogged", true);
-			return "redirect:/login";
-		/*if (request.isUserInRole("ADMIN"))
+			//return "redirect:/login";
+		if (request.isUserInRole("ADMIN"))
 			model.addAttribute("admin", true);
-			return "redirect:/";*/
+			//return "redirect:/";
 	}
 	
 	public void numbers (Model model) {
