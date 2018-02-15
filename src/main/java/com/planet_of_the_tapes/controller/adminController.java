@@ -77,7 +77,6 @@ public class adminController {
 		return "/admin/admin-user";
 	}
 	
-<<<<<<< HEAD
 	
 	@RequestMapping("/add-product")
 	public String addUser(Model model, HttpServletRequest request) {
@@ -86,14 +85,13 @@ public class adminController {
 		model.addAttribute("products",productRepository.findAll());
 	
 		return "/admin/admin-add-user";
-=======
+	}
 	@RequestMapping("/admin-products-add")
 	public String addProduct(Model model, HttpServletRequest request) {
 
 		masterSession.session(model, request);
 
 		return "admin/admin-add-product";
->>>>>>> 77eec6b0f6e6cbb5c548e8737edc0f4b3f5df400
 	}
 	
 	@RequestMapping("/admin-add-product")
