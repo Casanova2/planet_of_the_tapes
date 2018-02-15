@@ -65,26 +65,40 @@ public class adminController {
 		return "/admin/admin-user";
 	}
 	
-	@RequestMapping("/add-product")
-	public String addUser(Model model, HttpServletRequest request) {
+	@RequestMapping("/admin-products-add")
+	public String addProduct(Model model, HttpServletRequest request) {
+
 		masterSession.session(model, request);
+
+		return "admin/admin-add-product";
+	}
+	
+	@RequestMapping("/admin-add-product")
+
+	public String addProduct(Model model, @RequestParam String name, @RequestParam String description, @RequestParam String type,
+			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy,
+			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
+			@RequestParam String cast, @RequestParam int year, @RequestParam String urlimg, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
 		
-		model.addAttribute("products",productRepository.findAll());
-		model.addAttribute("numberProducts",productRepository.findAll().size());
-		return "/admin/admin-add-user";
+			masterSession.session(model, request);
+				Product product = new Product(name, description, type, genre, stock, pbuy, prent, score, trailer, director,
+						cast, year, urlimg);
+				try {
+					productRepository.save(product);
+				} catch (Exception e) {
+					return "redirect:/admin-products/addError";
+				}
+				redirectAttrs.addFlashAttribute("messages", "Añadido nuevo producto.");
+
+				return "redirect:/admin-products";
 	}
 	
 	@RequestMapping("/admin/users/add/action")
-	public String addUserAction(@RequestParam String name, @RequestParam String description, @RequestParam String type,
-			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy,
-			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
-			@RequestParam String cast,@RequestParam int year,@RequestParam String urlimg,HttpServletRequest request,
+	public String addUserAction(@RequestParam String name ,HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 
-		Product product = new Product(name, description, type, genre, stock, pbuy, prent, score,trailer,director,cast,year,urlimg);
-
 		try {
-			productRepository.save(product);
 		} catch (Exception e) {
 			return "redirect:/admin-product/addError";
 		}
