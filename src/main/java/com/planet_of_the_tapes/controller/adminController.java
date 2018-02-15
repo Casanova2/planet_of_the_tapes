@@ -1,5 +1,8 @@
 package com.planet_of_the_tapes.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +34,10 @@ public class adminController {
 	@RequestMapping("/admin")
 	public String admin(Model model,HttpServletRequest request) {
 		masterSession.session(model, request);
-		
+		masterSession.numbers(model);
 		model.addAttribute("products",productRepository.findAll());
-		model.addAttribute("numberProducts",productRepository.findAll().size());
+		model.addAttribute("users",userRepository.findAll());
+		
 		
 		return "/admin/admin-dashboard";
 	}
@@ -41,6 +45,8 @@ public class adminController {
 	@RequestMapping("/admin-products")
 	public String adminproducts(Model model, HttpServletRequest request) {
 		masterSession.session(model, request);
+		masterSession.numbers(model);
+		
 		
 		Page<Product> series = productRepository.findGroupByType("Serie", new PageRequest(0, 4));
 		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
@@ -51,40 +57,98 @@ public class adminController {
 		model.addAttribute("videogames",videogames);
 		
 		model.addAttribute("products",productRepository.findAll());
-		model.addAttribute("numberProducts",productRepository.findAll().size());
+		
+		
 		return "/admin/admin-products";
+	}
+	@RequestMapping("/admin-userList")
+	public String adminUserList(Model model, HttpServletRequest request) {
+		masterSession.session(model, request);
+		masterSession.numbers(model);
+		model.addAttribute("users",userRepository.findAll());
+		
+		return "/admin/admin-userList";
 	}
 	
 	@RequestMapping("/admin-user")
 	public String adminuserprofile(Model model, HttpServletRequest request) {
 		masterSession.session(model, request);
-		
+		masterSession.numbers(model);
 		model.addAttribute("products",productRepository.findAll());
-		model.addAttribute("numberProducts",productRepository.findAll().size());
+	
 		
 		return "/admin/admin-user";
 	}
 	
+	
 	@RequestMapping("/add-product")
 	public String addUser(Model model, HttpServletRequest request) {
 		masterSession.session(model, request);
-		
+		masterSession.numbers(model);
 		model.addAttribute("products",productRepository.findAll());
-		model.addAttribute("numberProducts",productRepository.findAll().size());
+	
 		return "/admin/admin-add-user";
+	}
+	@RequestMapping("/admin-products-add")
+	public String addProduct(Model model, HttpServletRequest request) {
+
+		masterSession.session(model, request);
+		masterSession.numbers(model);
+		return "admin/admin-add-product";
+	}
+	
+	@RequestMapping("/admin-add-product")
+
+	public String addProduct(Model model, @RequestParam String name, @RequestParam String description, @RequestParam String type,
+			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy,
+			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
+			@RequestParam String cast, @RequestParam int year, @RequestParam String urlimg, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+			masterSession.numbers(model);
+			masterSession.session(model, request);
+				Product product = new Product(name, description, type, genre, stock, pbuy, prent, score, trailer, director,
+						cast, year, urlimg);
+				try {
+					productRepository.save(product);
+				} catch (Exception e) {
+					return "redirect:/admin-products/addError";
+				}
+				redirectAttrs.addFlashAttribute("messages", "Añadido nuevo producto.");
+
+				return "redirect:/admin-products";
+	}
+	@RequestMapping("/admin-user-add")
+	public String adduser(Model model, HttpServletRequest request) {
+
+		masterSession.session(model, request);
+		masterSession.numbers(model);
+
+		return "admin/admin-add-product";
+	}
+	
+	@RequestMapping("/admin-add-user")
+
+	public String addUser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
+			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+			masterSession.numbers(model);
+			masterSession.session(model, request);
+				User user = new User(name,passwordHash,dni,email,telephone,address,avatar,"ROLE_USER");
+				try {
+					userRepository.save(user);
+				} catch (Exception e) {
+					return "redirect:/admin-userList/addError";
+				}
+				redirectAttrs.addFlashAttribute("messages", "Añadido nuevo usuario.");
+
+				return "redirect:/admin-userList";
 	}
 	
 	@RequestMapping("/admin/users/add/action")
-	public String addUserAction(@RequestParam String name, @RequestParam String description, @RequestParam String type,
-			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy,
-			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
-			@RequestParam String cast,@RequestParam int year,@RequestParam String urlimg,HttpServletRequest request,
+	public String addUserAction(@RequestParam String name ,HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 
-		Product product = new Product(name, description, type, genre, stock, pbuy, prent, score,trailer,director,cast,year,urlimg);
-
 		try {
-			productRepository.save(product);
 		} catch (Exception e) {
 			return "redirect:/admin-product/addError";
 		}

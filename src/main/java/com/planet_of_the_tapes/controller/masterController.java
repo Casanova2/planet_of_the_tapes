@@ -30,4 +30,9 @@ public class masterController {
 			model.addAttribute("admin", true);
 			//return "redirect:/";
 	}
+	
+	public void numbers (Model model) {
+		model.addAttribute("numberProducts",productRepository.findAll().size());
+		model.addAttribute("numberUsers",userRepository.findAll().size());
+	}
 }
