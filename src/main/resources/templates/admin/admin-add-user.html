@@ -14,7 +14,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Add product</h2>
+						<h2>Products</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -24,7 +24,6 @@
 									</a>
 								</li>
 								<li><span>Products</span></li>
-								<li><span>Add Product</span></li>
 							</ol>
 					
 							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
@@ -32,102 +31,57 @@
 					</header>
 
 					<!-- start: page -->
-						<div class="row">					
-							
-							<div class="col-md-12">
-								<form id="form1" class="form-horizontal">
-									<section class="panel">
-										<header class="panel-heading">
-											<h2 class="panel-title">New Product</h2>
-										</header>
-										<div class="panel-body">
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Name</label>
-												<div class="col-sm-8">
-													<input type="text" name="name" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Description</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Type</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Genre</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Stock</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Price buy</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Price rent</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Score</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Trailer</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Director</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Cast</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Year</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
-											<div class="form-group">
-												<label class="col-sm-3 control-label">Url image</label>
-												<div class="col-sm-8">
-													<input type="email" name="email" class="form-control">
-												</div>
-											</div>
+						
+						<section class="panel">
+								<div class="panel-title-sign mt-xl text-right">
+									<h2 class="title text-uppercase text-weight-bold m-none"><i class="fa fa-user mr-xs"></i>Add product</h2>
+								</div>
+								<div class="panel-body">
+									<form action="/admin-add-user" method="post">
+										<div class="form-group mb-lg">
+											<label>User Name</label>
+											<input name="name" type="text" class="form-control input-lg" />
 										</div>
+
+										<div class="form-group mb-lg">
+											<label>Password</label>
+											<input name="passwordHash" type="text" class="form-control input-lg" />
+										</div>
+							
+										<div class="form-group mb-lg">
+											<label>DNI</label>
+											<input name="dni" type="text" class="form-control input-lg" />
+										</div>
+										
+										<div class="form-group mb-lg">
+											<label>Email</label>
+											<input name="email" type="text" class="form-control input-lg" />
+										</div>
+										
+										<div class="form-group mb-lg">
+											<label>Telephone</label>
+											<input name="telephone" type="text" class="form-control input-lg" />
+										</div>
+										
+										<div class="form-group mb-lg">
+											<label>Address</label>
+											<input name="address" type="text" class="form-control input-lg" />
+										</div>
+										
+										<div class="form-group mb-lg">
+											<label>Avatar</label>
+											<input name="avatar" type="text" class="form-control input-lg" />
+										</div>
+										
+										
 										<footer class="panel-footer">
 											<button class="btn btn-primary">Submit </button>
 											<button type="reset" class="btn btn-default">Reset</button>
 										</footer>
-									</section>
-								</form>
-							</div>
-						</div>
+									
+									</form>
+								</div>
+						</section>
 					<!-- end: page -->
 				</section>
 			</div>
@@ -158,16 +112,16 @@
 								<ul>
 									<li class="status-online">
 										<figure class="profile-picture">
-											<img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
 										</figure>
 										<div class="profile-info">
-											<span class="name">Joseph Doe Junior</span>
+											<span class="name">{{user.name}}</span>
 											<span class="title">Hey, how are you?</span>
 										</div>
 									</li>
 									<li class="status-online">
 										<figure class="profile-picture">
-											<img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
 										</figure>
 										<div class="profile-info">
 											<span class="name">Joseph Doe Junior</span>
@@ -176,7 +130,7 @@
 									</li>
 									<li class="status-offline">
 										<figure class="profile-picture">
-											<img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
 										</figure>
 										<div class="profile-info">
 											<span class="name">Joseph Doe Junior</span>
@@ -185,7 +139,7 @@
 									</li>
 									<li class="status-offline">
 										<figure class="profile-picture">
-											<img src="assets/images/!sample-user.jpg" alt="Joseph Doe" class="img-circle">
+											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
 										</figure>
 										<div class="profile-info">
 											<span class="name">Joseph Doe Junior</span>
@@ -202,6 +156,6 @@
 		</section>
 
 		{{>admin/admin-footer}}
-
+		
 	</body>
 </html>

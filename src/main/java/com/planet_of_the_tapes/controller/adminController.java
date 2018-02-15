@@ -1,5 +1,8 @@
 package com.planet_of_the_tapes.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,7 +93,7 @@ public class adminController {
 	public String addProduct(Model model, HttpServletRequest request) {
 
 		masterSession.session(model, request);
-
+		masterSession.numbers(model);
 		return "admin/admin-add-product";
 	}
 	
@@ -101,7 +104,7 @@ public class adminController {
 			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
 			@RequestParam String cast, @RequestParam int year, @RequestParam String urlimg, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
-		
+			masterSession.numbers(model);
 			masterSession.session(model, request);
 				Product product = new Product(name, description, type, genre, stock, pbuy, prent, score, trailer, director,
 						cast, year, urlimg);
@@ -113,6 +116,32 @@ public class adminController {
 				redirectAttrs.addFlashAttribute("messages", "Añadido nuevo producto.");
 
 				return "redirect:/admin-products";
+	}
+	@RequestMapping("/admin-user-add")
+	public String adduser(Model model, HttpServletRequest request) {
+
+		masterSession.session(model, request);
+		masterSession.numbers(model);
+
+		return "admin/admin-add-product";
+	}
+	
+	@RequestMapping("/admin-add-user")
+
+	public String addUser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
+			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+			masterSession.numbers(model);
+			masterSession.session(model, request);
+				User user = new User(name,passwordHash,dni,email,telephone,address,avatar,"ROLE_USER");
+				try {
+					userRepository.save(user);
+				} catch (Exception e) {
+					return "redirect:/admin-userList/addError";
+				}
+				redirectAttrs.addFlashAttribute("messages", "Añadido nuevo usuario.");
+
+				return "redirect:/admin-userList";
 	}
 	
 	@RequestMapping("/admin/users/add/action")
