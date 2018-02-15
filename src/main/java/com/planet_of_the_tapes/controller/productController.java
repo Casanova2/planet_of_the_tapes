@@ -35,7 +35,7 @@ public class productController {
 	@RequestMapping("product/{id}")
 	public String product(Model model, @PathVariable Integer id) {
 		Product producto = productRepository.findOne(id);
-		Page<Product> products = productRepository.findByGenre(producto.getGenre(), new PageRequest(0, 4));
+		Page<Product> products = productRepository.findByGenreAndType(producto.getGenre(), producto.getType(),new PageRequest(0, 4));
 		model.addAttribute("producto",producto);
 		model.addAttribute("relate",products );
 		return "product";

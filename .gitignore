@@ -171,3 +171,5 @@ Servers/Pivotal tc Server Developer Edition v3.2-config/jmxremote.access
 .metadata/.plugins/org.springsource.ide.eclipse.commons.gettingstarted/dashboard/1518092537981/common/css/flexbox.css
 .metadata/.plugins/org.springsource.ide.eclipse.commons.gettingstarted/dashboard/1518092537981/common/css/docs.css
 .metadata/.plugins/org.springsource.ide.eclipse.commons.gettingstarted/dashboard/1518092537981/common/css/dashboard.css
+src/main/resources/application.properties
+src/main/resources/application.properties
