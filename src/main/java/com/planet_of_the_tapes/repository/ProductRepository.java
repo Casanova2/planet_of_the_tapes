@@ -19,7 +19,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 	Product findByNameLikeIgnoreCase(String name);
 	
-	Product findByGenre (String genre);
+	Page<Product> findByGenreAndType (String genre,String type,Pageable page);
 	
 	Product findByType (String type);
 	
