@@ -117,6 +117,7 @@ public class adminController {
 
 				return "redirect:/admin-products";
 	}
+	
 	@RequestMapping("/admin-user-add")
 	public String adduser(Model model, HttpServletRequest request) {
 
@@ -127,7 +128,6 @@ public class adminController {
 	}
 	
 	@RequestMapping("/admin-add-user")
-
 	public String addUser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
 			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
@@ -144,16 +144,49 @@ public class adminController {
 				return "redirect:/admin-userList";
 	}
 	
-	@RequestMapping("/admin/users/add/action")
-	public String addUserAction(@RequestParam String name ,HttpServletRequest request,
-			RedirectAttributes redirectAttrs) {
+	@RequestMapping("/admin-remove-product")
+	public String removeProduct(Model model, HttpServletRequest request) {
 
-		try {
-		} catch (Exception e) {
-			return "redirect:/admin-product/addError";
-		}
-		redirectAttrs.addFlashAttribute("messages", "Añadido nuevo usuario.");
+		masterSession.session(model, request);
+		masterSession.numbers(model);
 
-		return "redirect:/admin-product";
+		return "admin/admin-remove-product-action";
+	}
+	
+	@RequestMapping("/admin-remove-product-action")
+	public String removeProductAction(Model model, @RequestParam String name,HttpServletRequest request) {
+			masterSession.numbers(model);
+			masterSession.session(model, request);
+				try {
+					Product product = productRepository.findByName(name);
+					productRepository.delete(product);
+				} catch (Exception e) {
+					return "redirect:/admin-products/deleteError";
+				}
+
+				return "redirect:/admin-products";
+	}
+	
+	@RequestMapping("/admin-remove-user")
+	public String removeUse(Model model, HttpServletRequest request) {
+
+		masterSession.session(model, request);
+		masterSession.numbers(model);
+
+		return "admin/admin-remove-user-action";
+	}
+	
+	@RequestMapping("/admin-remove-user-action")
+	public String removeUsertAction(Model model, @RequestParam String name,HttpServletRequest request) {
+			masterSession.numbers(model);
+			masterSession.session(model, request);
+				try {
+					User user = userRepository.findByName(name);
+					userRepository.delete(user);
+				} catch (Exception e) {
+					return "redirect:/admin-user/deleteError";
+				}
+
+				return "redirect:/admin-userList";
 	}
 }

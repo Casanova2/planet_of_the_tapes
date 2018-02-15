@@ -66,8 +66,7 @@ public class Product {
 		this.year = year;
 		this.urlimg = urlimg;
 	}
-
-
+	
 
 	public Integer getId() {
 		return id;
