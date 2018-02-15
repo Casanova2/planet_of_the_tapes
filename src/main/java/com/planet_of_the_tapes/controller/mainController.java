@@ -37,9 +37,11 @@ public class mainController {
 		Page<Product> series = productRepository.findGroupByType("Serie", new PageRequest(0, 4));
 		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
 		Page<Product> videogames = productRepository.findGroupByType("Videogame", new PageRequest(0, 4));
-		model.addAttribute("series",series);
+		
+		model.addAttribute("series",series);		
 		model.addAttribute("movies",movies);
 		model.addAttribute("videogames",videogames);
+		//model.addAttribute("user",request.getUserPrincipal());
 		return "index";
 	}
 }

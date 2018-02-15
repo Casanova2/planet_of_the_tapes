@@ -33,7 +33,7 @@ public class registerController {
 	public String addUser(@RequestParam String name, @RequestParam String password, @RequestParam String dni, @RequestParam String email, @RequestParam String telephone,
 			@RequestParam String address, String avatar) {
 
-		User user = new User(name, password, dni, email, telephone, address,"ROLE_USER", "ROLE_ADMIN");
+		User user = new User(name, password, dni, email, telephone, address,"", "ROLE_ADMIN");
 		try {
 			userRepository.save(user);
 		} catch (Exception e) {

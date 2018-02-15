@@ -41,8 +41,6 @@ public class plistController {
 		masterSession.session(model, request);
 		
 		Page<Product> products = productRepository.findAll(new PageRequest(0, 4));
-		//List<Product> products = productRepository.findAll();
-		products.toString();
 		model.addAttribute("products",products);
 		return "plist";
 	}
