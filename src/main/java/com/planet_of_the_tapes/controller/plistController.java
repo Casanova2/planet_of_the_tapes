@@ -77,26 +77,26 @@ public class plistController {
 
 	@RequestMapping(value = "/mostrarplistseries", method = RequestMethod.POST)
     public String mostrarplist(@Valid @ModelAttribute("series")Product p, ModelMap model) {
-	 	Page<Product> series = productRepository.findGroupByType("Serie", new PageRequest(0, 4));
-        model.addAttribute("products", series);
         String name = "Series";
         model.addAttribute("name", name);
+        List<Product> serie = productRepository.findGroupByType("Serie");
+        model.addAttribute("products", serie);
         return "plist";
     }
 	@RequestMapping(value = "/mostrarplistmovies", method = RequestMethod.POST)
     public String mostrarplistmovies(@Valid @ModelAttribute("movies")Product p, ModelMap model) {
-	 	Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
-        model.addAttribute("products", movies);
         String name = "Movies";
         model.addAttribute("name", name);
+        List<Product> movie = productRepository.findGroupByType("Movie");
+        model.addAttribute("products", movie);
         return "plist";
     }
 	@RequestMapping(value = "/mostrarplistvideogames", method = RequestMethod.POST)
     public String mostrarplistvideogames(@Valid @ModelAttribute("videogames")Product p, ModelMap model) {
-	 	Page<Product> videogames = productRepository.findGroupByType("Videogame", new PageRequest(0, 4));
-        model.addAttribute("products", videogames);
         String name = "Videogames";
         model.addAttribute("name", name);
+        List<Product> videogame = productRepository.findGroupByType("Videogame");
+        model.addAttribute("products", videogame);
         return "plist";
     }
 }
