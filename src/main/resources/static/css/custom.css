@@ -43,11 +43,15 @@ html #footer.color-custom .footer-copyright {
 }
 
 #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+  height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.heading.heading-middle-border h1, .heading.heading-middle-border h2, .heading.heading-middle-border h3, .heading.heading-middle-border h4, .heading.heading-middle-border h5, .heading.heading-middle-border h6 {
+    display: block;
+}

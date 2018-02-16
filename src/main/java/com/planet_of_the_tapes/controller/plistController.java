@@ -59,4 +59,20 @@ public class plistController {
         
         return "plist";
     }
+	
+	@RequestMapping("/mostrarplist")
+    public String mostrarplist(Model model, @RequestParam int enlace){
+        
+		if(enlace == 1) {
+			model.addAttribute("products", productRepository.findGroupByType("Series"));
+		}
+		if(enlace == 2) {
+			model.addAttribute("products", productRepository.findGroupByType("Movies"));
+		}
+		if(enlace == 3){
+			model.addAttribute("products", productRepository.findGroupByType("Videogames"));
+		}
+        
+        return "plist";
+    }
 }
