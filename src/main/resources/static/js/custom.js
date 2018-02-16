@@ -1,16 +1,3 @@
-function mostrar_plist_series(){
-	console.log("Rubén el master de la programación");
-	document.getElementById("series").submit();
-}
-function mostrar_plist_movies(){
-	console.log("Rubén el master de la programación");
-	document.getElementById("movies").submit();
-}
-function mostrar_plist_videogames(){
-	console.log("Rubén el master de la programación");
-	document.getElementById("videogames").submit();
-}
-
 /*
 Load More
 */

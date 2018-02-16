@@ -42,61 +42,21 @@ public class plistController {
 	@Autowired
 	private masterController masterSession;
 	
-	/*@RequestMapping("/plist")
-	public String plist(Model model, HttpServletRequest request) {
-		masterSession.session(model, request);
-		
-		Page<Product> products = productRepository.findAll(new PageRequest(0, 4));
-		model.addAttribute("products",products);
-		return "plist";
-	}*/
-	
-	/*@RequestMapping("/mostrarplist")
-	@RequestMapping(method = RequestMethod.POST)
-	public String mostrar_plist(Model model, HttpServletRequest request) {
-		masterSession.session(model, request);
-		
-		Page<Product> products = productRepository.findAll(new PageRequest(0, 4));
-		model.addAttribute("products",products);
-		return "plist";
-	}*/
-	
-	/*@RequestMapping(value="/mostrarplist", method=RequestMethod.POST)
-	@ResponseBody
-	public String mostrar_plist(Model model, HttpServletRequest request){
-		//masterSession.session(model, request);
-		
-		
-		
-		Page<Product> products = productRepository.findAll(new PageRequest(0, 4));
-		model.addAttribute("products",products);
-		
-		model.addAttribute("id","hola");
-		return "plist";
-	}*/
-
-	@RequestMapping(value = "/mostrarplistseries", method = RequestMethod.POST)
-    public String mostrarplist(@Valid @ModelAttribute("series")Product p, ModelMap model) {
-        String name = "Series";
-        model.addAttribute("name", name);
-        List<Product> serie = productRepository.findGroupByType("Serie");
-        model.addAttribute("products", serie);
-        return "plist";
-    }
-	@RequestMapping(value = "/mostrarplistmovies", method = RequestMethod.POST)
-    public String mostrarplistmovies(@Valid @ModelAttribute("movies")Product p, ModelMap model) {
-        String name = "Movies";
-        model.addAttribute("name", name);
-        List<Product> movie = productRepository.findGroupByType("Movie");
-        model.addAttribute("products", movie);
-        return "plist";
-    }
-	@RequestMapping(value = "/mostrarplistvideogames", method = RequestMethod.POST)
-    public String mostrarplistvideogames(@Valid @ModelAttribute("videogames")Product p, ModelMap model) {
-        String name = "Videogames";
-        model.addAttribute("name", name);
-        List<Product> videogame = productRepository.findGroupByType("Videogame");
-        model.addAttribute("products", videogame);
+	@RequestMapping("/mostrar")
+    public String mostrar(Model model, @RequestParam(value="series", required=false) String series,
+    	@RequestParam (value="movies", required=false) String movies,
+    	@RequestParam (value="videogames", required=false) String videogames){
+        
+		if(series != null) {
+			model.addAttribute("products", productRepository.findGroupByType("Series"));
+		}
+		if(movies != null) {
+			model.addAttribute("products", productRepository.findGroupByType("Movies"));
+		}
+		if(videogames != null){
+			model.addAttribute("products", productRepository.findGroupByType("Videogames"));
+		}
+        
         return "plist";
     }
 }

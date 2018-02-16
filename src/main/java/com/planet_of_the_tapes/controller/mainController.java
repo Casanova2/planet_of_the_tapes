@@ -34,9 +34,9 @@ public class mainController {
 		
 		masterSession.session(model, request);
 		
-		Page<Product> series = productRepository.findGroupByType("Serie", new PageRequest(0, 4));
-		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
-		Page<Product> videogames = productRepository.findGroupByType("Videogame", new PageRequest(0, 4));
+		Page<Product> series = productRepository.findGroupByType("Series", new PageRequest(0, 4));
+		Page<Product> movies = productRepository.findGroupByType("Movies", new PageRequest(0, 4));
+		Page<Product> videogames = productRepository.findGroupByType("Videogames", new PageRequest(0, 4));
 		
 		model.addAttribute("series",series);		
 		model.addAttribute("movies",movies);
