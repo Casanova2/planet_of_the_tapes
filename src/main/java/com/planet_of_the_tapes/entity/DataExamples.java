@@ -26,24 +26,29 @@ public class DataExamples {
 
 		// Data declaration
 
-		User user1, user2, user3;
+		User user1, user2, user3, user4;
 		Product prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12,
 		prod100, prod101, prod102, prod103, prod104, prod105,
 		prod200, prod201, prod202, prod203, prod204, prod205;
 
 	// Users creation
-			user1 = new User("carlos", "1234", "4567891", "elmio@gmail.com",
-					"656565066", "calle falsa 123", "", "ROLE_USER");
+			user1 = new User("Carlos", "1234", "4567891L", "carlos@gmail.com",
+					"656565066", "calle falsa 123", "img/admin/avatar/carlos.png", "ROLE_ADMIN", "ROLE_USER");
 			userRepository.save(user1);
 			
 			
-			user2 = new User("raul", "4321", "7894561", "eltuyo@gmail.com",
-					"606000000", "calle falsa 123","", "ROLE_USER");
+			user2 = new User("Raul", "4321", "7894561I", "raul@gmail.com",
+					"606056001", "calle falsa 123","img/admin/avatar/raul.png", "ROLE_ADMIN", "ROLE_USER");
 			userRepository.save(user2);
 			
-			user3 = new User("Rubén", "4321", "7894561", "eltuyo@gmail.com",
-					"606000000", "calle falsa 123", "img/admin/avatar/ruben.png","ROLE_USER");
+			user3 = new User("Ruben", "2143", "7874541C", "ruben@gmail.com",
+					"606000000", "calle falsa 123", "img/admin/avatar/ruben.png","ROLE_ADMIN", "ROLE_USER");
 			userRepository.save(user3);
+			
+			user4 = new User("Asier", "3421", "7845678R", "asier@gmail.com",
+					"606789541", "calle falsa 123", "img/admin/avatar/asier.png","ROLE_ADMIN", "ROLE_USER");
+			userRepository.save(user4);
+			
 			
 	// Products Creation
 			

@@ -154,11 +154,11 @@ public class adminController {
 	}
 	
 	@RequestMapping("/admin-remove-product-action")
-	public String removeProductAction(Model model, @RequestParam String name,HttpServletRequest request) {
+	public String removeProductAction(Model model, @RequestParam String name, @RequestParam String type, HttpServletRequest request) {
 			masterSession.numbers(model);
 			masterSession.session(model, request);
 				try {
-					Product product = productRepository.findByName(name);
+					Product product = productRepository.findByNameAndType(name, type);
 					productRepository.delete(product);
 				} catch (Exception e) {
 					return "redirect:/admin-products/deleteError";
@@ -177,11 +177,11 @@ public class adminController {
 	}
 	
 	@RequestMapping("/admin-remove-user-action")
-	public String removeUsertAction(Model model, @RequestParam String name,HttpServletRequest request) {
+	public String removeUsertAction(Model model, @RequestParam String name, @RequestParam String email, HttpServletRequest request) {
 			masterSession.numbers(model);
 			masterSession.session(model, request);
 				try {
-					User user = userRepository.findByName(name);
+					User user = userRepository.findByNameAndEmail(name, email);
 					userRepository.delete(user);
 				} catch (Exception e) {
 					return "redirect:/admin-user/deleteError";

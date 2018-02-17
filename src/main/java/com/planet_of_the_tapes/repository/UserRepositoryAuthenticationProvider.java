@@ -16,11 +16,12 @@ import com.planet_of_the_tapes.entity.User;
 import com.planet_of_the_tapes.repository.UserRepository;
 
 @Component
-public class UserAuthenticationRepository implements AuthenticationProvider {
+public class UserRepositoryAuthenticationProvider implements AuthenticationProvider {
 
 	@Autowired
 	private UserRepository userRepository;
 
+	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
 
 		User user = userRepository.findByName(auth.getName());
@@ -39,10 +40,10 @@ public class UserAuthenticationRepository implements AuthenticationProvider {
 			roles.add(new SimpleGrantedAuthority(role));
 		}
 
-
 		return new UsernamePasswordAuthenticationToken(user.getName(), password, roles);
 	}
 
+	@Override
 	public boolean supports(Class<?> authenticationObject) {
 		return true;
 	}

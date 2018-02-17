@@ -7,13 +7,13 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.planet_of_the_tapes.repository.UserAuthenticationRepository;
+import com.planet_of_the_tapes.repository.UserRepositoryAuthenticationProvider;
 
 @Configuration
-public class SecConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	public UserAuthenticationRepository authenticationProvider;
+	public UserRepositoryAuthenticationProvider authenticationProvider;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -27,6 +27,12 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/product").permitAll();
 		http.authorizeRequests().antMatchers("/cart").permitAll();
 		http.authorizeRequests().antMatchers("/selectpay").permitAll();
+		
+		// Private pages (all other pages)
+        http.authorizeRequests().antMatchers("/home").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/selectpay").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/selectpay").hasAnyRole("ADMIN");
 
 		// LOGIN
 		http.formLogin().loginPage("/login");
@@ -38,8 +44,7 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
 		// LOGOUT
 		http.logout().logoutUrl("/logout");
 		http.logout().logoutSuccessUrl("/");
-
-		// DISABLE CSRF
+		
 		http.csrf().disable();
 	}
 

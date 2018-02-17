@@ -15,8 +15,9 @@ import com.planet_of_the_tapes.entity.Product;
 public interface ProductRepository extends JpaRepository<Product, Integer>{
 
 	Product findByName(String name);
-
 	
+	Product findByNameAndType(String name, String type);
+
 	Product findByNameLikeIgnoreCase(String name);
 	
 	Page<Product> findByGenreAndType (String genre,String type,Pageable page);
