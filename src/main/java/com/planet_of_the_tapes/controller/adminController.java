@@ -104,7 +104,7 @@ public class adminController {
 	public String addProduct(Model model, @RequestParam String name, @RequestParam String description, @RequestParam String type,
 			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy,
 			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
-			@RequestParam String cast, @RequestParam int year, @RequestParam MultipartFile picture, HttpServletRequest request,
+			@RequestParam String cast, @RequestParam int year, @RequestParam MultipartFile img, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 			
 			masterSession.numbers(model);
@@ -114,18 +114,18 @@ public class adminController {
 				
 			productRepository.save(product);
 				
-			String pictureName = "img/" + product.getId() + ".jpg";
-			if (!picture.isEmpty()) {
+			String imgName = "img/" + product.getId() + ".jpg";
+			if (!img.isEmpty()) {
 				try {
-					File filesFolder = new File("src/main/resources/static/img");
-					if (!filesFolder.exists()) {
-						filesFolder.mkdirs();
+					File imgFolder = new File("src/main/resources/static/img");
+					if (!imgFolder.exists()) {
+						imgFolder.mkdirs();
 					}
-					File uploadedFile = new File(filesFolder.getAbsolutePath(), pictureName);
-					picture.transferTo(uploadedFile);
+					File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
+					img.transferTo(uploadedImage);
 				} catch (Exception e) {
 				}
-				product.setUrlimg(pictureName);
+				product.setUrlimg(imgName);
 				productRepository.save(product);
 			}
 			
