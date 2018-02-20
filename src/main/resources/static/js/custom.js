@@ -1,6 +1,8 @@
 /*
 Load More
 */
+
+var cont = 0;
 var portfolioLoadMore = {
 
 	pages: 0,
@@ -45,14 +47,24 @@ var portfolioLoadMore = {
 	loadMore: function() {
 
 		var self = this;
-
+		
+		var tipo = "";
+		cont++;
+		
 		self.$btn.hide();
 		self.$loader.addClass('portfolio-load-more-loader-showing').show();
 
 		// Ajax
 		$.ajax({
-			url: 'ajax/portfolio-ajax-load-more-custom.html',
+			url: '/loadmore',
+			data: {
+				page: cont,
+				type: tipo = document.getElementById("loadmoretipo").value
+			},
+		
 			complete: function(data) {
+				
+				console.log(cont,tipo);
 
 				var $items = $(data.responseText);
 

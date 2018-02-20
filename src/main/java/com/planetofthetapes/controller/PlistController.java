@@ -42,40 +42,38 @@ public class PlistController {
 	@Autowired
 	private MasterController masterSession;
 	
-	@RequestMapping("/mostrar")
-    public String mostrar(Model model, @RequestParam(value="series", required=false) String series,
-    	@RequestParam (value="movies", required=false) String movies,
-    	@RequestParam (value="videogames", required=false) String videogames){
-        
-		if(series != null) {
-			model.addAttribute("products", productRepository.findGroupByType("Series"));
-		}
-		if(movies != null) {
-			model.addAttribute("products", productRepository.findGroupByType("Movies"));
-		}
-		if(videogames != null){
-			model.addAttribute("products", productRepository.findGroupByType("Videogames"));
-		}
-        
-        return "plist";
-    }
-	
 	@RequestMapping("/mplist")
     public String mostrarplist(Model model, @RequestParam int enlace){
 		
 		//model.addAttribute("products", productRepository.findGroupByType(enlace));
-		
+		String type = "";
 		if(enlace == 1) {
-			model.addAttribute("products", productRepository.findGroupByType("Series"));
+			type = "Series";
+			Page<Product> series = productRepository.findGroupByType("Series", new PageRequest(0, 4));
+			model.addAttribute("products", series);
 		}
 		if(enlace == 2) {
-			model.addAttribute("products", productRepository.findGroupByType("Movies"));
+			type = "Movies";
+			Page<Product> products = productRepository.findGroupByType("Movies", new PageRequest(0, 4));
+			model.addAttribute("products", products);
 		}
 		if(enlace == 3){
-			model.addAttribute("products", productRepository.findGroupByType("Videogames"));
+			type = "Videogames";
+			Page<Product> products = productRepository.findGroupByType("Videogames", new PageRequest(0, 4));
+			model.addAttribute("products", products);
 		}
         
-		model.addAttribute(enlace);
+		model.addAttribute("type", type);
         return "plist";
     }
+	
+	@RequestMapping(value = "/loadmore")
+	public String moreBooks(Model model, @RequestParam int page, @RequestParam String type) {
+		Page<Product> products = productRepository.findGroupByType(type, new PageRequest(page, 4));
+		model.addAttribute("products", products);
+		
+		System.out.println(products);
+
+		return "listItems";
+	}
 }
