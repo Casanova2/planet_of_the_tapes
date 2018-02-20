@@ -14,10 +14,12 @@ import com.planetofthetapes.repository.ProductRepository;
 
 @Controller
 public class ContactController {
-	
+	@Autowired
+	private MasterController masterSession;
 	
 	@RequestMapping("/contact")
 	public String contact(Model model, HttpServletRequest request) {
+		masterSession.session(model, request);
 		return "contact";
 	}
 

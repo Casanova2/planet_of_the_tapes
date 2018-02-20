@@ -69,21 +69,21 @@
                             <p>{{producto.cast}}</p>
                         </li>
 
-                        <li>
+                        <!-- <li>
                             <h5 class="mt-2 mb-1">Prices</h5>
-                            <!--<form enctype="multipart/form-data" method="post" class="cart">-->
+                            --<form enctype="multipart/form-data" method="post" class="cart">--
                                 <div class="rent-product">
                                     <a>{{producto.prent}}</a>
                                 </div>
-                                <a href="cart.html" class="btn btn-success pt-2 pb-2 pr-3 pl-3">Rent</a>
-                            <!--</form>-->
-                        </li>
+                                <a href="/{{id}}/buy" class="btn btn-success pt-2 pb-2 pr-3 pl-3">Rent</a>
+                            --</form>--
+                        </li>-->
                         <li>
                             <!--<form enctype="multipart/form-data" method="post" class="cart">-->
                                 <div class="buy-product">
                                     <a>{{producto.pbuy}}</a>
                                 </div>
-                                <a href="cart.html" class="btn btn-primary pt-2 pb-2 pr-3 pl-3">Buy</a>
+                                <a href="/{{producto.id}}/buy" class="btn btn-primary pt-2 pb-2 pr-3 pl-3">Buy</a>
                             <!--</form>-->
                         </li>
                     </ul>

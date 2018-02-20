@@ -33,16 +33,46 @@ public class Pedido {
 	private String state;
 	private String pay;
 	private String type;
+	private double total;
 	
+	@ManyToOne
+	private User user;
+	
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	protected Pedido() {
 	}
 
-public Pedido(Integer id, User user, List<Product> products, String state, String pay, String type) {
-	this.id = id;
-	this.state = state;
-	this.pay = pay;
-	this.type = type;
+public Pedido(User user) {
+	this.user = user;
+	this.total = 0;
+}
+
+public List<Product> getProducts() {
+	return products;
+}
+
+public void setProducts(List<Product> products) {
+	this.products = products;
+}
+
+public double getTotal() {
+	return total;
+}
+
+public void setTotal(double total) {
+	this.total = total;
+}
+
+public void addProduct(Product p) {
+	this.products.add(p);
 }
 
 public Integer getId() {

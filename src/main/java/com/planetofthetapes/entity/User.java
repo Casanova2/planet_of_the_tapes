@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -32,6 +33,9 @@ public class User {
 	private boolean viewTelephone;
 	private String address;
 	private String avatar;
+	
+	@OneToOne
+	private Pedido pedidoActual; 
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
@@ -54,6 +58,16 @@ public class User {
 		this.address = address;
 		this.avatar = avatar;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
+		this.pedidoActual = null;
+		
+	}
+	
+	public Pedido getPedidoActual() {
+		return pedidoActual;
+	}
+
+	public void setPedidoActual(Pedido pedidoActual) {
+		this.pedidoActual = pedidoActual;
 	}
 	
 	public Integer getId() {

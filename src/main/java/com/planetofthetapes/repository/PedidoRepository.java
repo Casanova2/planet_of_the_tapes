@@ -6,5 +6,5 @@ import com.planetofthetapes.entity.Pedido;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Integer>{
 
-
+	
 }
