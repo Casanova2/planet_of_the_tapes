@@ -43,7 +43,9 @@ public class PlistController {
 	private MasterController masterSession;
 	
 	@RequestMapping("/mplist")
-    public String mostrarplist(Model model, @RequestParam int enlace){
+    public String mostrarplist(Model model, @RequestParam int enlace, HttpServletRequest request){
+		
+		masterSession.session(model, request);
 		
 		//model.addAttribute("products", productRepository.findGroupByType(enlace));
 		String type = "";
@@ -68,7 +70,9 @@ public class PlistController {
     }
 	
 	@RequestMapping(value = "/loadmore")
-	public String moreBooks(Model model, @RequestParam int page, @RequestParam String type) {
+	public String moreBooks(Model model, @RequestParam int page, @RequestParam String type, HttpServletRequest request) {
+		
+		masterSession.session(model, request);
 		Page<Product> products = productRepository.findGroupByType(type, new PageRequest(page, 4));
 		model.addAttribute("products", products);
 		
