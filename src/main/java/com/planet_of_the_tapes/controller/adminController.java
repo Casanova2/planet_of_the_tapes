@@ -1,5 +1,6 @@
 package com.planet_of_the_tapes.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.planet_of_the_tapes.entity.Product;
@@ -127,17 +129,31 @@ public class adminController {
 	public String addProduct(Model model, @RequestParam String name, @RequestParam String description, @RequestParam String type,
 			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy,
 			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
-			@RequestParam String cast, @RequestParam int year, @RequestParam String urlimg, HttpServletRequest request,
+			@RequestParam String cast, @RequestParam int year, @RequestParam MultipartFile img, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
+			
 			masterSession.numbers(model);
 			masterSession.session(model, request);
-				Product product = new Product(name, description, type, genre, stock, pbuy, prent, score, trailer, director,
-						cast, year, urlimg);
+			
+			Product product = new Product(name, description, type, genre, stock, pbuy, prent, score, trailer, director, cast, year);
+				
+			productRepository.save(product);
+				
+			String imgName = "img/" + product.getId() + ".jpg";
+			if (!img.isEmpty()) {
 				try {
-					productRepository.save(product);
+					File imgFolder = new File("src/main/resources/static/img");
+					if (!imgFolder.exists()) {
+						imgFolder.mkdirs();
+					}
+					File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
+					img.transferTo(uploadedImage);
 				} catch (Exception e) {
-					return "redirect:/admin-products/addError";
 				}
+				product.setUrlimg(imgName);
+				productRepository.save(product);
+			}
+			
 				redirectAttrs.addFlashAttribute("messages", "Añadido nuevo producto.");
 
 				return "redirect:/admin-products";

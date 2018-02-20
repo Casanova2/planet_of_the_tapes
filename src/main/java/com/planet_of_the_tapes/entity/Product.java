@@ -51,7 +51,7 @@ public class Product {
 
 
 	public Product(String name, String description, String type, String genre, int stock, double pbuy,
-		double prent, int score, String trailer, String director, String cast, int year, String urlimg) {
+		double prent, int score, String trailer, String director, String cast, int year) {
 		this.name = name;
 		this.description = description;
 		this.type = type;
@@ -64,8 +64,24 @@ public class Product {
 		this.director = director;
 		this.cast = cast;
 		this.year = year;
-		this.urlimg = urlimg;
 	}
+	
+	public Product(String name, String description, String type, String genre, int stock, double pbuy,
+			double prent, int score, String trailer, String director, String cast, int year, String urlimg) {
+			this.name = name;
+			this.description = description;
+			this.type = type;
+			this.genre = genre;
+			this.stock = stock;
+			this.pbuy = pbuy;
+			this.prent = prent;
+			this.score = score;
+			this.trailer = trailer;
+			this.director = director;
+			this.cast = cast;
+			this.year = year;
+			this.urlimg = urlimg;
+		}
 	
 
 	public Integer getId() {
@@ -74,6 +90,10 @@ public class Product {
 
 
 
+	public Integer getAndIncrement() {
+		return id++;
+	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
