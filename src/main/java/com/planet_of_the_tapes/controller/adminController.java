@@ -80,6 +80,31 @@ public class adminController {
 		return "/admin/admin-user";
 	}
 	
+	@RequestMapping("/admin-modify-user")
+	public String adminmodifyuser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
+			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+			masterSession.numbers(model);
+			masterSession.session(model, request);
+			
+				User user = userRepository.findByName(name);
+				user.setName(name);
+				user.setAddress(address);
+				user.setDni(dni);
+				user.setEmail(email);
+				user.setPasswordHash(passwordHash);
+				user.setAvatar(avatar);
+				user.setTelephone(telephone);
+				try {
+					userRepository.save(user);
+				} catch (Exception e) {
+					return "redirect:/admin-userList/addError";
+				}
+				redirectAttrs.addFlashAttribute("messages", "Modificado usuario");
+		return "/admin/admin-modify-user";
+	}
+	
+	
 	
 	@RequestMapping("/add-product")
 	public String addUser(Model model, HttpServletRequest request) {
@@ -124,7 +149,7 @@ public class adminController {
 		masterSession.session(model, request);
 		masterSession.numbers(model);
 
-		return "admin/admin-add-product";
+		return "admin/admin-add-user";
 	}
 	
 	@RequestMapping("/admin-add-user")

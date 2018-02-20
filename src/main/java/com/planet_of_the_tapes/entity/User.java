@@ -45,6 +45,7 @@ public class User {
 	public User(String name, String passwordHash, String dni, String email, String telephone, String address, String avatar, String... roles) {
 
 		this.name = name;
+		String pass = passwordHash;
 		this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash) ;
 		this.dni = dni;
 		this.email = email;
