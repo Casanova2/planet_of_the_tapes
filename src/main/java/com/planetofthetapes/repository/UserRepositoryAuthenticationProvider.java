@@ -1,4 +1,4 @@
-package com.planet_of_the_tapes.repository;
+package com.planetofthetapes.repository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +12,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import com.planet_of_the_tapes.entity.User;
-import com.planet_of_the_tapes.repository.UserRepository;
+
+import com.planetofthetapes.entity.User;
+import com.planetofthetapes.repository.UserRepository;
 
 @Component
 public class UserRepositoryAuthenticationProvider implements AuthenticationProvider {

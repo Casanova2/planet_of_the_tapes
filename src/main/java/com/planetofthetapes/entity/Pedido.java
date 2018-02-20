@@ -1,4 +1,4 @@
-package com.planet_of_the_tapes.entity;
+package com.planetofthetapes.entity;
 
 import java.util.ArrayList;
 import java.util.Arrays;

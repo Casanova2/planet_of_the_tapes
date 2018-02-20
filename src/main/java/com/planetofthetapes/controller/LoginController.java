@@ -1,4 +1,4 @@
-package com.planet_of_the_tapes.controller;
+package com.planetofthetapes.controller;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class loginController {
+public class LoginController {
 
 
 	@RequestMapping("/login")

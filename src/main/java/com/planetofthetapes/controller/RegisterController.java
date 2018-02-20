@@ -1,4 +1,4 @@
-package com.planet_of_the_tapes.controller;
+package com.planetofthetapes.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,12 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.planet_of_the_tapes.entity.User;
-import com.planet_of_the_tapes.repository.UserRepository;
+import com.planetofthetapes.entity.User;
+import com.planetofthetapes.repository.UserRepository;
 
 
 @Controller
-public class registerController {
+public class RegisterController {
 	
 	@Autowired
 	private UserRepository userRepository;

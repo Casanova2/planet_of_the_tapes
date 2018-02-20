@@ -1,4 +1,4 @@
-package com.planet_of_the_tapes.controller;
+package com.planetofthetapes.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,11 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.planet_of_the_tapes.entity.Product;
-import com.planet_of_the_tapes.repository.ProductRepository;
+import com.planetofthetapes.entity.Product;
+import com.planetofthetapes.repository.ProductRepository;
 
 @Controller
-public class contactController {
+public class ContactController {
 	
 	
 	@RequestMapping("/contact")

@@ -1,4 +1,4 @@
-package com.planet_of_the_tapes.controller;
+package com.planetofthetapes.controller;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -16,22 +16,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.planet_of_the_tapes.entity.Product;
-import com.planet_of_the_tapes.entity.User;
-import com.planet_of_the_tapes.repository.ProductRepository;
-import com.planet_of_the_tapes.repository.UserRepository;
+import com.planetofthetapes.entity.Product;
+import com.planetofthetapes.entity.User;
+import com.planetofthetapes.repository.ProductRepository;
+import com.planetofthetapes.repository.UserRepository;
 
 import antlr.collections.List;
 
 @Controller
-public class adminController {
+public class AdminController {
 	
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
-	private masterController masterSession;
+	private MasterController masterSession;
 	
 	@RequestMapping("/admin")
 	public String admin(Model model,HttpServletRequest request) {

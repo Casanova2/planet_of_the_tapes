@@ -1,9 +1,9 @@
-package com.planet_of_the_tapes.repository;
+package com.planetofthetapes.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 
-import com.planet_of_the_tapes.entity.User;
+import com.planetofthetapes.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>{
 	

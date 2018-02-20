@@ -1,4 +1,4 @@
-package com.planet_of_the_tapes.controller;
+package com.planetofthetapes.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
-import com.planet_of_the_tapes.entity.User;
-import com.planet_of_the_tapes.repository.ProductRepository;
-import com.planet_of_the_tapes.repository.UserRepository;
+import com.planetofthetapes.entity.User;
+import com.planetofthetapes.repository.ProductRepository;
+import com.planetofthetapes.repository.UserRepository;
 
 @Component
-public class masterController {
+public class MasterController {
 	
 	@Autowired
 	private UserRepository userRepository;

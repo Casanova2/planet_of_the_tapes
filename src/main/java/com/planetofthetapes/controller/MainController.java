@@ -1,4 +1,4 @@
-package com.planet_of_the_tapes.controller;
+package com.planetofthetapes.controller;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,22 +12,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.planet_of_the_tapes.entity.Product;
-import com.planet_of_the_tapes.entity.User;
-import com.planet_of_the_tapes.repository.ProductRepository;
-import com.planet_of_the_tapes.repository.UserRepository;
+import com.planetofthetapes.entity.Product;
+import com.planetofthetapes.entity.User;
+import com.planetofthetapes.repository.ProductRepository;
+import com.planetofthetapes.repository.UserRepository;
 
 import antlr.collections.List;
 
 @Controller
-public class mainController {
+public class MainController {
 	
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
-	private masterController masterSession;
+	private MasterController masterSession;
 	
 	@RequestMapping("/")
 	public String index(Model model, HttpServletRequest request) {

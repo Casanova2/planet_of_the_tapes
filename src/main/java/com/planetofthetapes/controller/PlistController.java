@@ -1,4 +1,4 @@
-package com.planet_of_the_tapes.controller;
+package com.planetofthetapes.controller;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,20 +27,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.planet_of_the_tapes.entity.Product;
-import com.planet_of_the_tapes.entity.User;
-import com.planet_of_the_tapes.repository.ProductRepository;
-import com.planet_of_the_tapes.repository.UserRepository;
+import com.planetofthetapes.entity.Product;
+import com.planetofthetapes.entity.User;
+import com.planetofthetapes.repository.ProductRepository;
+import com.planetofthetapes.repository.UserRepository;
 
 @Controller
-public class plistController {
+public class PlistController {
 	
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
-	private masterController masterSession;
+	private MasterController masterSession;
 	
 	@RequestMapping("/mostrar")
     public String mostrar(Model model, @RequestParam(value="series", required=false) String series,

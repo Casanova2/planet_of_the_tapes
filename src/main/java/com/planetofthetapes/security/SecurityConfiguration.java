@@ -1,4 +1,4 @@
-package com.planet_of_the_tapes.security;
+package com.planetofthetapes.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.planet_of_the_tapes.repository.UserRepositoryAuthenticationProvider;
+import com.planetofthetapes.repository.UserRepositoryAuthenticationProvider;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -33,13 +33,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/admin").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/selectpay").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/selectpay").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-userList").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-products").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-products-add").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-add-user").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-remove-product-action").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-remove-user-action").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-userTable").hasAnyRole("ADMIN");
+       
+        
 
 		// LOGIN
 		http.formLogin().loginPage("/login");
 		http.formLogin().usernameParameter("name");
 		http.formLogin().passwordParameter("password");
 		http.formLogin().defaultSuccessUrl("/");
-		http.formLogin().failureUrl("/loginError");
+		http.formLogin().failureUrl("/login");
 
 		// LOGOUT
 		http.logout().logoutUrl("/logout");
