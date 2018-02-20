@@ -83,13 +83,13 @@ public class adminController {
 	}
 	
 	@RequestMapping("/admin-modify-user")
-	public String adminmodifyuser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
+	public String adminmodifyuser(Model model, @RequestParam String name,@RequestParam Integer id, @RequestParam String passwordHash, @RequestParam String dni,
 			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 			masterSession.numbers(model);
 			masterSession.session(model, request);
 			
-				User user = userRepository.findByName(name);
+				User user = userRepository.findById(id);
 				user.setName(name);
 				user.setAddress(address);
 				user.setDni(dni);
@@ -103,7 +103,7 @@ public class adminController {
 					return "redirect:/admin-userList/addError";
 				}
 				redirectAttrs.addFlashAttribute("messages", "Modificado usuario");
-		return "/admin/admin-modify-user";
+		return "/admin/admin-user";
 	}
 	
 	
