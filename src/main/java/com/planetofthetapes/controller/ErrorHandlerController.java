@@ -13,8 +13,8 @@ public class ErrorHandlerController implements ErrorController{
 	
 	
 	@RequestMapping("/error")
-	public String contact(Model model, HttpServletRequest request) {
-		return "error";
+	public String error(Model model, HttpServletRequest request) {
+		return "/error";
 	}
 
 	@Override
