@@ -35,13 +35,13 @@ public class User {
 	private String avatar;
 	
 	@OneToOne
-	private Pedido pedidoActual; 
+	private POrder pedidoActual; 
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
 	@OneToMany
-	private List<Pedido> orders;
+	private List<POrder> orders;
 
 	protected User() {
 	}
@@ -62,11 +62,11 @@ public class User {
 		
 	}
 	
-	public Pedido getPedidoActual() {
+	public POrder getPedidoActual() {
 		return pedidoActual;
 	}
 
-	public void setPedidoActual(Pedido pedidoActual) {
+	public void setPedidoActual(POrder pedidoActual) {
 		this.pedidoActual = pedidoActual;
 	}
 	
@@ -91,11 +91,11 @@ public class User {
 		this.roles = roles;
 	}
 
-	public List<Pedido> getOrders() {
+	public List<POrder> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(List<Pedido> orders) {
+	public void setOrders(List<POrder> orders) {
 		this.orders = orders;
 	}
 

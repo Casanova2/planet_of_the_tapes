@@ -1,0 +1,133 @@
+<!doctype html>
+<html class="fixed">
+
+	{{>admin/admin-head}}
+
+	<body>
+		<section class="body">
+
+			{{>admin/admin-header}}
+
+			<div class="inner-wrapper">
+				
+				{{> admin/admin-sidebar}}
+
+				<section role="main" class="content-body">
+					<header class="page-header">
+						<h2>Products</h2>
+					
+						<div class="right-wrapper pull-right">
+							<ol class="breadcrumbs">
+								<li>
+									<a href="/admin">
+										<i class="fa fa-home"></i>
+									</a>
+								</li>
+								<li><span>Products</span></li>
+							</ol>
+					
+							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+						</div>
+					</header>
+
+					<!-- start: page -->
+						
+						<section class="panel">
+							<header class="panel-heading">
+						
+								<h2 class="panel-title">Products</h2>
+							</header>
+							<div class="panel-body">
+								
+								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="/admin/assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Price</th>
+											<th>Products</th>
+											
+										</tr>
+									</thead>
+									<tbody>
+										{{#packs}} {{>admin/admin-packtable}} {{/packs}}
+									</tbody>
+								</table>
+							</div>
+						</section>
+					<!-- end: page -->
+				</section>
+			</div>
+
+			<aside id="sidebar-right" class="sidebar-right">
+				<div class="nano">
+					<div class="nano-content">
+						<a href="#" class="mobile-close visible-xs">
+							Collapse <i class="fa fa-chevron-right"></i>
+						</a>
+			
+						<div class="sidebar-right-wrapper">
+			
+							<div class="sidebar-widget widget-calendar">
+								<h6>Upcoming Tasks</h6>
+								<div data-plugin-datepicker data-plugin-skin="dark" ></div>
+			
+								<ul>
+									<li>
+										<time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
+										<span>Company Meeting</span>
+									</li>
+								</ul>
+							</div>
+			
+							<div class="sidebar-widget widget-friends">
+								<h6>Friends</h6>
+								<ul>
+									<li class="status-online">
+										<figure class="profile-picture">
+											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
+										</figure>
+										<div class="profile-info">
+											<span class="name">{{user.name}}</span>
+											<span class="title">Hey, how are you?</span>
+										</div>
+									</li>
+									<li class="status-online">
+										<figure class="profile-picture">
+											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
+										</figure>
+										<div class="profile-info">
+											<span class="name">Joseph Doe Junior</span>
+											<span class="title">Hey, how are you?</span>
+										</div>
+									</li>
+									<li class="status-offline">
+										<figure class="profile-picture">
+											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
+										</figure>
+										<div class="profile-info">
+											<span class="name">Joseph Doe Junior</span>
+											<span class="title">Hey, how are you?</span>
+										</div>
+									</li>
+									<li class="status-offline">
+										<figure class="profile-picture">
+											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
+										</figure>
+										<div class="profile-info">
+											<span class="name">Joseph Doe Junior</span>
+											<span class="title">Hey, how are you?</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+			
+						</div>
+					</div>
+				</div>
+			</aside>
+		</section>
+
+		{{>admin/admin-footer}}
+		
+	</body>
+</html>
