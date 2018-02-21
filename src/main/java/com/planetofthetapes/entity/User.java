@@ -15,9 +15,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
+
+import com.planetofthetapes.PlanetOfTheTapesApplication;
 
 @Entity
+@Component
+@SessionScope
 public class User {
 
 	@Id
@@ -33,9 +40,7 @@ public class User {
 	private boolean viewTelephone;
 	private String address;
 	private String avatar;
-	
-	@OneToOne
-	private Pedido pedidoActual; 
+	 
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
@@ -58,17 +63,10 @@ public class User {
 		this.address = address;
 		this.avatar = avatar;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
-		this.pedidoActual = null;
-		
+		this.orders=new ArrayList<Pedido>();
 	}
 	
-	public Pedido getPedidoActual() {
-		return pedidoActual;
-	}
-
-	public void setPedidoActual(Pedido pedidoActual) {
-		this.pedidoActual = pedidoActual;
-	}
+	
 	
 	public Integer getId() {
 		return id;
@@ -161,6 +159,9 @@ public class User {
 
 	public void setViewTelephone(boolean viewTelephone) {
 		this.viewTelephone = viewTelephone;
+	}
+	public void addOrder(Pedido p) {
+		this.orders.add(p);
 	}
 
 	

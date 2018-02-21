@@ -55,6 +55,15 @@ public Pedido(User user) {
 	this.total = 0;
 }
 
+public Pedido(String state, String pay, String type, double total, User user) {
+	this.state = state;
+	this.pay = pay;
+	this.type = type;
+	this.total = total;
+	this.user = user;
+	this.products=new ArrayList<Product>();
+}
+
 public List<Product> getProducts() {
 	return products;
 }

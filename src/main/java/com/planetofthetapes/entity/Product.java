@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -25,7 +26,7 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@ManyToMany(mappedBy="products")
+	@ManyToMany
 	private List<Pedido> pedidos;
 
 	@Column(unique = true)
@@ -50,7 +51,7 @@ public class Product {
 
 
 
-	public Product(String name, String description, String type, String genre, int stock, double pbuy,
+	public Product(String name, String description, String type, String genre, int stock, double  pbuy,
 		double prent, int score, String trailer, String director, String cast, int year) {
 		this.name = name;
 		this.description = description;
@@ -64,6 +65,7 @@ public class Product {
 		this.director = director;
 		this.cast = cast;
 		this.year = year;
+		this.pedidos= new ArrayList<Pedido>();
 	}
 	
 	public Product(String name, String description, String type, String genre, int stock, double pbuy,
@@ -166,7 +168,7 @@ public class Product {
 
 
 
-	public void setPbuy(float pbuy) {
+	public void setPbuy(double pbuy) {
 		this.pbuy = pbuy;
 	}
 
@@ -178,8 +180,18 @@ public class Product {
 
 
 
-	public void setPrent(float prent) {
+	public void setPrent(double prent) {
 		this.prent = prent;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", pedidos=" + pedidos + ", name=" + name + ", description=" + description
+				+ ", type=" + type + ", genre=" + genre + ", stock=" + stock + ", pbuy=" + pbuy + ", prent=" + prent
+				+ ", score=" + score + ", trailer=" + trailer + ", director=" + director + ", cast=" + cast + ", year="
+				+ year + ", urlimg=" + urlimg + "]";
 	}
 
 

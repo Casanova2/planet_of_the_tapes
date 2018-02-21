@@ -1,5 +1,6 @@
 package com.planetofthetapes.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,9 @@ import com.planetofthetapes.repository.PedidoRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
+import antlr.collections.List;
+import javassist.bytecode.Descriptor.Iterator;
+
 @Controller
 public class CartController {
 
@@ -29,6 +33,8 @@ public class CartController {
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private MasterController masterSession;
+	
+	@Autowired User user;
 	
 	@RequestMapping("/cart")
 	public String cart(Model model,HttpServletRequest request) {
@@ -48,24 +54,38 @@ public class CartController {
 	public String reserveResource(Model model, @PathVariable Integer id, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 		
-		double total = 0;
+		double total = 0.0;
 		Product p = productRepository.findOne(id);
-		if(userRepository.findByName(request.getUserPrincipal().getName()) != null) { //Si estas logueado
-			User loggedUser = userRepository.findByName(request.getUserPrincipal().getName());
-			if(loggedUser.getPedidoActual() != null) {
-				Pedido pedidoexistente = loggedUser.getPedidoActual();
-				pedidoexistente.addProduct(p); //aniadimos producto
-				total = pedidoexistente.getTotal() + p.getPbuy(); //sacamos el precio total antiguo
-				pedidoexistente.setTotal(total);//aniadimos el precio total con el nuevo producto
-			}else {
-				Pedido pedido = new Pedido(loggedUser);
-				pedido.addProduct(p);
+		System.out.println(p.toString()+"hola joder ");
+		//if(userRepository.findByName(request.getUserPrincipal().getName()) != null) { //Si estas logueado
+			Pedido actual = new Pedido("","","",0.0,user);
+			Boolean inProgress = false;
+			
+		if(user.getOrders()!=null) {
+			for(Pedido ped: user.getOrders()) {
+				if(ped.getState() == "progress") {
+					inProgress = true;
+					actual = ped;
+					actual.addProduct(p); //aniadimos producto
+					total = actual.getTotal() + p.getPbuy(); //sacamos el precio total antiguo
+					actual.setTotal(total);//aniadimos el precio total con el nuevo producto
+				}
 			}
-		}/*else { //Si eres un usario no logueado
-			Pedido pedido = new Pedido(loggedUser);
-			pedido.addProduct(p);
-		}*/
+			if(!inProgress) {
+				actual= new Pedido("progress","","",0.0,user);
+				actual.addProduct(p);
+			}
+			model.addAttribute("productsOrder",actual.getProducts());
+			
+		}else {
+				actual= new Pedido("progress","","",0.0,user);
+				actual.addProduct(p);
+			    user.addOrder(actual);
 				
+		}
+		System.out.println(user.getOrders()+ "kjkjhkl");
+		System.out.println(actual.getProducts().toString());
+		model.addAttribute("productsOrder",actual.getProducts());
 		return "redirect:/";
 	}
 }
