@@ -1,5 +1,7 @@
 package com.planetofthetapes.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,12 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.planetofthetapes.entity.POrder;
 import com.planetofthetapes.entity.Product;
 import com.planetofthetapes.entity.User;
+import com.planetofthetapes.repository.POrderRepository;
+import com.planetofthetapes.repository.PackRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
-import antlr.collections.List;
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -31,6 +36,10 @@ public class AdminController {
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
+	private POrderRepository porderRepository;
+	@Autowired
+	private PackRepository packRepository;
+	@Autowired
 	private MasterController masterSession;
 	
 	@RequestMapping("/admin")
@@ -39,6 +48,8 @@ public class AdminController {
 		masterSession.numbers(model);
 		model.addAttribute("products",productRepository.findAll());
 		model.addAttribute("users",userRepository.findAll());
+		model.addAttribute("orders", porderRepository.findAll());
+		model.addAttribute("packs", packRepository.findAll());
 		
 		
 		return "/admin/admin-dashboard";
@@ -63,6 +74,26 @@ public class AdminController {
 		
 		return "/admin/admin-products";
 	}
+	@RequestMapping("/admin-orderlist")
+	public String orderlist(Model model, HttpServletRequest request) {
+		masterSession.session(model, request);
+		masterSession.numbers(model);
+		List<POrder> ord = porderRepository.findAll();
+		List<Product> prod = new ArrayList<Product>();
+		/*for (POrder p : ord) {
+			prod = p.getProducts();
+			for(Product o : prod) {
+				String name = o.getName();
+				model.addAttribute("names", name);
+			}
+			
+		}
+		*/
+		model.addAttribute("orders", porderRepository.findAll());
+		
+		
+		return "/admin/admin-orderlist";
+	}
 	@RequestMapping("/admin-userList")
 	public String adminUserList(Model model, HttpServletRequest request) {
 		masterSession.session(model, request);
@@ -70,6 +101,15 @@ public class AdminController {
 		model.addAttribute("users",userRepository.findAll());
 		
 		return "/admin/admin-userList";
+	}
+	
+	@RequestMapping("/admin-packlist")
+	public String adminPackList(Model model, HttpServletRequest request) {
+		masterSession.session(model, request);
+		masterSession.numbers(model);
+		model.addAttribute("packs",packRepository.findAll());
+		
+		return "/admin/admin-packlist";
 	}
 	
 	@RequestMapping("/admin-user")

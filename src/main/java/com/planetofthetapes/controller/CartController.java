@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.planetofthetapes.entity.Pedido;
+import com.planetofthetapes.entity.POrder;
 import com.planetofthetapes.entity.Product;
 import com.planetofthetapes.entity.User;
-import com.planetofthetapes.repository.PedidoRepository;
+import com.planetofthetapes.repository.POrderRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
@@ -26,7 +26,7 @@ public class CartController {
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
-	private PedidoRepository pedidoRepository;
+	private POrderRepository pedidoRepository;
 	@Autowired
 	private MasterController masterSession;
 	
@@ -53,12 +53,12 @@ public class CartController {
 		if(userRepository.findByName(request.getUserPrincipal().getName()) != null) { //Si estas logueado
 			User loggedUser = userRepository.findByName(request.getUserPrincipal().getName());
 			if(loggedUser.getPedidoActual() != null) {
-				Pedido pedidoexistente = loggedUser.getPedidoActual();
+				POrder pedidoexistente = loggedUser.getPedidoActual();
 				pedidoexistente.addProduct(p); //aniadimos producto
 				total = pedidoexistente.getTotal() + p.getPbuy(); //sacamos el precio total antiguo
 				pedidoexistente.setTotal(total);//aniadimos el precio total con el nuevo producto
 			}else {
-				Pedido pedido = new Pedido(loggedUser);
+				POrder pedido = new POrder(loggedUser);
 				pedido.addProduct(p);
 			}
 		}/*else { //Si eres un usario no logueado

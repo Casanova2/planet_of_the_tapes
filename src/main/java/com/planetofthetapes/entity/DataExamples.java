@@ -10,6 +10,8 @@ import com.planetofthetapes.entity.Product;
 import com.planetofthetapes.entity.User;
 import com.planetofthetapes.repository.*;
 
+import java.util.List;
+
 @Component
 public class DataExamples {
 
@@ -18,6 +20,12 @@ public class DataExamples {
 
 	@Autowired
 	private ProductRepository productRepository;
+	
+	@Autowired
+	private POrderRepository porderRepository;
+	
+	@Autowired
+	private PackRepository packRepository;
 
 	@PostConstruct
 	private void initDatabase() {
@@ -175,6 +183,7 @@ public class DataExamples {
 				"Based on The Witcher series of fantasy novels by Polish author Andrzej Sapkowski Players control protagonist Geralt of Rivia, a monster hunter known as a Witcher (Vedmak), is looking for his missing adopted daughter, who is on the run from the Wild Hunt.",
 				"Videogames", "Fantasy", 5, 50.0, 5.0, 96, "https://www.youtube.com/watch?v=XHrskkHf958", "CD Projekt",
 				"Geralt, Ciri, Jenneffer, Triss, Eredin.", 2015, "pc-witcher3.jpg");
+				
 		productRepository.save(prod200);
 
 		prod201 = new Product("Monster Hunter World",
@@ -209,6 +218,45 @@ public class DataExamples {
 				"xone-halo5.png");
 		productRepository.save(prod205);
 		// VIDEOGAMES
+		
+		//ORDERS
+		List<Product> gamelist = new ArrayList<Product>();	
+		List<Product> filmlist = new ArrayList<Product>();
+		
+		List<POrder> orderlist = new ArrayList<POrder>();
+		
+		gamelist.add(prod200);
+		gamelist.add(prod201);
+		gamelist.add(prod202);
+		gamelist.add(prod203);
+		
+		POrder order1 = new POrder(gamelist, "Completed", "Credit Card", "Buy", 200.00, user1);	
+				
+		
+		filmlist.add(prod1);
+		filmlist.add(prod2);
+		filmlist.add(prod3);
+		filmlist.add(prod4);
+		
+		POrder order2 = new POrder(filmlist, "Payed", "Credit Card", "Buy", 80.00, user3);
+		
+		
+		orderlist.add(order1);
+		orderlist.add(order2);
+		porderRepository.save(order1);
+		porderRepository.save(order2);
+		
+		// PACKS
+		Pack packpelis = new Pack("Peliculas Oferta",35,filmlist);
+		Pack packjuegos = new Pack("Juegos Oferta",60,gamelist);
+		
+		packRepository.save(packpelis);
+		packRepository.save(packjuegos);
+		
+		
+		
+		
+		
 
 	}
 

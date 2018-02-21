@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
 import com.planetofthetapes.entity.User;
+import com.planetofthetapes.repository.POrderRepository;
+import com.planetofthetapes.repository.PackRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
@@ -17,6 +19,10 @@ public class MasterController {
 	private UserRepository userRepository;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private POrderRepository porderRepository;
+	@Autowired
+	private PackRepository packRepository;
 	
 	public void session (Model model,HttpServletRequest request) {
 		if (request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
@@ -34,5 +40,7 @@ public class MasterController {
 	public void numbers (Model model) {
 		model.addAttribute("numberProducts",productRepository.findAll().size());
 		model.addAttribute("numberUsers",userRepository.findAll().size());
+		model.addAttribute("numberOrders",porderRepository.findAll().size());
+		model.addAttribute("numberPacks",packRepository.findAll().size());
 	}
 }

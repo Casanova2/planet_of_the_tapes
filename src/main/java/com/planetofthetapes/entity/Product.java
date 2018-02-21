@@ -25,8 +25,8 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@ManyToMany(mappedBy="products")
-	private List<Pedido> pedidos;
+	@ManyToMany
+	private List<POrder> pedidos;
 
 	@Column(unique = true)
 	private String name;
