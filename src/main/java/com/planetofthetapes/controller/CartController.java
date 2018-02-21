@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.planetofthetapes.entity.Pedido;
+import com.planetofthetapes.entity.POrder;
 import com.planetofthetapes.entity.Product;
 import com.planetofthetapes.entity.User;
-import com.planetofthetapes.repository.PedidoRepository;
+import com.planetofthetapes.repository.POrderRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
@@ -30,7 +30,7 @@ public class CartController {
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
-	private PedidoRepository pedidoRepository;
+	private POrderRepository pedidoRepository;
 	@Autowired
 	private MasterController masterSession;
 	

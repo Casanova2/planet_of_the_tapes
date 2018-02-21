@@ -31,9 +31,14 @@ public class ProductController {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private MasterController masterSession;
+	
 	
 	@RequestMapping("product/{id}")
-	public String product(Model model, @PathVariable Integer id) {
+	public String product(Model model, @PathVariable Integer id, HttpServletRequest request) {
+		
+		masterSession.session(model, request);
 		Product producto = productRepository.findOne(id);
 		Page<Product> products = productRepository.findByGenreAndType(producto.getGenre(), producto.getType(),new PageRequest(0, 4));
 		model.addAttribute("producto",producto);
@@ -42,8 +47,9 @@ public class ProductController {
 	}
 	
 	@RequestMapping("moreMovies")
-	public String moreMovies(Model model) {
+	public String moreMovies(Model model, HttpServletRequest request) {
 
+		masterSession.session(model, request);
 		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
 		model.addAttribute("item",movies);
 

@@ -27,7 +27,7 @@ public class Product {
 	private Integer id;
 	
 	@ManyToMany
-	private List<Pedido> pedidos;
+	private List<POrder> pedidos;
 
 	@Column(unique = true)
 	private String name;
@@ -65,7 +65,7 @@ public class Product {
 		this.director = director;
 		this.cast = cast;
 		this.year = year;
-		this.pedidos= new ArrayList<Pedido>();
+		this.pedidos= new ArrayList<POrder>();
 	}
 	
 	public Product(String name, String description, String type, String genre, int stock, double pbuy,

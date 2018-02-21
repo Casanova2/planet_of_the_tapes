@@ -40,13 +40,12 @@ public class User {
 	private boolean viewTelephone;
 	private String address;
 	private String avatar;
-	 
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
 	@OneToMany
-	private List<Pedido> orders;
+	private List<POrder> orders;
 
 	protected User() {
 	}
@@ -63,10 +62,8 @@ public class User {
 		this.address = address;
 		this.avatar = avatar;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
-		this.orders=new ArrayList<Pedido>();
+		this.orders=new ArrayList<POrder>();
 	}
-	
-	
 	
 	public Integer getId() {
 		return id;
@@ -89,11 +86,11 @@ public class User {
 		this.roles = roles;
 	}
 
-	public List<Pedido> getOrders() {
+	public List<POrder> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(List<Pedido> orders) {
+	public void setOrders(List<POrder> orders) {
 		this.orders = orders;
 	}
 
@@ -160,7 +157,7 @@ public class User {
 	public void setViewTelephone(boolean viewTelephone) {
 		this.viewTelephone = viewTelephone;
 	}
-	public void addOrder(Pedido p) {
+	public void addOrder(POrder p) {
 		this.orders.add(p);
 	}
 

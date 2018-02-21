@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
-public class Pedido {
+public class POrder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -47,15 +47,15 @@ public class Pedido {
 		this.user = user;
 	}
 
-	protected Pedido() {
+	protected POrder() {
 	}
 
-public Pedido(User user) {
+public POrder(User user) {
 	this.user = user;
 	this.total = 0;
 }
 
-public Pedido(String state, String pay, String type, double total, User user) {
+public POrder(List<Product> products, String state, String pay, String type, double total, User user) {
 	this.state = state;
 	this.pay = pay;
 	this.type = type;
