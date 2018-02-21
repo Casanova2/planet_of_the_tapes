@@ -139,10 +139,10 @@ public class AdminController {
 				
 			productRepository.save(product);
 				
-			String imgName = "img/" + product.getId() + ".jpg";
+			String imgName = product.getId() + ".jpg";
 			if (!img.isEmpty()) {
 				try {
-					File imgFolder = new File("src/main/resources/static/img");
+					File imgFolder = new File("src/main/resources/static/img/ProductImages");
 					if (!imgFolder.exists()) {
 						imgFolder.mkdirs();
 					}

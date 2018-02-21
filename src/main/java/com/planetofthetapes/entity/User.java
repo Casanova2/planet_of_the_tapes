@@ -62,6 +62,11 @@ public class User {
 		
 	}
 	
+	public String changeAvatarName(String name) {
+		
+		return this.avatar = "img/admin/avatar/" + name + ".png";
+	}
+	
 	public Pedido getPedidoActual() {
 		return pedidoActual;
 	}
