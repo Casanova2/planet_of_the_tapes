@@ -26,8 +26,8 @@ public class POrder {
 	private Integer id;
 	
 	
-	@ManyToMany
-	private List<Product> products;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List<Product> products = new ArrayList<Product>();
 	
 	@Column(unique = true)
 	private String state;
@@ -35,8 +35,10 @@ public class POrder {
 	private String type;
 	private double total;
 	
-	@ManyToOne
-	private User user;
+	protected POrder() {
+	}
+	
+	/*private User user;
 	
 
 	public User getUser() {
@@ -54,14 +56,13 @@ public POrder(User user) {
 	this.user = user;
 	this.total = 0;
 }
-
-public POrder(List<Product> products, String state, String pay, String type, double total, User user) {
+*/
+public POrder(String state, String pay, String type, double total) {
 	this.state = state;
 	this.pay = pay;
 	this.type = type;
 	this.total = total;
-	this.user = user;
-	this.products=new ArrayList<Product>();
+	//this.user = user;
 }
 
 public List<Product> getProducts() {

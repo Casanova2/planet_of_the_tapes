@@ -44,8 +44,8 @@ public class User {
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 	
-	@OneToMany
-	private List<POrder> orders;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<POrder> orders= new ArrayList<POrder>();
 
 	protected User() {
 	}
@@ -62,7 +62,6 @@ public class User {
 		this.address = address;
 		this.avatar = avatar;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
-		this.orders=new ArrayList<POrder>();
 	}
 	
 	public Integer getId() {

@@ -6,5 +6,5 @@ import com.planetofthetapes.entity.POrder;
 
 public interface POrderRepository extends JpaRepository<POrder, Integer>{
 
-	
+	POrder findByState(String state);
 }

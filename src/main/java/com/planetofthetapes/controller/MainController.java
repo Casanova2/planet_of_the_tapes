@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.planetofthetapes.entity.Product;
@@ -28,6 +29,21 @@ public class MainController {
 	private ProductRepository productRepository;
 	@Autowired
 	private MasterController masterSession;
+	
+	@ModelAttribute("name")
+	public String getName() {
+		return "Hola";
+	}
+	
+	@ModelAttribute
+	public void updateModel(Model model) {
+		model.addAttribute("xxx","xxx");
+	}
+	
+	@ModelAttribute("mastersession")
+	public MasterController getMasterSession() {
+		return masterSession;
+	}
 	
 	@RequestMapping("/")
 	public String index(Model model, HttpServletRequest request) {
