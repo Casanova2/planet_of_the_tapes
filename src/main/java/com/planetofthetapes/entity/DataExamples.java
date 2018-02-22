@@ -240,11 +240,15 @@ public class DataExamples {
 		
 		POrder order2 = new POrder(filmlist, "Payed", "Credit Card", "Buy", 80.00, user3);
 		
+		POrder order3 = new POrder(filmlist, "progress", "Credit Card", "Buy", 40.00, user2);
+		
 		
 		orderlist.add(order1);
 		orderlist.add(order2);
+		//orderlist.add(order3);
 		porderRepository.save(order1);
 		porderRepository.save(order2);
+		//porderRepository.save(order3);
 		
 		// PACKS
 		Pack packpelis = new Pack("Peliculas Oferta",35,filmlist);
