@@ -248,8 +248,15 @@ public class DataExamples {
 		filmlist.add(prod4);
 	
 		
+<<<<<<< HEAD
 		POrder order2 = new POrder("Payed", "Credit Card", "Buy", 80.00, user3);
 		order2.setProducts(filmlist);
+=======
+		POrder order2 = new POrder(filmlist, "Payed", "Credit Card", "Buy", 80.00, user3);
+		
+		POrder order3 = new POrder(filmlist, "progress", "Credit Card", "Buy", 40.00, user2);
+		
+>>>>>>> 09e8f5c6a918b36779043add2142b45795eb9149
 		
 		gamelist.add(prod200);
 		gamelist.add(prod201);
@@ -257,9 +264,15 @@ public class DataExamples {
 		gamelist.add(prod203);
 		orderlist.add(order1);
 		orderlist.add(order2);
+<<<<<<< HEAD
 		
 		
+=======
+		//orderlist.add(order3);
+		porderRepository.save(order1);
+>>>>>>> 09e8f5c6a918b36779043add2142b45795eb9149
 		porderRepository.save(order2);
+		//porderRepository.save(order3);
 		
 		
 		user2.getOrders().add(order2);

@@ -10,7 +10,7 @@ Carlos López García     c.lopezgarcia2@alumnos.urjc.es   Github User: CarlosLo
 Asier Ruano Peñas       a.ruano@alumnos.urjc.es          Github User: AsierRuano  
 ```
 We are a small group from URJC university in Spain and we are doing this web app for Web Aplications Development.  
-**We will be working on a videoclub. The costumers will be able to buy or rent films, videogames and series.**  
+**We will be working on a videoclub. The costumers will be able to buy films, videogames and series.**  
 
 # Phase 1  
 In this phase we will show you the entities of the database, the external technologies that will be used and the advanced functionalities of our project.     
@@ -66,6 +66,50 @@ and series section. Also, you can go to our facebook page by clicking the "Faceb
 Now, we will show you a simple navigation diagram from the main page, though you can go wherever you want from every page.  
 [Navigation Diagram](screenshots/NavigationDiagram.png)  
   
+# Phase 3
+
+In this phase, we have implemented the app with functionality in Spring. If you want to run it, you have to import the project in your Spring Tool Suite, and run as Spring boot application.
+Once the application is started, you have to write this in your browser to accede our app: "https://localhost:8443".
+
+We have made some changes in our view, and we have created some other news. Here are the pictures of these changes:
+
+Register View:
+[Register View](screenhots/RegisterView.png)
+
+Login View:
+[Login View](screenhots/LoginView.png)
+
+Main View with user/admin logged:
+[Logged View](screenhots/LoggedMainView.png)
+
+Admin Main View:
+[Admin Main View](screenhots/AdminMainView.png)
+
+User Main View:
+[Profile View](screenhots/ProfileView.png)
+
+Admin products view:
+[Admin products View](screenhots/AdminProductsView.png)
+
+Admin User list:
+[Admin User list View](screenhots/AdminUsersView.png)
+
+Admim Add Product View:
+[Add Product View](screenhots/AdminAddProductView.png)
+
+Admin Remove Product View:  
+[Remove Product View](screenhots/AdminRemoveProductView.png)
+
+Admin Remove User View:  
+[Remove User View](screenhots/AdminRemoveUserView.png)
+
+
+Also, here is the diagram with database entities relations:
+
+[Relation Diagram](screenshots/RelationDiagram.png)
+
+
+
 
   
 ------------
