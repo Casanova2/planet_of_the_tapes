@@ -13,8 +13,7 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String login(Model model, HttpServletRequest request) {
 
-		if (request.isUserInRole("ADMIN") || request.isUserInRole("USER"))
-			return "redirect:/";
+		
 		model.addAttribute("unlogged", true);
 		model.addAttribute("profile", true);
 

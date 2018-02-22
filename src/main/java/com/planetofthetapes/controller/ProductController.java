@@ -39,6 +39,7 @@ public class ProductController {
 	public String product(Model model, @PathVariable Integer id, HttpServletRequest request) {
 		
 		masterSession.session(model, request);
+		
 		Product producto = productRepository.findOne(id);
 		Page<Product> products = productRepository.findByGenreAndType(producto.getGenre(), producto.getType(),new PageRequest(0, 4));
 		model.addAttribute("producto",producto);

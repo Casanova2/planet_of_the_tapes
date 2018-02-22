@@ -4,8 +4,22 @@
 
     <div class="body">
         
-        {{>header}}	
-
+        {{>header}}
+		
+		{{#success}}
+		<div style="margin-bottom:0px;" class="alert alert-success alert-dismissible" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">X</span></button>
+			<strong><i class="fa fa-warning"></i>Well done!</strong> {{success}}
+		</div>
+	    {{/success}}
+	    
+	    {{#error}}
+			<div style="margin-bottom:0px;" class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">X</span></button>
+				<strong><i class="fa fa-warning"></i>Oopps!</strong> {{error}}
+			</div>
+	    {{/error}}
+        
         <!-- SLIDES -->
         <!-- MAIN -->
         <div role="main" class="main">
@@ -101,60 +115,48 @@
             </div>
 
             <!-- END SLIDES -->
+            
+            <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
+            </ul>
 			
-			<div class="heading heading-border heading-middle-border heading-middle-border-center">
-			
-            <!-- SERIES -->
-            <div class="container margin-custom">
+			<!-- SERIES -->
+			<div class="heading heading-border heading-middle-border heading-middle-border-center">            
+            	<div class="container margin-custom">
                     <h1><strong>Series</strong></h1>
                 	<a style="margin-top:15px;" class="btn btn-3d btn-primary mb-2" href="mplist?enlace=1">Show all Series!</a>
-                </div>
-
-                <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
-                </ul>
-
-                <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
-                    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-                        {{#series}} {{>items}} {{/series}}                        
-                    </div>
-                </div>
+	                <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+	                    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+	                        {{#series}} {{>items}} {{/series}}                        
+	                    </div>
+	                </div>
+	            </div>
             </div>
             <!-- END SERIES -->
 
-			<div class="heading heading-border heading-middle-border heading-middle-border-center">
-			
-            <!-- MOVIES -->
-            <div class="container">
+			<!-- MOVIES -->
+			<div class="heading heading-border heading-middle-border heading-middle-border-center">            
+            	<div class="container">
                     <h1><strong>Movies</strong></h1>
-                	<a style="margin-top:15px;" class="btn btn-3d btn-primary mb-2" href="mplist?enlace=2">Show all Movies!</a>               	
-                </div>
-
-                <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
-                </ul>
-
-                <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
-                    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-                        {{#movies}} {{>items}} {{/movies}}  
-                    </div>
+                	<a style="margin-top:15px;" class="btn btn-3d btn-primary mb-2" href="mplist?enlace=2">Show all Movies!</a>
+	                <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+	                    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+	                        {{#movies}} {{>items}} {{/movies}}  
+	                    </div>
+	                </div>
                 </div>
             </div>
             <!-- END MOVIES -->
 
+			<!-- VIDEOGAMES -->
 			<div class="heading heading-border heading-middle-border heading-middle-border-center">
-
-            <!-- VIDEOGAMES -->
-            <div class="container">
+            	<div class="container">
                     <h1><strong>Videogames</strong></h1>
-                    <a style="margin-top:15px;" class="btn btn-3d btn-primary mb-2" href="mplist?enlace=3">Show all Videogames!</a>
-                </div>
-
-                <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options="{'layoutMode': 'fitRows', 'filter': '*'}">
-                </ul>
-
-                <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
-                    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
-                        {{#videogames}} {{>items}} {{/videogames}} 
-                    </div>
+                    <a style="margin-top:15px;" class="btn btn-3d btn-primary mb-2" href="mplist?enlace=3">Show all Videogames!</a>	
+	                <div class="sort-destination-loader sort-destination-loader-showing mt-4 pt-2">
+	                    <div class="row portfolio-list sort-destination" data-sort-id="portfolio">
+	                        {{#videogames}} {{>items}} {{/videogames}} 
+	                    </div>
+	                </div>
                 </div>
             </div>
             <!-- END VIDEOGAMES -->

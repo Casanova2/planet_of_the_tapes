@@ -51,17 +51,17 @@ public class PlistController {
 		String type = "";
 		if(enlace == 1) {
 			type = "Series";
-			Page<Product> series = productRepository.findGroupByType("Series", new PageRequest(0, 4));
+			Page<Product> series = productRepository.findGroupByType("Series", new PageRequest(0, 8));
 			model.addAttribute("products", series);
 		}
 		if(enlace == 2) {
 			type = "Movies";
-			Page<Product> products = productRepository.findGroupByType("Movies", new PageRequest(0, 4));
+			Page<Product> products = productRepository.findGroupByType("Movies", new PageRequest(0, 8));
 			model.addAttribute("products", products);
 		}
 		if(enlace == 3){
 			type = "Videogames";
-			Page<Product> products = productRepository.findGroupByType("Videogames", new PageRequest(0, 4));
+			Page<Product> products = productRepository.findGroupByType("Videogames", new PageRequest(0, 8));
 			model.addAttribute("products", products);
 		}
         

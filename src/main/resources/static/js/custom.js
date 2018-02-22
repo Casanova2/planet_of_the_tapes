@@ -2,7 +2,7 @@
 Load More
 */
 
-var cont = 0;
+var cont = 1;
 var portfolioLoadMore = {
 
 	pages: 0,
