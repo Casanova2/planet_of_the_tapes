@@ -26,8 +26,8 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@ManyToMany
-	private List<POrder> pedidos;
+	@ManyToMany(mappedBy = "products")
+	private List<POrder> pedidos = new ArrayList<POrder>();
 
 	@Column(unique = true)
 	private String name;
@@ -65,7 +65,6 @@ public class Product {
 		this.director = director;
 		this.cast = cast;
 		this.year = year;
-		this.pedidos= new ArrayList<POrder>();
 	}
 	
 	public Product(String name, String description, String type, String genre, int stock, double pbuy,

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
+import com.planetofthetapes.entity.POrder;
 import com.planetofthetapes.entity.User;
 import com.planetofthetapes.repository.POrderRepository;
 import com.planetofthetapes.repository.PackRepository;
@@ -24,9 +25,17 @@ public class MasterController {
 	@Autowired
 	private PackRepository packRepository;
 	
+	POrder carrito;
+	
+	public POrder getCarrito() {
+		return carrito;
+	}
+	
 	public void session (Model model,HttpServletRequest request) {
 		if (request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
 			User loggedUser = userRepository.findByName(request.getUserPrincipal().getName());
+			carrito = loggedUser.getOrders().get(0);
+			System.out.println(carrito.getProducts());
 			model.addAttribute("user", loggedUser);
 			model.addAttribute("logged", true);
 		} else

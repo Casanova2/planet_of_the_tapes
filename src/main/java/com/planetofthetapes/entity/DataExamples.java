@@ -37,10 +37,7 @@ public class DataExamples {
 				prod102, prod103, prod104, prod105, prod200, prod201, prod202, prod203, prod204, prod205;
 
 		// Users creation
-		user1 = new User("Carlos", "1234", "4567891L", "carlos@gmail.com", "656565066", "calle falsa 123",
-				"img/admin/avatar/carlos.png", "ROLE_ADMIN", "ROLE_USER");
-		userRepository.save(user1);
-
+/*
 		user2 = new User("Raul", "4321", "7894561I", "raul@gmail.com", "606056001", "calle falsa 123",
 				"img/admin/avatar/raul.png", "ROLE_ADMIN", "ROLE_USER");
 		userRepository.save(user2);
@@ -203,7 +200,7 @@ public class DataExamples {
 				"Videogames", "Sci-fi", 5, 50.0, 5.0, 91, "https://www.youtube.com/watch?v=WNDGQMz1fJQ", "Naughty Dog",
 				"Nathan Drake, Victor Sullivan, Elena", 2017, "ps4-uncharted4.jpg");
 		productRepository.save(prod203);
-
+		*/
 		prod204 = new Product("Gears of War 4",
 				"Gears of War 4 takes place 25 years after the events of Gears of War 3. Although the use of the Imulsion Countermeasure weapon destroyed all Imulsion on the planet Sera, killing the Locust and the Lambent in the process.",
 				"Videogames", "Sci-Fi", 5, 50.0, 5.0, 80, "https://www.youtube.com/watch?v=XrfVfRV0zSg",
@@ -220,38 +217,73 @@ public class DataExamples {
 		// VIDEOGAMES
 		
 		//ORDERS
-		List<Product> gamelist = new ArrayList<Product>();	
-		List<Product> filmlist = new ArrayList<Product>();
+		user1 = new User("Carlos", "1234", "4567891L", "carlos@gmail.com", "656565066", "calle falsa 123",
+				"img/admin/avatar/carlos.png", "ROLE_ADMIN", "ROLE_USER");
+		userRepository.save(user1);
+		
+		
+		POrder order1 = new POrder("Completed", "Credit Card", "Buy", 200.00);
+		porderRepository.save(order1);
+		
+		order1.getProducts().add(prod205);
+		order1.getProducts().add(prod204);
+		
+		porderRepository.save(order1);
+		
+		user1.getOrders().add(order1);
+		userRepository.save(user1);
+		
+		
+		
+		
+			
+		/*List<Product> filmlist = new ArrayList<Product>();
 		
 		List<POrder> orderlist = new ArrayList<POrder>();
 		
-		gamelist.add(prod200);
-		gamelist.add(prod201);
-		gamelist.add(prod202);
-		gamelist.add(prod203);
-		
-		POrder order1 = new POrder(gamelist, "Completed", "Credit Card", "Buy", 200.00, user1);	
-				
 		
 		filmlist.add(prod1);
 		filmlist.add(prod2);
 		filmlist.add(prod3);
 		filmlist.add(prod4);
+	
 		
+<<<<<<< HEAD
+		POrder order2 = new POrder("Payed", "Credit Card", "Buy", 80.00, user3);
+		order2.setProducts(filmlist);
+=======
 		POrder order2 = new POrder(filmlist, "Payed", "Credit Card", "Buy", 80.00, user3);
 		
+		POrder order3 = new POrder(filmlist, "progress", "Credit Card", "Buy", 40.00, user2);
 		
+>>>>>>> 09e8f5c6a918b36779043add2142b45795eb9149
+		
+		gamelist.add(prod200);
+		gamelist.add(prod201);
+		gamelist.add(prod202);
+		gamelist.add(prod203);
 		orderlist.add(order1);
 		orderlist.add(order2);
+<<<<<<< HEAD
+		
+		
+=======
+		//orderlist.add(order3);
 		porderRepository.save(order1);
+>>>>>>> 09e8f5c6a918b36779043add2142b45795eb9149
 		porderRepository.save(order2);
+		//porderRepository.save(order3);
+		
+		
+		user2.getOrders().add(order2);
 		
 		// PACKS
 		Pack packpelis = new Pack("Peliculas Oferta",35,filmlist);
-		Pack packjuegos = new Pack("Juegos Oferta",60,gamelist);
 		
-		packRepository.save(packpelis);
-		packRepository.save(packjuegos);
+		
+		packRepository.save(packpelis);*/
+		//Pack packjuegos = new Pack("Juegos Oferta",60,gamelist);
+		//packRepository.save(packjuegos);
 		
 		
 		

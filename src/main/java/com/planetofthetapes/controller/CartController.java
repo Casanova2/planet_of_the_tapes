@@ -30,7 +30,7 @@ public class CartController {
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
-	private POrderRepository pedidoRepository;
+	private POrderRepository POrderRepository;
 	@Autowired
 	private MasterController masterSession;
 	
@@ -56,36 +56,45 @@ public class CartController {
 		
 		double total = 0.0;
 		Product p = productRepository.findOne(id);
-		System.out.println(p.toString()+"hola joder ");
+		//System.out.println(p.toString()+"hola joder ");
 		//if(userRepository.findByName(request.getUserPrincipal().getName()) != null) { //Si estas logueado
-			Pedido actual = new Pedido("","","",0.0,user);
-			Boolean inProgress = false;
-			
-		if(user.getOrders()!=null) {
-			for(Pedido ped: user.getOrders()) {
-				if(ped.getState() == "progress") {
+		
+		Boolean inProgress = false;
+		//POrder actual = POrderRepository.findByState("progress");
+		//System.out.println(actual);
+		//if(actual!=null) {
+			for(POrder ped: user.getOrders()) {
+				if(ped.getState().equals("progress")) {
 					inProgress = true;
-					actual = ped;
+					POrder actual = ped;
 					actual.addProduct(p); //aniadimos producto
 					total = actual.getTotal() + p.getPbuy(); //sacamos el precio total antiguo
-					actual.setTotal(total);//aniadimos el precio total con el nuevo producto
+					actual.setTotal(total);//aniadimos el precio total con el nuevo produc
+					System.out.println(actual.getProducts().toString());
+					model.addAttribute("productsOrder",actual.getProducts());
+					break;
 				}
 			}
-			if(!inProgress) {
-				actual= new Pedido("progress","","",0.0,user);
-				actual.addProduct(p);
-			}
-			model.addAttribute("productsOrder",actual.getProducts());
 			
-		}else {
-				actual= new Pedido("progress","","",0.0,user);
-				actual.addProduct(p);
-			    user.addOrder(actual);
-				
-		}
-		System.out.println(user.getOrders()+ "kjkjhkl");
-		System.out.println(actual.getProducts().toString());
-		model.addAttribute("productsOrder",actual.getProducts());
+			
+			if(!inProgress) {
+				//actual= new POrder("progress","","",0.0,user);
+				//actual.addProduct(p)
+				POrder actual= new POrder("progress","","",0.0);
+				actual.getProducts().add(p);
+				ArrayList<POrder> listPOrders = new ArrayList<POrder>();
+				System.out.println("HOLAA111111");
+				listPOrders.add(actual);
+				user.setOrders(listPOrders);
+				POrderRepository.save(actual);
+				//System.out.println(actual);
+				System.out.println(actual.getProducts().toString());
+				System.out.println(user.getOrders().toString()+ "HOLAAA22222");
+			    //user.addOrder(actual);
+				System.out.println();
+				model.addAttribute("productsOrder",actual.getProducts());
+			}
+		
 		return "redirect:/";
 	}
 }
