@@ -13,16 +13,6 @@
                 </div>
                 <div class="header-column justify-content-end">
                     <div class="header-row">
-                        <!--<div class="header-search d-none d-md-block">
-                            <form id="searchForm" action="page-search-results.html" method="get">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="q" id="q" placeholder="Search..." required>
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-light" type="submit"><i class="fa fa-search"></i></button>
-                                    </span>
-                                </div>
-                            </form>
-                        </div>-->
                         <div class="header-nav header-nav-stripe">
                             <div class="header-nav-main header-nav-main-square header-nav-main-effect-2 header-nav-main-sub-effect-1">
                                 <nav class="collapse">
@@ -37,9 +27,10 @@
 													<div class="dropdown-mega-content">
 														<table class="cart">
 															<tbody>
-																<tr>
-																<!--jjj	 {{#mastersession.carrito.products}} hhhhh{{>cartItem}}ggggg {{/mastersession.carrito.products}}-->
-																</tr>
+																
+																{{#productsOrders}} {{>cartItem}} {{/productsOrders}}
+																{{^productsOrders}} <h3>Cart is empty </h3> {{/productsOrders}}
+																
 																<tr>
 																	<td class="actions" colspan="6">
 																		<div class="actions-continue">
@@ -80,13 +71,6 @@
 													Contact
 												</a>
                                         </li>
-                                        {{#unlogged}}
-                                        <li class="">
-                                            <a class="nav-link" href="/login">
-													Login
-												</a>
-                                        </li>
-                                        {{/unlogged}}
                                         
                                         {{#logged}}
                                         
@@ -126,6 +110,13 @@
 											</div>
 										</div>
 
+										{{/logged}}
+										{{^logged}}
+										 <li class="">
+                                            <a class="nav-link" href="/login">
+													Login
+												</a>
+                                        </li>
 										{{/logged}}
                                         </li>
                                         

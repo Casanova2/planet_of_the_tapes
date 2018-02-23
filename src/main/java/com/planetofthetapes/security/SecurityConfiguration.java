@@ -45,11 +45,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         
 
 		// LOGIN
-		http.formLogin().loginPage("/login");
+		http.formLogin().loginPage("/signIn");
 		http.formLogin().usernameParameter("name");
 		http.formLogin().passwordParameter("password");
 		http.formLogin().defaultSuccessUrl("/");
-		http.formLogin().failureUrl("/login");
+		http.formLogin().failureUrl("/signIn");
 
 		// LOGOUT
 		http.logout().logoutUrl("/logout");

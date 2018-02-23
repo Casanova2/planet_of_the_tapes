@@ -31,7 +31,7 @@
 						<h2 class="title text-uppercase text-weight-bold m-none"><i class="fa fa-user mr-xs"></i> Sign In</h2>
 					</div>
 					<div class="panel-body">
-						<form action="/login" method="post">
+						<form action="/signIn" method="post">
 							<div class="form-group mb-lg">
 								<label>Name</label>
 								<div class="input-group input-group-icon">
@@ -59,9 +59,9 @@
 								</div>
 							</div>
 							
-							{{#loginError}}
-                  				<div class="errorLogin">Wrong Data. Please, try again.</div>
-                  			{{/loginError}}
+							{{#error}}
+                  				<div style="color:red;" class="errorLogin">Wrong Data. Please, try again.</div>
+                  			{{/error}}
 
 							<div class="row">
 								<div class="col-sm-12 text-right">

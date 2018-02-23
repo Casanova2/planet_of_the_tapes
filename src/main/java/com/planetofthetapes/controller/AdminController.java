@@ -31,7 +31,7 @@ import com.planetofthetapes.repository.UserRepository;
 import java.util.List;
 
 @Controller
-public class AdminController {
+public class AdminController extends MasterService{
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -44,14 +44,11 @@ public class AdminController {
 	
 	@Autowired
 	private PackRepository packRepository;
-	
-	@Autowired
-	private MasterController masterSession;
+
 	
 	@RequestMapping("/admin")
-	public String admin(Model model,HttpServletRequest request) {
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+	public String admin(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
 		model.addAttribute("products",productRepository.findAll());
 		model.addAttribute("users",userRepository.findAll());
 		model.addAttribute("orders", porderRepository.findAll());
@@ -62,10 +59,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin-products")
-	public String adminproducts(Model model, HttpServletRequest request) {
-		masterSession.session(model, request);
-		masterSession.numbers(model);
-		
+	public String adminproducts(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
 		
 		Page<Product> series = productRepository.findGroupByType("Serie", new PageRequest(0, 4));
 		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
@@ -81,47 +76,37 @@ public class AdminController {
 		return "/admin/admin-products";
 	}
 	@RequestMapping("/admin-orderlist")
-	public String orderlist(Model model, HttpServletRequest request) {
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+	public String orderlist(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
 		List<POrder> ord = porderRepository.findAll();
 		List<Product> prod = new ArrayList<Product>();
-		/*for (POrder p : ord) {
-			prod = p.getProducts();
-			for(Product o : prod) {
-				String name = o.getName();
-				model.addAttribute("names", name);
-			}
-			
-		}
-		*/
+		
 		model.addAttribute("orders", porderRepository.findAll());
 		
 		
 		return "/admin/admin-orderlist";
 	}
 	@RequestMapping("/admin-userList")
-	public String adminUserList(Model model, HttpServletRequest request) {
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+	public String adminUserList(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
 		model.addAttribute("users",userRepository.findAll());
 		
 		return "/admin/admin-userList";
 	}
 	
 	@RequestMapping("/admin-packlist")
-	public String adminPackList(Model model, HttpServletRequest request) {
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+	public String adminPackList(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
+		
 		model.addAttribute("packs",packRepository.findAll());
 		
 		return "/admin/admin-packlist";
 	}
 	
 	@RequestMapping("/admin-user")
-	public String adminuserprofile(Model model, HttpServletRequest request) {
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+	public String adminuserprofile(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
+		
 		model.addAttribute("products",productRepository.findAll());
 	
 		
@@ -132,8 +117,7 @@ public class AdminController {
 	public String adminmodifyuser(Model model, @RequestParam String name,@RequestParam Integer id, @RequestParam String passwordHash, @RequestParam String dni,
 			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
-			masterSession.numbers(model);
-			masterSession.session(model, request);
+			this.session(model, request, redirectAttrs);
 			
 				User user = userRepository.findById(id);
 				user.setName(name);
@@ -153,10 +137,9 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/admin-modify-product")
-	public String ModifyProduct(Model model, HttpServletRequest request) {
+	public String ModifyProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+		this.session(model, request, redirectAttrs);
 		
 		
 
@@ -169,8 +152,7 @@ public class AdminController {
 			@RequestParam String trailerp,@RequestParam String directorp, @RequestParam String castp, @RequestParam int yearp, @RequestParam MultipartFile img,
 			HttpServletRequest request, RedirectAttributes redirectAttrs){
 				
-				masterSession.numbers(model);
-				masterSession.session(model, request);
+		this.session(model, request, redirectAttrs);
 				
 				Product product = productRepository.findByName(nam);
 				System.out.println(product.toString());
@@ -209,18 +191,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/add-product")
-	public String addUser(Model model, HttpServletRequest request) {
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+	public String addUser(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
 		model.addAttribute("products",productRepository.findAll());
 	
 		return "/admin/admin-add-user";
 	}
 	@RequestMapping("/admin-products-add")
-	public String addProduct(Model model, HttpServletRequest request) {
-
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+	public String addProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
 		return "admin/admin-add-product";
 	}
 	
@@ -232,8 +211,7 @@ public class AdminController {
 			@RequestParam String cast, @RequestParam int year, @RequestParam MultipartFile img, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 			
-			masterSession.numbers(model);
-			masterSession.session(model, request);
+			this.session(model, request, redirectAttrs);
 			
 			Product product = new Product(name, description, type, genre, stock, pbuy, prent, score, trailer, director, cast, year);
 				
@@ -260,10 +238,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin-user-add")
-	public String adduser(Model model, HttpServletRequest request) {
-
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+	public String adduser(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
 
 		return "admin/admin-add-user";
 	}
@@ -272,8 +248,8 @@ public class AdminController {
 	public String addUser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
 			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
-			masterSession.numbers(model);
-			masterSession.session(model, request);
+			
+			this.session(model, request, redirectAttrs);
 				User user = new User(name,passwordHash,dni,email,telephone,address,avatar,"ROLE_USER");
 				try {
 					userRepository.save(user);
@@ -286,18 +262,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin-remove-product")
-	public String removeProduct(Model model, HttpServletRequest request) {
-
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+	public String removeProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
 
 		return "admin/admin-remove-product-action";
 	}
 	
 	@RequestMapping("/admin-remove-product-action")
-	public String removeProductAction(Model model, @RequestParam String name, @RequestParam String type, HttpServletRequest request) {
-			masterSession.numbers(model);
-			masterSession.session(model, request);
+	public String removeProductAction(Model model, @RequestParam String name, @RequestParam String type, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+			this.session(model, request, redirectAttrs);
 				try {
 					Product product = productRepository.findByNameAndType(name, type);
 					productRepository.delete(product);
@@ -309,18 +282,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin-remove-user")
-	public String removeUse(Model model, HttpServletRequest request) {
-
-		masterSession.session(model, request);
-		masterSession.numbers(model);
+	public String removeUse(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
 
 		return "admin/admin-remove-user-action";
 	}
 	
 	@RequestMapping("/admin-remove-user-action")
-	public String removeUsertAction(Model model, @RequestParam String name, @RequestParam String email, HttpServletRequest request) {
-			masterSession.numbers(model);
-			masterSession.session(model, request);
+	public String removeUsertAction(Model model, @RequestParam String name, @RequestParam String email, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+			this.session(model, request, redirectAttrs);
 				try {
 					User user = userRepository.findByNameAndEmail(name, email);
 					userRepository.delete(user);

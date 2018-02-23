@@ -27,18 +27,16 @@ import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
 @Controller
-public class ProductController {
+public class ProductController extends MasterService {
 	
 	@Autowired
 	private ProductRepository productRepository;
-	@Autowired
-	private MasterController masterSession;
 	
 	
 	@RequestMapping("product/{id}")
-	public String product(Model model, @PathVariable Integer id, HttpServletRequest request) {
+	public String product(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		
-		masterSession.session(model, request);
+		this.session(model, request, redirectAttrs);
 		
 		Product producto = productRepository.findOne(id);
 		Page<Product> products = productRepository.findByGenreAndType(producto.getGenre(), producto.getType(),new PageRequest(0, 4));
@@ -48,30 +46,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping("moreMovies")
-	public String moreMovies(Model model, HttpServletRequest request) {
-
-		masterSession.session(model, request);
+	public String moreMovies(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
+		
 		Page<Product> movies = productRepository.findGroupByType("Movie", new PageRequest(0, 4));
 		model.addAttribute("item",movies);
 
 		return "listItems";
 	}
-	
-	/*@RequestMapping(value = "/moreGames")
-	public String moreGames(Model model, @RequestParam int page) {
-
-		Page<Resource> revistas = resourceRepository.findByResourceType(type, new PageRequest(page, 2));
-		model.addAttribute("items", revistas);
-
-		return "listItemsPage";
-	}*/
-	
-	/*@RequestMapping(value = "/moreMovies")
-	public String moreMovies(Model model, @RequestParam int page) {
-
-		Page<Resource> movies = resourceRepository.findByResourceType(type, new PageRequest(page, 2));
-		model.addAttribute("items", revistas);
-
-		return "listItemsPage";
-	}*/
 }

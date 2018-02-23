@@ -222,15 +222,22 @@ public class DataExamples {
 		userRepository.save(user1);
 		
 		
-		POrder order1 = new POrder("Completed", "Credit Card", "Buy", 200.00);
+		POrder order1 = new POrder("completed", "Credit Card", "Buy", 200.00);
+		POrder order2 = new POrder("progress", "Credit Card", "Buy", 300.00);
 		porderRepository.save(order1);
+		porderRepository.save(order2);
 		
 		order1.getProducts().add(prod205);
 		order1.getProducts().add(prod204);
 		
+		order2.getProducts().add(prod205);
+		order2.getProducts().add(prod204);
+		
 		porderRepository.save(order1);
+		porderRepository.save(order2);
 		
 		user1.getOrders().add(order1);
+		user1.getOrders().add(order2);
 		userRepository.save(user1);
 		
 		

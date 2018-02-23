@@ -33,21 +33,17 @@ import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
 @Controller
-public class PlistController {
+public class PlistController extends MasterService {
 	
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
 	private UserRepository userRepository;
-	@Autowired
-	private MasterController masterSession;
 	
 	@RequestMapping("/mplist")
-    public String mostrarplist(Model model, @RequestParam int enlace, HttpServletRequest request){
+    public String mostrarplist(Model model, @RequestParam int enlace, HttpServletRequest request, RedirectAttributes redirectAttrs){
+		this.session(model, request, redirectAttrs);
 		
-		masterSession.session(model, request);
-		
-		//model.addAttribute("products", productRepository.findGroupByType(enlace));
 		String type = "";
 		if(enlace == 1) {
 			type = "Series";
@@ -70,13 +66,11 @@ public class PlistController {
     }
 	
 	@RequestMapping(value = "/loadmore")
-	public String moreBooks(Model model, @RequestParam int page, @RequestParam String type, HttpServletRequest request) {
+	public String moreBooks(Model model, @RequestParam int page, @RequestParam String type, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		
-		masterSession.session(model, request);
+		this.session(model, request, redirectAttrs);
 		Page<Product> products = productRepository.findGroupByType(type, new PageRequest(page, 4));
 		model.addAttribute("products", products);
-		
-		System.out.println(products);
 
 		return "listItems";
 	}
