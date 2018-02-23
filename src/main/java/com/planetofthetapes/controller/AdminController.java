@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,12 +35,16 @@ public class AdminController {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
 	@Autowired
 	private ProductRepository productRepository;
+	
 	@Autowired
 	private POrderRepository porderRepository;
+	
 	@Autowired
 	private PackRepository packRepository;
+	
 	@Autowired
 	private MasterController masterSession;
 	
@@ -146,7 +152,61 @@ public class AdminController {
 		return "/admin/admin-user";
 	}
 	
+	@RequestMapping(value="/admin-modify-product")
+	public String ModifyProduct(Model model, HttpServletRequest request) {
+
+		masterSession.session(model, request);
+		masterSession.numbers(model);
+		
+		
+
+		return "admin/admin-modify-product-action";
+	}
 	
+	@RequestMapping("/admin-modify-product-action")
+	public String modifyProductAction(Model model,@RequestParam String nam, @RequestParam String namep, @RequestParam String descriptionp, @RequestParam String typep,
+			@RequestParam String genrep, @RequestParam int stockp, @RequestParam double pbuyp, @RequestParam double prentp, @RequestParam int scorep,
+			@RequestParam String trailerp,@RequestParam String directorp, @RequestParam String castp, @RequestParam int yearp, @RequestParam MultipartFile img,
+			HttpServletRequest request, RedirectAttributes redirectAttrs){
+				
+				masterSession.numbers(model);
+				masterSession.session(model, request);
+				
+				Product product = productRepository.findByName(nam);
+				System.out.println(product.toString());
+				
+				product.setName(namep);
+				product.setDescription(descriptionp);
+				product.setType(typep);
+				product.setGenre(genrep);
+				product.setStock(stockp);
+				product.setPbuy(pbuyp);
+				product.setScore(scorep);
+				product.setTrailer(trailerp);
+				product.setDirector(directorp);
+				product.setCast(castp);
+				product.setYear(yearp);
+				
+				productRepository.save(product);
+				
+				String imgName = product.getId() + ".jpg";
+				if (!img.isEmpty()) {
+					try {
+						File imgFolder = new File("src/main/resources/static/img/ProductImages");
+						if (!imgFolder.exists()) {
+							imgFolder.mkdirs();
+						}
+						File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
+						img.transferTo(uploadedImage);
+					} catch (Exception e) {
+					}
+					product.setUrlimg(imgName);
+					productRepository.save(product);
+				}
+				redirectAttrs.addFlashAttribute("messages", "Modificado producto");
+				
+		return "redirect:/admin-products";
+	}
 	
 	@RequestMapping("/add-product")
 	public String addUser(Model model, HttpServletRequest request) {
