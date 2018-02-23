@@ -73,35 +73,56 @@ Once the application is started, you have to write this in your browser to acced
 
 We have made some changes in our view, and we have created some other news. Here are the pictures of these changes:
 
-Register View:
-[Register View](screenhots/RegisterView.png)
+* Register View:    
+[Register Page](screenshots/newRegisterPage.png)  
+  
+* Login View:  
+[Login Page](screenshots/newLoginPage.png)  
+  
+* Main View with user/admin logged:  
+[Main Logged Page](screenshots/logedMainPage.png)  
+  
+* Admin Main View:  
+[Admin Page](screenshots/adminPage.png)  
+  
+* User Main View:  
+[User Page](screenshots/userPage.png)  
+  
+* Admin products view:  
+[Products Page](screenshots/productlistPage.png)  
+  
+* Admin User list:  
+[Users Page](screenshots/usersPage.png)  
+  
+* Admin Orders View:  
+[Orders Page](screenshots/ordersPage.png)  
+  
+* Admin Packs View:  
+[Packs Page](screenshots/packsPage.png)  
+  
+* Admim Add Product View:  
+[Add Product Page](screenshots/addproductPage.png)  
+  
+* Admin Remove Product View:  
+[Remove Product Page](screenshots/removeproductPage.png)  
+  
+* Admin Modify Product View:  
+[Modify Product Page](screenshots/modifyproductPage.png)  
+  
+* Admin Add User View:  
+[Add User Page](screenshots/adduserPage.png)  
+    
+* Admin Remove User View:  
+[Remove User Page](screenshots/removeuserPage.png)  
+  
+* Cart in Main View:  
+[Cart in index Page](screenshots/cartMainPage.png)  
+  
+* Enter Payment Data View:  
+[Enter Data Page](screenshots/enterpaymentPage.png)  
+  
+* Confirmed Order View:
 
-Login View:
-[Login View](screenhots/LoginView.png)
-
-Main View with user/admin logged:
-[Logged View](screenhots/LoggedMainView.png)
-
-Admin Main View:
-[Admin Main View](screenhots/AdminMainView.png)
-
-User Main View:
-[Profile View](screenhots/ProfileView.png)
-
-Admin products view:
-[Admin products View](screenhots/AdminProductsView.png)
-
-Admin User list:
-[Admin User list View](screenhots/AdminUsersView.png)
-
-Admim Add Product View:
-[Add Product View](screenhots/AdminAddProductView.png)
-
-Admin Remove Product View:  
-[Remove Product View](screenhots/AdminRemoveProductView.png)
-
-Admin Remove User View:  
-[Remove User View](screenhots/AdminRemoveUserView.png)
 
 
 Also, here is the diagram with database entities relations:
