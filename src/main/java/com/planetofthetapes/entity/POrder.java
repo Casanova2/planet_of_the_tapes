@@ -29,7 +29,7 @@ public class POrder {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Product> products = new ArrayList<Product>();
 	
-	@Column(unique = true)
+	
 	private String state;
 	private String pay;
 	private String type;

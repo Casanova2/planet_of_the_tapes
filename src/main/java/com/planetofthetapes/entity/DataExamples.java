@@ -37,7 +37,7 @@ public class DataExamples {
 				prod102, prod103, prod104, prod105, prod200, prod201, prod202, prod203, prod204, prod205;
 
 		// Users creation
-/*
+
 		user2 = new User("Raul", "4321", "7894561I", "raul@gmail.com", "606056001", "calle falsa 123",
 				"img/admin/avatar/raul.png", "ROLE_ADMIN", "ROLE_USER");
 		userRepository.save(user2);
@@ -200,7 +200,7 @@ public class DataExamples {
 				"Videogames", "Sci-fi", 5, 50.0, 5.0, 91, "https://www.youtube.com/watch?v=WNDGQMz1fJQ", "Naughty Dog",
 				"Nathan Drake, Victor Sullivan, Elena", 2017, "ps4-uncharted4.jpg");
 		productRepository.save(prod203);
-		*/
+		
 		prod204 = new Product("Gears of War 4",
 				"Gears of War 4 takes place 25 years after the events of Gears of War 3. Although the use of the Imulsion Countermeasure weapon destroyed all Imulsion on the planet Sera, killing the Locust and the Lambent in the process.",
 				"Videogames", "Sci-Fi", 5, 50.0, 5.0, 80, "https://www.youtube.com/watch?v=XrfVfRV0zSg",

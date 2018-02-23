@@ -31,7 +31,9 @@ public class MasterService {
 		
 		if (request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
 			User loggedUser = userRepository.findByName(request.getUserPrincipal().getName());
-			
+			if(request.isUserInRole("ROLE_ADMIN")) {
+				model.addAttribute("admin", true);
+			}
 			System.out.println("Este es el masterService");			
 			
 			if(loggedUser.hasOrders()) {
@@ -45,6 +47,7 @@ public class MasterService {
 			
 			model.addAttribute("user", loggedUser);
 			model.addAttribute("logged", true);
+			
 			this.numbers(model);
 		} else {
 			model.addAttribute("logged", false);

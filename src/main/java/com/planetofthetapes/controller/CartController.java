@@ -45,7 +45,7 @@ public class CartController extends MasterService {
 	public String checkout(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);		
 		
-		return "checkout";
+		return "selectpay";
 	}
 	
 	@RequestMapping("/{id}/buy")
@@ -54,40 +54,46 @@ public class CartController extends MasterService {
 		
 		this.session(model, request, redirectAttrs);
 		
-		double total = 0.0;
-		Product p = productRepository.findOne(id);
-		Boolean inProgress = false;
-			
-			POrder actual = POrderRepository.findByState("progress");
-			if(actual != null) {
-				actual.addProduct(p); //aniadimos producto
-				total = actual.getTotal() + p.getPbuy(); //sacamos el precio total antiguo
-				actual.setTotal(total);//aniadimos el precio total con el nuevo produc
-				POrderRepository.save(actual);
+		
+			double total = 0.0;
+			Product p = productRepository.findOne(id);
+			Boolean inProgress = false;
+		if(p.getStock() > 0) {		
+				POrder actual = POrderRepository.findByState("progress");
+				if(actual != null) {
+					actual.addProduct(p); //aniadimos producto
+					p.setStock(p.getStock()-1);
+					total = actual.getTotal() + p.getPbuy(); //sacamos el precio total antiguo
+					actual.setTotal(total);//aniadimos el precio total con el nuevo produc
+					POrderRepository.save(actual);
+					
+					inProgress = true;
+					
+					ArrayList<POrder> listPOrders = new ArrayList<POrder>();
+					listPOrders.add(actual);
+					user.setOrders(listPOrders);
+					
+					model.addAttribute("productsOrder",actual.getProducts());
+				}
 				
-				inProgress = true;
 				
-				ArrayList<POrder> listPOrders = new ArrayList<POrder>();
-				listPOrders.add(actual);
-				user.setOrders(listPOrders);
-				
-				model.addAttribute("productsOrder",actual.getProducts());
-			}
-			
-			
-			if(!inProgress) {
-				actual= new POrder("progress","","",0.0);
-				actual.getProducts().add(p);
-				ArrayList<POrder> listPOrders = new ArrayList<POrder>();
-				listPOrders.add(actual);
-				user.setOrders(listPOrders);
-				POrderRepository.save(actual);
-				
-				model.addAttribute("productsOrder",actual.getProducts());
-			}
-			
-		redirectAttrs.addFlashAttribute("success","Product added to the cart correctly.");
-		return "redirect:/";
+				if(!inProgress) {
+					actual= new POrder("progress","","",0.0);
+					actual.getProducts().add(p);
+					p.setStock(p.getStock()-1);
+					ArrayList<POrder> listPOrders = new ArrayList<POrder>();
+					listPOrders.add(actual);
+					user.setOrders(listPOrders);
+					POrderRepository.save(actual);
+					
+					model.addAttribute("productsOrder",actual.getProducts());
+				}
+				redirectAttrs.addFlashAttribute("success","Product added to the cart correctly.");
+				return "redirect:/";
+		}else{
+			redirectAttrs.addFlashAttribute("error","Product out of stock.");
+			return "redirect:/";
+		}		
 	}
 	
 	@RequestMapping("/{id}/remove")

@@ -19,17 +19,14 @@ public class SimpleEmailController {
     private JavaMailSender sender;
 
     @RequestMapping("/simpleemail")
-    
-    
-
-    public String sendEmail(String email, String subject, String body) throws Exception{
+    public String sendEmail(String email, String to, String subject, String body) throws Exception{
         
     	MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
         
     	
         
-        helper.setTo("pottapes@gmail.com");
+        helper.setTo(to);
         helper.setText(body);
         helper.setSubject(subject);
         helper.setFrom(email);
