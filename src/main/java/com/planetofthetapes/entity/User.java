@@ -64,6 +64,10 @@ public class User {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 	
+	public Boolean hasOrders() {
+		return !this.orders.isEmpty();
+	}
+	
 	public Integer getId() {
 		return id;
 	}

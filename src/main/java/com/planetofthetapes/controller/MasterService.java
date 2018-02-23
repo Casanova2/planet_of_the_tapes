@@ -1,10 +1,13 @@
 package com.planetofthetapes.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.planetofthetapes.entity.POrder;
 import com.planetofthetapes.entity.User;
@@ -13,43 +16,46 @@ import com.planetofthetapes.repository.PackRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
-@Component
-public class MasterController {
+public class MasterService {
 	
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
-	private POrderRepository porderRepository;
+	private POrderRepository POrderRepository;
 	@Autowired
 	private PackRepository packRepository;
 	
-	POrder carrito;
-	
-	public POrder getCarrito() {
-		return carrito;
-	}
-	
-	public void session (Model model,HttpServletRequest request) {
-		if (request.isUserInRole("ADMIN") || request.isUserInRole("USER")) {
+	public void session (Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		
+		if (request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
 			User loggedUser = userRepository.findByName(request.getUserPrincipal().getName());
-			carrito = loggedUser.getOrders().get(0);
-			System.out.println(carrito.getProducts());
+			
+			System.out.println("Este es el masterService");			
+			
+			if(loggedUser.hasOrders()) {
+				POrder actual = POrderRepository.findByState("progress");
+				for(POrder p: loggedUser.getOrders()) {
+					if(p == actual) {
+						model.addAttribute("productsOrders", actual.getProducts());
+					}
+				}
+			}
+			
 			model.addAttribute("user", loggedUser);
 			model.addAttribute("logged", true);
-		} else
-			model.addAttribute("unlogged", true);
-			//return "redirect:/login";
-		if (request.isUserInRole("ADMIN"))
-			model.addAttribute("admin", true);
-			//return "redirect:/";
+			this.numbers(model);
+		} else {
+			model.addAttribute("logged", false);
+			model.addAttribute("profile", true);
+		}
 	}
 	
 	public void numbers (Model model) {
 		model.addAttribute("numberProducts",productRepository.findAll().size());
 		model.addAttribute("numberUsers",userRepository.findAll().size());
-		model.addAttribute("numberOrders",porderRepository.findAll().size());
+		model.addAttribute("numberOrders",POrderRepository.findAll().size());
 		model.addAttribute("numberPacks",packRepository.findAll().size());
 	}
 }

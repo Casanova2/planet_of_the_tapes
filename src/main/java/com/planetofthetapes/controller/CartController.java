@@ -23,7 +23,7 @@ import antlr.collections.List;
 import javassist.bytecode.Descriptor.Iterator;
 
 @Controller
-public class CartController {
+public class CartController extends MasterService {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -31,21 +31,19 @@ public class CartController {
 	private ProductRepository productRepository;
 	@Autowired
 	private POrderRepository POrderRepository;
-	@Autowired
-	private MasterController masterSession;
 	
 	@Autowired User user;
 	
 	@RequestMapping("/cart")
-	public String cart(Model model,HttpServletRequest request) {
-		masterSession.session(model, request);
+	public String cart(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
 		
 		return "cart";
 	}
 	
 	@RequestMapping("/checkout")
-	public String checkout(Model model,HttpServletRequest request) {
-		masterSession.session(model, request);		
+	public String checkout(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);		
 		
 		return "checkout";
 	}
@@ -54,47 +52,62 @@ public class CartController {
 	public String reserveResource(Model model, @PathVariable Integer id, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 		
+		this.session(model, request, redirectAttrs);
+		
 		double total = 0.0;
 		Product p = productRepository.findOne(id);
-		//System.out.println(p.toString()+"hola joder ");
-		//if(userRepository.findByName(request.getUserPrincipal().getName()) != null) { //Si estas logueado
-		
 		Boolean inProgress = false;
-		//POrder actual = POrderRepository.findByState("progress");
-		//System.out.println(actual);
-		//if(actual!=null) {
-			for(POrder ped: user.getOrders()) {
-				if(ped.getState().equals("progress")) {
-					inProgress = true;
-					POrder actual = ped;
-					actual.addProduct(p); //aniadimos producto
-					total = actual.getTotal() + p.getPbuy(); //sacamos el precio total antiguo
-					actual.setTotal(total);//aniadimos el precio total con el nuevo produc
-					System.out.println(actual.getProducts().toString());
-					model.addAttribute("productsOrder",actual.getProducts());
-					break;
-				}
+			
+			POrder actual = POrderRepository.findByState("progress");
+			if(actual != null) {
+				actual.addProduct(p); //aniadimos producto
+				total = actual.getTotal() + p.getPbuy(); //sacamos el precio total antiguo
+				actual.setTotal(total);//aniadimos el precio total con el nuevo produc
+				POrderRepository.save(actual);
+				
+				inProgress = true;
+				
+				ArrayList<POrder> listPOrders = new ArrayList<POrder>();
+				listPOrders.add(actual);
+				user.setOrders(listPOrders);
+				
+				model.addAttribute("productsOrder",actual.getProducts());
 			}
 			
 			
 			if(!inProgress) {
-				//actual= new POrder("progress","","",0.0,user);
-				//actual.addProduct(p)
-				POrder actual= new POrder("progress","","",0.0);
+				actual= new POrder("progress","","",0.0);
 				actual.getProducts().add(p);
 				ArrayList<POrder> listPOrders = new ArrayList<POrder>();
-				System.out.println("HOLAA111111");
 				listPOrders.add(actual);
 				user.setOrders(listPOrders);
 				POrderRepository.save(actual);
-				//System.out.println(actual);
-				System.out.println(actual.getProducts().toString());
-				System.out.println(user.getOrders().toString()+ "HOLAAA22222");
-			    //user.addOrder(actual);
-				System.out.println();
+				
 				model.addAttribute("productsOrder",actual.getProducts());
 			}
-		
+			
+		redirectAttrs.addFlashAttribute("success","Product added to the cart correctly.");
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/{id}/remove")
+	public String removeResource(Model model, @PathVariable Integer id, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+		
+		this.session(model, request, redirectAttrs);
+		
+		POrder actual = POrderRepository.findByState("progress");
+		int cont=0;
+		for(Product posible: actual.getProducts()) {
+			
+			if(posible.getId() == id) {
+				System.out.println(actual.getProducts().toString());
+				System.out.println("REMOVEEEEEEE "+ posible.getId() + " " + id + " " + cont);
+				actual.getProducts().remove(cont);
+				POrderRepository.save(actual);
+			}
+			cont++;
+		}
+		return "redirect:/cart";
 	}
 }
