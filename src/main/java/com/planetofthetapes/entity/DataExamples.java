@@ -34,7 +34,8 @@ public class DataExamples {
 
 		User user1, user2, user3, user4;
 		Product prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12, prod100, prod101,
-				prod102, prod103, prod104, prod105, prod200, prod201, prod202, prod203, prod204, prod205;
+				prod102, prod103, prod104, prod105,prod106, prod107, prod108, prod109, prod110, prod111, prod200, prod201, prod202, prod203, prod204, prod205,
+				prod206, prod207, prod208, prod209, prod210, prod211;
 
 		// Users creation
 
@@ -173,6 +174,48 @@ public class DataExamples {
 				"Justin Roiland and Dan Harmon", "Justin Roiland, Chris Parnell, Spencer Grammer, and Sarah Chalke",
 				2013, "rick-and-morty.png");
 		productRepository.save(prod105);
+		
+		prod106 = new Product("Black Mirror",
+				"It examines modern society, particularly with regard to the unanticipated consequences of new technologies.",
+				"Series", "Sci-Fi", 4, 15.0, 2.0, 80, "https://www.youtube.com/watch?v=jROLrhQkK78",
+				"Charlie Brooker", "Bryce Dallas Howard, Alice Eve, James Norton, Cherry Jones, Wyatt Russell, Alex Lawther, Jerome Flynn, Gugu Mbatha-Raw",
+				2015, "blackMirror.png");
+		productRepository.save(prod106);
+		
+		prod107 = new Product("How I met your mother",
+				"The series concerns the adventures of Ted Mosby narrating the story of how he met the mother of his children.",
+				"Series", "Comedy", 4, 15.0, 2.0, 92, "https://www.youtube.com/watch?v=aJtVL2_fA5w",
+				"Craig Thomas and Carter Bays", "Josh Radnor, Jason Segel, Cobie Smulders, Neil Patrick Harris, Alyson Hannigan.",
+				2005, "himym.jpg");
+		productRepository.save(prod107);
+		
+		prod108 = new Product("Two and a half men",
+				"The series is about a hedonistic jingle writer, Charlie Harper, his uptight brother Alan, and Alan's troublesome son Jake.",
+				"Series", "Comedy", 4, 15.0, 2.0, 70, "https://www.youtube.com/watch?v=ypMtP5qfpfE",
+				"JJames Widdoes", "Charlie Sheen, Jon Cryer, and Angus T. Jones",
+				2003, "taahm.jpg");
+		productRepository.save(prod108);
+		
+		prod109 = new Product("American Horror Story",
+				"Each season is conceived as a self-contained miniseries, following a different set of characters and settings, and a storyline with its own.",
+				"Series", "Terror", 4, 15.0, 2.0, 88, "https://www.youtube.com/watch?v=norWW9ExdPg",
+				"Ryan Murphy and Brad Falchuk", "Dylan McDermott, Jessica Lange, Taisa Farmiga, Evan Peters",
+				2011, "ahs.png");
+		productRepository.save(prod109);
+		
+		prod110 = new Product("The Walking Dead",
+				"Sheriff's deputy Rick Grimes awakens from a coma discovering a world overrun by zombies, commonly referred to as walkers.",
+				"Series", "Terror", 4, 15.0, 2.0, 70, "https://www.youtube.com/watch?v=R1v0uFms68U",
+				"Frank Darabont", "Andrew Lincoln, Jon Bernthal, Jeffrey DeMunn, Scott Wilson, Jeffrey Dean Morgan, Norman Reedus.",
+				2013, "TheWalkingDead.jpg");
+		productRepository.save(prod110);
+		
+		prod111 = new Product("The 100",
+				"The series follows a group of post-apocalyptic survivors, chiefly a group of adolescents.",
+				"Series", "Sci-Fi", 4, 15.0, 2.0, 86, "https://www.youtube.com/watch?v=ia1Fbg96vL0",
+				"Jason Rothenberg", "Eliza Taylor, Paige Turco, Thomas McDonell, Eli Goree, Marie Avgeropoulos, Bob Morley, Kelly Hu",
+				2014, "los100.jpg");
+		productRepository.save(prod111);
 		// END SERIES
 
 		// VIDEOGAMES
@@ -214,6 +257,48 @@ public class DataExamples {
 				"343 Industries", "Brittany Uomoleale, Michelle Lukes, Laura Bailey, Steve Downes", 2015,
 				"xone-halo5.png");
 		productRepository.save(prod205);
+		
+		prod206 = new Product("The Legend of Zelda: breath of the Wild",
+				"The story follows Link, who awakens from a hundred-year slumber to a mysterious voice that guides him to defeat Calamity Ganon before he can destroy the kingdom of Hyrule.",
+				"Videogames", "Fantasy", 5, 50.0, 5.0, 100, "https://www.youtube.com/watch?v=zw47_q9wbBE",
+				"Nintendo", "Link, Zelda, Ganon, Impa, Deku tree", 2017,
+				"switch-zelda.jpg");
+		productRepository.save(prod206);
+		
+		prod207 = new Product("Splatoon 2",
+				"Splatoon 2 is a multiplayer third-person shooter in which players control characters known as Inklings and use colored ink to attack opponents and clear goals.",
+				"Videogames", "Sci-Fi", 5, 50.0, 5.0, 80, "https://www.youtube.com/watch?v=qN4w5D2tzME",
+				"Nintendo", "Inklings everywhere", 2017,
+				"switch-splatoon2.jpg");
+		productRepository.save(prod207);
+		
+		prod208 = new Product("Forza Motorsport 7",
+				"Forza Motorsport 7 is a racing video game featuring over 700 cars—including new Forza Edition cars, and more than 200 different configurations to race on across 32 locations at launch.",
+				"Videogames", "Sci-Fi", 5, 50.0, 5.0, 88, "https://www.youtube.com/watch?v=Dokpy_KIuyA",
+				"Turn 10 Studios", "Ultimate designed cars", 2017,
+				"xone-forzam7.jpg");
+		productRepository.save(prod208);
+		
+		prod209 = new Product("Lego Worlds",
+				"The game allows players to build constructions in a 3D procedurally generated world.",
+				"Videogames", "Fantasy", 5, 50.0, 5.0, 68, "https://www.youtube.com/watch?v=frRfo4sKxtk",
+				 "Warner Bros. Interactive Entertainment", "Lego figurines", 2017,
+				"xone-legoworlds.jpg");
+		productRepository.save(prod209);
+		
+		prod210 = new Product("Sunset Overdrive",
+				"The game is set in 2027, in a fictional metropolis called Sunset City. The player controls an employee of FizzCo, who has to fight off the OD.",
+				"Videogames", "Sci-Fi", 5, 50.0, 5.0, 70, "https://www.youtube.com/watch?v=FqJdZQPBDF0",
+				"Insomniac Games", "Multiple crazy characters", 2014,
+				"xone-sunset.png");
+		productRepository.save(prod210);
+		
+		prod211 = new Product("Resident Evil 7",
+				"The player controls Ethan Winters as he searches for his wife in a derelict plantation occupied by the cannibalistic Baker family.",
+				"Videogames", "Terror", 5, 50.0, 5.0, 86, "https://www.youtube.com/watch?v=W1OUs3HwIuo",
+				"Capcom", "BEthan Winters, Baker Family", 2017,
+				"pc-RE7.jpg");
+		productRepository.save(prod211);
 		// VIDEOGAMES
 		
 		//ORDERS
