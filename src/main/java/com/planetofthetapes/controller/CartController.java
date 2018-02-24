@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.planetofthetapes.entity.POrder;
@@ -31,6 +32,8 @@ public class CartController extends MasterService {
 	private ProductRepository productRepository;
 	@Autowired
 	private POrderRepository POrderRepository;
+	@Autowired
+	private SimpleEmailController emailcont;
 	
 	@Autowired User user;
 	
@@ -48,6 +51,14 @@ public class CartController extends MasterService {
 		this.session(model, request, redirectAttrs);		
 		
 		return "selectpay";
+	}
+	@RequestMapping("/selectpay")
+	public String selectpay(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs, String name, @RequestParam String email,@RequestParam String to,@RequestParam String subject,@RequestParam String body, @RequestParam String from)throws Exception {
+		this.session(model, request, redirectAttrs);
+		redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
+		emailcont.sendEmail(name, email, to, subject, body,from);
+		redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
+		return "orderdata";
 	}
 	
 	@RequestMapping("/{id}/buy")

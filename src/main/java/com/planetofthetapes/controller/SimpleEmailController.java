@@ -19,7 +19,7 @@ public class SimpleEmailController {
     private JavaMailSender sender;
 
     @RequestMapping("/simpleemail")
-    public String sendEmail(String email, String to, String subject, String body) throws Exception{
+    public String sendEmail(String name,String email, String to, String subject, String body, String from) throws Exception{
         
     	MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
@@ -27,11 +27,12 @@ public class SimpleEmailController {
     	
         
         helper.setTo(to);
-        helper.setText(body);
+        helper.setText("Message from "+name+" "+"with email "+email+"\n"+body);
         helper.setSubject(subject);
-        helper.setFrom(email);
+        helper.setFrom("pottapes@gmail.com");
         
         sender.send(message);
+        
         return "redirect:/";
         }
     	

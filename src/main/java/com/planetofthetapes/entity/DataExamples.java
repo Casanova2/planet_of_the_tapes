@@ -47,7 +47,7 @@ public class DataExamples {
 				"img/admin/avatar/ruben.png", "ROLE_ADMIN", "ROLE_USER");
 		userRepository.save(user3);
 
-		user4 = new User("Asier", "3421", "7845678R", "asier@gmail.com", "606789541", "calle falsa 123",
+		user4 = new User("Asier", "1111", "7845678R", "asierruano@gmail.com", "606789541", "calle falsa 123",
 				"img/admin/avatar/asier.png", "ROLE_ADMIN", "ROLE_USER");
 		userRepository.save(user4);
 
