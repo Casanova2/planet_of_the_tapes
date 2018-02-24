@@ -1,6 +1,6 @@
 <tr class="cart_table_item">
 	<td class="product-remove">
-	    <a title="Remove this item" class="remove" href="#">
+	    <a title="Remove this item" class="remove" href="/{{id}}/remove">
 			<i class="fa fa-times"></i>
 		</a>
 	</td>
@@ -14,15 +14,6 @@
 	</td>
 	<td class="product-price">
 	    <span class="amount">{{pbuy}}</span>
-	</td>
-	<td class="product-quantity">
-	    <form enctype="multipart/form-data" method="post" class="cart">
-	        <div class="quantity">
-	            <input type="button" class="minus" value="-">
-	            <input type="text" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
-	            <input type="button" class="plus" value="+">
-	        </div>
-	    </form>
 	</td>
 	<td class="product-subtotal">
 	    <span class="amount">{{pbuy}}</span>

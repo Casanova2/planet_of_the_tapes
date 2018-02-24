@@ -39,8 +39,9 @@ public class MasterService {
 			if(loggedUser.hasOrders()) {
 				POrder actual = POrderRepository.findByState("progress");
 				for(POrder p: loggedUser.getOrders()) {
-					if(p == actual) {
+					if(p.equals(actual)) {
 						model.addAttribute("productsOrders", actual.getProducts());
+						model.addAttribute("totalOrder",actual.getTotal());
 					}
 				}
 			}

@@ -37,6 +37,8 @@ public class CartController extends MasterService {
 	
 	@Autowired User user;
 	
+	double totalCart;
+	 
 	@RequestMapping("/cart")
 	public String cart(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
@@ -83,7 +85,7 @@ public class CartController extends MasterService {
 					ArrayList<POrder> listPOrders = new ArrayList<POrder>();
 					listPOrders.add(actual);
 					user.setOrders(listPOrders);
-					
+					model.addAttribute("totalOrder",actual.getTotal());
 					model.addAttribute("productsOrder",actual.getProducts());
 				}
 				
@@ -94,16 +96,18 @@ public class CartController extends MasterService {
 					p.setStock(p.getStock()-1);
 					ArrayList<POrder> listPOrders = new ArrayList<POrder>();
 					listPOrders.add(actual);
+					System.out.println(actual.getProducts().toString());
 					user.setOrders(listPOrders);
+					System.out.println(user.getOrders().toString());
 					POrderRepository.save(actual);
-					
+					model.addAttribute("totalOrder",actual.getTotal());
 					model.addAttribute("productsOrder",actual.getProducts());
 				}
 				redirectAttrs.addFlashAttribute("success","Product added to the cart correctly.");
 				return "redirect:/";
 		}else{
 			redirectAttrs.addFlashAttribute("error","Product out of stock.");
-			return "redirect:/";
+			return "redirect:/cart";
 		}		
 	}
 	
@@ -115,16 +119,25 @@ public class CartController extends MasterService {
 		
 		POrder actual = POrderRepository.findByState("progress");
 		int cont=0;
-		for(Product posible: actual.getProducts()) {
-			
+		//for(Product posible: actual.getProducts()) {
+		java.util.Iterator<Product> it = actual.getProducts().iterator();
+		while(it.hasNext()) {
+			Product posible=it.next();
 			if(posible.getId() == id) {
 				System.out.println(actual.getProducts().toString());
 				System.out.println("REMOVEEEEEEE "+ posible.getId() + " " + id + " " + cont);
-				actual.getProducts().remove(cont);
-				POrderRepository.save(actual);
+				System.out.println("REMOVEEEEEEE "+ posible.toString());
+				it.remove();
+				actual.setTotal(actual.getTotal()-posible.getPbuy());
+				System.out.println(actual.getTotal());
+				break;
+				//actual.getProducts().remove(cont);
+				//System.out.println("llega");
 			}
 			cont++;
 		}
+		model.addAttribute("totalOrder",actual.getTotal());
+		POrderRepository.save(actual);
 		return "redirect:/cart";
 	}
 }

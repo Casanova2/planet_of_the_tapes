@@ -43,9 +43,7 @@
                                                             <th class="product-price">
                                                                 Price
                                                             </th>
-                                                            <th class="product-quantity">
-                                                                Quantity
-                                                            </th>
+                                                       
                                                             <th class="product-subtotal">
                                                                 Total
                                                             </th>
@@ -56,7 +54,7 @@
                                                         <tr>
                                                             <td class="actions" colspan="6">
                                                                 <div class="actions-continue">
-                                                                    <input type="submit" value="Update Cart" name="update_cart" class="btn btn-light">
+                                                                    <input href="/cart" type="submit" value="Update Cart" name="update_cart"  class="btn btn-light">
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -81,7 +79,7 @@
                                                             <strong>Subtotal</strong>
                                                         </th>
                                                         <td>
-                                                            <strong><span class="amount">30 €</span></strong>
+                                                            <strong><span class="amount">{{totalOrder}}</span></strong>
                                                         </td>
                                                     </tr>
                                                     <tr class="shipping">
@@ -97,7 +95,7 @@
                                                             <strong>Order Total</strong>
                                                         </th>
                                                         <td>
-                                                            <strong><span class="amount">30 €</span></strong>
+                                                            <strong><span class="amount">{{totalOrder}}</span></strong>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -114,27 +112,27 @@
                                                 <div class="form-row">
                                                     <div class="form-group col">
                                                         <div class="form-check form-check-inline">
-                                                            <label class="form-check-label">
-																<input type="radio" id="" name=""> Direct Bank Transfer
-															</label>
+                                                   			<input type="radio" id="" name="" > American Express
+															<img src="/img/MasterCard.png"  data-lock-picture="/img/MasterCard.png" width="50" height="50" />
+						
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row">
+                                                    <div class="form-group col">
+                                                       <div class="form-check form-check-inline">
+                                                   			<input type="radio" id="" name="" > VISA
+															<img src="/img/visa.png"  data-lock-picture="/img/visa.png" width="50" height="50" />
+						
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-row">
                                                     <div class="form-group col">
                                                         <div class="form-check form-check-inline">
-                                                            <label class="form-check-label">
-																<input type="radio" checked id="" name=""> Cheque Payment
-															</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col">
-                                                        <div class="form-check form-check-inline">
-                                                            <label class="form-check-label">
-																<input type="radio" id="" name=""> Paypal
-															</label>
+                                                   			<input type="radio" id="" name="" > American Express
+															<img src="/img/American.png"  data-lock-picture="/img/American.png" width="50" height="50" />
+						
                                                         </div>
                                                     </div>
                                                 </div>
