@@ -70,7 +70,7 @@
                                 <div class="form-group col-lg-6">
                                     <label>Your email address *</label>
                                     <input type="email" value="" data-msg-required="Please enter your email address." data-msg-email="Please enter a valid email address." maxlength="100" class="form-control" name="email" id="email" required>
-                                    <input type="hidden" value="pottapes@gmail.com" name="to" id="to">
+                                    <input type="hidden" value="" name="email" id="to">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -79,10 +79,18 @@
                                     <input type="text" value="" data-msg-required="Please enter the subject." maxlength="100" class="form-control" name="subject" id="subject" required>
                                 </div>
                             </div>
+                           
+                                    <input type="hidden" value="pottapes@gmail.com" name="to" id="to">
+                                
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label>Message *</label>
                                     <textarea maxlength="5000" data-msg-required="Please enter your message." rows="5" class="form-control" name="body" id="message" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col">
+                                    <input type="hidden" value="" name="from" id="from">
                                 </div>
                             </div>
                             <div class="form-row">
@@ -122,5 +130,9 @@
             </div>
 
         </div>
+     </div>
+   
+      
 
         {{>footer}}
+        
