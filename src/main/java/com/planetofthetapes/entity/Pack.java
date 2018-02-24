@@ -49,8 +49,6 @@ public class Pack {
 		this.price = price;
 	}
 
-
-
 	public Integer getId() {
 		return id;
 	}

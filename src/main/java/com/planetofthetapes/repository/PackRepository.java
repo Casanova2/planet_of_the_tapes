@@ -5,5 +5,7 @@ import com.planetofthetapes.entity.Pack;
 
 
 public interface PackRepository extends JpaRepository<Pack, Integer>{
+	
+	Pack findByName(String name);
 
 }

@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.planetofthetapes.entity.POrder;
+import com.planetofthetapes.entity.Pack;
 import com.planetofthetapes.entity.Product;
 import com.planetofthetapes.entity.User;
 import com.planetofthetapes.repository.POrderRepository;
@@ -102,6 +103,58 @@ public class AdminController extends MasterService{
 		
 		return "/admin/admin-packlist";
 	}
+	
+	@RequestMapping("/admin-add-pack")
+	public String addPack(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		
+		this.session(model, request, redirectAttrs);
+		return "admin/admin-add-pack-action";
+	}
+	
+	@RequestMapping("/admin-add-pack-action")
+	public String addPackAction(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs, @RequestParam String namePack, @RequestParam String nameP1,
+			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price) {
+		
+		this.session(model, request, redirectAttrs);
+		
+		ArrayList<Product> l = new ArrayList<Product>();
+		
+		Product product1 = productRepository.findByName(nameP1);
+		Product product2 = productRepository.findByName(nameP2);
+		Product product3 = productRepository.findByName(nameP3);
+		
+		l.add(product1);
+		l.add(product2);
+		l.add(product3);
+		
+		Pack p = new Pack(namePack, price, l);
+		
+		packRepository.save(p);
+		
+		redirectAttrs.addFlashAttribute("messages", "Added new pack.");
+
+		return "redirect:/admin-packlist";	
+	}
+	
+	@RequestMapping("/admin-remove-pack")
+	public String removePack(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
+
+		return "admin/admin-remove-pack-action";
+	}
+	
+	@RequestMapping("/admin-remove-pack-action")
+	public String removePackAction(Model model, @RequestParam String name, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
+			try {
+				Pack pack = packRepository.findByName(name);
+				packRepository.delete(pack);
+			} catch (Exception e) {
+				return "redirect:/admin-packlist/deleteError";
+			}
+
+			return "redirect:/admin-packlist";
+}
 	
 	@RequestMapping("/admin-user")
 	public String adminuserprofile(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
@@ -190,7 +243,7 @@ public class AdminController extends MasterService{
 		return "redirect:/admin-products";
 	}
 	
-	@RequestMapping("/add-product")
+	@RequestMapping("/add-user")
 	public String addUser(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
 		model.addAttribute("products",productRepository.findAll());
