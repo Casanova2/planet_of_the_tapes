@@ -308,7 +308,7 @@ public class DataExamples {
 		
 		
 		POrder order1 = new POrder("completed", "Credit Card", "Buy", 200.00);
-		POrder order2 = new POrder("progress", "Credit Card", "Buy", 300.00);
+		POrder order2 = new POrder("progress", "Credit Card", "Buy", 200.00);
 		porderRepository.save(order1);
 		porderRepository.save(order2);
 		
