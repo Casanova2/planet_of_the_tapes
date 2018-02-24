@@ -127,11 +127,35 @@ We have made some changes in our view, and we have created some other news. Here
 
 Also, here is the diagram with database entities relations:
 
-[Relation Diagram](screenshots/RelationDiagram.png)
-
-
-
-
+[Relation Diagram](screenshots/RelationDiagram.png)  
+  
+To finish, we have made class diagrams by parts to connect the classes of our application and the views that compose it:  
+  
+## Inheritance  
+  
+* [Controllers](screenshots/controllerInheritance.png)  
+  
+* [Repositories](screenshots/repositoryInheritance.png)  
+  
+* [Configuration](screenshots/securityInheritance.png)  
+  
+## Autowired Relations between Controllers, Repositories and Entities  
+  
+* [Controllers and Repositories](screenshots/controllerAndRepository.png)  
+  
+* [DataExamples and Repositories](screenshots/dexamplesAndRepository.png)  
+  
+* [Security Configuration](screenshots/secConfigAndRepository.png)  
+  
+## Relation between Enntities  
+  
+* [Entities](screenshots/entitiesRelation.png)  
+  
+## Relation between Controllers and HTML Views  
+  
+* [Controllers and Views p1](screenshots/controllerhtmlp1.png)  
+  
+* [Controllers and Views p2](screenshots/controllerhtmlp2.png)  
   
 ------------
   
