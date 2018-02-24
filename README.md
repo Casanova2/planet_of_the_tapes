@@ -121,10 +121,14 @@ We have made some changes in our view, and we have created some other news. Here
 * Enter Payment Data View:  
 [Enter Data Page](screenshots/enterpaymentPage.png)  
   
-* Confirmed Order View:
-
-
-
+We have update our navigation diagram too. Here are 2 different diagrams. First one is th "main view", one in which you can purchase products by login and visit the web.  
+The second one is the admin/user view. Once you are looged as admin or user, you canmanage your account or the products and users in the app.  
+  
+* [Main Diagram View](screenshots/mainNavigationView.png)  
+  
+* [Admin Diagram View](screenshots/adminNavigationView.png)    
+  
+  
 Also, here is the diagram with database entities relations:
 
 [Relation Diagram](screenshots/RelationDiagram.png)  
@@ -147,7 +151,7 @@ To finish, we have made class diagrams by parts to connect the classes of our ap
   
 * [Security Configuration](screenshots/secConfigAndRepository.png)  
   
-## Relation between Enntities  
+## Relation between Entities  
   
 * [Entities](screenshots/entitiesRelation.png)  
   
