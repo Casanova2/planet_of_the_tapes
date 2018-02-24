@@ -100,6 +100,12 @@ We have made some changes in our view, and we have created some other news. Here
 * Admin Packs View:  
 [Packs Page](screenshots/packsPage.png)  
   
+* Admin Add Pack View:  
+[Add Pack Page](screenshots/addPackPage.png)  
+  
+* Admin Remove Pack View:  
+[Remove Pack Page](screenshots/removePackPage.png)
+  
 * Admim Add Product View:  
 [Add Product Page](screenshots/addproductPage.png)  
   
