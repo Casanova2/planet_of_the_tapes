@@ -38,6 +38,10 @@ public class MasterService {
 				model.addAttribute("admin", true);
 			}
 			
+			if(loggedUser.getOrders().isEmpty()) {
+				model.addAttribute("sizeProducts", zero);
+			}
+			
 			if(loggedUser.hasOrders()) {
 				ArrayList<POrder> listActualUser = new ArrayList<POrder>(loggedUser.getOrders());
 				
