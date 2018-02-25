@@ -170,8 +170,4 @@ To finish, we have made class diagrams by parts to connect the classes of our ap
   
 * [Controllers and Views p2](screenshots/controllerhtmlp2.png)  
   
-------------
-  
-## License 
-* Apache 2.0  
 
