@@ -27,12 +27,12 @@ public class Product {
 	private Integer id;
 	
 	@ManyToMany(mappedBy = "products")
-	private List<POrder> pedidos = new ArrayList<POrder>();
+	private List<POrder> porders = new ArrayList<POrder>();
 
 	private String name;
 	private String description;
 	public List<POrder> getPedidos() {
-		return pedidos;
+		return porders;
 	}
 
 	private String type;
@@ -87,8 +87,8 @@ public class Product {
 			this.urlimg = urlimg;
 		}
 	
-	public void setPedidos(List<POrder> pedidos) {
-		this.pedidos = pedidos;
+	public void setPorders(List<POrder> pedidos) {
+		this.porders = pedidos;
 	}
 	
 
@@ -194,7 +194,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", pedidos=" + pedidos + ", name=" + name + ", description=" + description
+		return "Product [id=" + id + ", pedidos=" + porders + ", name=" + name + ", description=" + description
 				+ ", type=" + type + ", genre=" + genre + ", stock=" + stock + ", pbuy=" + pbuy + ", prent=" + prent
 				+ ", score=" + score + ", trailer=" + trailer + ", director=" + director + ", cast=" + cast + ", year="
 				+ year + ", urlimg=" + urlimg + "]";

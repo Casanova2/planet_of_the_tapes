@@ -287,7 +287,7 @@ public class AdminController extends MasterService{
 					product.setUrlimg(imgName);
 					productRepository.save(product);
 				}
-				redirectAttrs.addFlashAttribute("messages", "Modificado producto");
+				redirectAttrs.addFlashAttribute("messages", "Product Modified");
 				
 		return "redirect:/admin-products";
 	}
@@ -319,7 +319,7 @@ public class AdminController extends MasterService{
 				} catch (Exception e) {
 					return "redirect:/admin-userList/addError";
 				}
-				redirectAttrs.addFlashAttribute("messages", "Añadido nuevo usuario.");
+				redirectAttrs.addFlashAttribute("messages", "User Added.");
 
 				return "redirect:/admin-userList";
 	}
