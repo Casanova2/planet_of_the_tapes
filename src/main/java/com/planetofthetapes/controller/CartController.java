@@ -107,6 +107,15 @@ public class CartController extends MasterService {
 							user.setOrders(listPOrders);
 							model.addAttribute("totalOrder",o.getTotal());
 							model.addAttribute("productsOrder",o.getProducts());
+						}else {
+							POrder op= new POrder("progress","Credit Card","",0.0);
+							op.getProducts().add(p);
+							p.setStock(p.getStock()-1);
+							total = op.getTotal() + p.getPbuy();
+							op.setTotal(total);
+							user.addOrder(op);
+							POrderRepository.save(op);
+							model.addAttribute("totalOrder",op.getTotal());
 						}
 					}
 				}else {

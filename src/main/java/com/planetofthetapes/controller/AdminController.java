@@ -122,8 +122,8 @@ public class AdminController extends MasterService{
 	}
 	
 	@RequestMapping("/admin-add-pack-action")
-	public String addPackAction(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs, @RequestParam String namePack, @RequestParam String nameP1,
-			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price, @RequestParam MultipartFile img) {
+	public String addPackAction(Model model, HttpServletRequest request, @RequestParam String namePack, @RequestParam String nameP1,
+			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price, @RequestParam MultipartFile img, RedirectAttributes redirectAttrs) {
 		
 		this.session(model, request, redirectAttrs);
 		
@@ -141,7 +141,7 @@ public class AdminController extends MasterService{
 		
 		packRepository.save(p);
 		
-		String imgName = p.getId() + ".jpg";
+		String imgName = "pack" + p.getId() + ".jpg";
 		if (!img.isEmpty()) {
 			try {
 				File imgFolder = new File("src/main/resources/static/img/ProductImages");
@@ -352,10 +352,12 @@ public class AdminController extends MasterService{
 	
 	@RequestMapping("/admin-add-user")
 	public String addUser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
-			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
+			@RequestParam String email,@RequestParam String telephone, @RequestParam String address, String avatar, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 			
 			this.session(model, request, redirectAttrs);
+				
+				avatar = "usern.png";
 				User user = new User(name,passwordHash,dni,email,telephone,address,avatar,"ROLE_USER");
 				try {
 					userRepository.save(user);

@@ -21,15 +21,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Pack {
 
-	public Pack(String name, Integer price, List<Product> products) {
-		super();
-		this.name = name;
-		this.price = price;
-		this.products = products;
-	}
-
-
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
@@ -43,9 +34,21 @@ public class Pack {
 	
 	private String img;
 	
-
+	
+	public Pack(String name, Integer price,List<Product> products, String img) {
+		this.name = name;
+		this.price = price;
+		this.products = products;
+		this.img = img;
+	}
+	
+	public Pack(String name, Integer price,List<Product> products) {
+		this.name = name;
+		this.price = price;
+		this.products = products;
+	}
+	
 	public Pack(Integer id, String name, Integer price) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -53,7 +56,6 @@ public class Pack {
 	
 	
 	public Pack(String name, Integer price, String img) {
-		super();
 		this.name = name;
 		this.price = price;
 		this.img = img;
