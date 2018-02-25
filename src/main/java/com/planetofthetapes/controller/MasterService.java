@@ -38,26 +38,34 @@ public class MasterService {
 				model.addAttribute("admin", true);
 			}
 			
-			if(loggedUser.getOrders().isEmpty()) {
-				model.addAttribute("sizeProducts", zero);
-			}
-			
-			if(loggedUser.hasOrders()) {
-				ArrayList<POrder> listActualUser = new ArrayList<POrder>(loggedUser.getOrders());
-				
-				for(POrder o: listActualUser) {
-					if(o.getState().equals("progress")) {
-						model.addAttribute("productsOrders", o.getProducts());
-						model.addAttribute("sizeProducts",o.getProducts().size());
-						model.addAttribute("totalOrder",o.getTotal());
+			try {
+				if(loggedUser.getOrders() != null) {
+					/*if(loggedUser.getOrders().isEmpty()) {
+						model.addAttribute("sizeProducts", zero);
+					}*/
+					
+					if(loggedUser.hasOrders()) {
+						ArrayList<POrder> listActualUser = new ArrayList<POrder>(loggedUser.getOrders());
+						
+						for(POrder o: listActualUser) {
+							if(o.getState().equals("progress")) {
+								model.addAttribute("productsOrders", o.getProducts());
+								model.addAttribute("sizeProducts",o.getProducts().size());
+								model.addAttribute("totalOrder",o.getTotal());
+							}
+						}
 					}
+					
+					model.addAttribute("user", loggedUser);
+					model.addAttribute("logged", true);
+					
+					this.numbers(model);
+				}else {
+					model.addAttribute("sizeProducts", zero);
 				}
+			}catch (Exception e) {
+				
 			}
-			
-			model.addAttribute("user", loggedUser);
-			model.addAttribute("logged", true);
-			
-			this.numbers(model);
 		} else {
 			model.addAttribute("sizeProducts",zero);
 			model.addAttribute("logged", false);
