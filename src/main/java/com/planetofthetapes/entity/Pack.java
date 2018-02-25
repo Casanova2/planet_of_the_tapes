@@ -65,7 +65,13 @@ public class Pack {
 		return name;
 	}
 
-
+	public void setProducts(List<Product> products){
+		this.products = products;
+	}
+	
+	public List<Product> getProducts() {
+		return products;
+	}
 
 	public void setName(String name) {
 		this.name = name;

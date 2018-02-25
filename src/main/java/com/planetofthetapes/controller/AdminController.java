@@ -143,11 +143,51 @@ public class AdminController extends MasterService{
 		return "admin/admin-remove-pack-action";
 	}
 	
-	@RequestMapping("/admin-remove-pack-action")
-	public String removePackAction(Model model, @RequestParam String name, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+	@RequestMapping("/admin-modify-pack/{id}")
+	public String modifyPack(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+	
+		this.session(model, request, redirectAttrs);
+		
+		model.addAttribute("pack", packRepository.findById(id));
+		return "/admin/admin-modify-pack";
+	}
+	
+	@RequestMapping("/admin/pack/modify/{id}") // modify
+	public String modifyPackAction(Model model, @RequestParam Integer id, @RequestParam String namePack, @RequestParam String nameP1,
+			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price,
+			HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		
+			this.session(model, request, redirectAttrs);
+			
+			Pack pack = packRepository.findById(id);
+			
+			pack.setName(namePack);
+			pack.setPrice(price);
+			
+			ArrayList<Product> l = new ArrayList<Product>();
+			
+			Product product1 = productRepository.findByName(nameP1);
+			Product product2 = productRepository.findByName(nameP2);
+			Product product3 = productRepository.findByName(nameP3);
+			
+			l.add(product1);
+			l.add(product2);
+			l.add(product3);
+			
+			pack.setProducts(l);
+			
+			packRepository.save(pack);
+			
+			redirectAttrs.addFlashAttribute("success","Pack modified succesfully.");
+			return "redirect:/admin-packlist";
+	}
+	
+	
+	@RequestMapping("/admin/pack/remove/{id}")
+	public String removePackAction(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
 			try {
-				Pack pack = packRepository.findByName(name);
+				Pack pack = packRepository.findById(id);
 				packRepository.delete(pack);
 			} catch (Exception e) {
 				return "redirect:/admin-packlist/deleteError";
@@ -167,12 +207,20 @@ public class AdminController extends MasterService{
 	}
 	
 	@RequestMapping("/admin-modify-user")
-	public String adminmodifyuser(Model model, @RequestParam String name,@RequestParam Integer id, @RequestParam String passwordHash, @RequestParam String dni,
+	public String modifyUser(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+	
+		this.session(model, request, redirectAttrs);
+		return "/admin/admin-modify-user";
+	}
+	
+	@RequestMapping("/admin/user/editProfile") // modify
+	public String modifyuser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
 			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 			this.session(model, request, redirectAttrs);
+			if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
+				User user = userRepository.findByName(request.getUserPrincipal().getName());
 			
-				User user = userRepository.findById(id);
 				user.setName(name);
 				user.setAddress(address);
 				user.setDni(dni);
@@ -185,10 +233,11 @@ public class AdminController extends MasterService{
 				} catch (Exception e) {
 					return "redirect:/admin-userList/addError";
 				}
-				redirectAttrs.addFlashAttribute("messages", "Modificado usuario");
+				redirectAttrs.addFlashAttribute("messages", "User modified successfully");
+				return "/admin/admin-user";}
 		return "/admin/admin-user";
 	}
-	
+		
 	@RequestMapping(value="/admin-modify-product")
 	public String ModifyProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 
@@ -288,12 +337,12 @@ public class AdminController extends MasterService{
 
 		return "admin/admin-remove-user-action";
 	}
-	
-	@RequestMapping("/admin-remove-user-action")
-	public String removeUsertAction(Model model, @RequestParam String name, @RequestParam String email, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+
+	@RequestMapping("/admin/user/remove/{id}")
+	public String removeUsertAction(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 			this.session(model, request, redirectAttrs);
 				try {
-					User user = userRepository.findByNameAndEmail(name, email);
+					User user = userRepository.findById(id);
 					userRepository.delete(user);
 				} catch (Exception e) {
 					return "redirect:/admin-user/deleteError";

@@ -58,7 +58,6 @@ public class User {
 		this.dni = dni;
 		this.email = email;
 		this.telephone = telephone;
-		this.setViewTelephone(false);
 		this.address = address;
 		this.avatar = avatar;
 		this.roles = new ArrayList<>(Arrays.asList(roles));
@@ -166,11 +165,10 @@ public class User {
 
 	
 	public String toString() {
-		return "User id: " + this.getId() +
-				"\n name: " + this.name +
-				"\n email: " + this.email +
-				"\n telephone: " + this.telephone +
-				"\n view telephone: " + this.isViewTelephone();
+		return "User id: " + this.getId() +", " +
+				"\n name: " + this.name + ", " +
+				"\n email: " + this.email + ", " +
+				"\n telephone: " + this.telephone+ ".";
 	}
 
 }
