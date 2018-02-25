@@ -31,7 +31,7 @@ public class MasterService {
 	private PackRepository packRepository;
 	
 	public void session (Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		
+		int zero = 0;
 		if (request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
 			User loggedUser = userRepository.findByName(request.getUserPrincipal().getName());
 			if(request.isUserInRole("ROLE_ADMIN")) {
@@ -41,11 +41,10 @@ public class MasterService {
 			if(loggedUser.hasOrders()) {
 				ArrayList<POrder> listActualUser = new ArrayList<POrder>(loggedUser.getOrders());
 				
-				System.out.println(listActualUser.get(0).getId());
-				
 				for(POrder o: listActualUser) {
 					if(o.getState().equals("progress")) {
 						model.addAttribute("productsOrders", o.getProducts());
+						model.addAttribute("sizeProducts",o.getProducts().size());
 						model.addAttribute("totalOrder",o.getTotal());
 					}
 				}
@@ -56,6 +55,7 @@ public class MasterService {
 			
 			this.numbers(model);
 		} else {
+			model.addAttribute("sizeProducts",zero);
 			model.addAttribute("logged", false);
 			model.addAttribute("profile", true);
 		}

@@ -48,51 +48,36 @@ public class CartController extends MasterService {
 	@RequestMapping("/checkout")
 	public String checkout(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs, String name,  String email,  String to,
 			 String subject,String body, String from)throws Exception {
-		
 		this.session(model, request, redirectAttrs);
-		if (name==null&&email==null&&to==null&&subject==null&&body==null&&from==null)
-		if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
-			User user = userRepository.findByName(request.getUserPrincipal().getName());
-		    ArrayList<POrder> listActualUSer = new ArrayList<POrder>(user.getOrders());
-		    System.out.println(listActualUSer.toString());
-		    for(POrder o: listActualUSer) {
-		    	System.out.println(o.getState().toString());
-		    	if(o.getState().equals("progress")) {
-		    		o.setState("completed");
-		    		POrderRepository.save(o);
-		    	}
-		    }
-		    redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
-		    emailcont.sendEmail(name, email, to, subject, body,from);
-		    redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
-		    return "/";
-		 }
-		return "/";
+		if (name==null&&email==null&&to==null&&subject==null&&body==null&&from==null) {
+				
+			if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
+				User user = userRepository.findByName(request.getUserPrincipal().getName());
+			    ArrayList<POrder> listActualUSer = new ArrayList<POrder>(user.getOrders());
+			    for(POrder o: listActualUSer) {
+			    	if(o.getState().equals("progress")) {
+			    		o.setState("completed");
+			    		POrderRepository.save(o);
+			    	}
+			    }
+			    
+			    redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
+			    return "redirect:/selectpay";
+			 }
+		}
+		
+		redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
+		emailcont.sendEmail(name, email, to, subject, body,from);
+		return "redirect:/";
 	}
 	
-	/*@RequestMapping("/selectpay")
+	@RequestMapping("/selectpay")
 	 public String selectpay(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs, String name,  String email,  String to,
 			 String subject,String body, String from)throws Exception {
-		System.out.println("select pay");
 		this.session(model, request, redirectAttrs);
-		if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
-			User user = userRepository.findByName(request.getUserPrincipal().getName());
-		    ArrayList<POrder> listActualUSer = new ArrayList<POrder>(user.getOrders());
-		    System.out.println(listActualUSer.toString());
-		    for(POrder o: listActualUSer) {
-		    	System.out.println(o.getState().toString());
-		    	if(o.getState().equals("progress")) {
-		    		o.setState("completed");
-		    		POrderRepository.save(o);
-		    	}
-		    }
-		    redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
-		    emailcont.sendEmail(name, email, to, subject, body,from);
-		    redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
-		    return "orderdata";
-		 }
-		return "orderdata";
-	}*/
+		redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
+		return "/selectpay";
+	}
 	
 	@RequestMapping("/{id}/buy")
 	public String reserveResource(Model model, @PathVariable Integer id, HttpServletRequest request,
@@ -101,6 +86,7 @@ public class CartController extends MasterService {
 		this.session(model, request, redirectAttrs);
 		if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
 			User user = userRepository.findByName(request.getUserPrincipal().getName());
+			
 			
 			double total = 0.0;
 			Product p = productRepository.findOne(id);
