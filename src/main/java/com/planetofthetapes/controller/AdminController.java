@@ -117,12 +117,13 @@ public class AdminController extends MasterService{
 	public String addPack(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		
 		this.session(model, request, redirectAttrs);
+		
 		return "admin/admin-add-pack-action";
 	}
 	
 	@RequestMapping("/admin-add-pack-action")
 	public String addPackAction(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs, @RequestParam String namePack, @RequestParam String nameP1,
-			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price) {
+			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price, @RequestParam MultipartFile img) {
 		
 		this.session(model, request, redirectAttrs);
 		
@@ -140,9 +141,23 @@ public class AdminController extends MasterService{
 		
 		packRepository.save(p);
 		
-		redirectAttrs.addFlashAttribute("messages", "Added new pack.");
-
-		return "redirect:/admin-packlist";	
+		String imgName = p.getId() + ".jpg";
+		if (!img.isEmpty()) {
+			try {
+				File imgFolder = new File("src/main/resources/static/img/ProductImages");
+				if (!imgFolder.exists()) {
+					imgFolder.mkdirs();
+				}
+				File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
+				img.transferTo(uploadedImage);
+			} catch (Exception e) {
+			}
+			p.setImg(imgName);
+			packRepository.save(p);
+		}
+		
+		redirectAttrs.addFlashAttribute("success", "Pack added successfully");
+		return "redirect:/admin-packlist";
 	}
 	
 	@RequestMapping("/admin-remove-pack")
@@ -201,7 +216,8 @@ public class AdminController extends MasterService{
 			} catch (Exception e) {
 				return "redirect:/admin-packlist/deleteError";
 			}
-
+			
+			redirectAttrs.addFlashAttribute("success", "Pack deleted successfully");
 			return "redirect:/admin-packlist";
 }
 	
@@ -242,18 +258,15 @@ public class AdminController extends MasterService{
 				} catch (Exception e) {
 					return "redirect:/admin-userList/addError";
 				}
-				redirectAttrs.addFlashAttribute("messages", "User modified successfully");
-				return "/admin/admin-user";}
-		return "/admin/admin-user";
+			}
+		redirectAttrs.addFlashAttribute("success", "User modified successfully");
+		return "redirect:/admin-user";
 	}
 		
 	@RequestMapping(value="/admin-modify-product")
 	public String ModifyProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 
 		this.session(model, request, redirectAttrs);
-		
-		
-
 		return "admin/admin-modify-product-action";
 	}
 	
@@ -328,7 +341,7 @@ public class AdminController extends MasterService{
 				} catch (Exception e) {
 					return "redirect:/admin-userList/addError";
 				}
-				redirectAttrs.addFlashAttribute("messages", "User Added.");
+				redirectAttrs.addFlashAttribute("success", "User Added.");
 
 				return "redirect:/admin-userList";
 	}
@@ -354,9 +367,10 @@ public class AdminController extends MasterService{
 					User user = userRepository.findById(id);
 					userRepository.delete(user);
 				} catch (Exception e) {
+					redirectAttrs.addFlashAttribute("error", "Error to modify user.");
 					return "redirect:/admin-user/deleteError";
 				}
-
+				redirectAttrs.addFlashAttribute("success", "User Deleted.");
 				return "redirect:/admin-userList";
 	}
 	

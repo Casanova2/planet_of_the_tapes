@@ -35,6 +35,8 @@ public class DataExamples {
 		User user1, user2, user3, user4;
 		Product prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12, prod100, prod101,
 				prod102, prod103, prod104, prod105, prod200, prod201, prod202, prod203, prod204, prod205;
+		
+		Pack packp, packg;
 
 		// Users creation
 
@@ -240,20 +242,30 @@ public class DataExamples {
 		user1.getOrders().add(order2);
 		userRepository.save(user1);
 		
+		//PACKS
+		List<Product> gamelist = new ArrayList<Product>();
+		List<Product> filmlist = new ArrayList<Product>();
 		
-		
-		
-			
-		/*List<Product> filmlist = new ArrayList<Product>();
-		
-		List<POrder> orderlist = new ArrayList<POrder>();
-		
+		gamelist.add(prod200);
+		gamelist.add(prod201);
+		gamelist.add(prod205);
 		
 		filmlist.add(prod1);
 		filmlist.add(prod2);
 		filmlist.add(prod3);
-		filmlist.add(prod4);
-	
+		
+		packp = new Pack("Movies Deal",35,"packi.jpg");
+		packp.setProducts(filmlist);
+		
+		packg = new Pack("Games Deal", 40, "packo.jpg");
+		packg.setProducts(gamelist);
+		
+		packRepository.save(packp);
+		packRepository.save(packg);
+		
+		
+			
+		/*
 		
 <<<<<<< HEAD
 		POrder order2 = new POrder("Payed", "Credit Card", "Buy", 80.00, user3);

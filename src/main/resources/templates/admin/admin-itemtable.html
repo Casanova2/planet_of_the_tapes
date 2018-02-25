@@ -14,7 +14,7 @@
 		<!-- / MODIFY -->
 		
 		<!-- DELETE -->
-		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#defaultModal">
+		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#defaultModal" onclick="modalRemove({{id}});">
 			<i class="fa fa-trash-o"></i>
 		</button>
 		<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
@@ -25,7 +25,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-footer">
-						<a href="/admin/product/remove/{{id}}" class="on-default remove-row">
+						<a href="/admin/product/remove/{{id}}" id="modalConfirm" class="on-default remove-row">
 							<button type="button" class="btn btn-light">
 								<i class="fa fa-trash-o"></i> Confirm
 							</button>

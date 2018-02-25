@@ -123,3 +123,10 @@ function scoreHeart(){
 	  });	
 	$( "#scoreHeart2" ).text(resultado);
 }
+
+function modalRemove(id){
+	var href = $("#modalConfirm").attr("href");
+    $("#modalConfirm").attr("href", "/admin/product/remove/"+id);
+    var href2 = $("#modalConfirm").attr("href");
+}
+
