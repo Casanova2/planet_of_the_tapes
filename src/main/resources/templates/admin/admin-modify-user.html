@@ -17,7 +17,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Products</h2>
+						<h2>Users</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -40,7 +40,7 @@
 								</div>
 								
 								<div class="panel-body">
-									<form action="/admin/user/editProfile" method="post">
+									<form action="/admin/user/editProfile" method="post" enctype="multipart/form-data">
 										<div class="form-group mb-lg">
 										
 											<label>User Name</label>
@@ -74,7 +74,7 @@
 										
 										<div class="form-group mb-lg">
 											<label>Avatar</label>
-											<input name="avatar" type="text" class="form-control input-lg" value="{{user.avatar}}"/>
+											<input name="img" type="file"/>
 										</div>
 										
 										<footer class="panel-footer">

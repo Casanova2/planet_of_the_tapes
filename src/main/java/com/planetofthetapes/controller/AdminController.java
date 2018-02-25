@@ -241,7 +241,7 @@ public class AdminController extends MasterService{
 	@RequestMapping("/admin/user/editProfile") // modify
 	public String modifyuser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
 			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
-			RedirectAttributes redirectAttrs) {
+			RedirectAttributes redirectAttrs, @RequestParam MultipartFile img) {
 			this.session(model, request, redirectAttrs);
 			if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
 				User user = userRepository.findByName(request.getUserPrincipal().getName());
@@ -253,6 +253,21 @@ public class AdminController extends MasterService{
 				user.setPasswordHash(passwordHash);
 				user.setAvatar(avatar);
 				user.setTelephone(telephone);
+				String imgName = user.getName() +"Avatar.jpg";
+				if (!img.isEmpty()) {
+					try {
+						File imgFolder = new File("src/main/resources/static/img");
+						if (!imgFolder.exists()) {
+							imgFolder.mkdirs();
+						}
+						File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
+						img.transferTo(uploadedImage);
+					} catch (Exception e) {
+					}
+					user.setAvatar(imgName);
+					userRepository.save(user);
+				}
+				
 				try {
 					userRepository.save(user);
 				} catch (Exception e) {
