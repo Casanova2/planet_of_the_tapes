@@ -1,6 +1,7 @@
 package com.planetofthetapes.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,6 +16,8 @@ import com.planetofthetapes.repository.POrderRepository;
 import com.planetofthetapes.repository.PackRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
+
+import javassist.bytecode.Descriptor.Iterator;
 
 public class MasterService {
 	
@@ -34,14 +37,16 @@ public class MasterService {
 			if(request.isUserInRole("ROLE_ADMIN")) {
 				model.addAttribute("admin", true);
 			}
-			System.out.println("Este es el masterService");			
 			
 			if(loggedUser.hasOrders()) {
-				POrder actual = POrderRepository.findByState("progress");
-				for(POrder p: loggedUser.getOrders()) {
-					if(p.equals(actual)) {
-						model.addAttribute("productsOrders", actual.getProducts());
-						model.addAttribute("totalOrder",actual.getTotal());
+				ArrayList<POrder> listActualUser = new ArrayList<POrder>(loggedUser.getOrders());
+				
+				System.out.println(listActualUser.get(0).getId());
+				
+				for(POrder o: listActualUser) {
+					if(o.getState().equals("progress")) {
+						model.addAttribute("productsOrders", o.getProducts());
+						model.addAttribute("totalOrder",o.getTotal());
 					}
 				}
 			}

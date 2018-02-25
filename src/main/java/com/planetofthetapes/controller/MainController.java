@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.planetofthetapes.entity.Product;
@@ -41,5 +42,13 @@ public class MainController extends MasterService {
 		model.addAttribute("movies",movies);
 		model.addAttribute("videogames",videogames);
 		return "index";
+	}
+	
+	@RequestMapping(value = "/heart")
+	public void heart(Model model, @RequestParam int page, int idp) {
+		System.out.println(idp);
+		Product p = productRepository.findOne(idp);
+		p.setScore(page);
+		productRepository.save(p);
 	}
 }

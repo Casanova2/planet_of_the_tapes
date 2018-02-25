@@ -29,9 +29,12 @@ public class Product {
 	@ManyToMany(mappedBy = "products")
 	private List<POrder> pedidos = new ArrayList<POrder>();
 
-	@Column(unique = true)
 	private String name;
 	private String description;
+	public List<POrder> getPedidos() {
+		return pedidos;
+	}
+
 	private String type;
 	private String genre;
 	private int stock;
@@ -83,6 +86,10 @@ public class Product {
 			this.year = year;
 			this.urlimg = urlimg;
 		}
+	
+	public void setPedidos(List<POrder> pedidos) {
+		this.pedidos = pedidos;
+	}
 	
 
 	public Integer getId() {

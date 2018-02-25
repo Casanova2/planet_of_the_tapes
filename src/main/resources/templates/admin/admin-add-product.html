@@ -22,14 +22,12 @@
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
 								<li>
-									<a href="index.html">
+									<a href="/">
 										<i class="fa fa-home"></i>
 									</a>
 								</li>
 								<li><span>Products</span></li>
 							</ol>
-					
-							<a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
 						</div>
 					</header>
 
@@ -104,7 +102,8 @@
 										<div class="form-group mb-lg">
 											<label>Image</label>
 											<input type="file" name="img" required/>
-										</div>	
+										</div>
+										
 										<footer class="panel-footer">
 											<button class="btn btn-primary">Submit </button>
 											<button type="reset" class="btn btn-default">Reset</button>
@@ -117,73 +116,7 @@
 				</section>
 			</div>
 
-			<aside id="sidebar-right" class="sidebar-right">
-				<div class="nano">
-					<div class="nano-content">
-						<a href="#" class="mobile-close visible-xs">
-							Collapse <i class="fa fa-chevron-right"></i>
-						</a>
 			
-						<div class="sidebar-right-wrapper">
-			
-							<div class="sidebar-widget widget-calendar">
-								<h6>Upcoming Tasks</h6>
-								<div data-plugin-datepicker data-plugin-skin="dark" ></div>
-			
-								<ul>
-									<li>
-										<time datetime="2016-04-19T00:00+00:00">04/19/2016</time>
-										<span>Company Meeting</span>
-									</li>
-								</ul>
-							</div>
-			
-							<div class="sidebar-widget widget-friends">
-								<h6>Friends</h6>
-								<ul>
-									<li class="status-online">
-										<figure class="profile-picture">
-											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
-										</figure>
-										<div class="profile-info">
-											<span class="name">{{user.name}}</span>
-											<span class="title">Hey, how are you?</span>
-										</div>
-									</li>
-									<li class="status-online">
-										<figure class="profile-picture">
-											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
-										</figure>
-										<div class="profile-info">
-											<span class="name">Joseph Doe Junior</span>
-											<span class="title">Hey, how are you?</span>
-										</div>
-									</li>
-									<li class="status-offline">
-										<figure class="profile-picture">
-											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
-										</figure>
-										<div class="profile-info">
-											<span class="name">Joseph Doe Junior</span>
-											<span class="title">Hey, how are you?</span>
-										</div>
-									</li>
-									<li class="status-offline">
-										<figure class="profile-picture">
-											<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle">
-										</figure>
-										<div class="profile-info">
-											<span class="name">Joseph Doe Junior</span>
-											<span class="title">Hey, how are you?</span>
-										</div>
-									</li>
-								</ul>
-							</div>
-			
-						</div>
-					</div>
-				</div>
-			</aside>
 		</section>
 
 		{{>admin/admin-footer}}

@@ -44,7 +44,8 @@
                             <div class="col-md-6 text-left text-lg-right">
                                 <ul>
                                     <li>
-                                        <a href="#" data-tooltip data-original-title="Like"><i class="fa fa-heart"></i>{{producto.score}}</a>
+                                        <i id="scoreHeart1" style="cursor:pointer; font-size:50px; color:red;" class="fa fa-heart" data-id="{{producto.score}}" onclick="scoreHeart();"></i><a style="cursor:pointer; font-size:50px;" id="scoreHeart2" data-tooltip data-original-title="Like">{{producto.score}}</a>
+                                        <input type="hidden" id="idofproduct" data-id="{{producto.id}}">
                                     </li>
                                     <li>
                                         <i class="fa fa-calendar"></i> October 6, 2017
@@ -59,7 +60,7 @@
 
                     <p class="mt-2">{{producto.description}}</p>
 
-                    <a href={{producto.trailer}} target="_blank" class="btn btn-primary btn-icon"><i class="fa fa-external-link"></i>Watch the Trailer</a> <span class="arrow hlb appear-animation" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800"></span>
+                    <a href="{{producto.trailer}}" target="_blank" class="btn btn-primary btn-icon"><i class="fa fa-external-link"></i>Watch the Trailer</a> <span class="arrow hlb appear-animation" data-appear-animation="rotateInUpLeft" data-appear-animation-delay="800"></span>
 
                     <ul class="portfolio-details">
                         <li>
@@ -75,7 +76,7 @@
                         <div class="buy-product">
                             <a>{{producto.pbuy}}</a>
                         </div>
-                        <a href="/{{producto.id}}/buy" class="btn btn-primary pt-2 pb-2 pr-3 pl-3">Buy</a>
+                        <a href="/{{producto.id}}/buy" style="font-size:24px;" class="btn btn-primary pt-2 pb-2 pr-3 pl-3">Buy</a>
                         </li>
                     </ul>
 

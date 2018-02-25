@@ -22,6 +22,12 @@
 											<a class="dropdown-item dropdown-toggle" href="/cart">
 												<i class="fa fa-cart-plus mr-1"></i> Cart
 											</a>
+											<a class="dropdown-item" href="/cart">
+												<span class="tip tip-dark">
+													{{#productsOrders}}{{productsOrders.size}}{{/productsOrders}}
+													{{^productsOrders}} 0 {{/productsOrders}}
+												</span>
+											</a>
 											<ul class="dropdown-menu">
 												<li>
 													<div class="dropdown-mega-content">
@@ -29,7 +35,7 @@
 															<tbody>
 																
 																{{#productsOrders}} {{>cartItem}} {{/productsOrders}}
-																{{^productsOrders}} <h3>Cart is empty </h3> {{/productsOrders}}
+																{{^productsOrders}} <span style="color:red; font-size:26px;">Cart is empty </span> {{/productsOrders}}
 																
 																<tr>
 																	<td class="actions" colspan="6">

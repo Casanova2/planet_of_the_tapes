@@ -51,6 +51,7 @@
                                                     </thead>
                                                     <tbody>
                                                         {{#productsOrders}} {{>cartItem2}} {{/productsOrders}}
+                                                        <div class="col-md-12" style="text-align:center;"><span style="color:red; font-size:26px;">{{^productsOrders}} Cart is empty {{/productsOrders}}</span></div>
                                                         <tr>
                                                             <td class="actions" colspan="6">
                                                                 <div class="actions-continue">
@@ -78,9 +79,11 @@
                                                         <th>
                                                             <strong>Subtotal</strong>
                                                         </th>
+                                                        {{#totalOrder}}
                                                         <td>
                                                             <strong><span class="amount">{{totalOrder}}</span></strong>
                                                         </td>
+                                                        {{/totalOrder}}
                                                     </tr>
                                                     <tr class="shipping">
                                                         <th>
@@ -94,9 +97,11 @@
                                                         <th>
                                                             <strong>Order Total</strong>
                                                         </th>
+                                                        {{#totalOrder}}
                                                         <td>
                                                             <strong><span class="amount">{{totalOrder}}</span></strong>
                                                         </td>
+                                                        {{/totalOrder}}
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -107,36 +112,34 @@
                                     <div class="featured-box featured-box-primary text-left mt-3 mt-lg-4">
                                         <div class="box-content">
                                             <h4 class="heading-primary">Payment</h4>
-
-                                            <form action="/" id="frmPayment" method="post">
-                                                <div class="form-row">
-                                                    <div class="form-group col">
-                                                        <div class="form-check form-check-inline">
-                                                   			<input type="radio" id="" name="" > American Express
-															<img src="/img/MasterCard.png"  data-lock-picture="/img/MasterCard.png" width="50" height="50" />
-						
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col">
-                                                       <div class="form-check form-check-inline">
-                                                   			<input type="radio" id="" name="" > VISA
-															<img src="/img/visa.png"  data-lock-picture="/img/visa.png" width="50" height="50" />
-						
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-row">
-                                                    <div class="form-group col">
-                                                        <div class="form-check form-check-inline">
-                                                   			<input type="radio" id="" name="" > American Express
-															<img src="/img/American.png"  data-lock-picture="/img/American.png" width="50" height="50" />
-						
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                            <form class="form-horizontal form-bordered" method="get">
+												<div class="form-group">
+													<div class="col-md-6">
+														<div class="radio">
+															<label>
+																<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
+																Master Card
+															</label>
+															<img src="/img/MasterCard.png"  data-lock-picture="/img/MasterCard.png" width="80" height="50" />
+														</div>					
+														<div class="radio">
+															<label>
+																<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+																Visa
+															</label>
+															<img src="/img/visa.png"  data-lock-picture="/img/visa.png" width="100" height="50" />
+														</div>
+														<div class="radio">
+															<label>
+																<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+																American Express
+															</label>
+															<img src="/img/American.png"  data-lock-picture="/img/American.png" width="70" height="50" />
+														</div>
+							
+													</div>
+												</div>							
+											</form>
                                         </div>
                                     </div>
                                 </div>

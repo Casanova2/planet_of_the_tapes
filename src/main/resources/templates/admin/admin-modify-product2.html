@@ -28,7 +28,6 @@
 								</li>
 								<li><span>Products</span></li>
 							</ol>
-					
 						</div>
 					</header>
 
@@ -36,88 +35,75 @@
 						
 						<section class="panel">
 								<div class="panel-title-sign mt-xl text-right">
-									<h2 class="title text-uppercase text-weight-bold m-none"><i class="fa fa-user mr-xs"></i>Modify product</h2>
+									<h2 class="title text-uppercase text-weight-bold m-none"><i class="fa fa-user mr-xs"></i>Add product</h2>
 								</div>
-									
-								
-									<form action="/admin-modify-product-action" method="post" enctype="multipart/form-data">
-									
-									<div class="panel-title-sign mt-xl text-left">
-									<h2 class="title text-uppercase text-weight-bold m-none"><i class="fa fa-user mr-xs"></i>Name of the product you want to modify</h2>
-								</div>
-									<input name="nam" type="text" class="form-control input-lg"/>
-									<input class="btn btn-primary" type="button" value="Show" onclick="show()">
-									
-								<div class="panel-body" id='hidden' style='display:none;'>
-								<script type="text/javascript">
-									function show(){
-										document.getElementById('hidden').style.display = 'block';}
-								</script>
-
+								<div class="panel-body">
+									<form action="/admin/product/modify/{{id}}" method="post" enctype="multipart/form-data" >
 										<div class="form-group mb-lg">
 											<label>Product Name</label>
-											<input name="namep" type="text" class="form-control input-lg"/>
+											<input name="name" type="text" class="form-control input-lg" value="{{product.name}}"/>
+											<input name="id" type="hidden" value="{{product.id}}"/>
 										</div>
 
 										<div class="form-group mb-lg">
 											<label>Description</label>
-											<input name="descriptionp" type="text" class="form-control input-lg" />
+											<input name="description" type="text" class="form-control input-lg" value="{{product.description}}"/>
 										</div>
 							
 										<div class="form-group mb-lg">
 											<label>Product type</label>
-											<input name="typep" type="text" class="form-control input-lg"/>
+											<input name="type" type="text" class="form-control input-lg" value="{{product.type}}"/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Product Genre</label>
-											<input name="genrep" type="text" class="form-control input-lg"/>
+											<input name="genre" type="text" class="form-control input-lg" value="{{product.genre}}"/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Stock</label>
-											<input name="stockp" type="number" class="form-control input-lg"/>
+											<input name="stock" type="number" class="form-control input-lg" value="{{product.stock}}"/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Buying Price</label>
-											<input name="pbuyp" type="number" class="form-control input-lg"/>
+											<input name="pbuy" type="number" class="form-control input-lg" value="{{product.pbuy}}"/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Renting Price</label>
-											<input name="prentp" type="number" class="form-control input-lg"/>
+											<input name="prent" type="number" class="form-control input-lg" value="{{product.prent}}"/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Score</label>
-											<input name="scorep" type="number" class="form-control input-lg"/>
+											<input name="score" type="number" class="form-control input-lg" value="{{product.score}}"/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Trailer</label>
-											<input name="trailerp" type="text" class="form-control input-lg"/>
+											<input name="trailer" type="text" class="form-control input-lg" value="{{product.trailer}}"/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Director</label>
-											<input name="directorp" type="text" class="form-control input-lg"/>
+											<input name="director" type="text" class="form-control input-lg" value="{{product.director}}"/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Cast</label>
-											<input name="castp" type="text" class="form-control input-lg"/>
+											<input name="cast" type="text" class="form-control input-lg" value="{{product.cast}}"/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Year</label>
-											<input name="yearp" type="number" class="form-control input-lg"/>
+											<input name="year" type="text" class="form-control input-lg" value="{{product.year}}"/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Image</label>
 											<input type="file" name="img" required/>
-										</div>
+										</div>	
 										<footer class="panel-footer">
 											<button class="btn btn-primary">Submit </button>
 											<button type="reset" class="btn btn-default">Reset</button>
@@ -130,6 +116,7 @@
 				</section>
 			</div>
 
+			
 		</section>
 
 		{{>admin/admin-footer}}

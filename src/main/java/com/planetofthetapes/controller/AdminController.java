@@ -250,45 +250,6 @@ public class AdminController extends MasterService{
 	
 		return "/admin/admin-add-user";
 	}
-	@RequestMapping("/admin-products-add")
-	public String addProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
-		return "admin/admin-add-product";
-	}
-	
-	@RequestMapping("/admin-add-product")
-
-	public String addProduct(Model model, @RequestParam String name, @RequestParam String description, @RequestParam String type,
-			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy,
-			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
-			@RequestParam String cast, @RequestParam int year, @RequestParam MultipartFile img, HttpServletRequest request,
-			RedirectAttributes redirectAttrs) {
-			
-			this.session(model, request, redirectAttrs);
-			
-			Product product = new Product(name, description, type, genre, stock, pbuy, prent, score, trailer, director, cast, year);
-				
-			productRepository.save(product);
-				
-			String imgName = product.getId() + ".jpg";
-			if (!img.isEmpty()) {
-				try {
-					File imgFolder = new File("src/main/resources/static/img/ProductImages");
-					if (!imgFolder.exists()) {
-						imgFolder.mkdirs();
-					}
-					File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
-					img.transferTo(uploadedImage);
-				} catch (Exception e) {
-				}
-				product.setUrlimg(imgName);
-				productRepository.save(product);
-			}
-			
-				redirectAttrs.addFlashAttribute("messages", "Añadido nuevo producto.");
-
-				return "redirect:/admin-products";
-	}
 	
 	@RequestMapping("/admin-user-add")
 	public String adduser(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
@@ -321,19 +282,6 @@ public class AdminController extends MasterService{
 		return "admin/admin-remove-product-action";
 	}
 	
-	@RequestMapping("/admin-remove-product-action")
-	public String removeProductAction(Model model, @RequestParam String name, @RequestParam String type, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-			this.session(model, request, redirectAttrs);
-				try {
-					Product product = productRepository.findByNameAndType(name, type);
-					productRepository.delete(product);
-				} catch (Exception e) {
-					return "redirect:/admin-products/deleteError";
-				}
-
-				return "redirect:/admin-products";
-	}
-	
 	@RequestMapping("/admin-remove-user")
 	public String removeUse(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
@@ -353,4 +301,130 @@ public class AdminController extends MasterService{
 
 				return "redirect:/admin-userList";
 	}
+	
+	/////////// ******************** PRODUCTS ************************* ////////
+	
+	// Así NO se debe hacer
+	/*@RequestMapping("/admin-remove-product-action")
+	public String removeProductAction(Model model, @RequestParam String name, @RequestParam String type, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+			this.session(model, request, redirectAttrs);
+				try {
+					Product product = productRepository.findByNameAndType(name, type);
+					productRepository.delete(product);
+				} catch (Exception e) {
+					return "redirect:/admin-products/deleteError";
+				}
+
+				return "redirect:/admin-products";
+	}*/
+	
+	@RequestMapping("/admin-products-add")
+	public String addProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
+		return "admin/admin-add-product";
+	}
+	
+	@RequestMapping("/admin-add-product")
+	public String addProduct(Model model, @RequestParam String name, @RequestParam String description, @RequestParam String type,
+			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy,
+			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
+			@RequestParam String cast, @RequestParam int year, @RequestParam MultipartFile img, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+			
+			this.session(model, request, redirectAttrs);
+			
+			Product product = new Product(name, description, type, genre, stock, pbuy, prent, score, trailer, director, cast, year);
+				
+			productRepository.save(product);
+				
+			String imgName = product.getId() + ".jpg";
+			if (!img.isEmpty()) {
+				try {
+					File imgFolder = new File("src/main/resources/static/img/ProductImages");
+					if (!imgFolder.exists()) {
+						imgFolder.mkdirs();
+					}
+					File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
+					img.transferTo(uploadedImage);
+				} catch (Exception e) {
+				}
+				product.setUrlimg(imgName);
+				productRepository.save(product);
+			}
+			
+			redirectAttrs.addFlashAttribute("success","Product added succesfully.");
+			return "redirect:/admin-products";
+	}
+	
+	
+	// ASÍ SE DEBE HACER -----------------------------------------------------------
+	@RequestMapping("/admin/product/remove/{id}") // remove
+	public String removeProduct(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		
+		this.session(model, request, redirectAttrs);
+		try {
+			Product product = productRepository.findById(id);
+			productRepository.delete(product);
+		} catch (Exception e) {
+			return "redirect:/admin-products/deleteError";
+		}
+		
+		redirectAttrs.addFlashAttribute("success","Product deleted succesfully.");
+		return "redirect:/admin-products";
+	}
+	
+	@RequestMapping("/admin-modify-product/{id}")
+	public String ModifyProduct(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+	
+		this.session(model, request, redirectAttrs);
+		
+		model.addAttribute("product",productRepository.findById(id));
+		return "/admin/admin-modify-product2";
+	}
+	
+	@RequestMapping("/admin/product/modify/{id}") // modify
+	public String modifyProduct(Model model, @RequestParam Integer id, @RequestParam String name, @RequestParam String description, @RequestParam String type,
+			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy, @RequestParam double prent, @RequestParam int score,
+			@RequestParam String trailer,@RequestParam String director, @RequestParam String cast, @RequestParam int year, @RequestParam MultipartFile img,
+			HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		
+			this.session(model, request, redirectAttrs);
+			
+			Product product = productRepository.findById(id);
+			
+			product.setName(name);
+			product.setDescription(description);
+			product.setType(type);
+			product.setGenre(genre);
+			product.setStock(stock);
+			product.setPbuy(pbuy);
+			product.setScore(score);
+			product.setTrailer(trailer);
+			product.setDirector(director);
+			product.setCast(cast);
+			product.setYear(year);
+			
+			productRepository.save(product);
+			
+			String imgName = product.getId() + ".jpg";
+			if (!img.isEmpty()) {
+				try {
+					File imgFolder = new File("src/main/resources/static/img/ProductImages");
+					if (!imgFolder.exists()) {
+						imgFolder.mkdirs();
+					}
+					File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
+					img.transferTo(uploadedImage);
+				} catch (Exception e) {
+				}
+				product.setUrlimg(imgName);
+				productRepository.save(product);
+			}
+			
+			redirectAttrs.addFlashAttribute("success","Product modified succesfully.");
+			return "redirect:/admin-products";
+	}
+	
+	//----------------------------------------------------------
+	//////////************** END PRODUCTS **************//////////////////
 }

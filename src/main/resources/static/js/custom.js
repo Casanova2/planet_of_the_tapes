@@ -110,3 +110,16 @@ var portfolioLoadMore = {
 if($('#portfolioLoadMoreWrapper').get(0)) {
 	portfolioLoadMore.build();
 }
+
+var resultado = 0;
+function scoreHeart(){
+	var id = $("#idofproduct").attr('data-id');
+	var score = $("#scoreHeart1").attr('data-id');
+	resultado = (parseInt(score) + parseInt(1));
+	$("#scoreHeart1").attr('data-id', resultado);
+	$.get("/heart", {
+        page: resultado,
+        idp: id
+	  });	
+	$( "#scoreHeart2" ).text(resultado);
+}
