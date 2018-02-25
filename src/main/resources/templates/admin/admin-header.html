@@ -2,7 +2,7 @@
 <header class="header">
 	<div class="logo-container">
 		<a href="/" class="logo">
-			<img src="img/logo2.png" width="150" alt="Planet of the tapes" />
+			<img src="/img/logo2.png" width="150" alt="Planet of the tapes" />
 		</a>
 		<div class="visible-xs toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
 			<i class="fa fa-bars" aria-label="Toggle sidebar"></i>
@@ -17,7 +17,7 @@
 		<div id="userbox" class="userbox">
 			<a href="#" data-toggle="dropdown">
 				<figure class="profile-picture">
-					<img src="{{#user.avatar}}{{user.avatar}}{{/user.avatar}}" alt="{{user.name}}" class="img-circle" data-lock-picture="{{user.avatar}}" />
+					<img src="/{{user.avatar}}" alt="{{user.name}}" class="img-circle" data-lock-picture="{{user.avatar}}" />
 				</figure>
 				<div class="profile-info" data-lock-name="John Doe" data-lock-email="{{user.email}}">
 					<span class="name"  style="font-size:18px; font-family:Verdana;">{{user.name}}</span>
