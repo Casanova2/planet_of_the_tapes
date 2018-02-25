@@ -108,6 +108,7 @@ public class AdminController extends MasterService{
 	public String addPack(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		
 		this.session(model, request, redirectAttrs);
+		
 		return "admin/admin-add-pack-action";
 	}
 	
@@ -146,9 +147,8 @@ public class AdminController extends MasterService{
 			packRepository.save(p);
 		}
 		
-		redirectAttrs.addFlashAttribute("messages", "Added new pack.");
-
-		return "redirect:/admin-packlist";	
+		redirectAttrs.addFlashAttribute("success", "Pack added successfully");
+		return "redirect:/admin-packlist";
 	}
 	
 	@RequestMapping("/admin-remove-pack")
@@ -207,7 +207,8 @@ public class AdminController extends MasterService{
 			} catch (Exception e) {
 				return "redirect:/admin-packlist/deleteError";
 			}
-
+			
+			redirectAttrs.addFlashAttribute("success", "Pack deleted successfully");
 			return "redirect:/admin-packlist";
 }
 	
@@ -248,18 +249,15 @@ public class AdminController extends MasterService{
 				} catch (Exception e) {
 					return "redirect:/admin-userList/addError";
 				}
-				redirectAttrs.addFlashAttribute("messages", "User modified successfully");
-				return "/admin/admin-user";}
-		return "/admin/admin-user";
+			}
+		redirectAttrs.addFlashAttribute("success", "User modified successfully");
+		return "redirect:/admin-user";
 	}
 		
 	@RequestMapping(value="/admin-modify-product")
 	public String ModifyProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 
 		this.session(model, request, redirectAttrs);
-		
-		
-
 		return "admin/admin-modify-product-action";
 	}
 	
@@ -334,7 +332,7 @@ public class AdminController extends MasterService{
 				} catch (Exception e) {
 					return "redirect:/admin-userList/addError";
 				}
-				redirectAttrs.addFlashAttribute("messages", "User Added.");
+				redirectAttrs.addFlashAttribute("success", "User Added.");
 
 				return "redirect:/admin-userList";
 	}
@@ -360,9 +358,10 @@ public class AdminController extends MasterService{
 					User user = userRepository.findById(id);
 					userRepository.delete(user);
 				} catch (Exception e) {
+					redirectAttrs.addFlashAttribute("error", "Error to modify user.");
 					return "redirect:/admin-user/deleteError";
 				}
-
+				redirectAttrs.addFlashAttribute("success", "User Deleted.");
 				return "redirect:/admin-userList";
 	}
 	
