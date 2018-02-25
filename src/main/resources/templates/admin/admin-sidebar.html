@@ -34,7 +34,7 @@
                         <a href="/admin-orderlist">
                             <span class="pull-right label label-primary">{{numberOrders}}</span>
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span>Orders</span>
+                            <span>Orders Admin</span>
                         </a>                        
                     </li>
                     <li>
@@ -62,9 +62,12 @@
                     {{#user}}
                     <li>
                         <a href="/user-orderlist">
-                            <span class="pull-right label label-primary">{{numberOrderlist}}</span>
+                            <span class="pull-right label label-primary">
+                            {{#numberOrderlist}}{{numberOrderlist}}{{/numberOrderlist}}
+                            {{^numberOrderlist}} 0 {{/numberOrderlist}}
+                            </span>
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span>Orders</span>
+                            <span>Orders User</span>
                         </a>                        
                     </li>
                     {{/user}}

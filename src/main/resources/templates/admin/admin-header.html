@@ -17,7 +17,7 @@
 		<div id="userbox" class="userbox">
 			<a href="#" data-toggle="dropdown">
 				<figure class="profile-picture">
-					<img src="{{user.avatar}}" alt="Joseph Doe" class="img-circle" data-lock-picture="{{user.avatar}}" />
+					<img src="{{#user.avatar}}{{user.avatar}}{{/user.avatar}}" alt="{{user.name}}" class="img-circle" data-lock-picture="{{user.avatar}}" />
 				</figure>
 				<div class="profile-info" data-lock-name="John Doe" data-lock-email="{{user.email}}">
 					<span class="name"  style="font-size:18px; font-family:Verdana;">{{user.name}}</span>

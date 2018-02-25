@@ -58,12 +58,18 @@ public class MasterService {
 								model.addAttribute("totalOrder",o.getTotal());
 							}
 						}
+						//this.numbers(model,request);
+						model.addAttribute("numberProducts",productRepository.findAll().size());
+						model.addAttribute("numberUsers",userRepository.findAll().size());
+						model.addAttribute("numberOrders",POrderRepository.findAll().size());
+						model.addAttribute("numberPacks",packRepository.findAll().size());
+						model.addAttribute("numberOrderlist",loggedUser.getOrders().size());
 					}
 					
 					model.addAttribute("user", loggedUser);
 					model.addAttribute("logged", true);
 					
-					this.numbers(model,request);
+					
 				}else {
 					model.addAttribute("sizeProducts", zero);
 				}
@@ -73,7 +79,12 @@ public class MasterService {
 			model.addAttribute("user", loggedUser);
 			model.addAttribute("logged", true);
 			
-			this.numbers(model,request);
+			//this.numbers(model,request);
+			model.addAttribute("numberProducts",productRepository.findAll().size());
+			model.addAttribute("numberUsers",userRepository.findAll().size());
+			model.addAttribute("numberOrders",POrderRepository.findAll().size());
+			model.addAttribute("numberPacks",packRepository.findAll().size());
+			
 		} else {
 			model.addAttribute("sizeProducts",zero);
 			model.addAttribute("logged", false);

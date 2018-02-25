@@ -68,14 +68,14 @@
 									<h3 class="title text-uppercase text-weight-bold m-none"><i class="fa fa-user mr-xs"></i>Personal Information</h3>
 								</div>
 								<div class="panel-body">
-								<a href="/admin-modify-user">
-				                    <button style="margin-bottom:15px;" type="button" class="btn btn-primary"><span class="fa fa-plus-circle"> </span> &nbsp;Edit Profile</button>
-				                </a>
-									<form action="">
+								
+
+									<form action="/admin-modify-user" method="post">
+										<input name="id" type="hidden" class="form-control input-lg" value="{{user.id}}"/>
 										<div class="form-group mb-lg">
 										
 											<label>User Name</label>
-											<input name="name" type="text" class="form-control input-lg" value="{{user.name}}"/>
+											<input name="name" type="text" class="form-control input-lg" value="{{user.name}}" disabled/>
 										</div>
 										
 										<div class="form-group mb-lg">
@@ -102,6 +102,18 @@
 											<label>Address</label>
 											<input name="address" type="text" class="form-control input-lg" value="{{user.address}}"/>
 										</div>
+										
+										<div class="form-group mb-lg">
+											<label>Avatar</label>
+											<input name="avatar" type="text" class="form-control input-lg" value="{{user.avatar}}"/>
+										</div>
+										
+										
+										<footer class="panel-footer">
+											<button class="btn btn-primary">Submit </button>
+											<button type="reset" class="btn btn-default">Reset</button>
+										</footer>
+									
 									</form>
 								</div>
 						</section>

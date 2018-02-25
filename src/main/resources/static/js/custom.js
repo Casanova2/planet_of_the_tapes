@@ -124,9 +124,20 @@ function scoreHeart(){
 	$( "#scoreHeart2" ).text(resultado);
 }
 
-function modalRemove(id){
+function modalProductRemove(id){
 	var href = $("#modalConfirm").attr("href");
     $("#modalConfirm").attr("href", "/admin/product/remove/"+id);
     var href2 = $("#modalConfirm").attr("href");
 }
 
+function modalPackRemove(id){
+	var href = $("#modalConfirm").attr("href");
+    $("#modalConfirm").attr("href", "/admin/pack/remove/"+id);
+    var href2 = $("#modalConfirm").attr("href");
+}
+
+function modalUserRemove(id){
+	var href = $("#modalConfirm").attr("href");
+    $("#modalConfirm").attr("href", "/admin/user/remove/"+id);
+    var href2 = $("#modalConfirm").attr("href");
+}

@@ -226,47 +226,95 @@ public class AdminController extends MasterService{
 		this.session(model, request, redirectAttrs);
 		
 		model.addAttribute("products",productRepository.findAll());
+		User user = userRepository.findByName(request.getUserPrincipal().getName());
+		model.addAttribute("user",user);
 	
 		
 		return "/admin/admin-user";
 	}
 	
-	@RequestMapping("/admin-modify-user")
+	/*@RequestMapping("/admin-modify-user")
 	public String modifyUser(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 	
 		this.session(model, request, redirectAttrs);
 		return "/admin/admin-modify-user";
-	}
+	}*/
 	
-	@RequestMapping("/admin/user/editProfile") // modify
-	public String modifyuser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
+	/*@RequestMapping("/admin-modify-user")
+	public String modifyUser(Model model, @RequestParam String passwordHash, @RequestParam String dni,
 			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
-			RedirectAttributes redirectAttrs, @RequestParam MultipartFile img) {
-			this.session(model, request, redirectAttrs);
-			if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
-				User user = userRepository.findByName(request.getUserPrincipal().getName());
+			RedirectAttributes redirectAttrs) {
+	
+		this.session(model, request, redirectAttrs);
+		if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
+			User user = userRepository.findByName(request.getUserPrincipal().getName());
+		System.out.println(user.getName()+"----<");
 			
-				user.setName(name);
+			user.setAddress(address);
+			user.setDni(dni);
+			user.setEmail(email);
+			user.setPasswordHash(passwordHash);
+			user.setAvatar(avatar);
+			user.setTelephone(telephone);
+			
+			
+			try {
+				userRepository.save(user);
+			} catch (Exception e) {
+				return "redirect:/admin-userList/addError";
+			}
+		}
+		redirectAttrs.addFlashAttribute("success", "User modified successfully");
+		return "/admin/admin-user";
+	}*/
+	
+	
+	
+	
+	@RequestMapping("/admin-modify-user")
+	public String adminmodifyuser(Model model,@RequestParam Integer id, @RequestParam String passwordHash, @RequestParam String dni,
+			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+			
+		this.session(model, request, redirectAttrs);
+			
+				User user = userRepository.findById(id);
+				
 				user.setAddress(address);
 				user.setDni(dni);
 				user.setEmail(email);
 				user.setPasswordHash(passwordHash);
 				user.setAvatar(avatar);
 				user.setTelephone(telephone);
-				String imgName = user.getName() +"Avatar.jpg";
-				if (!img.isEmpty()) {
-					try {
-						File imgFolder = new File("src/main/resources/static/img");
-						if (!imgFolder.exists()) {
-							imgFolder.mkdirs();
-						}
-						File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
-						img.transferTo(uploadedImage);
-					} catch (Exception e) {
-					}
-					user.setAvatar(imgName);
+				try {
 					userRepository.save(user);
+				} catch (Exception e) {
+					return "redirect:/admin-userList/addError";
 				}
+				redirectAttrs.addFlashAttribute("success", "User modified successfully");
+		return "redirect:/admin-user";
+	}
+	
+	
+	
+	
+	
+	@RequestMapping("/admin/user/editProfile") // modify
+	public String modifyuser(Model model, @RequestParam String passwordHash, @RequestParam String dni,
+			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+			this.session(model, request, redirectAttrs);
+			if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
+				User user = userRepository.findByName(request.getUserPrincipal().getName());
+			System.out.println(user.getName()+"----<");
+				
+				user.setAddress(address);
+				user.setDni(dni);
+				user.setEmail(email);
+				user.setPasswordHash(passwordHash);
+				user.setAvatar(avatar);
+				user.setTelephone(telephone);
+				
 				
 				try {
 					userRepository.save(user);
