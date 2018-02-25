@@ -16,7 +16,13 @@
 
 
 
-                                <form action="/simpleemail" id="selectPay" method="post">
+                                <form action="/checkout" id="selectPay" method="post">
+                                <input type="hidden" value="{{user.name}}" name="name" id="name">
+                                <input type="hidden" value="{{user.email}}" name="to" id="to">
+                                <input type="hidden" value="{{user.email}}" name="email" id="email">
+                                <input type="hidden" value="Information of your order on POTT" name="subject" id="subject">
+                                <input type="hidden" value="Your order was processed correctly" name="body" id="message">
+                                <input type="hidden" value="pottapes@gmail.com" name="from" id="from">
                                     <div class="form-row">
                                         <div class="form-group col">
                                             Full Name: <input value="" class="form-control for -control-lg" type="text">
@@ -43,33 +49,7 @@
                                         </div>
                                     </div>
                                     
-                                     <div class="form-row">
-                                <div class="form-group col-lg-6">
-                                    
-                                    <input type="hidden" value="{{user.name}}" name="name" id="name" required>
-                                </div>
-                                <div class="form-group col-lg-6">
-                                    <input type="hidden" value="{{user.email}}" name="to" id="to">
-                                </div>
-                                <div class="form-group col-lg-6">
-                                    <input type="hidden" value="{{user.email}}" name="email" id="to">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col">
-                                    <input type="hidden" value="Information of your order on POTT" name="subject" id="subject">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col">
-                                    <input type="hidden" value="pottapes@gmail.com" name="from" id="from">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col">
-                                	<input type="hidden" value="Your order was processed correctly" name="body" id="message">
-                                </div>
-                            </div>
+
                                     
                                     
                                     <div class="row">

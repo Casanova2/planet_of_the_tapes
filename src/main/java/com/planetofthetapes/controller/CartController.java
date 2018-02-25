@@ -46,24 +46,53 @@ public class CartController extends MasterService {
 	}
 	
 	@RequestMapping("/checkout")
-	public String checkout(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
-		User user = userRepository.findByName(request.getUserPrincipal().getName());
-		if(!user.hasOrders()) {
-			redirectAttrs.addFlashAttribute("error","No orders to pay in the cart. Please select a product to buy.");
-			return "redirect:/selectpay";
-		}
+	public String checkout(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs, String name,  String email,  String to,
+			 String subject,String body, String from)throws Exception {
 		
-		return "selectpay";
-	}
-	@RequestMapping("/selectpay")
-	public String selectpay(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs, String name, @RequestParam String email,@RequestParam String to,@RequestParam String subject,@RequestParam String body, @RequestParam String from)throws Exception {
 		this.session(model, request, redirectAttrs);
-		redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
-		emailcont.sendEmail(name, email, to, subject, body,from);
-		redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
-		return "orderdata";
+		if (name==null&&email==null&&to==null&&subject==null&&body==null&&from==null)
+		if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
+			User user = userRepository.findByName(request.getUserPrincipal().getName());
+		    ArrayList<POrder> listActualUSer = new ArrayList<POrder>(user.getOrders());
+		    System.out.println(listActualUSer.toString());
+		    for(POrder o: listActualUSer) {
+		    	System.out.println(o.getState().toString());
+		    	if(o.getState().equals("progress")) {
+		    		o.setState("completed");
+		    		POrderRepository.save(o);
+		    	}
+		    }
+		    redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
+		    emailcont.sendEmail(name, email, to, subject, body,from);
+		    redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
+		    return "/";
+		 }
+		return "/";
 	}
+	
+	/*@RequestMapping("/selectpay")
+	 public String selectpay(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs, String name,  String email,  String to,
+			 String subject,String body, String from)throws Exception {
+		System.out.println("select pay");
+		this.session(model, request, redirectAttrs);
+		if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
+			User user = userRepository.findByName(request.getUserPrincipal().getName());
+		    ArrayList<POrder> listActualUSer = new ArrayList<POrder>(user.getOrders());
+		    System.out.println(listActualUSer.toString());
+		    for(POrder o: listActualUSer) {
+		    	System.out.println(o.getState().toString());
+		    	if(o.getState().equals("progress")) {
+		    		o.setState("completed");
+		    		POrderRepository.save(o);
+		    	}
+		    }
+		    redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
+		    emailcont.sendEmail(name, email, to, subject, body,from);
+		    redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
+		    return "orderdata";
+		 }
+		return "orderdata";
+	}*/
 	
 	@RequestMapping("/{id}/buy")
 	public String reserveResource(Model model, @PathVariable Integer id, HttpServletRequest request,
