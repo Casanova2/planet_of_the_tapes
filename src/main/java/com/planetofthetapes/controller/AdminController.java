@@ -113,7 +113,7 @@ public class AdminController extends MasterService{
 	
 	@RequestMapping("/admin-add-pack-action")
 	public String addPackAction(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs, @RequestParam String namePack, @RequestParam String nameP1,
-			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price) {
+			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price, @RequestParam MultipartFile img) {
 		
 		this.session(model, request, redirectAttrs);
 		
@@ -130,6 +130,21 @@ public class AdminController extends MasterService{
 		Pack p = new Pack(namePack, price, l);
 		
 		packRepository.save(p);
+		
+		String imgName = p.getId() + ".jpg";
+		if (!img.isEmpty()) {
+			try {
+				File imgFolder = new File("src/main/resources/static/img/ProductImages");
+				if (!imgFolder.exists()) {
+					imgFolder.mkdirs();
+				}
+				File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
+				img.transferTo(uploadedImage);
+			} catch (Exception e) {
+			}
+			p.setImg(imgName);
+			packRepository.save(p);
+		}
 		
 		redirectAttrs.addFlashAttribute("messages", "Added new pack.");
 

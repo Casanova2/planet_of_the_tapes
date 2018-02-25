@@ -88,6 +88,9 @@ We have made some changes in our view, and we have created some other news. Here
 * User Main View:  
 [User Page](screenshots/userPage.png)  
   
+* Edit Profile View:  
+[Edit Profile Page](screeshots/editProfileUser.png)  
+  
 * Admin products view:  
 [Products Page](screenshots/productlistPage.png)  
   
