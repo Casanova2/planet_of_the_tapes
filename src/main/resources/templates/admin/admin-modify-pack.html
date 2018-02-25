@@ -17,7 +17,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Products</h2>
+						<h2>Packs</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -41,28 +41,28 @@
 									<form action="/admin/pack/modify/{{id}}" method="post" enctype="multipart/form-data" >
 										<div class="form-group mb-lg">
 											<label>Pack Name</label>
-											<input name="namePack" type="text" class="form-control input-lg" value="{{pack.name}}"/>
+											<input name="namePack" type="text" class="form-control input-lg" value="{{pack.name}}" required/>
 											<input name="id" type="hidden" value="{{pack.id}}"/>
 										</div>
 
 										<div class="form-group mb-lg">
 											<label>Price</label>
-											<input name="price" type="number" class="form-control input-lg" value="{{pack.price}}"/>
+											<input name="price" type="number" class="form-control input-lg" value="{{pack.price}}" required/>
 										</div>
 							
 										<div class="form-group mb-lg">
 											<label>First Product</label>
-											<input name="nameP1" type="text" class="form-control input-lg"/>
+											<input name="nameP1" type="text" class="form-control input-lg" required/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Second Product</label>
-											<input name="nameP2" type="text" class="form-control input-lg"/>
+											<input name="nameP2" type="text" class="form-control input-lg" required/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Third Product</label>
-											<input name="nameP3" type="text" class="form-control input-lg"/>
+											<input name="nameP3" type="text" class="form-control input-lg" required/>
 										</div>
 										
 										<footer class="panel-footer">

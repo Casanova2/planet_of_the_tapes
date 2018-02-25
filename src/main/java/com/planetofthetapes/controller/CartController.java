@@ -96,10 +96,10 @@ public class CartController extends MasterService {
 					ArrayList<POrder> listActualUSer = new ArrayList<POrder>(user.getOrders());
 					for(POrder o: listActualUSer) {
 						if(o.getState().equals("progress")) {
-							o.addProduct(p); //aniadimos producto
+							o.addProduct(p); 
 							p.setStock(p.getStock()-1);
-							total = o.getTotal() + p.getPbuy(); //sacamos el precio total antiguo
-							o.setTotal(total);//aniadimos el precio total con el nuevo produc
+							total = o.getTotal() + p.getPbuy(); 
+							o.setTotal(total);
 							POrderRepository.save(o);
 							
 							ArrayList<POrder> listPOrders = new ArrayList<POrder>();
@@ -110,7 +110,7 @@ public class CartController extends MasterService {
 						}
 					}
 				}else {
-					POrder o= new POrder("progress","","",0.0);
+					POrder o= new POrder("progress","Credit Card","",0.0);
 					o.getProducts().add(p);
 					p.setStock(p.getStock()-1);
 					total = o.getTotal() + p.getPbuy();
@@ -149,6 +149,7 @@ public class CartController extends MasterService {
 					if(posible.getId() == id) {
 						it.remove();
 						o.setTotal(o.getTotal()-posible.getPbuy());
+						posible.setStock(posible.getStock()+1);
 						break;
 					}
 					cont++;

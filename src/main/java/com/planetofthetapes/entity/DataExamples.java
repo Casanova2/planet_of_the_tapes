@@ -35,6 +35,8 @@ public class DataExamples {
 		User user1, user2, user3, user4;
 		Product prod1, prod2, prod3, prod4, prod5, prod6, prod7, prod8, prod9, prod10, prod11, prod12, prod100, prod101,
 				prod102, prod103, prod104, prod105, prod200, prod201, prod202, prod203, prod204, prod205;
+		
+		Pack packp, packg;
 
 		// Users creation
 
@@ -179,7 +181,7 @@ public class DataExamples {
 		prod200 = new Product("The witcher 3: Wild Hunt",
 				"Based on The Witcher series of fantasy novels by Polish author Andrzej Sapkowski Players control protagonist Geralt of Rivia, a monster hunter known as a Witcher (Vedmak), is looking for his missing adopted daughter, who is on the run from the Wild Hunt.",
 				"Videogames", "Fantasy", 5, 50.0, 5.0, 96, "https://www.youtube.com/watch?v=XHrskkHf958", "CD Projekt",
-				"Geralt, Ciri, Jenneffer, Triss, Eredin.", 2015, "pc-witcher3.jpg");
+				"Geralt, Ciri, Yenneffer, Triss, Eredin.", 2015, "pc-witcher3.jpg");
 				
 		productRepository.save(prod200);
 
@@ -240,63 +242,26 @@ public class DataExamples {
 		user1.getOrders().add(order2);
 		userRepository.save(user1);
 		
+		//PACKS
+		List<Product> gamelist = new ArrayList<Product>();
+		List<Product> filmlist = new ArrayList<Product>();
 		
-		
-		
-			
-		/*List<Product> filmlist = new ArrayList<Product>();
-		
-		List<POrder> orderlist = new ArrayList<POrder>();
-		
+		gamelist.add(prod200);
+		gamelist.add(prod201);
+		gamelist.add(prod205);
 		
 		filmlist.add(prod1);
 		filmlist.add(prod2);
 		filmlist.add(prod3);
-		filmlist.add(prod4);
-	
 		
-<<<<<<< HEAD
-		POrder order2 = new POrder("Payed", "Credit Card", "Buy", 80.00, user3);
-		order2.setProducts(filmlist);
-=======
-		POrder order2 = new POrder(filmlist, "Payed", "Credit Card", "Buy", 80.00, user3);
+		packp = new Pack("Movies Deal",35,"packi.jpg");
+		packp.setProducts(filmlist);
 		
-		POrder order3 = new POrder(filmlist, "progress", "Credit Card", "Buy", 40.00, user2);
+		packg = new Pack("Games Deal", 40, "packo.jpg");
+		packg.setProducts(gamelist);
 		
->>>>>>> 09e8f5c6a918b36779043add2142b45795eb9149
-		
-		gamelist.add(prod200);
-		gamelist.add(prod201);
-		gamelist.add(prod202);
-		gamelist.add(prod203);
-		orderlist.add(order1);
-		orderlist.add(order2);
-<<<<<<< HEAD
-		
-		
-=======
-		//orderlist.add(order3);
-		porderRepository.save(order1);
->>>>>>> 09e8f5c6a918b36779043add2142b45795eb9149
-		porderRepository.save(order2);
-		//porderRepository.save(order3);
-		
-		
-		user2.getOrders().add(order2);
-		
-		// PACKS
-		Pack packpelis = new Pack("Peliculas Oferta",35,filmlist);
-		
-		
-		packRepository.save(packpelis);*/
-		//Pack packjuegos = new Pack("Juegos Oferta",60,gamelist);
-		//packRepository.save(packjuegos);
-		
-		
-		
-		
-		
-
+		packRepository.save(packp);
+		packRepository.save(packg);
 	}
 
 }

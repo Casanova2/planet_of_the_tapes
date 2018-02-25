@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.planetofthetapes.entity.Product;
 import com.planetofthetapes.entity.User;
+import com.planetofthetapes.repository.PackRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
@@ -29,6 +30,8 @@ public class MainController extends MasterService {
 	private UserRepository userRepository;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private PackRepository packRepository;
 	
 	@RequestMapping("/")
 	public String index(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
@@ -38,9 +41,11 @@ public class MainController extends MasterService {
 		Page<Product> movies = productRepository.findGroupByType("Movies", new PageRequest(0, 4));
 		Page<Product> videogames = productRepository.findGroupByType("Videogames", new PageRequest(0, 4));
 		
+		
 		model.addAttribute("series",series);		
 		model.addAttribute("movies",movies);
 		model.addAttribute("videogames",videogames);
+		model.addAttribute("packs", packRepository.findAll());
 		return "index";
 	}
 	

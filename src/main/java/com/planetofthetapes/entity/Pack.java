@@ -41,12 +41,30 @@ public class Pack {
 	@OneToMany
 	private List<Product> products;
 	
+	private String img;
+	
 
 	public Pack(Integer id, String name, Integer price) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
+	}
+	
+	
+	public Pack(String name, Integer price, String img) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.img = img;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public Integer getId() {

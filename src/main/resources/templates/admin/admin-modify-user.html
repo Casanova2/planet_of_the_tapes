@@ -17,7 +17,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-						<h2>Products</h2>
+						<h2>Users</h2>
 					
 						<div class="right-wrapper pull-right">
 							<ol class="breadcrumbs">
@@ -40,41 +40,41 @@
 								</div>
 								
 								<div class="panel-body">
-									<form action="/admin/user/editProfile" method="post">
+									<form action="/admin/user/editProfile" method="post" enctype="multipart/form-data">
 										<div class="form-group mb-lg">
 										
 											<label>User Name</label>
-											<input name="name" type="text" class="form-control input-lg" value="{{user.name}}"/>
+											<input name="name" type="text" class="form-control input-lg" value="{{user.name}}" required/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Password</label>
-											<input name="passwordHash" type="password" class="form-control input-lg" value="{{user.passwordHash}}"/>
+											<input name="passwordHash" type="password" class="form-control input-lg" value="{{user.passwordHash}}" required/>
 										</div>
 							
 										<div class="form-group mb-lg">
 											<label>DNI</label>
-											<input name="dni" type="text" class="form-control input-lg"  value="{{user.dni}}"/>
+											<input name="dni" type="text" class="form-control input-lg"  value="{{user.dni}}" required/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Email</label>
-											<input name="email" type="email" class="form-control input-lg" value="{{user.email}}" />
+											<input name="email" type="email" class="form-control input-lg" value="{{user.email}}" required/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Telephone</label>
-											<input name="telephone" type="number" class="form-control input-lg" value="{{user.telephone}}"/>
+											<input name="telephone" type="number" class="form-control input-lg" value="{{user.telephone}}" required/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Address</label>
-											<input name="address" type="text" class="form-control input-lg" value="{{user.address}}"/>
+											<input name="address" type="text" class="form-control input-lg" value="{{user.address}}" required/>
 										</div>
 										
 										<div class="form-group mb-lg">
 											<label>Avatar</label>
-											<input name="avatar" type="text" class="form-control input-lg" value="{{user.avatar}}"/>
+											<input name="img" type="file" required/>
 										</div>
 										
 										<footer class="panel-footer">

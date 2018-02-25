@@ -35,12 +35,38 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/checkout").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/selectpay").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/admin-userList").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/user-orderlist").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/user-ordertable").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/admin-products").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/admin-products-add").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/admin-add-user").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/admin-remove-product-action").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/admin-remove-user-action").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/admin-userTable").hasAnyRole("ADMIN");
+        
+        http.authorizeRequests().antMatchers("/admin-add-pack-action").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-orderlist").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-packlist").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-add-pack").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-remove-pack").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-modify-pack/").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin/pack/modify/").hasAnyRole("ADMIN");
+        
+        http.authorizeRequests().antMatchers("/admin/pack/remove/").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-user").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/admin-modify-user").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/admin/user/editProfile").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/admin-modify-product").hasAnyRole("ADMIN");
+        
+        http.authorizeRequests().antMatchers("/admin-modify-product-action").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin/user/remove/").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin/product/remove/").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin-modify-product/").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/admin/product/modify/").hasAnyRole("ADMIN");
+
+
+
+        
        
         
 

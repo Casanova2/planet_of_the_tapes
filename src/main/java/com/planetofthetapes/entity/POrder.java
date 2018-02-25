@@ -29,7 +29,17 @@ public class POrder {
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Product> products = new ArrayList<Product>();
 	
+	@OneToMany
+	private List<Pack> packs = new ArrayList<Pack>();
 	
+	public List<Pack> getPacks() {
+		return packs;
+	}
+
+	public void setPacks(List<Pack> packs) {
+		this.packs = packs;
+	}
+
 	private String state;
 	private String pay;
 	private String type;
@@ -38,25 +48,7 @@ public class POrder {
 	protected POrder() {
 	}
 	
-	/*private User user;
 	
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	protected POrder() {
-	}
-
-public POrder(User user) {
-	this.user = user;
-	this.total = 0;
-}
-*/
 public POrder(String state, String pay, String type, double total) {
 	this.state = state;
 	this.pay = pay;
@@ -116,6 +108,11 @@ public String getType() {
 
 public void setType(String type) {
 	this.type = type;
+}
+
+public void addPack(Pack p) {
+	this.packs.add(p);
+	
 }
 
 

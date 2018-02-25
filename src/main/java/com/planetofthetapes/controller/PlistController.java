@@ -27,8 +27,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.planetofthetapes.entity.Pack;
 import com.planetofthetapes.entity.Product;
 import com.planetofthetapes.entity.User;
+import com.planetofthetapes.repository.PackRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
@@ -39,9 +41,11 @@ public class PlistController extends MasterService {
 	private ProductRepository productRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private PackRepository packRepository;
 	
 	@RequestMapping("/mplist")
-    public String mostrarplist(Model model, @RequestParam int enlace, HttpServletRequest request, RedirectAttributes redirectAttrs){
+    public String mplist(Model model, @RequestParam int enlace, HttpServletRequest request, RedirectAttributes redirectAttrs){
 		this.session(model, request, redirectAttrs);
 		
 		String type = "";
@@ -59,6 +63,11 @@ public class PlistController extends MasterService {
 			type = "Videogames";
 			Page<Product> products = productRepository.findGroupByType("Videogames", new PageRequest(0, 8));
 			model.addAttribute("products", products);
+		}
+		
+		if(enlace == 4) {
+			type = "Packs";
+			model.addAttribute("packs", packRepository.findAll());
 		}
         
 		model.addAttribute("type", type);

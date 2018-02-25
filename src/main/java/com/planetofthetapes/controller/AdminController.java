@@ -47,6 +47,7 @@ public class AdminController extends MasterService{
 	private PackRepository packRepository;
 
 	
+	
 	@RequestMapping("/admin")
 	public String admin(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
@@ -79,14 +80,12 @@ public class AdminController extends MasterService{
 	@RequestMapping("/admin-orderlist")
 	public String orderlist(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
-		List<POrder> ord = porderRepository.findAll();
-		List<Product> prod = new ArrayList<Product>();
-		
 		model.addAttribute("orders", porderRepository.findAll());
 		
 		
 		return "/admin/admin-orderlist";
 	}
+
 	@RequestMapping("/admin-userList")
 	public String adminUserList(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
@@ -104,6 +103,16 @@ public class AdminController extends MasterService{
 		return "/admin/admin-packlist";
 	}
 	
+	@RequestMapping("/user-orderlist")
+	public String userPackList(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
+		User user = userRepository.findByName(request.getUserPrincipal().getName());
+		model.addAttribute("orderUserList",user.getOrders());
+		model.addAttribute("numberOrderlist",user.getOrders().size());
+		return "/admin/user-orderlist";
+	}
+	
+	
 	@RequestMapping("/admin-add-pack")
 	public String addPack(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		
@@ -114,7 +123,7 @@ public class AdminController extends MasterService{
 	
 	@RequestMapping("/admin-add-pack-action")
 	public String addPackAction(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs, @RequestParam String namePack, @RequestParam String nameP1,
-			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price) {
+			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price, @RequestParam MultipartFile img) {
 		
 		this.session(model, request, redirectAttrs);
 		
@@ -131,6 +140,21 @@ public class AdminController extends MasterService{
 		Pack p = new Pack(namePack, price, l);
 		
 		packRepository.save(p);
+		
+		String imgName = p.getId() + ".jpg";
+		if (!img.isEmpty()) {
+			try {
+				File imgFolder = new File("src/main/resources/static/img/ProductImages");
+				if (!imgFolder.exists()) {
+					imgFolder.mkdirs();
+				}
+				File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
+				img.transferTo(uploadedImage);
+			} catch (Exception e) {
+			}
+			p.setImg(imgName);
+			packRepository.save(p);
+		}
 		
 		redirectAttrs.addFlashAttribute("success", "Pack added successfully");
 		return "redirect:/admin-packlist";
@@ -217,7 +241,7 @@ public class AdminController extends MasterService{
 	@RequestMapping("/admin/user/editProfile") // modify
 	public String modifyuser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
 			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
-			RedirectAttributes redirectAttrs) {
+			RedirectAttributes redirectAttrs, @RequestParam MultipartFile img) {
 			this.session(model, request, redirectAttrs);
 			if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
 				User user = userRepository.findByName(request.getUserPrincipal().getName());
@@ -229,6 +253,21 @@ public class AdminController extends MasterService{
 				user.setPasswordHash(passwordHash);
 				user.setAvatar(avatar);
 				user.setTelephone(telephone);
+				String imgName = user.getName() +"Avatar.jpg";
+				if (!img.isEmpty()) {
+					try {
+						File imgFolder = new File("src/main/resources/static/img");
+						if (!imgFolder.exists()) {
+							imgFolder.mkdirs();
+						}
+						File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
+						img.transferTo(uploadedImage);
+					} catch (Exception e) {
+					}
+					user.setAvatar(imgName);
+					userRepository.save(user);
+				}
+				
 				try {
 					userRepository.save(user);
 				} catch (Exception e) {
@@ -352,19 +391,6 @@ public class AdminController extends MasterService{
 	
 	/////////// ******************** PRODUCTS ************************* ////////
 	
-	// Así NO se debe hacer
-	/*@RequestMapping("/admin-remove-product-action")
-	public String removeProductAction(Model model, @RequestParam String name, @RequestParam String type, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-			this.session(model, request, redirectAttrs);
-				try {
-					Product product = productRepository.findByNameAndType(name, type);
-					productRepository.delete(product);
-				} catch (Exception e) {
-					return "redirect:/admin-products/deleteError";
-				}
-
-				return "redirect:/admin-products";
-	}*/
 	
 	@RequestMapping("/admin-products-add")
 	public String addProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
@@ -405,7 +431,7 @@ public class AdminController extends MasterService{
 	}
 	
 	
-	// ASÍ SE DEBE HACER -----------------------------------------------------------
+	
 	@RequestMapping("/admin/product/remove/{id}") // remove
 	public String removeProduct(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		
