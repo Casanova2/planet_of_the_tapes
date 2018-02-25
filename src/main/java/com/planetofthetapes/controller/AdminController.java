@@ -47,6 +47,7 @@ public class AdminController extends MasterService{
 	private PackRepository packRepository;
 
 	
+	
 	@RequestMapping("/admin")
 	public String admin(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
@@ -79,14 +80,12 @@ public class AdminController extends MasterService{
 	@RequestMapping("/admin-orderlist")
 	public String orderlist(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
-		List<POrder> ord = porderRepository.findAll();
-		List<Product> prod = new ArrayList<Product>();
-		
 		model.addAttribute("orders", porderRepository.findAll());
 		
 		
 		return "/admin/admin-orderlist";
 	}
+
 	@RequestMapping("/admin-userList")
 	public String adminUserList(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
@@ -103,6 +102,16 @@ public class AdminController extends MasterService{
 		
 		return "/admin/admin-packlist";
 	}
+	
+	@RequestMapping("/user-orderlist")
+	public String userPackList(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
+		User user = userRepository.findByName(request.getUserPrincipal().getName());
+		model.addAttribute("orderUserList",user.getOrders());
+		model.addAttribute("numberOrderlist",user.getOrders().size());
+		return "/admin/user-orderlist";
+	}
+	
 	
 	@RequestMapping("/admin-add-pack")
 	public String addPack(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {

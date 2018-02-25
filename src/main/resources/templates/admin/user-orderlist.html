@@ -1,0 +1,66 @@
+!doctype html>
+<html class="fixed">
+
+	{{>admin/admin-head}}
+
+	<body>
+		<section class="body">
+
+			{{>admin/admin-header}}
+
+			<div class="inner-wrapper">
+				
+				{{> admin/admin-sidebar}}
+
+				<section role="main" class="content-body">
+					<header class="page-header">
+						<h2>Orders</h2>
+					
+						<div class="right-wrapper pull-right">
+							<ol class="breadcrumbs">
+								<li>
+									<a href="/admin">
+										<i class="fa fa-home"></i>
+									</a>
+								</li>
+								<li><span>Orders</span></li>
+							</ol>
+					
+						</div>
+					</header>
+
+					<!-- start: page -->
+						
+						<section class="panel">
+							<header class="panel-heading">
+						
+								<h2 class="panel-title">Orders</h2>
+							</header>
+							<div class="panel-body">
+								
+								<table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="/admin/assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf">
+									<thead>
+										<tr>
+											<th>Products</th>
+											<th>State</th>
+											<th>Pay</th>
+											<th>Total</th>
+									
+										</tr>
+									</thead>
+									<tbody>
+										{{#orderUserList}} {{>admin/user-ordertable}} {{/orderUserList}}
+									</tbody>
+								</table>
+							</div>
+						</section>
+					<!-- end: page -->
+				</section>
+			</div>
+
+		</section>
+
+		{{>admin/admin-footer}}
+		
+	</body>
+</html>

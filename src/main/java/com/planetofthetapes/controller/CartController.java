@@ -110,7 +110,7 @@ public class CartController extends MasterService {
 						}
 					}
 				}else {
-					POrder o= new POrder("progress","","",0.0);
+					POrder o= new POrder("progress","Credit Card","",0.0);
 					o.getProducts().add(p);
 					p.setStock(p.getStock()-1);
 					total = o.getTotal() + p.getPbuy();
@@ -149,6 +149,7 @@ public class CartController extends MasterService {
 					if(posible.getId() == id) {
 						it.remove();
 						o.setTotal(o.getTotal()-posible.getPbuy());
+						posible.setStock(posible.getStock()+1);
 						break;
 					}
 					cont++;

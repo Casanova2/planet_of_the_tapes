@@ -37,6 +37,10 @@ public class MasterService {
 			if(request.isUserInRole("ROLE_ADMIN")) {
 				model.addAttribute("admin", true);
 			}
+			if(request.isUserInRole("ROLE_USER")) {
+				model.addAttribute("user", true);
+			}
+			
 			
 			if(loggedUser.hasOrders()) {
 				ArrayList<POrder> listActualUser = new ArrayList<POrder>(loggedUser.getOrders());
@@ -53,7 +57,7 @@ public class MasterService {
 			model.addAttribute("user", loggedUser);
 			model.addAttribute("logged", true);
 			
-			this.numbers(model);
+			this.numbers(model,request);
 		} else {
 			model.addAttribute("sizeProducts",zero);
 			model.addAttribute("logged", false);
@@ -61,10 +65,12 @@ public class MasterService {
 		}
 	}
 	
-	public void numbers (Model model) {
+	public void numbers (Model model,HttpServletRequest request) {
+		User loggedUser = userRepository.findByName(request.getUserPrincipal().getName());
 		model.addAttribute("numberProducts",productRepository.findAll().size());
 		model.addAttribute("numberUsers",userRepository.findAll().size());
 		model.addAttribute("numberOrders",POrderRepository.findAll().size());
 		model.addAttribute("numberPacks",packRepository.findAll().size());
+		model.addAttribute("numberOrderlist",loggedUser.getOrders().size());
 	}
 }
