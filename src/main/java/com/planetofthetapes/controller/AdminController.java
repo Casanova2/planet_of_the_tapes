@@ -391,19 +391,6 @@ public class AdminController extends MasterService{
 	
 	/////////// ******************** PRODUCTS ************************* ////////
 	
-	// Así NO se debe hacer
-	/*@RequestMapping("/admin-remove-product-action")
-	public String removeProductAction(Model model, @RequestParam String name, @RequestParam String type, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-			this.session(model, request, redirectAttrs);
-				try {
-					Product product = productRepository.findByNameAndType(name, type);
-					productRepository.delete(product);
-				} catch (Exception e) {
-					return "redirect:/admin-products/deleteError";
-				}
-
-				return "redirect:/admin-products";
-	}*/
 	
 	@RequestMapping("/admin-products-add")
 	public String addProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
@@ -444,7 +431,7 @@ public class AdminController extends MasterService{
 	}
 	
 	
-	// ASÍ SE DEBE HACER -----------------------------------------------------------
+	
 	@RequestMapping("/admin/product/remove/{id}") // remove
 	public String removeProduct(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		

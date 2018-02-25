@@ -74,20 +74,6 @@ public class PlistController extends MasterService {
         return "plist";
     }
 	
-	/*@RequestMapping("/packlist")
-    public String mpacklist(Model model, @RequestParam int enlace, HttpServletRequest request, RedirectAttributes redirectAttrs){
-		this.session(model, request, redirectAttrs);
-		
-		String type = "";
-		if(enlace == 1) {
-			type = "Packs";
-			model.addAttribute("Packs", packRepository.findAll());
-		}
-        
-		model.addAttribute("type", type);
-        return "packList";
-    }*/
-	
 	@RequestMapping(value = "/loadmore")
 	public String moreBooks(Model model, @RequestParam int page, @RequestParam String type, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		

@@ -48,25 +48,7 @@ public class POrder {
 	protected POrder() {
 	}
 	
-	/*private User user;
 	
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	protected POrder() {
-	}
-
-public POrder(User user) {
-	this.user = user;
-	this.total = 0;
-}
-*/
 public POrder(String state, String pay, String type, double total) {
 	this.state = state;
 	this.pay = pay;

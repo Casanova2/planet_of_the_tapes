@@ -5,168 +5,157 @@
 
 <body>
 
-    <div class="body">
-       
-        {{>header}}
-       
-        <div role="main" class="main shop">
+	<div class="body">
 
-            <div class="container">
+		{{>header}}
 
-                <div class="row">
-                    <div class="col">
-                        <hr class="tall mt-4">
-                    </div>
-                </div>
+		<div role="main" class="main shop">
 
-                <div class="row">
-                    <div class="col">
+			<div class="container">
 
-                        <div class="featured-boxes">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="featured-box featured-box-primary text-left mt-2">
-                                        <div class="box-content">
-                                            <form method="post" action="">
-                                                <table class="shop_table cart">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="product-remove">
-                                                                &nbsp;
-                                                            </th>
-                                                            <th class="product-thumbnail">
-                                                                &nbsp;
-                                                            </th>
-                                                            <th class="product-name">
-                                                                Product
-                                                            </th>
-                                                            <th class="product-price">
-                                                                Price
-                                                            </th>
-                                                       
-                                                            <th class="product-subtotal">
-                                                                Total
-                                                            </th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        {{#productsOrders}} {{>cartItem2}} {{/productsOrders}}
-                                                        <div class="col-md-12" style="text-align:center;"><span style="color:red; font-size:26px;">{{^productsOrders}} Cart is empty {{/productsOrders}}</span></div>
-                                                        <tr>
-                                                            <td class="actions" colspan="6">
-                                                                <div class="actions-continue">
-                                                                    <input href="/cart" type="submit" value="Update Cart" name="update_cart"  class="btn btn-light">
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="featured-boxes">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="featured-box featured-box-primary text-left mt-3 mt-lg-4">
-                                        <div class="box-content">
-                                            <h4 class="heading-primary text-uppercase mb-3">Total Price</h4>
-                                            <table class="cart-totals">
-                                                <tbody>
-                                                    <tr class="cart-subtotal">
-                                                        <th>
-                                                            <strong>Subtotal</strong>
-                                                        </th>
-                                                        {{#totalOrder}}
-                                                        <td>
-                                                            <strong><span class="amount">{{totalOrder}}</span></strong>
-                                                        </td>
-                                                        {{/totalOrder}}
-                                                    </tr>
-                                                    <tr class="shipping">
-                                                        <th>
-                                                            Shipping
-                                                        </th>
-                                                        <td>
-                                                            Free Shipping<input type="hidden" value="free_shipping" id="shipping_method" name="shipping_method">
-                                                        </td>
-                                                    </tr>
-                                                    <tr class="total">
-                                                        <th>
-                                                            <strong>Order Total</strong>
-                                                        </th>
-                                                        {{#totalOrder}}
-                                                        <td>
-                                                            <strong><span class="amount">{{totalOrder}}</span></strong>
-                                                        </td>
-                                                        {{/totalOrder}}
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="featured-box featured-box-primary text-left mt-3 mt-lg-4">
-                                        <div class="box-content">
-                                            <h4 class="heading-primary">Payment</h4>
-                                            <form class="form-horizontal form-bordered" method="get">
+				<div class="row">
+					<div class="col">
+						<hr class="tall mt-4">
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col">
+
+						<div class="featured-boxes">
+							<div class="row">
+								<div class="col">
+									<div class="featured-box featured-box-primary text-left mt-2">
+										<div class="box-content">
+											<form method="post" action="">
+												<table class="shop_table cart">
+													<thead>
+														<tr>
+															<th class="product-remove">&nbsp;</th>
+															<th class="product-thumbnail">&nbsp;</th>
+															<th class="product-name">Product</th>
+															<th class="product-price">Price</th>
+
+															<th class="product-subtotal">Total</th>
+														</tr>
+													</thead>
+													<tbody>
+														{{#productsOrders}} {{>cartItem2}} {{/productsOrders}}
+														<div class="col-md-12" style="text-align: center;">
+															<span style="color: red; font-size: 26px;">{{^productsOrders}}
+																Cart is empty {{/productsOrders}}</span>
+														</div>
+														<tr>
+															<td class="actions" colspan="6">
+																<div class="actions-continue">
+																	<input href="/cart" type="submit" value="Update Cart"
+																		name="update_cart" class="btn btn-light">
+																</div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="featured-boxes">
+							<div class="row">
+								<div class="col-sm-6">
+									<div
+										class="featured-box featured-box-primary text-left mt-3 mt-lg-4">
+										<div class="box-content">
+											<h4 class="heading-primary text-uppercase mb-3">Total
+												Price</h4>
+											<table class="cart-totals">
+												<tbody>
+													<tr class="cart-subtotal">
+														<th><strong>Subtotal</strong></th> {{#totalOrder}}
+														<td><strong><span class="amount">{{totalOrder}}</span></strong>
+														</td> {{/totalOrder}}
+													</tr>
+													<tr class="shipping">
+														<th>Shipping</th>
+														<td>Free Shipping<input type="hidden"
+															value="free_shipping" id="shipping_method"
+															name="shipping_method">
+														</td>
+													</tr>
+													<tr class="total">
+														<th><strong>Order Total</strong></th> {{#totalOrder}}
+														<td><strong><span class="amount">{{totalOrder}}</span></strong>
+														</td> {{/totalOrder}}
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div
+										class="featured-box featured-box-primary text-left mt-3 mt-lg-4">
+										<div class="box-content">
+											<h4 class="heading-primary">Payment</h4>
+											<form class="form-horizontal form-bordered" method="get">
 												<div class="form-group">
 													<div class="col-md-6">
 														<div class="radio">
-															<label>
-																<input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">
-																Master Card
-															</label>
-															<img src="/img/MasterCard.png"  data-lock-picture="/img/MasterCard.png" width="80" height="50" />
-														</div>					
+															<label> <input type="radio" name="optionsRadios"
+																id="optionsRadios3" value="option3"> Master Card
+															</label> <img src="/img/MasterCard.png"
+																data-lock-picture="/img/MasterCard.png" width="80"
+																height="50" />
+														</div>
 														<div class="radio">
-															<label>
-																<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+															<label> <input type="radio" name="optionsRadios"
+																id="optionsRadios1" value="option1" checked="">
 																Visa
-															</label>
-															<img src="/img/visa.png"  data-lock-picture="/img/visa.png" width="100" height="50" />
+															</label> <img src="/img/visa.png"
+																data-lock-picture="/img/visa.png" width="100"
+																height="50" />
 														</div>
 														<div class="radio">
-															<label>
-																<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
-																American Express
-															</label>
-															<img src="/img/American.png"  data-lock-picture="/img/American.png" width="70" height="50" />
+															<label> <input type="radio" name="optionsRadios"
+																id="optionsRadios2" value="option2"> American
+																Express
+															</label> <img src="/img/American.png"
+																data-lock-picture="/img/American.png" width="70"
+																height="50" />
 														</div>
-							
+
 													</div>
-												</div>							
+												</div>
 											</form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-                    </div>
+					</div>
 
-                </div>
+				</div>
 
-                <div class="row">
-                    <div class="col">
-                        <div class="actions-continue">
-                            <a href="/checkout">
-                            	<button type="button" class="btn btn-3d btn-primary mb-2">Pay <i class="fa fa-angle-right ml-1">
-                            	</i></button>
+				<div class="row">
+					<div class="col">
+						<div class="actions-continue">
+							<a href="/checkout">
+								<button type="button" class="btn btn-3d btn-primary mb-2">
+									Pay <i class="fa fa-angle-right ml-1"> </i>
+								</button>
 							</a>
-							
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-        </div>
+						</div>
+					</div>
+				</div>
 
-    </div>
+			</div>
+		</div>
 
-    </div>
+	</div>
 
-    {{>footer}}
+	</div>
+
+	{{>footer}}
