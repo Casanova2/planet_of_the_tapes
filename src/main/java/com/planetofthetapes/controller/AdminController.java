@@ -140,8 +140,6 @@ public class AdminController extends MasterService{
 		l.add(product2);
 		l.add(product3);
 		
-		System.out.println("Aniado productos");
-		
 		Pack p = new Pack(namePack, price, l);
 		packRepository.save(p);
 		

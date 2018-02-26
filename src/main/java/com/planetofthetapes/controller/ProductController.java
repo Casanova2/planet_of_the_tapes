@@ -58,6 +58,15 @@ public class ProductController extends MasterService {
 		model.addAttribute("pack", pack);
 		model.addAttribute("relate",packRepository.findAll());
 		model.addAttribute("productspack", pack.getProducts());
+		ArrayList<Product> l = new ArrayList(pack.getProducts());
+		int cont = 0;
+		double suma = 0;
+		while(cont < 3) {
+			Product p = l.get(cont);
+			suma = suma + p.getPbuy();
+			cont++;
+		}
+		model.addAttribute("packPrice", suma);
 		return "product";
 	}
 	

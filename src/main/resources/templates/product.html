@@ -74,8 +74,8 @@
                         </li>
 
                         <li>
-                        <div class="buy-product">
-                            <a>{{producto.pbuy}}</a>
+                        <div class="buy-product" style="font-size:22px;">
+                            <a>{{producto.pbuy}} €</a>
                         </div>
                         <a href="/{{producto.id}}/buy" style="font-size:24px;" class="btn btn-primary pt-2 pb-2 pr-3 pl-3">Buy</a>
                         </li>
@@ -129,11 +129,12 @@
 
                     <div class="portfolio-info">
                         <div class="row">
-                            <div class="col-md-6" style="font-size:24px;" >
+                            <div class="col-md-12" style="font-size:24px;" >
                                 <h5>Products in this pack:</h5>
                                 <ul>
                             		{{#productspack}}
                             			<li>{{name}}</li>
+                            			<br>
                             		{{/productspack}}
                             
                             	</ul>
@@ -146,11 +147,11 @@
                     <ul class="portfolio-details">
                        
                         <li>
-                        <div class="buy-pack">
+                        <div class="buy-pack" style="font-size:22px;">
                         <h5>Price</h5>
-                            <a>{{pack.price}}</a>
+                            <a>{{packPrice}} €</a>
                         </div>
-                        <a href="/{{pack.id}}/buy" style="font-size:24px;" class="btn btn-primary pt-2 pb-2 pr-3 pl-3">Buy</a>
+                        <a href="/pack/{{pack.id}}/buy" style="font-size:24px;" class="btn btn-primary pt-2 pb-2 pr-3 pl-3">Buy</a>
                         </li>
                     </ul>
 

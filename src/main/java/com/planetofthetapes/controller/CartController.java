@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.planetofthetapes.entity.POrder;
+import com.planetofthetapes.entity.Pack;
 import com.planetofthetapes.entity.Product;
 import com.planetofthetapes.entity.User;
 import com.planetofthetapes.repository.POrderRepository;
+import com.planetofthetapes.repository.PackRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
 
@@ -31,6 +33,8 @@ public class CartController extends MasterService {
 	private UserRepository userRepository;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private PackRepository packRepository;
 	@Autowired
 	private POrderRepository POrderRepository;
 	@Autowired
@@ -140,6 +144,74 @@ public class CartController extends MasterService {
 			return "redirect:/login";
 		}
 	}
+	
+	@RequestMapping("/pack/{id}/buy")
+	public String packbuy(Model model, @PathVariable Integer id, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+		
+		this.session(model, request, redirectAttrs);
+		if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
+			User user = userRepository.findByName(request.getUserPrincipal().getName());
+			
+			
+			double total = 0.0;
+			Pack pack = packRepository.findById(id);
+			ArrayList<Product> l = new ArrayList(pack.getProducts());
+			
+			int cont = 0;
+			while(cont<3) {
+				Product p = l.get(cont);
+				
+				if(p.getStock() > 0) {		
+					
+					if(user.hasOrders()) {
+						ArrayList<POrder> listActualUSer = new ArrayList<POrder>(user.getOrders());
+						for(POrder o: listActualUSer) {
+							if(o.getState().equals("progress")) {
+								o.addProduct(p); 
+								p.setStock(p.getStock()-1);
+								total = o.getTotal() + p.getPbuy(); 
+								o.setTotal(total);
+								POrderRepository.save(o);
+								
+								ArrayList<POrder> listPOrders = new ArrayList<POrder>();
+								listPOrders.add(o);
+								user.setOrders(listPOrders);
+								model.addAttribute("totalOrder",o.getTotal());
+								model.addAttribute("productsOrder",o.getProducts());
+							}else {
+								POrder op= new POrder("progress","Credit Card","",0.0);
+								op.getProducts().add(p);
+								p.setStock(p.getStock()-1);
+								total = op.getTotal() + p.getPbuy();
+								op.setTotal(total);
+								user.addOrder(op);
+								POrderRepository.save(op);
+								model.addAttribute("totalOrder",op.getTotal());
+							}
+						}
+					}else {
+						POrder o= new POrder("progress","Credit Card","",0.0);
+						o.getProducts().add(p);
+						p.setStock(p.getStock()-1);
+						total = o.getTotal() + p.getPbuy();
+						o.setTotal(total);
+						user.addOrder(o);
+						POrderRepository.save(o);
+						model.addAttribute("totalOrder",o.getTotal());
+					}
+				}else{
+					redirectAttrs.addFlashAttribute("error","Product out of stock.");
+					return "redirect:/cart";
+				}
+				cont++;
+			}
+			return "redirect:/";
+		}else {
+			redirectAttrs.addFlashAttribute("error","Please, login or register to buy products");
+			return "redirect:/login";
+		}
+	}	
 	
 	@RequestMapping("/{id}/remove")
 	public String removeResource(Model model, @PathVariable Integer id, HttpServletRequest request,
