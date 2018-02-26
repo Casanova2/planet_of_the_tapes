@@ -48,20 +48,32 @@
 											<label>Pack Price</label>
 											<input name="price" type="number" class="form-control input-lg"/>
 										</div>
-							
+										
 										<div class="form-group mb-lg">
-											<label>First Product Name in Pack</label>
-											<input name="nameP1" type="text" class="form-control input-lg"/>
+											<label>Product 1</label>
+											<select name="nameP1" class="form-control form-control-lg mb-3">
+											{{#products}}
+												<option name="{{name}}" {{selected}}>{{name}}</option>
+											{{/products}}
+											</select>
 										</div>
 										
 										<div class="form-group mb-lg">
-											<label>Second Product Name in Pack</label>
-											<input name="nameP2" type="text" class="form-control input-lg"/>
+											<label>Product 2</label>
+											<select name="nameP2" class="form-control form-control-lg mb-3">
+											{{#products}}
+												<option name="{{name}}" {{selected}}>{{name}}</option>
+											{{/products}}
+											</select>
 										</div>
 										
 										<div class="form-group mb-lg">
-											<label>Third Product Name in Pack</label>
-											<input name="nameP3" type="text" class="form-control input-lg"/>
+											<label>Product 3</label>
+											<select name="nameP3" class="form-control form-control-lg mb-3">
+											{{#products}}
+												<option name="{{name}}" {{selected}}>{{name}}</option>
+											{{/products}}
+											</select>
 										</div>
 										
 										<div class="form-group mb-lg">

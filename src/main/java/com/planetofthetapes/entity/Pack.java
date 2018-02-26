@@ -25,11 +25,10 @@ public class Pack {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	
-	@Column(unique = true)
 	private String name;
 	private Integer price;
 	
-	@OneToMany
+	@ManyToMany
 	private List<Product> products;
 	
 	private String img;

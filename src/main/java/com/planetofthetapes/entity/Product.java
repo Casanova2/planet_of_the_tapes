@@ -46,6 +46,7 @@ public class Product {
 	private String cast;
 	private int year;
 	private String urlimg;
+	public String selected;
 	
 
 
@@ -71,7 +72,7 @@ public class Product {
 	}
 	
 	public Product(String name, String description, String type, String genre, int stock, double pbuy,
-			double prent, int score, String trailer, String director, String cast, int year, String urlimg) {
+			double prent, int score, String trailer, String director, String cast, int year, String urlimg, String selected) {
 			this.name = name;
 			this.description = description;
 			this.type = type;
@@ -85,7 +86,25 @@ public class Product {
 			this.cast = cast;
 			this.year = year;
 			this.urlimg = urlimg;
+			this.selected = selected;
 		}
+	
+	public String getSelected() {
+		return selected;
+	}
+
+
+
+	public void setSelected(String selected) {
+		this.selected = selected;
+	}
+
+
+
+	public void Option(String name, boolean seleted){
+        this.name = name;
+        this.selected = seleted ? "selected" : "";
+    }
 	
 	public void setPorders(List<POrder> pedidos) {
 		this.porders = pedidos;

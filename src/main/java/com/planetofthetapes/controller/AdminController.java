@@ -117,6 +117,9 @@ public class AdminController extends MasterService{
 	public String addPack(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		
 		this.session(model, request, redirectAttrs);
+		model.addAttribute("products",productRepository.findAll());
+		
+		model.addAttribute("packs",packRepository.findAll());
 		
 		return "admin/admin-add-pack-action";
 	}
@@ -137,8 +140,9 @@ public class AdminController extends MasterService{
 		l.add(product2);
 		l.add(product3);
 		
-		Pack p = new Pack(namePack, price, l);
+		System.out.println("Aniado productos");
 		
+		Pack p = new Pack(namePack, price, l);
 		packRepository.save(p);
 		
 		String imgName = "pack" + p.getId() + ".jpg";
@@ -155,7 +159,6 @@ public class AdminController extends MasterService{
 			p.setImg(imgName);
 			packRepository.save(p);
 		}
-		
 		redirectAttrs.addFlashAttribute("success", "Pack added successfully");
 		return "redirect:/admin-packlist";
 	}
