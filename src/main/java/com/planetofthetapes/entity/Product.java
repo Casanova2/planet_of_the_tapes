@@ -17,35 +17,53 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class Product {
+	
+	public interface Basic{}
+	public interface OrderRelation{}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	private Integer id;
 	
 	@ManyToMany(mappedBy = "products")
+	@JsonView(OrderRelation.class)
 	private List<POrder> porders = new ArrayList<POrder>();
-
+	
+	@JsonView(Basic.class)
 	private String name;
+	@JsonView(Basic.class)
 	private String description;
-	public List<POrder> getPedidos() {
-		return porders;
-	}
 
+	@JsonView(Basic.class)
 	private String type;
+	@JsonView(Basic.class)
 	private String genre;
+	@JsonView(Basic.class)
 	private int stock;
+	@JsonView(Basic.class)
 	private double pbuy ;
+	@JsonView(Basic.class)
 	private double prent;
+	@JsonView(Basic.class)
 	private int score;
+	@JsonView(Basic.class)
 	private String trailer;
+	@JsonView(Basic.class)
 	private String director;
+	@JsonView(Basic.class)
 	private String cast;
+	@JsonView(Basic.class)
 	private int year;
+	@JsonView(Basic.class)
 	private String urlimg;
+	@JsonView(Basic.class)
 	public String selected;
 	
 
@@ -91,6 +109,9 @@ public class Product {
 	
 	public String getSelected() {
 		return selected;
+	}
+	public List<POrder> getPedidos() {
+		return porders;
 	}
 
 

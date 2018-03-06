@@ -13,6 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.planetofthetapes.component.UserComponent;
 import com.planetofthetapes.entity.User;
 import com.planetofthetapes.repository.UserRepository;
 
@@ -21,6 +22,8 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private UserComponent userComponent;
 
 	@Override
 	public Authentication authenticate(Authentication auth) throws AuthenticationException {
@@ -34,14 +37,15 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 		String password = (String) auth.getCredentials();
 		if (!new BCryptPasswordEncoder().matches(password, user.getPasswordHash())) {
 			throw new BadCredentialsException("Wrong password");
-		}
+		}else {
+			userComponent.setLoggedUser(user);
 		
 		List<GrantedAuthority> roles = new ArrayList<>();
 		for (String role : user.getRoles()) {
 			roles.add(new SimpleGrantedAuthority(role));
 		}
-
-		return new UsernamePasswordAuthenticationToken(user.getName(), password, roles);
+			return new UsernamePasswordAuthenticationToken(user.getName(), password, roles);
+		}
 	}
 
 	@Override

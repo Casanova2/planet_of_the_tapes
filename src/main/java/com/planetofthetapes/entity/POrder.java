@@ -16,33 +16,40 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.planetofthetapes.entity.Product.Basic;
+
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class POrder {
 
+	public interface Basic {}
+	public interface ProductRelationOrder{}
+	public interface PackRelation{}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	private Integer id;
 	
 	
 	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonView(ProductRelationOrder.class)
 	private List<Product> products = new ArrayList<Product>();
 	
 	@OneToMany
+	@JsonView(PackRelation.class)
 	private List<Pack> packs = new ArrayList<Pack>();
 	
-	public List<Pack> getPacks() {
-		return packs;
-	}
 
-	public void setPacks(List<Pack> packs) {
-		this.packs = packs;
-	}
-
+	@JsonView(Basic.class)
 	private String state;
+	@JsonView(Basic.class)
 	private String pay;
+	@JsonView(Basic.class)
 	private String type;
+	@JsonView(Basic.class)
 	private double total;
 	
 	protected POrder() {
@@ -67,6 +74,14 @@ public void setProducts(List<Product> products) {
 
 public double getTotal() {
 	return total;
+}
+
+public List<Pack> getPacks() {
+	return packs;
+}
+
+public void setPacks(List<Pack> packs) {
+	this.packs = packs;
 }
 
 public void setTotal(double total) {
@@ -113,6 +128,12 @@ public void setType(String type) {
 public void addPack(Pack p) {
 	this.packs.add(p);
 	
+}
+
+@Override
+public String toString() {
+	return "POrder [id=" + id + ", products=" + products + ", packs=" + packs + ", state=" + state
+			+ ", type=" + type + ", pay=" + pay + ", total=" + total + "]";
 }
 
 

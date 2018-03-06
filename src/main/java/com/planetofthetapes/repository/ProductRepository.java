@@ -25,6 +25,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer>{
 	
 	Page<Product> findByGenreAndType (String genre,String type,Pageable page);
 	
+	List<Product> findByGenreAndType (String genre,String type);
+	
 	Product findByType (String type);
 	
 	List<Product> findGroupByGenre(String genre);

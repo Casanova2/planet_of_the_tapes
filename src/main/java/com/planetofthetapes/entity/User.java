@@ -20,31 +20,47 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.planetofthetapes.PlanetOfTheTapesApplication;
+import com.planetofthetapes.entity.Product.Basic;
 
 @Entity
 @Component
 @SessionScope
 public class User {
 
+	public interface Basic{}
+	public interface OrderRelationUser{}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	private Integer id;
 
 	@Column(unique = true)
+	@JsonView(Basic.class)
 	private String name;
+	@JsonView(Basic.class)
 	private String passwordHash;
+	@JsonView(Basic.class)
 	private String dni;
+	@JsonView(Basic.class)
 	private String email;
+	@JsonView(Basic.class)
 	private String telephone;
+	@JsonView(Basic.class)
 	private boolean viewTelephone;
+	@JsonView(Basic.class)
 	private String address;
+	@JsonView(Basic.class)
 	private String avatar;
 
 	@ElementCollection(fetch = FetchType.EAGER)
+	@JsonView(Basic.class)
 	private List<String> roles;
 	
 	@OneToMany(cascade=CascadeType.ALL)
+	@JsonView(OrderRelationUser.class)
 	private List<POrder> orders= new ArrayList<POrder>();
 
 	protected User() {
@@ -162,7 +178,6 @@ public class User {
 	public void addOrder(POrder p) {
 		this.orders.add(p);
 	}
-
 	
 	public String toString() {
 		return "User id: " + this.getId() +", " +

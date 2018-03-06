@@ -16,10 +16,11 @@ import com.planetofthetapes.repository.POrderRepository;
 import com.planetofthetapes.repository.PackRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
+import com.planetofthetapes.restController.LoginRestController;
 
 import javassist.bytecode.Descriptor.Iterator;
 
-public class MasterService {
+public class MasterService extends LoginRestController{
 	
 	@Autowired
 	private UserRepository userRepository;

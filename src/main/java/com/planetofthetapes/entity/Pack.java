@@ -16,23 +16,38 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.planetofthetapes.entity.Product.Basic;
+
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
-public class Pack {
+public class Pack{
+	
+	public interface Basic{}
+	public interface ProductRelation{}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(Basic.class)
 	private Integer id;
 	
+	@JsonView(Basic.class)
 	private String name;
+	@JsonView(Basic.class)
 	private Integer price;
 	
 	@ManyToMany
+	@JsonView(ProductRelation.class)
 	private List<Product> products;
 	
+	@JsonView(Basic.class)
 	private String img;
 	
+	
+	protected Pack() {
+		
+	}
 	
 	public Pack(String name, Integer price,List<Product> products, String img) {
 		this.name = name;
@@ -107,11 +122,10 @@ public class Pack {
 	public void setPrice(Integer price) {
 		this.price = price;
 	}
-
-
-
-	protected Pack() {
-		
+	
+	@Override
+	public String toString() {
+		return "Pack [id=" + id + ", name" + name + ", price" + price + ", products=" + products + ", img=" + img + "]";
 	}
 
 }
