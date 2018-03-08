@@ -31,6 +31,7 @@ public class User {
 
 	public interface Basic{}
 	public interface OrderRelationUser{}
+	public interface LoginInt {}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,9 +39,9 @@ public class User {
 	private Integer id;
 
 	@Column(unique = true)
-	@JsonView(Basic.class)
+	@JsonView({Basic.class, LoginInt.class})
 	private String name;
-	@JsonView(Basic.class)
+	@JsonView({Basic.class, LoginInt.class})
 	private String passwordHash;
 	@JsonView(Basic.class)
 	private String dni;

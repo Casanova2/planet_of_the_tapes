@@ -20,9 +20,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -200,13 +203,6 @@ public class AdminRestController extends MasterService{
 		return p;
 	}
 	
-	@RequestMapping("/admin-remove-pack")
-	public String removePack(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
-
-		return "admin/admin-remove-pack-action";
-	}
-	
 	@RequestMapping("/admin-modify-pack/{id}")
 	public String modifyPack(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 	
@@ -273,62 +269,28 @@ public class AdminRestController extends MasterService{
 		return "/admin/admin-user";
 	}
 
-	@RequestMapping("/admin-modify-user")
-	public String adminmodifyuser(Model model,@RequestParam Integer id, @RequestParam String passwordHash, @RequestParam String dni,
-			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
+	@JsonView(UserDetails.class)
+	@RequestMapping(value="/admin-modify-user/{id}", method=RequestMethod.PUT)
+	public ResponseEntity<User> adminmodifyuserRest(Model model,@PathVariable Integer id, @RequestBody User user, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 			
 		this.session(model, request, redirectAttrs);
 			
-				User user = userRepository.findById(id);
+		User userUpdated = userRepository.findById(id);
 				
-				user.setAddress(address);
-				user.setDni(dni);
-				user.setEmail(email);
-				user.setPasswordHash(passwordHash);
-				user.setAvatar(avatar);
-				user.setTelephone(telephone);
-				try {
-					userRepository.save(user);
-				} catch (Exception e) {
-					return "redirect:/admin-userList/addError";
-				}
-				redirectAttrs.addFlashAttribute("success", "User modified successfully");
-		return "redirect:/admin-user";
-	}
-	
-	@RequestMapping("/admin/user/editProfile") // modify
-	public String modifyuser(Model model, @RequestParam String passwordHash, @RequestParam String dni,
-			@RequestParam String email,@RequestParam String telephone, @RequestParam String address,String avatar, HttpServletRequest request,
-			RedirectAttributes redirectAttrs) {
-			this.session(model, request, redirectAttrs);
-			if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
-				User user = userRepository.findByName(request.getUserPrincipal().getName());
-			System.out.println(user.getName()+"----<");
+		if(userUpdated!=null) {
+			userUpdated.setAddress(user.getAddress());
+			userUpdated.setDni(user.getDni());
+			userUpdated.setEmail(user.getEmail());
+			userUpdated.setPasswordHash(user.getPasswordHash());
+			userUpdated.setAvatar(user.getAvatar());
+			userUpdated.setTelephone(user.getTelephone());
 				
-				user.setAddress(address);
-				user.setDni(dni);
-				user.setEmail(email);
-				user.setPasswordHash(passwordHash);
-				user.setAvatar(avatar);
-				user.setTelephone(telephone);
-				
-				
-				try {
-					userRepository.save(user);
-				} catch (Exception e) {
-					return "redirect:/admin-userList/addError";
-				}
-			}
-		redirectAttrs.addFlashAttribute("success", "User modified successfully");
-		return "redirect:/admin-user";
-	}
-		
-	@RequestMapping(value="/admin-modify-product")
-	public String ModifyProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-
-		this.session(model, request, redirectAttrs);
-		return "admin/admin-modify-product-action";
+			userRepository.save(userUpdated);
+			return new ResponseEntity<>(userUpdated, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
 	@RequestMapping("/admin-modify-product-action")
@@ -374,67 +336,36 @@ public class AdminRestController extends MasterService{
 				
 		return "redirect:/admin-products";
 	}
-	
-	@RequestMapping("/add-user")
-	public String addUser(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
-		model.addAttribute("products",productRepository.findAll());
-	
-		return "/admin/admin-add-user";
-	}
-	
-	@RequestMapping("/admin-user-add")
-	public String adduser(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
 
-		return "admin/admin-add-user";
-	}
-	
-	@RequestMapping("/admin-add-user")
-	public String addUser(Model model, @RequestParam String name, @RequestParam String passwordHash, @RequestParam String dni,
-			@RequestParam String email,@RequestParam String telephone, @RequestParam String address, String avatar, HttpServletRequest request,
+	@JsonView(UserDetails.class)
+	@RequestMapping(value="/admin-add-user", method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public User addUserRest(Model model, @RequestBody User user, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 			
 			this.session(model, request, redirectAttrs);
 				
-				avatar = "usern.png";
-				User user = new User(name,passwordHash,dni,email,telephone,address,avatar,"ROLE_USER");
-				try {
-					userRepository.save(user);
-				} catch (Exception e) {
-					return "redirect:/admin-userList/addError";
-				}
-				redirectAttrs.addFlashAttribute("success", "User Added.");
+				String avatar = "usern.png";
+				User newuser = new User(user.getName(), user.getPasswordHash(),user.getDni(), user.getEmail(), user.getTelephone(),
+						user.getAddress(),avatar,"ROLE_USER");
 
-				return "redirect:/admin-userList";
+				userRepository.save(newuser);
+
+				return user;
 	}
 	
-	@RequestMapping("/admin-remove-product")
-	public String removeProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
-
-		return "admin/admin-remove-product-action";
-	}
-	
-	@RequestMapping("/admin-remove-user")
-	public String removeUse(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
-
-		return "admin/admin-remove-user-action";
-	}
-
-	@RequestMapping("/admin/user/remove/{id}")
-	public String removeUsertAction(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+	@JsonView(UserDetails.class)
+	@RequestMapping(value="/admin/user/remove/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<User> removeUsertActionRest(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 			this.session(model, request, redirectAttrs);
-				try {
-					User user = userRepository.findById(id);
-					userRepository.delete(user);
-				} catch (Exception e) {
-					redirectAttrs.addFlashAttribute("error", "Error to modify user.");
-					return "redirect:/admin-user/deleteError";
-				}
-				redirectAttrs.addFlashAttribute("success", "User Deleted.");
-				return "redirect:/admin-userList";
+			
+			User user = userRepository.findById(id);
+			if (user!=null) {
+			userRepository.delete(user);
+			return new ResponseEntity<>(user, HttpStatus.OK);
+			}else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}			
 	}
 	
 	/////////// ******************** PRODUCTS ************************* ////////

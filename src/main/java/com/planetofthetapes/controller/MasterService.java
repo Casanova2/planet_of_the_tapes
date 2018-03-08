@@ -20,7 +20,7 @@ import com.planetofthetapes.restController.LoginRestController;
 
 import javassist.bytecode.Descriptor.Iterator;
 
-public class MasterService extends LoginRestController{
+public class MasterService {
 	
 	@Autowired
 	private UserRepository userRepository;
