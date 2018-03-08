@@ -105,7 +105,24 @@ public class Product {
 			this.year = year;
 			this.urlimg = urlimg;
 			this.selected = selected;
-		}
+	}
+	
+	public Product(String name, String description, String type, String genre, int stock, double pbuy,
+			double prent, int score, String trailer, String director, String cast, int year, String urlimg) {
+			this.name = name;
+			this.description = description;
+			this.type = type;
+			this.genre = genre;
+			this.stock = stock;
+			this.pbuy = pbuy;
+			this.prent = prent;
+			this.score = score;
+			this.trailer = trailer;
+			this.director = director;
+			this.cast = cast;
+			this.year = year;
+			this.urlimg = urlimg;
+	}
 	
 	public String getSelected() {
 		return selected;

@@ -45,7 +45,6 @@ import com.planetofthetapes.restController.PlistRestController.ProductDetails;
 import java.util.List;
 
 
-
 @RestController
 @RequestMapping("/api")
 public class AdminRestController extends MasterService{
@@ -66,34 +65,9 @@ public class AdminRestController extends MasterService{
 	
 	@Autowired
 	private PackRepository packRepository;
-
 	
 	
-	@RequestMapping("/admin")
-	public String admin(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
-		model.addAttribute("products",productRepository.findAll());
-		model.addAttribute("users",userRepository.findAll());
-		model.addAttribute("orders", porderRepository.findAll());
-		model.addAttribute("packs", packRepository.findAll());
-		
-		
-		return "/admin/admin-dashboard";
-	}
-	
-	
-	@JsonView(ProductDetails.class)
-	@RequestMapping(value="/admin-products", method=RequestMethod.GET)
-	public ResponseEntity<List<Product>> adminproductsRest(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
-		
-		List<Product> products = productRepository.findAll();
-		if (!products.equals(null)){
-			return new ResponseEntity<>(products, HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
+/////////// ******************** ORDERS ************************* ////////
 	
 	@JsonView(OrderDetails.class)
 	@RequestMapping(value="/admin-orderlist", method=RequestMethod.GET)
@@ -107,20 +81,23 @@ public class AdminRestController extends MasterService{
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-
-	@JsonView(UserDetails.class)
-	@RequestMapping(value="/admin-userList", method=RequestMethod.GET)
-	public ResponseEntity<List<User>> adminUserListRest(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+	
+	@JsonView(OrderDetails.class)
+	@RequestMapping(value="/user-orderlist", method=RequestMethod.GET)
+	public ResponseEntity<List<POrder>> userOrderListRest(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
 		
-		List<User> users = userRepository.findAll();
-		if (!users.equals(null)){
-			return new ResponseEntity<>(users, HttpStatus.OK);
+		User user = userRepository.findByName(request.getUserPrincipal().getName());
+		List<POrder> ousers = user.getOrders();
+		if (!ousers.equals(null)){
+			return new ResponseEntity<>(ousers, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
+/////////// ******************** PACKS ************************* ////////
+
 	@JsonView(PackDetails.class)
 	@RequestMapping(value="/admin-packlist", method=RequestMethod.GET)
 	public ResponseEntity<List<Pack>> adminPackListRest(Model model, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttrs) throws IOException, ServletException {
@@ -139,136 +116,109 @@ public class AdminRestController extends MasterService{
 			
 	}
 	
-	@JsonView(OrderDetails.class)
-	@RequestMapping(value="/user-orderlist", method=RequestMethod.GET)
-	public ResponseEntity<List<POrder>> userOrderListRest(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+	@JsonView(PackDetails.class)
+	@RequestMapping(value="/admin-add-pack-action", method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public Pack addPackActionRest(Model model, HttpServletRequest request, @RequestBody Pack pack, 
+			@RequestBody Product p1, @RequestBody Product p2, @RequestBody Product p3, RedirectAttributes redirectAttrs) {
+		
 		this.session(model, request, redirectAttrs);
 		
-		User user = userRepository.findByName(request.getUserPrincipal().getName());
-		List<POrder> ousers = user.getOrders();
-		if (!ousers.equals(null)){
-			return new ResponseEntity<>(ousers, HttpStatus.OK);
+		List<Product> l = new ArrayList<Product>();
+		l.add(p1);
+		l.add(p2);
+		l.add(p3);
+
+		pack.setProducts(l);
+		pack.setImg("packi.jpg");
+	
+		pack.setProducts(l);
+		
+		Pack newpack = new Pack(pack.getName(), pack.getPrice(), l,  pack.getImg());
+		
+		packRepository.save(newpack);
+		
+		return newpack;
+	}
+	
+	@JsonView(PackDetails.class)
+	@RequestMapping(value="/admin/pack/modify/{id}", method=RequestMethod.PUT) // modify
+	public ResponseEntity<Pack> modifyPackActionRest(Model model, @PathVariable Integer id, @RequestBody Pack pack,
+			 @RequestBody Product p1, @RequestBody Product p2, @RequestBody Product p3,HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		
+			this.session(model, request, redirectAttrs);
+			
+			Pack packUpdated = packRepository.findById(id);
+			
+			if (packUpdated!=null) {
+				packUpdated.setName(pack.getName());
+				packUpdated.setPrice(pack.getPrice());
+			
+				List<Product> l = new ArrayList<Product>();
+				l.add(p1);
+				l.add(p2);
+				l.add(p3);
+
+				pack.setProducts(l);
+				pack.setImg("packi.jpg");
+			
+				packUpdated.setProducts(l);
+				packUpdated.setImg(pack.getImg());
+			
+				packRepository.save(packUpdated);
+			
+				return new ResponseEntity<>(packUpdated, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+	}
+	
+	@JsonView(PackDetails.class)
+	@RequestMapping(value="/admin/pack/remove/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<Pack> removePackAction(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
+		
+		Pack pack = packRepository.findById(id);
+		
+		if(pack!=null) {
+				
+			packRepository.delete(pack);
+			
+			return new ResponseEntity<>(pack, HttpStatus.OK);
+		} else{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+/////////// ******************** USERS ************************* ////////
+	
+	@JsonView(UserDetails.class)
+	@RequestMapping(value="/admin-userList", method=RequestMethod.GET)
+	public ResponseEntity<List<User>> adminUserListRest(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		this.session(model, request, redirectAttrs);
+		
+		List<User> users = userRepository.findAll();
+		if (!users.equals(null)){
+			return new ResponseEntity<>(users, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	
-	
-	@RequestMapping("/admin-add-pack")
-	public String addPack(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		
-		this.session(model, request, redirectAttrs);
-		model.addAttribute("products",productRepository.findAll());
-		
-		model.addAttribute("packs",packRepository.findAll());
-		
-		return "admin/admin-add-pack-action";
-	}
-	
-	@JsonView(PackDetails.class)
-	@RequestMapping(value="/admin-add-pack-action", method=RequestMethod.POST)
-	public Pack addPackActionRest(Model model, HttpServletRequest request, @RequestParam String namePack, @RequestParam String nameP1,
-			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price, @RequestParam MultipartFile img, RedirectAttributes redirectAttrs) {
-		
+	@JsonView(UserDetails.class)
+	@RequestMapping(value="/admin-user", method=RequestMethod.GET)
+	public ResponseEntity<User> adminuserprofileRest(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
 		
-		ArrayList<Product> l = new ArrayList<Product>();
-		
-		Product product1 = productRepository.findByName(nameP1);
-		Product product2 = productRepository.findByName(nameP2);
-		Product product3 = productRepository.findByName(nameP3);
-		
-		l.add(product1);
-		l.add(product2);
-		l.add(product3);
-		
-		Pack p = new Pack(namePack, price, l);
-		packRepository.save(p);
-		
-		String imgName = "pack" + p.getId() + ".jpg";
-		if (!img.isEmpty()) {
-			try {
-				File imgFolder = new File("src/main/resources/static/img/ProductImages");
-				if (!imgFolder.exists()) {
-					imgFolder.mkdirs();
-				}
-				File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
-				img.transferTo(uploadedImage);
-			} catch (Exception e) {
-			}
-			p.setImg(imgName);
-			packRepository.save(p);
-		}
-		redirectAttrs.addFlashAttribute("success", "Pack added successfully");
-		return p;
-	}
-	
-	@RequestMapping("/admin-modify-pack/{id}")
-	public String modifyPack(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-	
-		this.session(model, request, redirectAttrs);
-		
-		model.addAttribute("pack", packRepository.findById(id));
-		return "/admin/admin-modify-pack";
-	}
-	
-	@RequestMapping("/admin/pack/modify/{id}") // modify
-	public String modifyPackAction(Model model, @RequestParam Integer id, @RequestParam String namePack, @RequestParam String nameP1,
-			@RequestParam String nameP2, @RequestParam String nameP3, @RequestParam Integer price,
-			HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		
-			this.session(model, request, redirectAttrs);
-			
-			Pack pack = packRepository.findById(id);
-			
-			pack.setName(namePack);
-			pack.setPrice(price);
-			
-			ArrayList<Product> l = new ArrayList<Product>();
-			
-			Product product1 = productRepository.findByName(nameP1);
-			Product product2 = productRepository.findByName(nameP2);
-			Product product3 = productRepository.findByName(nameP3);
-			
-			l.add(product1);
-			l.add(product2);
-			l.add(product3);
-			
-			pack.setProducts(l);
-			
-			packRepository.save(pack);
-			
-			redirectAttrs.addFlashAttribute("success","Pack modified succesfully.");
-			return "redirect:/admin-packlist";
-	}
-	
-	
-	@RequestMapping("/admin/pack/remove/{id}")
-	public String removePackAction(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
-			try {
-				Pack pack = packRepository.findById(id);
-				packRepository.delete(pack);
-			} catch (Exception e) {
-				return "redirect:/admin-packlist/deleteError";
-			}
-			
-			redirectAttrs.addFlashAttribute("success", "Pack deleted successfully");
-			return "redirect:/admin-packlist";
-}
-	
-	@RequestMapping("/admin-user")
-	public String adminuserprofile(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-		this.session(model, request, redirectAttrs);
-		
-		model.addAttribute("products",productRepository.findAll());
 		User user = userRepository.findByName(request.getUserPrincipal().getName());
-		model.addAttribute("user",user);
-	
-		
-		return "/admin/admin-user";
-	}
 
+		if(user!=null) {
+		return new ResponseEntity<>(user, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@JsonView(UserDetails.class)
 	@RequestMapping(value="/admin-modify-user/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<User> adminmodifyuserRest(Model model,@PathVariable Integer id, @RequestBody User user, HttpServletRequest request,
@@ -293,50 +243,6 @@ public class AdminRestController extends MasterService{
 		}
 	}
 	
-	@RequestMapping("/admin-modify-product-action")
-	public String modifyProductAction(Model model,@RequestParam String nam, @RequestParam String namep, @RequestParam String descriptionp, @RequestParam String typep,
-			@RequestParam String genrep, @RequestParam int stockp, @RequestParam double pbuyp, @RequestParam double prentp, @RequestParam int scorep,
-			@RequestParam String trailerp,@RequestParam String directorp, @RequestParam String castp, @RequestParam int yearp, @RequestParam MultipartFile img,
-			HttpServletRequest request, RedirectAttributes redirectAttrs){
-				
-		this.session(model, request, redirectAttrs);
-				
-				Product product = productRepository.findByName(nam);
-				System.out.println(product.toString());
-				
-				product.setName(namep);
-				product.setDescription(descriptionp);
-				product.setType(typep);
-				product.setGenre(genrep);
-				product.setStock(stockp);
-				product.setPbuy(pbuyp);
-				product.setScore(scorep);
-				product.setTrailer(trailerp);
-				product.setDirector(directorp);
-				product.setCast(castp);
-				product.setYear(yearp);
-				
-				productRepository.save(product);
-				
-				String imgName = product.getId() + ".jpg";
-				if (!img.isEmpty()) {
-					try {
-						File imgFolder = new File("src/main/resources/static/img/ProductImages");
-						if (!imgFolder.exists()) {
-							imgFolder.mkdirs();
-						}
-						File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
-						img.transferTo(uploadedImage);
-					} catch (Exception e) {
-					}
-					product.setUrlimg(imgName);
-					productRepository.save(product);
-				}
-				redirectAttrs.addFlashAttribute("messages", "Product Modified");
-				
-		return "redirect:/admin-products";
-	}
-
 	@JsonView(UserDetails.class)
 	@RequestMapping(value="/admin-add-user", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
@@ -370,114 +276,76 @@ public class AdminRestController extends MasterService{
 	
 	/////////// ******************** PRODUCTS ************************* ////////
 	
-	
-	@RequestMapping("/admin-products-add")
-	public String addProduct(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+	@JsonView(ProductDetails.class)
+	@RequestMapping(value="/admin-products", method=RequestMethod.GET)
+	public ResponseEntity<List<Product>> adminproductsRest(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
-		return "admin/admin-add-product";
+		
+		List<Product> products = productRepository.findAll();
+		if (!products.equals(null)){
+			return new ResponseEntity<>(products, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 	
-	@RequestMapping("/admin-add-product")
-	public String addProduct(Model model, @RequestParam String name, @RequestParam String description, @RequestParam String type,
-			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy,
-			@RequestParam double prent, @RequestParam int score,@RequestParam String trailer,@RequestParam String director,
-			@RequestParam String cast, @RequestParam int year, @RequestParam MultipartFile img, HttpServletRequest request,
+	@JsonView(ProductDetails.class)
+	@RequestMapping(value="/admin-add-product", method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public Product addProductRest(Model model, @RequestBody Product product, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 			
 			this.session(model, request, redirectAttrs);
 			
-			Product product = new Product(name, description, type, genre, stock, pbuy, prent, score, trailer, director, cast, year);
+			Product newproduct = new Product(product.getName(), product.getDescription(), product.getType(), product.getGenre(),
+					product.getStock(), product.getPbuy(), product.getPrent(), product.getScore(), product.getTrailer(), product.getDirector(),
+					product.getCast(), product.getYear(), product.getUrlimg());
 				
-			productRepository.save(product);
+			productRepository.save(newproduct);
 				
-			String imgName = product.getId() + ".jpg";
-			if (!img.isEmpty()) {
-				try {
-					File imgFolder = new File("src/main/resources/static/img/ProductImages");
-					if (!imgFolder.exists()) {
-						imgFolder.mkdirs();
-					}
-					File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
-					img.transferTo(uploadedImage);
-				} catch (Exception e) {
-				}
-				product.setUrlimg(imgName);
-				productRepository.save(product);
-			}
-			
-			redirectAttrs.addFlashAttribute("success","Product added succesfully.");
-			return "redirect:/admin-products";
+			return product;
 	}
 	
-	
-	
-	@RequestMapping("/admin/product/remove/{id}") // remove
-	public String removeProduct(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+	@JsonView(ProductDetails.class)
+	@RequestMapping(value="/admin/product/remove/{id}", method=RequestMethod.DELETE) // remove
+	public ResponseEntity<Product> removeProduct(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		
-		this.session(model, request, redirectAttrs);
-		try {
-			Product product = productRepository.findById(id);
-			productRepository.delete(product);
-		} catch (Exception e) {
-			return "redirect:/admin-products/deleteError";
+		Product product = productRepository.findById(id);
+		if(product!=null) {
+		productRepository.delete(product);
+		return new ResponseEntity<>(product, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
-		redirectAttrs.addFlashAttribute("success","Product deleted succesfully.");
-		return "redirect:/admin-products";
 	}
 	
-	@RequestMapping("/admin-modify-product/{id}")
-	public String ModifyProduct(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
-	
-		this.session(model, request, redirectAttrs);
-		
-		model.addAttribute("product",productRepository.findById(id));
-		return "/admin/admin-modify-product2";
-	}
-	
-	@RequestMapping("/admin/product/modify/{id}") // modify
-	public String modifyProduct(Model model, @RequestParam Integer id, @RequestParam String name, @RequestParam String description, @RequestParam String type,
-			@RequestParam String genre, @RequestParam int stock, @RequestParam double pbuy, @RequestParam double prent, @RequestParam int score,
-			@RequestParam String trailer,@RequestParam String director, @RequestParam String cast, @RequestParam int year, @RequestParam MultipartFile img,
+	@JsonView(ProductDetails.class)
+	@RequestMapping(value="/admin/product/modify/{id}", method=RequestMethod.PUT) // modify
+	public ResponseEntity<Product> modifyProductRest(Model model, @PathVariable Integer id, @RequestBody Product product,
 			HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		
 			this.session(model, request, redirectAttrs);
 			
-			Product product = productRepository.findById(id);
+			Product productUpdated = productRepository.findById(id);
 			
-			product.setName(name);
-			product.setDescription(description);
-			product.setType(type);
-			product.setGenre(genre);
-			product.setStock(stock);
-			product.setPbuy(pbuy);
-			product.setScore(score);
-			product.setTrailer(trailer);
-			product.setDirector(director);
-			product.setCast(cast);
-			product.setYear(year);
+			if(productUpdated!=null) {
+			productUpdated.setName(product.getName());
+			productUpdated.setDescription(product.getDescription());
+			productUpdated.setType(product.getType());
+			productUpdated.setGenre(product.getGenre());
+			productUpdated.setStock(product.getStock());
+			productUpdated.setPbuy(product.getPbuy());
+			productUpdated.setScore(product.getScore());
+			productUpdated.setTrailer(product.getTrailer());
+			productUpdated.setDirector(product.getDirector());
+			productUpdated.setCast(product.getCast());
+			productUpdated.setYear(product.getYear());
 			
-			productRepository.save(product);
+			productRepository.save(productUpdated);
+			return new ResponseEntity<>(productUpdated, HttpStatus.OK);
 			
-			String imgName = product.getId() + ".jpg";
-			if (!img.isEmpty()) {
-				try {
-					File imgFolder = new File("src/main/resources/static/img/ProductImages");
-					if (!imgFolder.exists()) {
-						imgFolder.mkdirs();
-					}
-					File uploadedImage = new File(imgFolder.getAbsolutePath(), imgName);
-					img.transferTo(uploadedImage);
-				} catch (Exception e) {
-				}
-				product.setUrlimg(imgName);
-				productRepository.save(product);
+			}else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
-			
-			redirectAttrs.addFlashAttribute("success","Product modified succesfully.");
-			return "redirect:/admin-products";
 	}
-	
-	//----------------------------------------------------------
-	//////////************** END PRODUCTS **************//////////////////
 }
