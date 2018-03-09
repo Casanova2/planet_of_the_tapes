@@ -18,6 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.planetofthetapes.entity.Pack.ProductRelation;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -26,6 +27,7 @@ public class Product {
 	
 	public interface Basic{}
 	public interface OrderRelation{}
+	public interface PackRelation{}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,11 +38,14 @@ public class Product {
 	@JsonView(OrderRelation.class)
 	private List<POrder> porders = new ArrayList<POrder>();
 	
+	@ManyToMany(mappedBy="products")
+	@JsonView(PackRelation.class)
+	private List<Pack> packs = new ArrayList<Pack>();
+	
 	@JsonView(Basic.class)
 	private String name;
 	@JsonView(Basic.class)
 	private String description;
-
 	@JsonView(Basic.class)
 	private String type;
 	@JsonView(Basic.class)
@@ -131,8 +136,23 @@ public class Product {
 		return porders;
 	}
 
+	public List<Pack> getPacks() {
+		return packs;
+	}
 
 
+
+	public void setPacks(List<Pack> packs) {
+		this.packs = packs;
+	}
+
+
+
+	public List<POrder> getPorders() {
+		return porders;
+	}
+
+	
 	public void setSelected(String selected) {
 		this.selected = selected;
 	}

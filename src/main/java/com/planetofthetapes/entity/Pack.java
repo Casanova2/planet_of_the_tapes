@@ -56,6 +56,11 @@ public class Pack{
 		this.img = img;
 	}
 	
+	public Pack(String name, Integer price) {
+		this.name = name;
+		this.price = price;
+	}
+	
 	public Pack(String name, Integer price,List<Product> products) {
 		this.name = name;
 		this.price = price;

@@ -49,7 +49,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class AdminRestController extends MasterService{
 	
-	public interface ProductDetails extends Product.Basic, Product.OrderRelation{}
+	public interface ProductDetails extends Product.Basic, Product.OrderRelation, Product.PackRelation{}
 	public interface PackDetails extends Pack.Basic, Pack.ProductRelation, Product.Basic{}
 	public interface UserDetails extends User.Basic, User.OrderRelationUser, POrder.Basic{}
 	public interface OrderDetails extends POrder.Basic, POrder.ProductRelationOrder, POrder.PackRelation, Product.Basic, Pack.Basic{}
@@ -117,24 +117,26 @@ public class AdminRestController extends MasterService{
 	}
 	
 	@JsonView(PackDetails.class)
-	@RequestMapping(value="/admin-add-pack-action", method=RequestMethod.POST)
+	@RequestMapping(value="/admin-add-pack-action/{id1}/{id2}/{id3}", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public Pack addPackActionRest(Model model, HttpServletRequest request, @RequestBody Pack pack, 
-			@RequestBody Product p1, @RequestBody Product p2, @RequestBody Product p3, RedirectAttributes redirectAttrs) {
+			@PathVariable Integer id1, @PathVariable Integer id2, @PathVariable Integer id3, RedirectAttributes redirectAttrs) {
 		
 		this.session(model, request, redirectAttrs);
+		List<Product> all =productRepository.findAll();
+
+		Pack newpack = new Pack(pack.getName(), pack.getPrice());
 		
 		List<Product> l = new ArrayList<Product>();
-		l.add(p1);
-		l.add(p2);
-		l.add(p3);
+		l.add(all.get(id1-1));
+		l.add(all.get(id2-1));
+		l.add(all.get(id3-1));
 
 		pack.setProducts(l);
 		pack.setImg("packi.jpg");
-	
-		pack.setProducts(l);
 		
-		Pack newpack = new Pack(pack.getName(), pack.getPrice(), l,  pack.getImg());
+		newpack.setProducts(pack.getProducts());
+		newpack.setImg(pack.getImg());
 		
 		packRepository.save(newpack);
 		
@@ -142,11 +144,12 @@ public class AdminRestController extends MasterService{
 	}
 	
 	@JsonView(PackDetails.class)
-	@RequestMapping(value="/admin/pack/modify/{id}", method=RequestMethod.PUT) // modify
+	@RequestMapping(value="/admin/pack/modify/pack-{id}/{id1}-{id2}-{id3}", method=RequestMethod.PUT) // modify
 	public ResponseEntity<Pack> modifyPackActionRest(Model model, @PathVariable Integer id, @RequestBody Pack pack,
-			 @RequestBody Product p1, @RequestBody Product p2, @RequestBody Product p3,HttpServletRequest request, RedirectAttributes redirectAttrs) {
+			@PathVariable Integer id1, @PathVariable Integer id2, @PathVariable Integer id3, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		
 			this.session(model, request, redirectAttrs);
+			List<Product> all =productRepository.findAll();
 			
 			Pack packUpdated = packRepository.findById(id);
 			
@@ -155,14 +158,14 @@ public class AdminRestController extends MasterService{
 				packUpdated.setPrice(pack.getPrice());
 			
 				List<Product> l = new ArrayList<Product>();
-				l.add(p1);
-				l.add(p2);
-				l.add(p3);
+				l.add(all.get(id1-1));
+				l.add(all.get(id2-1));
+				l.add(all.get(id3-1));
 
 				pack.setProducts(l);
 				pack.setImg("packi.jpg");
 			
-				packUpdated.setProducts(l);
+				packUpdated.setProducts(pack.getProducts());
 				packUpdated.setImg(pack.getImg());
 			
 				packRepository.save(packUpdated);
