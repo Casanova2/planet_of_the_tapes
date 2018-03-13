@@ -104,6 +104,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-product/").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin/product/modify/").hasAnyRole("ADMIN");
 
+		// USE HTTP BASIC AUTHENTICATION
+		http.httpBasic();
+
+		/*// Do not redirect when logout
+		http.logout().logoutSuccessHandler((rq, rs, a) -> {
+		});*/
+		
 		// LOGIN
 		http.formLogin().loginPage("/signIn");
 		http.formLogin().usernameParameter("name");
@@ -116,9 +123,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.logout().logoutSuccessUrl("/");
 		
 		http.csrf().disable();
-		
-		// Use Http Basic Authentication
-		http.httpBasic();
 
 	}
 
