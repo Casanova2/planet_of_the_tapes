@@ -85,7 +85,8 @@ public class CartRestController extends MasterService {
 	public ResponseEntity<POrder> reserveRestResource(Model model, @PathVariable Integer id, HttpServletRequest request,
 			RedirectAttributes redirectAttrs,@PathVariable Integer id2,@RequestBody POrder orderUpdate) {
 			
-		//&& p.getStock() > 0
+			this.session(model, request, redirectAttrs);
+		
 			double total = 0.0;
 			Product p = productRepository.findOne(id2);
 			User user = userRepository.findByName(request.getUserPrincipal().getName());
@@ -109,13 +110,13 @@ public class CartRestController extends MasterService {
 					return new ResponseEntity<>( HttpStatus.NOT_FOUND);
 				}			
 	}
+	
 	@JsonView(OrderDetails.class)
 	@RequestMapping(value="/{id2}/buy",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<POrder> createNewRestOrder(Model model, HttpServletRequest request,
 			RedirectAttributes redirectAttrs,@PathVariable Integer id2,@RequestBody POrder order) {
 			
-		//&& p.getStock() > 0
 			double total = 0.0;
 			Product p = productRepository.findOne(id2);
 			User user = userRepository.findByName(request.getUserPrincipal().getName());	
@@ -135,77 +136,62 @@ public class CartRestController extends MasterService {
 			
 	}
 	
-	@RequestMapping("/pack/{id}/buy")
-	public String packbuy(Model model, @PathVariable Integer id, HttpServletRequest request,
-			RedirectAttributes redirectAttrs) {
+	@JsonView(OrderDetails.class)
+	@RequestMapping(value="/pack/{id}/{id2}/buy", method=RequestMethod.PUT)
+	public  ResponseEntity<POrder>packRestbuy(Model model, @PathVariable Integer id, @PathVariable Integer id2,
+			HttpServletRequest request, @RequestBody POrder orderUpdated, RedirectAttributes redirectAttrs) {
 		
 		this.session(model, request, redirectAttrs);
-		if(request.isUserInRole("ROLE_ADMIN") || request.isUserInRole("ROLE_USER")) {
-			User user = userRepository.findByName(request.getUserPrincipal().getName());
-			
+		
+		double total = 0.0;
+		Pack p = packRepository.findOne(id2);
+		User user = userRepository.findByName(request.getUserPrincipal().getName());
+		System.out.println(user.getName());
+		System.out.println(user.hasOrders().toString());
+		System.out.println(p.getName());
+		
+		
+			if(user.hasOrders()) {
+						POrder order = POrderRepository.findById(id);
+						order.addPack(p); 
+						total = order.getTotal() + p.getPrice(); 
+						order.setTotal(total);
+						POrderRepository.save(order);
+						ArrayList<POrder> listPOrders = new ArrayList<POrder>();
+						listPOrders.add(order);
+						user.setOrders(listPOrders);
+						return new ResponseEntity<>(order, HttpStatus.OK);
+			}else {
+				return new ResponseEntity<>( HttpStatus.NOT_FOUND);
+			}			
+	}
+	
+	@JsonView(OrderDetails.class)
+	@RequestMapping(value="/{id2}/buy",method=RequestMethod.POST)
+	@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<POrder> createNewRestPackOrder(Model model, HttpServletRequest request,
+			RedirectAttributes redirectAttrs,@PathVariable Integer id2,@RequestBody POrder order) {
 			
 			double total = 0.0;
-			Pack pack = packRepository.findById(id);
-			ArrayList<Product> l = new ArrayList(pack.getProducts());
-			
-			int cont = 0;
-			while(cont<3) {
-				Product p = l.get(cont);
-				
-				if(p.getStock() > 0) {		
-					
-					if(user.hasOrders()) {
-						ArrayList<POrder> listActualUSer = new ArrayList<POrder>(user.getOrders());
-						for(POrder o: listActualUSer) {
-							if(o.getState().equals("progress")) {
-								o.addProduct(p); 
-								p.setStock(p.getStock()-1);
-								total = o.getTotal() + p.getPbuy(); 
-								o.setTotal(total);
-								POrderRepository.save(o);
-								
-								ArrayList<POrder> listPOrders = new ArrayList<POrder>();
-								listPOrders.add(o);
-								user.setOrders(listPOrders);
-								model.addAttribute("totalOrder",o.getTotal());
-								model.addAttribute("productsOrder",o.getProducts());
-							}else {
-								POrder op= new POrder("progress","Credit Card","",0.0);
-								op.getProducts().add(p);
-								p.setStock(p.getStock()-1);
-								total = op.getTotal() + p.getPbuy();
-								op.setTotal(total);
-								user.addOrder(op);
-								POrderRepository.save(op);
-								model.addAttribute("totalOrder",op.getTotal());
-							}
-						}
-					}else {
-						POrder o= new POrder("progress","Credit Card","",0.0);
-						o.getProducts().add(p);
-						p.setStock(p.getStock()-1);
-						total = o.getTotal() + p.getPbuy();
-						o.setTotal(total);
-						user.addOrder(o);
-						POrderRepository.save(o);
-						model.addAttribute("totalOrder",o.getTotal());
-					}
-				}else{
-					redirectAttrs.addFlashAttribute("error","Product out of stock.");
-					return "redirect:/cart";
-				}
-				cont++;
-			}
-			return "redirect:/";
-		}else {
-			redirectAttrs.addFlashAttribute("error","Please, login or register to buy products");
-			return "redirect:/login";
-		}
-	}	
+			Pack p = packRepository.findOne(id2);
+			User user = userRepository.findByName(request.getUserPrincipal().getName());	
+				if(p!=null) {
+					POrder neworder= new POrder(order.getState(),order.getPay(),order.getType(),order.getTotal());
+					neworder.getPacks().add(p);
+					total = neworder.getTotal() + p.getPrice();
+					neworder.setTotal(total);
+					user.addOrder(neworder);
+					POrderRepository.save(neworder);
+					model.addAttribute("totalOrder",neworder.getTotal());
+					return new ResponseEntity<>(neworder,HttpStatus.OK);
+				}else {
+					return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}	
+	}
 	
 	@RequestMapping(value="/{id}/{id1}/remove",method=RequestMethod.PUT)
 	@JsonView(OrderDetails.class)
-	public ResponseEntity<POrder> removeResource(Model model, @PathVariable Integer id,@PathVariable Integer id1,@RequestBody POrder orderUpdate, HttpServletRequest request,
+	public ResponseEntity<POrder> removeRestResource(Model model, @PathVariable Integer id,@PathVariable Integer id1,@RequestBody POrder orderUpdate, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {
 		
 		this.session(model, request, redirectAttrs);
@@ -216,6 +202,25 @@ public class CartRestController extends MasterService {
 			order.getProducts().remove(p);
 			order.setTotal(order.getTotal()-p.getPbuy());
 			p.setStock(p.getStock()+1);
+			POrderRepository.save(order);	
+			return new ResponseEntity<>(order,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@RequestMapping(value="/{id}/{id1}/remove",method=RequestMethod.PUT)
+	@JsonView(OrderDetails.class)
+	public ResponseEntity<POrder> removeRestPack(Model model, @PathVariable Integer id,@PathVariable Integer id1,@RequestBody POrder orderUpdate, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+		
+		this.session(model, request, redirectAttrs);
+		User user = userRepository.findByName(request.getUserPrincipal().getName());
+		Pack p = packRepository.findById(id1);
+		POrder order = POrderRepository.findById(id);
+		if(order!=null) {
+			order.getProducts().remove(p);
+			order.setTotal(order.getTotal()-p.getPrice());
 			POrderRepository.save(order);	
 			return new ResponseEntity<>(order,HttpStatus.OK);
 		}else {
