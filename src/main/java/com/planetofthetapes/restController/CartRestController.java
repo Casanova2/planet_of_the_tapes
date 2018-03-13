@@ -80,6 +80,8 @@ public class CartRestController extends MasterService {
 			
 	}
 
+	//PRODUCTS//
+	
 	@JsonView(OrderDetails.class)
 	@RequestMapping(value="/{id}/{id2}/buy",method=RequestMethod.PUT)
 	public ResponseEntity<POrder> reserveRestResource(Model model, @PathVariable Integer id, HttpServletRequest request,
@@ -136,6 +138,28 @@ public class CartRestController extends MasterService {
 			
 	}
 	
+	@RequestMapping(value="/{id}/{id1}/remove",method=RequestMethod.PUT)
+	@JsonView(OrderDetails.class)
+	public ResponseEntity<POrder> removeRestResource(Model model, @PathVariable Integer id,@PathVariable Integer id1,@RequestBody POrder orderUpdate, HttpServletRequest request,
+			RedirectAttributes redirectAttrs) {
+		
+		this.session(model, request, redirectAttrs);
+		User user = userRepository.findByName(request.getUserPrincipal().getName());
+		Product p = productRepository.findById(id1);
+		POrder order = POrderRepository.findById(id);
+		if(order!=null) {
+			order.getProducts().remove(p);
+			order.setTotal(order.getTotal()-p.getPbuy());
+			p.setStock(p.getStock()+1);
+			POrderRepository.save(order);	
+			return new ResponseEntity<>(order,HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	//PACKS//
+	
 	@JsonView(OrderDetails.class)
 	@RequestMapping(value="/pack/{id}/{id2}/buy", method=RequestMethod.PUT)
 	public  ResponseEntity<POrder>packRestbuy(Model model, @PathVariable Integer id, @PathVariable Integer id2,
@@ -167,7 +191,7 @@ public class CartRestController extends MasterService {
 	}
 	
 	@JsonView(OrderDetails.class)
-	@RequestMapping(value="/{id2}/buy",method=RequestMethod.POST)
+	@RequestMapping(value="/pack/{id2}/buy",method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<POrder> createNewRestPackOrder(Model model, HttpServletRequest request,
 			RedirectAttributes redirectAttrs,@PathVariable Integer id2,@RequestBody POrder order) {
@@ -189,27 +213,7 @@ public class CartRestController extends MasterService {
 				}	
 	}
 	
-	@RequestMapping(value="/{id}/{id1}/remove",method=RequestMethod.PUT)
-	@JsonView(OrderDetails.class)
-	public ResponseEntity<POrder> removeRestResource(Model model, @PathVariable Integer id,@PathVariable Integer id1,@RequestBody POrder orderUpdate, HttpServletRequest request,
-			RedirectAttributes redirectAttrs) {
-		
-		this.session(model, request, redirectAttrs);
-		User user = userRepository.findByName(request.getUserPrincipal().getName());
-		Product p = productRepository.findById(id1);
-		POrder order = POrderRepository.findById(id);
-		if(order!=null) {
-			order.getProducts().remove(p);
-			order.setTotal(order.getTotal()-p.getPbuy());
-			p.setStock(p.getStock()+1);
-			POrderRepository.save(order);	
-			return new ResponseEntity<>(order,HttpStatus.OK);
-		}else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
-	
-	@RequestMapping(value="/{id}/{id1}/remove",method=RequestMethod.PUT)
+	@RequestMapping(value="/pack/{id}/{id1}/remove",method=RequestMethod.PUT)
 	@JsonView(OrderDetails.class)
 	public ResponseEntity<POrder> removeRestPack(Model model, @PathVariable Integer id,@PathVariable Integer id1,@RequestBody POrder orderUpdate, HttpServletRequest request,
 			RedirectAttributes redirectAttrs) {

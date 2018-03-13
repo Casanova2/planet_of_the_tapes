@@ -28,7 +28,7 @@ public class LoginRestController extends MasterService {
 	@Autowired
 	private UserComponent userComponent;
 
-	@RequestMapping("/login")
+	@RequestMapping("/logIn")
 	public ResponseEntity<User> logIn(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
 
@@ -43,7 +43,7 @@ public class LoginRestController extends MasterService {
 		}
 	}
 
-	@RequestMapping("/logout")
+	@RequestMapping("/logOut")
 	public ResponseEntity<Boolean> logOut(Model model,HttpServletRequest request, RedirectAttributes redirectAttrs,HttpSession session) {
 		this.session(model, request, redirectAttrs);
 

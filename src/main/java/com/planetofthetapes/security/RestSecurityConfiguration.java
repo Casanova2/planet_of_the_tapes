@@ -24,45 +24,48 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.antMatcher("/api/**");
 		
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/logIn").authenticated();
-		
-		// URLs that need authentication to access to it
+
 		// URLs that need authentication to access to it in API REST
 
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/admin").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers("/api/checkout").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/selectpay").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/admin-userList").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/user-orderlist").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/admin-products").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/admin-products-add").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/admin-add-user").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin-remove-product-action").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin-remove-user-action").hasAnyRole("ADMIN");
-        
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/admin-add-pack-action").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/admin-orderlist").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/admin-products").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/admin-packlist").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/admin-add-pack").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin-remove-pack").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-pack/").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin/pack/modify/").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin/user/editProfile").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/admin-user").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-user").hasAnyRole("ADMIN");
-        
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/pack/remove/").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/user-orderlist").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/admin-user").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-user").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin/user/editProfile").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-product").hasAnyRole("ADMIN");
         
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-product-action").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/user/remove/").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/product/remove/").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-product/").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin/product/modify/").hasAnyRole("ADMIN");
-	
-		
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/admin-add-product").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/admin-add-user").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/admin-add-pack-action/{id1}/{id2}/{id3}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/{id2}/buy").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/pack/{id2}/buy").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/{id2}/buy").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/pack/{id2}/buy").hasAnyRole("USER");
+        
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin/product/modify/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin/pack/modify/pack-{id}/{id1}-{id2}-{id3}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin/user/editProfile").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-user").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/checkout/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-user/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/{id}/{id2}/buy").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/pack/{id}/{id2}/buy").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/{id}/{id1}/remove").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/pack/{id}/{id1}/remove").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-user/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/checkout/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin/user/editProfile").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/{id}/{id2}/buy").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/pack/{id}/{id2}/buy").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/{id}/{id1}/remove").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/pack/{id}/{id1}/remove").hasAnyRole("USER");
+        
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/pack/remove/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/user/remove/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/product/remove/{id}").hasAnyRole("ADMIN");
+       
 		// Other URLs can be accessed without authentication
 		http.authorizeRequests().anyRequest().permitAll();
 
