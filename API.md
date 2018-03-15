@@ -276,41 +276,37 @@ Return the updated user introduced.
 * ##### URL Params
 	* `id=[int]`   
       
-* ##### Data Params  
-{
-    "passwordHash": "$2a$10$ruPeYJf1VKFjn4l8KN/xYOXqiSQN3sLDlh4/TNUvenmIEw0G2tws6",
-    "dni": "7845678R",
-    "email": "asier@gmail.com",
-    "telephone": "606789541",
-    "viewTelephone": false,
-    "address": "calle falsa 123455",
-    "avatar": "img/admin/avatar/asier.png",
-    "roles": [
-        "ROLE_ADMIN",
-        "ROLE_USER"
-    ],
-    "orders": []
-}  
-
-* ##### Success Response:
-     {
-            "id": 3,
-            "name": "Asier",
-            "passwordHash": "$2a$10$ruPeYJf1VKFjn4l8KN/xYOXqiSQN3sLDlh4/TNUvenmIEw0G2tws6",
-            "dni": "7845678R",
-            "email": "asier@gmail.com",
-            "telephone": "606789541",
-            "viewTelephone": false,
-            "address": "calle falsa 123455",
-            "avatar": "img/admin/avatar/asier.png",
-            "roles": [
-                "ROLE_ADMIN",
-                "ROLE_USER"
-            ],
-            "orders": []
-     }  
-     
-
+* ##### Data Params:  
+```
+	{
+		    "passwordHash": "$2a$10$ruPeYJf1VKFjn4l8KN/xYOXqiSQN3sLDlh4/TNUvenmIEw0G2tws6",
+		    "dni": "7845678R",
+		    "email": "asier@gmail.com",
+		    "telephone": "606789541",
+		    "address": "calle falsa 123455",
+		    "avatar": "img/admin/avatar/asier.png"
+	}
+```
+  
+* ##### Success Response:  
+```
+	{
+	    "id": 2,
+	    "name": "Ruben",
+	    "passwordHash": "$2a$10$ruPeYJf1VKFjn4l8KN/xYOXqiSQN3sLDlh4/TNUvenmIEw0G2tws6",
+	    "dni": "7845678R",
+	    "email": "asier@gmail.com",
+	    "telephone": "606789541",
+	    "viewTelephone": false,
+	    "address": "calle falsa 123455",
+	    "avatar": "img/admin/avatar/asier.png",
+	    "roles": [
+		"ROLE_ADMIN",
+		"ROLE_USER"
+	    ],
+	    "orders": []
+}
+```  
 ### See our orders  
 
 Show the logged user orders.  
@@ -378,11 +374,12 @@ As admin, you can add new users.
 
 	< /admin-add-user >
 
-* ##### Método:
+* ##### Method:
 
 	`POST`  
   
-* ##### Data Params
+* ##### Data Params:  
+```
 	{
         "name": "Pepe",
         "passwordHash": "555",
@@ -392,9 +389,10 @@ As admin, you can add new users.
         "address": "calle falsa 123455",
         "avatar": "usern.png"
 }
-		
-* ##### Success Response:
+```  
 
+* ##### Success Response:
+```
     {
         "id": null,
         "name": "Pepe",
@@ -407,7 +405,8 @@ As admin, you can add new users.
         "avatar": "usern.png",
         "roles": null,
         "orders": []
-}  
+}
+```  
 ### Delete User as admin  
 As admin, you can delete existing users.  
 
@@ -425,13 +424,13 @@ As admin, you can delete existing users.
 		* `id=[int]`
 
 * ##### Data Params
-
-      null  
-
-* ##### Success response:
-
+```
 {null}  
-  
+```  
+* ##### Success response:
+```
+{null}  
+```  
 ### Register
 As an unregistered user, you can register in app. It's similar to add user as admin.
 
@@ -444,7 +443,7 @@ As an unregistered user, you can register in app. It's similar to add user as ad
 	`POST`
   
 * ##### Data Params:  
-  
+```
 {
     "name": "Rul",
     "passwordHash": "4567897$",
@@ -452,10 +451,10 @@ As an unregistered user, you can register in app. It's similar to add user as ad
     "email": "ra@gmail.com",
     "telephone": "606056001",
     "address": "calle falsa 123"
-}  
-  
+}
+```  
 * ##### Success Response:  
-    
+```
 {
     "id": null,
     "name": "Rul",
@@ -468,21 +467,20 @@ As an unregistered user, you can register in app. It's similar to add user as ad
     "avatar": null,
     "roles": null,
     "orders": []
-}  
-  
-  
+}
+```  
 ## PRODUCTS  
 Working with products, as admin, you can add a new product, modify, delete and see all the products in database.  
   
 * ##### Success Response:
 
 	* HttpStatus.OK  
-    * HttpStatus.NO_CONTENT  
+        * HttpStatus.NO_CONTENT  
 
 * ##### Error Response:
 
 	* Code: 404 NOT FOUND  
-    * HttpStatus.UNAUTHORIZED
+        * HttpStatus.UNAUTHORIZED
 
   
 ### Add product  
@@ -496,7 +494,8 @@ As admin, you can add new products.
 
 	`POST`  
   
-* ##### Data Params
+* ##### Data Params:  
+```
  { 
         "name": "Alienuu",
         "description": "The film's title refers to a highly aggressive extraterrestrial creature that stalks and attacks the crew of a spaceship!!.",
@@ -511,8 +510,10 @@ As admin, you can add new products.
         "cast": "Sigourney Weaver, Tom Skerritt, Veronica Cartwright, Harry Dean Stanton, John Hurt, Ian Holm and Yaphet Kotto",
         "year": 1979,
         "urlimg": "25.jpg"
-    }  
-* ##### Success Response  
+    }
+```  
+* ##### Success Response:  
+```
 {
     "id": 25,
     "porders": [],
@@ -531,8 +532,8 @@ As admin, you can add new products.
     "year": 1979,
     "urlimg": "25.jpg",
     "selected": null
-}  
-  
+}
+```  
 ### Modify product  
   
 As admin, you can modify an existing product.  
@@ -549,7 +550,8 @@ As admin, you can modify an existing product.
 
 		* `id=[int]`  
   
-* ##### Data Params
+* ##### Data Params:  
+```
  {
         "name": "The shininguu",
         "description": "The Shining is about Jack Torrance, an aspiring writer and recovering alcoholic, who accepts a position as the off-season caretaker of the isolated historic Overlook Hotel in the Colorado Rockies.",
@@ -566,7 +568,9 @@ As admin, you can modify an existing product.
         "urlimg": "Shining.jpg",
         "selected": ""
     }
-* ##### Success Response  
+```  
+* ##### Success Response:  
+```
 {
     "id": 5,
     "porders": [],
@@ -585,8 +589,8 @@ As admin, you can modify an existing product.
     "year": 1980,
     "urlimg": "Shining.jpg",
     "selected": ""
-}  
-  
+}
+```  
 ### Delete product  
   
 As admin, you can remove an existing product.  
@@ -605,11 +609,13 @@ As admin, you can remove an existing product.
 		* `id=[int]`  
   
 * ##### Data Params
+```
 {null}  
-  
+```  
 * ##### Success Response  
+```
 {null}  
-  
+```  
 ### See all products  
   
 As admin, you can see al the products in database.  
@@ -622,8 +628,8 @@ As admin, you can see al the products in database.
 
 	`GET`  
   
-* ##### Success Response  
-  
+* ##### Success Response:  
+```  
 [
     {
         "id": 1,
@@ -689,8 +695,8 @@ As admin, you can see al the products in database.
         "selected": ""
     },
     ...
-]  
-  
+]
+```  
 ## PACKS  
   
 Working with packs, as admin, you can add a new pack, modify, delete and see all the packs in database.  
@@ -699,12 +705,12 @@ Working with packs, as admin, you can add a new pack, modify, delete and see all
 * ##### Success Response:
 
 	* HttpStatus.OK  
-    * HttpStatus.NO_CONTENT  
+        * HttpStatus.NO_CONTENT  
 
 * ##### Error Response:
 
 	* Code: 404 NOT FOUND  
-    * HttpStatus.UNAUTHORIZED
+        * HttpStatus.UNAUTHORIZED
   
 ## Add pack  
 As admin, you can add new packs.
@@ -721,16 +727,19 @@ As admin, you can add new packs.
 	* Required:
 
 		* `id1=[int]`  
-        * `id2=[int]`  
-        * `id3=[int]`  
+        	* `id2=[int]`  
+        	* `id3=[int]`  
   
-* ##### Data Params
+* ##### Data Params  
+```
  {
         
         "name": "New Pack",
 		"price": 50
     }
+```  
 * ##### Success Response  
+```
 {
     "id": 3,
     "name": "New Pack",
@@ -789,8 +798,8 @@ As admin, you can add new packs.
         }
     ],
     "img": "packi.jpg"
-}  
-  
+}
+```  
 ## Modify pack  
   
 As admin, you can modify an existing pack.  
@@ -807,18 +816,20 @@ As admin, you can modify an existing pack.
 	* Required:
 
 		* `id=[int]`  
-        * `id1=[int]`  
-        * `id2=[int]`  
-        * `id3=[int]`  
+		* `id1=[int]`  
+		* `id2=[int]`  
+		* `id3=[int]`  
   
-* ##### Data Params
+* ##### Data Params  
+```
  {
         
         "name": "Games Dealing",
 		"price": 50
-    }  
-  
+    }
+```  
 * ##### Success Response  
+```
 {
     "id": 2,
     "name": "Games Dealing",
@@ -877,8 +888,8 @@ As admin, you can modify an existing pack.
         }
     ],
     "img": "packi.jpg"
-}  
-
+}
+```  
 ## Delete pack  
   
 As admin, you can remove an existing pack.  
@@ -897,12 +908,13 @@ As admin, you can remove an existing pack.
 		* `id=[int]`  
   
 * ##### Data Params  
-  
+```
 {null}  
-  
+```  
 * ##### Success Response  
+```
 {null}  
-  
+```  
 ## See all packs  
   
 As admin, you can see all the pack in database.  
@@ -915,8 +927,8 @@ As admin, you can see all the pack in database.
 
 	`GET`  
   
-* ##### Success Response  
-  
+* ##### Success Response:   
+```
 [
     {
         "id": 1,
@@ -978,12 +990,11 @@ As admin, you can see all the pack in database.
         "img": "packi.jpg"
     },
     ...
-]  
-  
-  
+]
+```  
 ## ORDERS  
 ## Create new order 
- you can add an existing order in progress.  
+ you can add an order in progress.  
 * ##### URL
 
 	< /{id2}/buy >
@@ -997,14 +1008,17 @@ As admin, you can see all the pack in database.
 
 		* `id2=[int]`  
   
-* ##### Data Params
+* ##### Data Params:  
+```
  {
     "state": "progress",
     "pay": "Credit Card",
     "type": "Buy",
     "total": 450
 }
-* ##### Success Response  
+```  
+* ##### Success Response:  
+```
 {
     "id": 3,
     "products": [
@@ -1031,9 +1045,10 @@ As admin, you can see all the pack in database.
     "pay": "Credit Card",
     "type": "Buy",
     "total": 500
-} 
-## Modify order add product
-you can add an existing order in progress.  
+}
+```  
+## Modify order add product  
+you can add a product in an existing order in progress.  
 * ##### URL
 
 	< /{id}/{id2}/buy>
@@ -1042,13 +1057,14 @@ you can add an existing order in progress.
 
 	`PUT`  
   
-  * ##### URL Params
+  * ##### URL Params:
 	* Required:
 
 		* `id2=[int]` 
 		* `id=[int]` 
   
-* ##### Data Params
+* ##### Data Params:  
+```
 {
         "id": 2,
         "products": [
@@ -1144,7 +1160,9 @@ you can add an existing order in progress.
         "type": "Buy",
         "total": 300
     }
-* ##### Success Response  
+```  
+* ##### Success Response:  
+```
 {
     "id": 2,
     "products": [
@@ -1240,6 +1258,7 @@ you can add an existing order in progress.
     "type": "Buy",
     "total": 350
 }
+```  
 ## Delete product in order  
 * ##### URL
 
@@ -1255,7 +1274,8 @@ you can add an existing order in progress.
 		* `id=[int]`
 		* `id1=[int]`
   
-* ##### Data Params
+* ##### Data Params:  
+```
 {
         "id": 2,
         "products": [
@@ -1351,7 +1371,9 @@ you can add an existing order in progress.
         "type": "Buy",
         "total": 300
     }
-* ##### Success Response  
+```  
+* ##### Success Response:  
+```
 {
     "id": 2,
     "products": [
@@ -1430,17 +1452,18 @@ you can add an existing order in progress.
     "type": "Buy",
     "total": 300
 }
-
+```  
 ## See all orders  
 * ##### URL
 
-	< /{id2}/buy >
+	< /admin-orderlist >
 
 * ##### Method:
 
 	`GET`  
 	
-* ##### Success Response  
+* ##### Success Response:  
+```
 [
     {
         "id": 1,
@@ -1626,3 +1649,4 @@ you can add an existing order in progress.
         "total": 500
     }
 ]
+```  
