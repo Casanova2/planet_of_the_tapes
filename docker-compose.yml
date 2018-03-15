@@ -1,4 +1,4 @@
-version: "2.0"
+version: "3.6"
 
 services: 
   pottHost:
@@ -20,4 +20,3 @@ services:
       - DATABASE_PASSWORD=root
       - DATABASE_NAME=pott
       - DATABASE_PORT=3306
-  
