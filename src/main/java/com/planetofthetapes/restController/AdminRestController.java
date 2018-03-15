@@ -181,7 +181,7 @@ public class AdminRestController {
 					
 				packRepository.delete(pack);
 				
-				return new ResponseEntity<>(pack, HttpStatus.OK);
+				return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 			} else{
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
@@ -275,7 +275,7 @@ public class AdminRestController {
 			User user = userRepository.findById(id);
 			if (user!=null) {
 			userRepository.delete(user);
-			return new ResponseEntity<>(user, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 			}else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
@@ -323,13 +323,13 @@ public class AdminRestController {
 	
 	@JsonView(ProductDetails.class)
 	@RequestMapping(value="/admin/product/remove/{id}", method=RequestMethod.DELETE) // remove
-	public ResponseEntity<Product> removeProduct(HttpServletResponse response, @PathVariable Integer id, HttpServletRequest request) throws IOException, ServletException {
+	public ResponseEntity<Product> removeProductRest(HttpServletResponse response, @PathVariable Integer id, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
 			Product product = productRepository.findById(id);
 			if(product!=null) {
 			productRepository.delete(product);
-			return new ResponseEntity<>(product, HttpStatus.OK);
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 			}else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}

@@ -16,11 +16,7 @@ We are a small group from URJC university in Spain and we are doing this web app
 In this phase we will show you the entities of the database, the external technologies that will be used and the advanced functionalities of our project.     
        
 For a better work organization, we will use Trello. Here is the link: [Trello table](https://trello.com/b/mblOwpgb/planet-of-the-tapes)        
-
-## Graphs
-* Best-selling products
-* Most valued products
-
+  
 ## External Technologies
 * Facebook Page
 * Google Maps Location  
@@ -170,4 +166,9 @@ To finish, we have made class diagrams by parts to connect the classes of our ap
   
 * ![Controllers and Views p2](screenshots/controllerhtmlp2.png)  
   
+# Phase 4  
+  
+In this phase, we have implemented an API REST app, and we have built this with dockers.  
+  
+If you want to see the API ReEST documentation [click here](https://github.com/Casanova2/planet_of_the_tapes/tree/develop/API.md).
 
