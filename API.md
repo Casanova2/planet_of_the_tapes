@@ -982,7 +982,263 @@ As admin, you can see all the pack in database.
   
   
 ## ORDERS  
-## Add order  
-## Modify order  
+## Create new order 
+ you can add an existing order in progress.  
+* ##### URL
+
+	< /{id2}/buy >
+
+* ##### Method:
+
+	`POST`  
+  
+  * ##### URL Params
+	* Required:
+
+		* `id2=[int]`  
+  
+* ##### Data Params
+ {
+    "state": "progress",
+    "pay": "Credit Card",
+    "type": "Buy",
+    "total": 450
+}
+* ##### Success Response  
+{
+    "id": 3,
+    "products": [
+        {
+            "id": 24,
+            "name": "Halo 5",
+            "description": "Halo 5: Guardians takes place in the year 2558, and is set eight months after the events of Halo 4. The game follows the human fireteams Blue Team and Fireteam Osiris.",
+            "type": "Videogames",
+            "genre": "Sci-Fi",
+            "stock": 4,
+            "pbuy": 50,
+            "prent": 5,
+            "score": 75,
+            "trailer": "https://www.youtube.com/watch?v=Rh_NXwqFvHc",
+            "director": "343 Industries",
+            "cast": "Brittany Uomoleale, Michelle Lukes, Laura Bailey, Steve Downes",
+            "year": 2015,
+            "urlimg": "xone-halo5.png",
+            "selected": ""
+        }
+    ],
+    "packs": [],
+    "state": "progress",
+    "pay": "Credit Card",
+    "type": "Buy",
+    "total": 500
+} 
+## Modify order add product
+you can add an existing order in progress.  
+* ##### URL
+
+	< /{id}/{id2}/buy>
+
+* ##### Method:
+
+	`PUT`  
+  
+  * ##### URL Params
+	* Required:
+
+		* `id2=[int]` 
+		* `id=[int]` 
+  
+* ##### Data Params
+{
+        "id": 2,
+        "products": [
+            {
+                "id": 24,
+                "name": "Halo 5",
+                "description": "Halo 5: Guardians takes place in the year 2558, and is set eight months after the events of Halo 4. The game follows the human fireteams Blue Team and Fireteam Osiris.",
+                "type": "Videogames",
+                "genre": "Sci-Fi",
+                "stock": 5,
+                "pbuy": 50,
+                "prent": 5,
+                "score": 75,
+                "trailer": "https://www.youtube.com/watch?v=Rh_NXwqFvHc",
+                "director": "343 Industries",
+                "cast": "Brittany Uomoleale, Michelle Lukes, Laura Bailey, Steve Downes",
+                "year": 2015,
+                "urlimg": "xone-halo5.png",
+                "selected": ""
+            },
+            {
+                "id": 24,
+                "name": "Halo 5",
+                "description": "Halo 5: Guardians takes place in the year 2558, and is set eight months after the events of Halo 4. The game follows the human fireteams Blue Team and Fireteam Osiris.",
+                "type": "Videogames",
+                "genre": "Sci-Fi",
+                "stock": 5,
+                "pbuy": 50,
+                "prent": 5,
+                "score": 75,
+                "trailer": "https://www.youtube.com/watch?v=Rh_NXwqFvHc",
+                "director": "343 Industries",
+                "cast": "Brittany Uomoleale, Michelle Lukes, Laura Bailey, Steve Downes",
+                "year": 2015,
+                "urlimg": "xone-halo5.png",
+                "selected": ""
+            },
+            {
+                "id": 23,
+                "name": "Gears of War 4",
+                "description": "Gears of War 4 takes place 25 years after the events of Gears of War 3. Although the use of the Imulsion Countermeasure weapon destroyed all Imulsion on the planet Sera, killing the Locust and the Lambent in the process.",
+                "type": "Videogames",
+                "genre": "Sci-Fi",
+                "stock": 5,
+                "pbuy": 50,
+                "prent": 5,
+                "score": 80,
+                "trailer": "https://www.youtube.com/watch?v=XrfVfRV0zSg",
+                "director": "The Coalition, Microsoft Studios",
+                "cast": "Angel Desai, Justina Machado, Jimmy Smits, John DiMaggio",
+                "year": 2016,
+                "urlimg": "xone-gears4.jpg",
+                "selected": ""
+            },
+            {
+                "id": 24,
+                "name": "Halo 5",
+                "description": "Halo 5: Guardians takes place in the year 2558, and is set eight months after the events of Halo 4. The game follows the human fireteams Blue Team and Fireteam Osiris.",
+                "type": "Videogames",
+                "genre": "Sci-Fi",
+                "stock": 5,
+                "pbuy": 50,
+                "prent": 5,
+                "score": 75,
+                "trailer": "https://www.youtube.com/watch?v=Rh_NXwqFvHc",
+                "director": "343 Industries",
+                "cast": "Brittany Uomoleale, Michelle Lukes, Laura Bailey, Steve Downes",
+                "year": 2015,
+                "urlimg": "xone-halo5.png",
+                "selected": ""
+            },
+            {
+                "id": 23,
+                "name": "Gears of War 4",
+                "description": "Gears of War 4 takes place 25 years after the events of Gears of War 3. Although the use of the Imulsion Countermeasure weapon destroyed all Imulsion on the planet Sera, killing the Locust and the Lambent in the process.",
+                "type": "Videogames",
+                "genre": "Sci-Fi",
+                "stock": 5,
+                "pbuy": 50,
+                "prent": 5,
+                "score": 80,
+                "trailer": "https://www.youtube.com/watch?v=XrfVfRV0zSg",
+                "director": "The Coalition, Microsoft Studios",
+                "cast": "Angel Desai, Justina Machado, Jimmy Smits, John DiMaggio",
+                "year": 2016,
+                "urlimg": "xone-gears4.jpg",
+                "selected": ""
+            }
+        ],
+        "packs": [],
+        "state": "progress",
+        "pay": "Credit Card",
+        "type": "Buy",
+        "total": 300
+    }
+* ##### Success Response  
+{
+    "id": 2,
+    "products": [
+        {
+            "id": 24,
+            "name": "Halo 5",
+            "description": "Halo 5: Guardians takes place in the year 2558, and is set eight months after the events of Halo 4. The game follows the human fireteams Blue Team and Fireteam Osiris.",
+            "type": "Videogames",
+            "genre": "Sci-Fi",
+            "stock": 3,
+            "pbuy": 50,
+            "prent": 5,
+            "score": 75,
+            "trailer": "https://www.youtube.com/watch?v=Rh_NXwqFvHc",
+            "director": "343 Industries",
+            "cast": "Brittany Uomoleale, Michelle Lukes, Laura Bailey, Steve Downes",
+            "year": 2015,
+            "urlimg": "xone-halo5.png",
+            "selected": ""
+        },
+        {
+            "id": 23,
+            "name": "Gears of War 4",
+            "description": "Gears of War 4 takes place 25 years after the events of Gears of War 3. Although the use of the Imulsion Countermeasure weapon destroyed all Imulsion on the planet Sera, killing the Locust and the Lambent in the process.",
+            "type": "Videogames",
+            "genre": "Sci-Fi",
+            "stock": 5,
+            "pbuy": 50,
+            "prent": 5,
+            "score": 80,
+            "trailer": "https://www.youtube.com/watch?v=XrfVfRV0zSg",
+            "director": "The Coalition, Microsoft Studios",
+            "cast": "Angel Desai, Justina Machado, Jimmy Smits, John DiMaggio",
+            "year": 2016,
+            "urlimg": "xone-gears4.jpg",
+            "selected": ""
+        },
+        {
+            "id": 24,
+            "name": "Halo 5",
+            "description": "Halo 5: Guardians takes place in the year 2558, and is set eight months after the events of Halo 4. The game follows the human fireteams Blue Team and Fireteam Osiris.",
+            "type": "Videogames",
+            "genre": "Sci-Fi",
+            "stock": 3,
+            "pbuy": 50,
+            "prent": 5,
+            "score": 75,
+            "trailer": "https://www.youtube.com/watch?v=Rh_NXwqFvHc",
+            "director": "343 Industries",
+            "cast": "Brittany Uomoleale, Michelle Lukes, Laura Bailey, Steve Downes",
+            "year": 2015,
+            "urlimg": "xone-halo5.png",
+            "selected": ""
+        },
+        {
+            "id": 23,
+            "name": "Gears of War 4",
+            "description": "Gears of War 4 takes place 25 years after the events of Gears of War 3. Although the use of the Imulsion Countermeasure weapon destroyed all Imulsion on the planet Sera, killing the Locust and the Lambent in the process.",
+            "type": "Videogames",
+            "genre": "Sci-Fi",
+            "stock": 5,
+            "pbuy": 50,
+            "prent": 5,
+            "score": 80,
+            "trailer": "https://www.youtube.com/watch?v=XrfVfRV0zSg",
+            "director": "The Coalition, Microsoft Studios",
+            "cast": "Angel Desai, Justina Machado, Jimmy Smits, John DiMaggio",
+            "year": 2016,
+            "urlimg": "xone-gears4.jpg",
+            "selected": ""
+        },
+        {
+            "id": 24,
+            "name": "Halo 5",
+            "description": "Halo 5: Guardians takes place in the year 2558, and is set eight months after the events of Halo 4. The game follows the human fireteams Blue Team and Fireteam Osiris.",
+            "type": "Videogames",
+            "genre": "Sci-Fi",
+            "stock": 3,
+            "pbuy": 50,
+            "prent": 5,
+            "score": 75,
+            "trailer": "https://www.youtube.com/watch?v=Rh_NXwqFvHc",
+            "director": "343 Industries",
+            "cast": "Brittany Uomoleale, Michelle Lukes, Laura Bailey, Steve Downes",
+            "year": 2015,
+            "urlimg": "xone-halo5.png",
+            "selected": ""
+        }
+    ],
+    "packs": [],
+    "state": "progress",
+    "pay": "Credit Card",
+    "type": "Buy",
+    "total": 350
+}
 ## Delete product in order  
 ## See all orders  
