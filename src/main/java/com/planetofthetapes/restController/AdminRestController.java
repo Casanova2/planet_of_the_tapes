@@ -1,5 +1,6 @@
 package com.planetofthetapes.restController;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -121,14 +122,15 @@ public class AdminRestController {
 			l.add(all.get(id3-1));
 	
 			pack.setProducts(l);
-			pack.setImg("packi.jpg");
+			
+			String imgName = "packi.jpg";
+			pack.setImg(imgName);
 			
 			newpack.setProducts(pack.getProducts());
 			newpack.setImg(pack.getImg());
-			
 			packRepository.save(newpack);
 			
-			return new ResponseEntity<>(newpack, HttpStatus.OK);
+			return new ResponseEntity<>(pack, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
@@ -257,11 +259,17 @@ public class AdminRestController {
 	public ResponseEntity<User> addUserRest(HttpServletResponse response, @RequestBody User user, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
+			
+			List<String> role = new ArrayList<String>();
+			role.add("ROLE_USER");
+			
+			user.setAvatar("usern.png");
+			user.setRoles(role);
 			User newuser = new User(user.getName(), user.getPasswordHash(),user.getDni(), user.getEmail(), user.getTelephone(),
-			user.getAddress(),user.getAvatar(),"ROLE_USER");
+			user.getAddress(),user.getAvatar(),user.getRoles());
 
 			userRepository.save(newuser);
-			return new ResponseEntity<>(newuser, HttpStatus.OK);
+			return new ResponseEntity<>(user, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
@@ -312,10 +320,10 @@ public class AdminRestController {
 			Product newproduct = new Product(product.getName(), product.getDescription(), product.getType(), product.getGenre(),
 					product.getStock(), product.getPbuy(), product.getPrent(), product.getScore(), product.getTrailer(), product.getDirector(),
 					product.getCast(), product.getYear(), product.getUrlimg());
-				
+
 			productRepository.save(newproduct);
 				
-			return new ResponseEntity<>(newproduct, HttpStatus.OK);
+			return new ResponseEntity<>(product, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}

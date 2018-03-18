@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -92,8 +93,8 @@ public class PlistRestController{
     }
 	
 	@JsonView(ProductDetails.class)
-	@RequestMapping(value = "/loadmore", method=RequestMethod.GET)
-	public ResponseEntity<List<Product>> moreProductsRest(@RequestBody int page, @RequestBody String type) {
+	@RequestMapping(value = "/loadmore/{type}", method=RequestMethod.GET)
+	public ResponseEntity<List<Product>> moreProductsRest(@PathVariable String type) {
 		
 		List<Product> products = productRepository.findGroupByType(type);
 		if (!products.equals(null)){
@@ -105,7 +106,7 @@ public class PlistRestController{
 	
 	@JsonView(PackDetails.class)
 	@RequestMapping(value = "/loadmore/packs", method=RequestMethod.GET)
-	public ResponseEntity<List<Pack>> morePacksRest(@RequestBody int page, @RequestBody String type) {
+	public ResponseEntity<List<Pack>> morePacksRest() {
 		
 		List<Pack> packs = packRepository.findAll();
 		if (!packs.equals(null)){

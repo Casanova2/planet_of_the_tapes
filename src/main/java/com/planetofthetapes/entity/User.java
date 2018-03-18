@@ -80,6 +80,20 @@ public class User {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 	}
 	
+	public User(String name, String passwordHash, String dni, String email, String telephone, String address,
+			String avatar, List<String> roles) {
+		
+		this.name = name;
+		String pass = passwordHash;
+		this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash) ;
+		this.dni = dni;
+		this.email = email;
+		this.telephone = telephone;
+		this.address = address;
+		this.avatar = avatar;
+		this.roles = roles;
+	}
+
 	public Boolean hasOrders() {
 		return !this.orders.isEmpty();
 	}
