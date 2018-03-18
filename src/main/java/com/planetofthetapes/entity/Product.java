@@ -68,8 +68,6 @@ public class Product {
 	private int year;
 	@JsonView(Basic.class)
 	private String urlimg;
-	@JsonView(Basic.class)
-	public String selected;
 	
 
 
@@ -95,24 +93,6 @@ public class Product {
 	}
 	
 	public Product(String name, String description, String type, String genre, int stock, double pbuy,
-			double prent, int score, String trailer, String director, String cast, int year, String urlimg, String selected) {
-			this.name = name;
-			this.description = description;
-			this.type = type;
-			this.genre = genre;
-			this.stock = stock;
-			this.pbuy = pbuy;
-			this.prent = prent;
-			this.score = score;
-			this.trailer = trailer;
-			this.director = director;
-			this.cast = cast;
-			this.year = year;
-			this.urlimg = urlimg;
-			this.selected = selected;
-	}
-	
-	public Product(String name, String description, String type, String genre, int stock, double pbuy,
 			double prent, int score, String trailer, String director, String cast, int year, String urlimg) {
 			this.name = name;
 			this.description = description;
@@ -129,9 +109,6 @@ public class Product {
 			this.urlimg = urlimg;
 	}
 	
-	public String getSelected() {
-		return selected;
-	}
 	public List<POrder> getPedidos() {
 		return porders;
 	}
@@ -151,18 +128,6 @@ public class Product {
 	public List<POrder> getPorders() {
 		return porders;
 	}
-
-	
-	public void setSelected(String selected) {
-		this.selected = selected;
-	}
-
-
-
-	public void Option(String name, boolean seleted){
-        this.name = name;
-        this.selected = seleted ? "selected" : "";
-    }
 	
 	public void setPorders(List<POrder> pedidos) {
 		this.porders = pedidos;
