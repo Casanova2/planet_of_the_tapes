@@ -386,8 +386,7 @@ As admin, you can add new users.
         "dni": "7845678R",
         "email": "a@gmail.com",
         "telephone": "606789541",
-        "address": "calle falsa 123455",
-        "avatar": "usern.png"
+        "address": "calle falsa 123455"
 }
 ```  
 
@@ -403,7 +402,7 @@ As admin, you can add new users.
         "viewTelephone": false,
         "address": "calle falsa 123455",
         "avatar": "usern.png",
-        "roles": null,
+        "roles": "ROLE_USER",
         "orders": []
 }
 ```  
@@ -464,8 +463,8 @@ As an unregistered user, you can register in app. It's similar to add user as ad
     "telephone": "606056001",
     "viewTelephone": false,
     "address": "calle falsa 123",
-    "avatar": null,
-    "roles": null,
+    "avatar": "usern.png"
+    "roles": "ROLE_USER",
     "orders": []
 }
 ```  
