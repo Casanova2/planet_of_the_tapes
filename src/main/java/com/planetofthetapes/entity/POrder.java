@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonView;
 import com.planetofthetapes.entity.Product.Basic;
 
@@ -41,7 +43,6 @@ public class POrder {
 	@OneToMany
 	@JsonView(PackRelation.class)
 	private List<Pack> packs = new ArrayList<Pack>();
-	
 
 	@JsonView(Basic.class)
 	private String state;
