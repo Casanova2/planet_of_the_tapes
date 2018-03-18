@@ -165,7 +165,7 @@ public class AdminController extends MasterService{
 	public String modifyPack(Model model, @PathVariable Integer id, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 	
 		this.session(model, request, redirectAttrs);
-		
+		model.addAttribute("products",productRepository.findAll());
 		model.addAttribute("pack", packRepository.findById(id));
 		return "/admin/admin-modify-pack";
 	}

@@ -51,18 +51,30 @@
 										</div>
 							
 										<div class="form-group mb-lg">
-											<label>First Product</label>
-											<input name="nameP1" type="text" class="form-control input-lg" required/>
+											<label>Product 1</label>
+											<select name="nameP1" class="form-control form-control-lg mb-3">
+											{{#products}}
+												<option name="{{name}}">{{name}}</option>
+											{{/products}}
+											</select>
 										</div>
 										
 										<div class="form-group mb-lg">
-											<label>Second Product</label>
-											<input name="nameP2" type="text" class="form-control input-lg" required/>
+											<label>Product 2</label>
+											<select name="nameP2" class="form-control form-control-lg mb-3">
+											{{#products}}
+												<option name="{{name}}">{{name}}</option>
+											{{/products}}
+											</select>
 										</div>
 										
 										<div class="form-group mb-lg">
-											<label>Third Product</label>
-											<input name="nameP3" type="text" class="form-control input-lg" required/>
+											<label>Product 3</label>
+											<select name="nameP3" class="form-control form-control-lg mb-3">
+											{{#products}}
+												<option name="{{name}}">{{name}}</option>
+											{{/products}}
+											</select>
 										</div>
 										
 										<footer class="panel-footer">
