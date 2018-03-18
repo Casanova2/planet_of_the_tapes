@@ -167,5 +167,5 @@ To finish, we have made class diagrams by parts to connect the classes of our ap
   
 In this phase, we have implemented an API REST app, and we have built this with dockers.  
   
-If you want to see the API ReEST documentation [click here](https://github.com/Casanova2/planet_of_the_tapes/tree/develop/API.md).
+If you want to see the API REST documentation [click here](https://github.com/Casanova2/planet_of_the_tapes/tree/develop/API.md).
 
