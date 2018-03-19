@@ -10,7 +10,7 @@ services:
        MYSQL_DATABASE: pott
     
   spring:
-    image: pott/prueba1:develop
+    image: pott/pott
     restart: always
     depends_on:
       - db
