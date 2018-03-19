@@ -50,7 +50,7 @@ public class AdminController extends MasterService{
 		model.addAttribute("packs", packRepository.findAll());
 		
 		
-		return "/admin/admin-dashboard";
+		return "admin/admin-dashboard";
 	}
 	
 	@RequestMapping("/admin-products")
@@ -68,7 +68,7 @@ public class AdminController extends MasterService{
 		model.addAttribute("products",productRepository.findAll());
 		
 		
-		return "/admin/admin-products";
+		return "admin/admin-products";
 	}
 	@RequestMapping("/admin-orderlist")
 	public String orderlist(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
@@ -76,7 +76,7 @@ public class AdminController extends MasterService{
 		model.addAttribute("orders", porderRepository.findAll());
 		
 		
-		return "/admin/admin-orderlist";
+		return "admin/admin-orderlist";
 	}
 
 	@RequestMapping("/admin-userList")
@@ -84,7 +84,7 @@ public class AdminController extends MasterService{
 		this.session(model, request, redirectAttrs);
 		model.addAttribute("users",userRepository.findAll());
 		
-		return "/admin/admin-userList";
+		return "admin/admin-userList";
 	}
 	
 	@RequestMapping("/admin-packlist")
@@ -93,7 +93,7 @@ public class AdminController extends MasterService{
 		
 		model.addAttribute("packs",packRepository.findAll());
 		
-		return "/admin/admin-packlist";
+		return "admin/admin-packlist";
 	}
 	
 	@RequestMapping("/user-orderlist")
@@ -102,7 +102,7 @@ public class AdminController extends MasterService{
 		User user = userRepository.findByName(request.getUserPrincipal().getName());
 		model.addAttribute("orderUserList",user.getOrders());
 		model.addAttribute("numberOrderlist",user.getOrders().size());
-		return "/admin/user-orderlist";
+		return "admin/user-orderlist";
 	}
 	
 	
@@ -217,14 +217,17 @@ public class AdminController extends MasterService{
 	
 	@RequestMapping("/admin-user")
 	public String adminuserprofile(Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
+		System.out.println("Entro1");
 		this.session(model, request, redirectAttrs);
+		System.out.println("Entro2");
 		
 		model.addAttribute("products",productRepository.findAll());
+		System.out.println("Entro3->");
 		User user = userRepository.findByName(request.getUserPrincipal().getName());
+		System.out.println("Entro4");
 		model.addAttribute("user",user);
-	
-		
-		return "/admin/admin-user";
+		System.out.println("Entro5");
+		return "admin/admin-user";
 	}
 
 	@RequestMapping("/admin-modify-user")
@@ -334,7 +337,7 @@ public class AdminController extends MasterService{
 		this.session(model, request, redirectAttrs);
 		model.addAttribute("products",productRepository.findAll());
 	
-		return "/admin/admin-add-user";
+		return "admin/admin-add-user";
 	}
 	
 	@RequestMapping("/admin-user-add")
@@ -455,7 +458,7 @@ public class AdminController extends MasterService{
 		this.session(model, request, redirectAttrs);
 		
 		model.addAttribute("product",productRepository.findById(id));
-		return "/admin/admin-modify-product2";
+		return "admin/admin-modify-product2";
 	}
 	
 	@RequestMapping("/admin/product/modify/{id}") // modify

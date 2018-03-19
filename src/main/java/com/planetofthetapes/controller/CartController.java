@@ -80,7 +80,8 @@ public class CartController extends MasterService {
 			 String subject,String body, String from)throws Exception {
 		this.session(model, request, redirectAttrs);
 		redirectAttrs.addFlashAttribute("success","Your order was processed. We sent you an email with the infomation of your shipment");
-		return "/selectpay";
+		System.out.println("ENTRO");
+		return "selectpayy";
 	}
 	
 	@RequestMapping("/{id}/buy")
