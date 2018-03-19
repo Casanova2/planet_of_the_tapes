@@ -3,9 +3,9 @@ We will show you the basics, from creating the image to running your own contain
 
 ### Table of contents   
 
-[Docker installation](https://github.com/Casanova2/planet_of_the_tapes/new/develop/docker_sergio#docker-installation)  
-[Run the app containerized](https://github.com/Casanova2/planet_of_the_tapes/new/develop/docker_sergio#run-the-app-containerized-with-docker-compose)  
-[Build the image](https://github.com/Casanova2/planet_of_the_tapes/new/develop/docker_sergio#build-the-image)
+[Docker installation](https://github.com/Casanova2/planet_of_the_tapes/blob/master/DOCKER.md#docker-installation)  
+[Run the app containerized](https://github.com/Casanova2/planet_of_the_tapes/blob/master/DOCKER.md#run-the-app-containerized-with-docker-compose)  
+[Build the image](https://github.com/Casanova2/planet_of_the_tapes/blob/master/DOCKER.md#build-the-image)
 
 ## DOCKER INSTALLATION
 
@@ -17,7 +17,7 @@ All the commands in this tutorial requires you to have the latest Docker version
 
 In order to run multi-containers, them being MySQL and Java (JRE server):
 
-* Download the **[docker-compose.yml](https://github.com/Casanova2/planet_of_the_tapes/blob/develop/docker-sergio/docker-compose.yml)** file.
+* Download the **[docker-compose.yml](https://github.com/Casanova2/planet_of_the_tapes/blob/master/docker/docker-compose.yml)** file.
 
 * Navigate to it's folder and run this command:
 
@@ -39,11 +39,11 @@ To stop the containers:
 
 You **_don't_** need to build the image in order to run this application, we host the latest version in **[our repository at DockerHub](https://hub.docker.com/r/pott/pott/)**.
 
-* Run **[this script](https://github.com/Casanova2/planet_of_the_tapes/blob/develop/docker-sergio/create_image.bat)**, (you don't even need to download the full project, just the script).
+* Run **[this script](https://github.com/Casanova2/planet_of_the_tapes/blob/master/docker/create_image.bat)**, (you don't even need to download the full project, just the script).
 
 * **Or** just run this command:
 
-   `docker build https://github.com/Casanova2/planet_of_the_tapes.git#develop:docker-sergio`
+   `docker build https://github.com/Casanova2/planet_of_the_tapes.git#develop:docker`
 
    You could name the image whatever you want adding at the end:
    
