@@ -1,4 +1,4 @@
-## IMPORTANT INNFORMATION
+## IMPORTANT INFORMATION
 All the API requests go with /api at the start.
 
 
