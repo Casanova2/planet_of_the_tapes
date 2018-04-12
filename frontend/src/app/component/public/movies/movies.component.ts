@@ -1,7 +1,8 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import { Product } from '../../../model/product.model';
 import { ProductService } from '../../../service/product.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-movies',
@@ -11,45 +12,19 @@ import { ProductService } from '../../../service/product.service';
 export class MoviesComponent {
 
   movies: Product[];
-  img_url: string;
-  moreBooksActive: boolean;
-  error: String;
 
-  constructor(private productService: ProductService) {
-    this.movies = [];
-    // this.img_url = BOOKS_IMG_URL;
+  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute,
+    public sanitizer: DomSanitizer) {}
 
-    this.addMovies(true);
-  }
+    // tslint:disable-next-line:use-life-cycle-interface
+    ngOnInit() {
+      this.productService.getAllProducts(this.activatedRoute.snapshot.params[2]).subscribe(
 
-  addMovies(userReq: boolean) {
-    this.productService.getAllProducts(2).subscribe(
-      movies => {
-        if (Object.keys(movies).length === 0) {
-          this.moreBooksActive = false;
-        } /*else if (userReq) {
-          this.moreMoviesActive = true;
-          this.moviesPage++;
-          this.movies = this.movies.concat(movies);
-          this.downloadImages(this.movies);
-          this.addMovies(false);*/
+        movies => {
+          this.movies = movies;
+          console.log(this.movies);
         },
-      error => console.log('Fail trying to get movies.')
-    );
-
-  }
-
-  /*downloadImages(resources: Resource[]) {
-    console.log('Downloading images from server...');
-    for (let resource of resources) {
-      this.fileService.getResourceFile(resource.id).subscribe(
-        data => {
-          let dataRecieved: string[] = data.split('"');
-          resource.image = 'data:image/png;base64,' + dataRecieved[3];
-        },
-        error => console.log('Fail adding resource ' + resource.title + 'image.')
+        error => console.log(error)
       );
     }
-  }*/
-
-}
+  }
