@@ -1,38 +1,4 @@
-<div>
-  <template ngbTabContent>
-    <div class="listItems">
-      <div *ngIf="movies.length == 0; else chargedMovies">
-        <img src="../../../../assets/img/loadingElements.gif" style="margin-left: 40%;">
-      </div>
-      <ng-template #chargedMovies>
-        <ng-template ngFor let-movie [ngForOf]="movies">
-          <div class="row item">
-            <div class="col-sm-12 col-md-4 col-lg-3">
-              <!-- <div class="coverItem">
-                <div *ngIf="movie.image == undefined; else chargedImage">
-                  <img src="../../../../assets/img/loadingImages.svg" width="50px" height="50px" align="middle">
-                </div>
-              </div> -->
-            </div>
-            <div class="col-sm-12 col-md-8 col-lg-7 informationItem">
-              <h3 class="title">{{movie.name}}</h3>
-              <h5 class="authorName">por {{movie.director}}</h5>
-              <div class="description">
-                <p>
-                  {{movie.description}}
-                  <span>...</span>
-                  <a [routerLink]="['/product/' + movie.id]"> <span class="moreInfo">+ info</span> </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </ng-template>
-        <!-- <div *ngIf="moremoviesActive">
-          <button (click)="addmovies(true)" type="button" class="btn btn-lg btn-block btn-view-more">Ver más
-            libros
-          </button>
-        </div> -->
-      </ng-template>
-    </div>
-  </template>
-</div>
+<h1>Movies</h1>
+<ng-template ngFor let-movie [ngForOf]="movies">
+  <h3 class="title">{{movie.name}}</h3>
+</ng-template>
