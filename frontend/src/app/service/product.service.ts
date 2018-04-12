@@ -1,18 +1,46 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-// tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
+
 import { PRODUCTS_URL, SINGLEPRODUCT_URL, ALLPRODUCTS_URL } from '../util';
 
 import { Product } from '../model/product.model';
+
+import {Pack} from '../model/pack.model';
+import {POrder} from '../model/pOrder.model';
+
+export interface Product {
+  id?: number;
+  name: string;
+  description: string;
+  type: string;
+  genre: string;
+  stock: number;
+  pbuy: number;
+  prent: number;
+  score: number;
+  trailer: string;
+  director: string;
+  cast: string;
+  year: number;
+  urlimg?: any;
+  hasPhoto?: boolean;
+  packs?: Pack[];
+  orders?: POrder[];
+}
 
 @Injectable()
 export class ProductService {
 
   authCreds: string;
 
-  constructor(private http: Http) {
+  constructor(private http: Http) {}
+
+  getProducts() {
+    return this.http.get(PRODUCTS_URL, { withCredentials: true })
+      .map(response => response.json())
+      .catch(error => this.handleError(error));
   }
 
   setAuthHeaders(authCreds: string) {
@@ -33,24 +61,24 @@ export class ProductService {
   }
 
   getAllListProducts() {
-    const url = ALLPRODUCTS_URL;
+    let url = ALLPRODUCTS_URL;
     return this.http.get(url)
       .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
   }
 
-  /*getPageProduct(page?: number) {
+  getPageProduct(page?: number) {
     const url = (page) ? PRODUCTS_URL + '?page=' + page : PRODUCTS_URL;
     return this.http.get(url)
       .map(response => response.json().content)
       .catch(error => Observable.throw('Server error'));
-  }*/
+  }
 
-  /*searchProducts(name: string, page: number) {
+  searchProducts(name: string, page: number) {
     return this.http.get(PRODUCTS_URL + '?name=' + name + '&page=' + page)
       .map(response => response.json().content)
       .catch(error => Observable.throw('Server error'));
-  }*/
+  }
 
   updateProduct(product: Product) {
     const body = JSON.stringify(product);
@@ -101,5 +129,10 @@ export class ProductService {
     return this.http.delete(PRODUCTS_URL + '/' + id, { headers: headers })
       .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
+  }
+
+  private handleError(error: any) {
+    console.error(error);
+    return Observable.throw('Server error (' + error.status + '): ' + error.text());
   }
 }

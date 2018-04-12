@@ -1,5 +1,6 @@
 package com.planetofthetapes.restController;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ import com.planetofthetapes.repository.PackRepository;
 import com.planetofthetapes.repository.ProductRepository;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/mplist")
 public class PlistRestController{
 	
 	public interface ProductDetails extends Product.Basic, Product.OrderRelation{}
@@ -31,10 +32,10 @@ public class PlistRestController{
 	private PackRepository packRepository;
 	
 	@JsonView(ProductDetails.class)
-	@RequestMapping(value="/mplist", method=RequestMethod.GET)
-    public ResponseEntity<List<Product>> mplistRest(Model model, int enlace){
-
-		String type = "";
+	@RequestMapping(value="/", method=RequestMethod.GET)
+    public Collection<Product> mplistRest(){
+		return productRepository.findAll();
+		/*String type = "";
 		if(enlace == 1) {
 			type = "Series";
 			List<Product> series = productRepository.findGroupByType("Series");
@@ -69,11 +70,11 @@ public class PlistRestController{
 			return new ResponseEntity<>(p, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
+		}*/
     }
 	
 	@JsonView(PackDetails.class)
-	@RequestMapping(value="/mplist/packs", method=RequestMethod.GET)
+	@RequestMapping(value="/packs", method=RequestMethod.GET)
     public ResponseEntity<List<Pack>> mplistpackRest(Model model, @RequestBody int enlace){
 		if(enlace == 4) {
 			String type = "Packs";

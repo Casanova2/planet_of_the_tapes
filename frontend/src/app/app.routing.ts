@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { PublicComponent } from './component/public/public.component';
 import { AboutComponent } from './component/public/about/about.component';
-import {FooterComponent} from './component/public/footer/footer.component';
+import { FooterComponent } from './component/public/footer/footer.component';
 import { HomeComponent } from './component/public/home/home.component';
 import { LoginComponent } from './component/public/login/login.component';
 import { RegisterComponent } from './component/public/register/register.component';
@@ -22,9 +22,10 @@ const appRoutes = [
 			{path: 'videogames', component: VideoGamesComponent},
 			{path: 'product', component: ProductComponent},
 			{path: 'login', component: LoginComponent},
-      {path: 'register', component: RegisterComponent},
-      {path: 'series', component: SeriesComponent},
-      {path: 'movies', component: MoviesComponent},
+		    {path: 'register', component: RegisterComponent},
+		    {path: 'series', component: SeriesComponent},
+		    {path: 'movies', component: MoviesComponent},
+		    {path: '', redirectTo: 'home', pathMatch: 'full' }
 		]
 	}
 ];
