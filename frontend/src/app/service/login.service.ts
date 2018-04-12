@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import {User} from '../model/user.model';
-import {LoginComponent} from '../component/login/login.component';
+/*import {LoginComponent} from '../component/login/login.component';*/
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
 
