@@ -33,7 +33,7 @@
         <div class="col-lg-7">
           <div class="row">
             <div class="col-lg-4 col-lg-offset-7 paddingNone userDropdownMenu">
-              <div *ngIf="sessionService.isLogged; else notLogged">
+              <!-- <div *ngIf="sessionService.isLogged; else notLogged">
                 <div class="dropdown" dropdown>
                   <button class="btn btn-primary dropdown-toggle" dropdown-open>
                     <img src="../../../assets/img/user_undefined_f_40x40.jpg" class="img-circle" />
@@ -44,7 +44,7 @@
                       <li><a href="#" (click)="logOut()">Cerrar sesión <span class="glyphicon glyphicon-log-out"></span></a></li>
                   </ul>
                 </div>
-              </div>
+              </div> -->
               <ng-template #notLogged>
                 <div class="btn-group iconMenu" role="group" aria-label="...">
                   <div class="btn-group" role="group">

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import{HeaderComponent} from './component/public/header/header.component';
+import {HeaderComponent} from './component/public/header/header.component';
 import {} from './service/login.service';
 
 import { AppComponent } from './app.component';
@@ -15,7 +15,9 @@ import { HomeComponent } from './component/public/home/home.component';
 import { LoginComponent } from './component/public/login/login.component';
 import { RegisterComponent } from './component/public/register/register.component';
 import { ProductComponent } from './component/public/product/product.component';
-import { PlistComponent } from './component/public/plist/plist.component';
+import { VideoGamesComponent } from './component/public/videogames/videogames.component';
+import { SeriesComponent } from './component/public/series/series.component';
+import { MoviesComponent } from './component/public/movies/movies.component';
 import { PublicComponent } from './component/public/public.component';
 
 import {UserService} from './service/user.service';
@@ -25,14 +27,16 @@ import {ProductService} from './service/product.service';
   declarations: [
     PublicComponent,
     HomeComponent,
-    PlistComponent,
+    VideoGamesComponent,
     ProductComponent,
     LoginComponent,
     RegisterComponent,
     AboutComponent,
     FooterComponent,
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    SeriesComponent,
+    MoviesComponent
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],
   providers: [LoginService, UserService, ProductService],

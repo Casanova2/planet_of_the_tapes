@@ -3,7 +3,7 @@ import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
-import { PRODUCTS_URL } from '../util';
+import { PRODUCTS_URL, SINGLEPRODUCT_URL, ALLPRODUCTS_URL } from '../util';
 
 import { Product } from '../model/product.model';
 
@@ -20,37 +20,37 @@ export class ProductService {
   }
 
   getProduct(id: number) {
-    return this.http.get(PRODUCTS_URL + '/' + id)
+    return this.http.get(SINGLEPRODUCT_URL + '/' + id)
       .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
   }
 
-  getAllProducts(type?: string, page?: number) {
-    const url = PRODUCTS_URL + '?type=' + type + '&page=' + page;
+  getAllProducts(enlace?: number) {
+    const url = PRODUCTS_URL + '?enlace=' + enlace;
     return this.http.get(url)
       .map(response => response.json().content)
       .catch(error => Observable.throw('Server error'));
   }
 
   getAllListProducts() {
-    const url = PRODUCTS_URL + '/all';
+    const url = ALLPRODUCTS_URL;
     return this.http.get(url)
       .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
   }
 
-  getPageProduct(page?: number) {
+  /*getPageProduct(page?: number) {
     const url = (page) ? PRODUCTS_URL + '?page=' + page : PRODUCTS_URL;
     return this.http.get(url)
       .map(response => response.json().content)
       .catch(error => Observable.throw('Server error'));
-  }
+  }*/
 
-  searchProducts(name: string, page: number) {
+  /*searchProducts(name: string, page: number) {
     return this.http.get(PRODUCTS_URL + '?name=' + name + '&page=' + page)
       .map(response => response.json().content)
       .catch(error => Observable.throw('Server error'));
-  }
+  }*/
 
   updateProduct(product: Product) {
     const body = JSON.stringify(product);
@@ -90,7 +90,7 @@ export class ProductService {
       .catch(error => Observable.throw('Server error'));
   }
 
-  deleteResource(id: number) {
+  deleteProduct(id: number) {
     this.authCreds = localStorage.getItem('creds');
 
     const headers: Headers = new Headers();
@@ -100,13 +100,6 @@ export class ProductService {
 
     return this.http.delete(PRODUCTS_URL + '/' + id, { headers: headers })
       .map(response => response.json())
-      .catch(error => Observable.throw('Server error'));
-  }
-
-  getResourcesTypes() {
-    const url = 'https://localhost:8443/api/resourcetypes';
-    return this.http.get(url)
-      .map(response => response.json().content)
       .catch(error => Observable.throw('Server error'));
   }
 }

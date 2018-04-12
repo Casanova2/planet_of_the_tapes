@@ -9,7 +9,9 @@ import { HomeComponent } from './component/public/home/home.component';
 import { LoginComponent } from './component/public/login/login.component';
 import { RegisterComponent } from './component/public/register/register.component';
 import { ProductComponent } from './component/public/product/product.component';
-import { PlistComponent } from './component/public/plist/plist.component';
+import { VideoGamesComponent } from './component/public/videogames/videogames.component';
+import { SeriesComponent } from './component/public/series/series.component';
+import { MoviesComponent } from './component/public/movies/movies.component';
 
 const appRoutes = [
 
@@ -17,10 +19,12 @@ const appRoutes = [
 		children: [
 			{path: 'contact', component: AboutComponent},
 			{path: 'home', component: HomeComponent},
-			{path: 'plist', component: PlistComponent},
+			{path: 'videogames', component: VideoGamesComponent},
 			{path: 'product', component: ProductComponent},
 			{path: 'login', component: LoginComponent},
-			{path: 'register', component: RegisterComponent},
+      {path: 'register', component: RegisterComponent},
+      {path: 'series', component: SeriesComponent},
+      {path: 'movies', component: MoviesComponent},
 		]
 	}
 ];
