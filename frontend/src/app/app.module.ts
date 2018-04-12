@@ -10,6 +10,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 import { PublicComponent } from './component/public.component';
 
+import {UserService} from './service/user.service';
+import {ProductService} from './service/product.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +20,7 @@ import { PublicComponent } from './component/public.component';
     PublicComponent
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],
-  providers: [LoginService],
+  providers: [LoginService, UserService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
