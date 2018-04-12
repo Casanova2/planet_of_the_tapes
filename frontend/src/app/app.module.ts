@@ -18,6 +18,9 @@ import { ProductComponent } from './component/public/product/product.component';
 import { PlistComponent } from './component/public/plist/plist.component';
 import { PublicComponent } from './component/public/public.component';
 
+import {UserService} from './service/user.service';
+import {ProductService} from './service/product.service';
+
 @NgModule({
   declarations: [
     PublicComponent,
@@ -32,7 +35,7 @@ import { PublicComponent } from './component/public/public.component';
     HeaderComponent
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],
-  providers: [LoginService],
+  providers: [LoginService, UserService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
