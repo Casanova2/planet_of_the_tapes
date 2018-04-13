@@ -1,0 +1,64 @@
+<header class="headerWrapper" style="position:relative !important">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-md-5 col-lg-5 logo">
+        <a [routerLink]="['']"> <img src="./assets/img/logo.png" alt="logo">
+          <h1>Planet of the Tapes</h1>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="navbar navbar-default">
+  <div class="container-fluid menuNav">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" aria-expanded="false">
+          <span class="sr-only">Navegación</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a [routerLink]="['']">Home</a></li>
+          <li><a [routerLink]="['/series']">Series</a></li>
+          <li><a [routerLink]="['/movies']">Movies</a></li>
+          <li><a [routerLink]="['/videogames']">Videogames</a></li>
+          <li><a [routerLink]="['/contact']">Contact</a></li>
+          <li><a [routerLink]="['/login']">Login</a></li>
+          <li><a [routerLink]="['/register']">Register</a></li>
+        </ul>
+        <div class="col-lg-7">
+          <div class="row">
+            <div class="col-lg-4 col-lg-offset-7 paddingNone userDropdownMenu">
+              <!-- <div *ngIf="sessionService.isLogged; else notLogged">
+                <div class="dropdown" dropdown>
+                  <button class="btn btn-primary dropdown-toggle" dropdown-open>
+                    <img src="../../../assets/img/user_undefined_f_40x40.jpg" class="img-circle" />
+                    {{sessionService.user?.name}}</button>
+                  <ul class="dropdown-menu">
+                    <li><a [routerLink]="['/profile']" (click)="update('profile')">Perfil <span class="glyphicon glyphicon-user"></span></a>
+                      <li *ngIf="sessionService.isAdmin"><a [routerLink]="['/admin']">Panel de administración <span class="glyphicon glyphicon-cog"></span></a></li>
+                      <li><a href="#" (click)="logOut()">Cerrar sesión <span class="glyphicon glyphicon-log-out"></span></a></li>
+                  </ul>
+                </div>
+              </div> -->
+              <ng-template #notLogged>
+                <div class="btn-group iconMenu" role="group" aria-label="...">
+                  <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" (click)="login()">
+                      <img src="../../../assets/img/user_undefined_f_40x40.jpg" class="img-circle" />
+                      <span>Iniciar sesión</span> <span class="fa fa-power-off"></span>
+                    </button>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
