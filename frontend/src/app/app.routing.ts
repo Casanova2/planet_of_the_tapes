@@ -29,10 +29,10 @@ const appRoutes = [
 			{path: 'videogames', component: VideoGamesComponent},
 			{path: 'product', component: ProductComponent},
 			{path: 'login', component: LoginComponent},
-		    {path: 'register', component: RegisterComponent},
-		    {path: 'series', component: SeriesComponent},
-		    {path: 'movies', component: MoviesComponent},
-		    {path: '', redirectTo: 'home', pathMatch: 'full' }
+		  {path: 'register', component: RegisterComponent},
+		  {path: 'series', component: SeriesComponent},
+		  {path: 'movies', component: MoviesComponent},
+		  {path: '', redirectTo: 'home', pathMatch: 'full' }
 		]
 	},
 
