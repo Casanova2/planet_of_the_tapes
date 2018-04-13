@@ -33,9 +33,8 @@ public class PlistRestController{
 	
 	@JsonView(ProductDetails.class)
 	@RequestMapping(value="/", method=RequestMethod.GET)
-    public Collection<Product> mplistRest(){
-		return productRepository.findAll();
-		/*String type = "";
+    public ResponseEntity<List<Product>> mplistRest(Model model, int enlace){
+		String type = "";
 		if(enlace == 1) {
 			type = "Series";
 			List<Product> series = productRepository.findGroupByType("Series");
@@ -70,7 +69,7 @@ public class PlistRestController{
 			return new ResponseEntity<>(p, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}*/
+		}
     }
 	
 	@JsonView(PackDetails.class)

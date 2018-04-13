@@ -8,28 +8,31 @@
 
 <div class="row">
   <div class="col-sm-12">
-    
+          
+          <hr>
+          <h1>Series</h1>
+          <hr>
         
           <div class="listItems">
-            <div *ngIf="products.length == 0; else chargedProducts">
+            <div *ngIf="series.length == 0; else chargedseries">
               <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
             </div>
-            <ng-template #chargedProducts>
-              <ng-template ngFor let-product [ngForOf]="products">
+            <ng-template #chargedseries>
+              <ng-template ngFor let-serie [ngForOf]="series">
                 <div class="row item">
                   <div class="col-sm-12 col-md-4 col-lg-3">
                     <div class="coverItem">
-                      <div *ngIf="product.urlimg == undefined; else chargedImage">
+                      <div *ngIf="serie.urlimg == undefined; else chargedImage">
                         <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
                       </div>
                       <ng-template #chargedImage>
-                        <img [src]="sanitizer.bypassSecurityTrustUrl(img_url + product.urlimg)" class="img-responsive"/>
+                        <img [src]="sanitizer.bypassSecurityTrustUrl(img_url + serie.urlimg)" class="img-responsive"/>
                       </ng-template>
                       <div>
                         <div *ngIf="isLogged">
                           <div>
-                            <div *ngIf="product.genre; else notEnough">
-                              <button (click)="reserveResource(product)" class="btn btn-reserve">Reservar</button>
+                            <div *ngIf="serie.genre; else notEnough">
+                              <button (click)="reserveResource(serie)" class="btn btn-reserve">Reservar</button>
                             </div>
                             <ng-template #notEnough>
                               <p class="btn btn-notEnough">No disponible</p>
@@ -40,13 +43,13 @@
                     </div>
                   </div>
                   <div class="col-sm-12 col-md-8 col-lg-7 informationItem">
-                    <h3 class="title">{{product.name}}</h3>
-                    <h5 class="authorName">por {{product.genre}}</h5>
+                    <h3 class="title">{{serie.name}}</h3>
+                    <h5 class="authorName">por {{serie.genre}}</h5>
                     <div class="description">
                       <p>
-                        {{product.description}}
+                        {{serie.description}}
                         <span>...</span>
-                        <a [routerLink]="['/product',product.id]"> <span class="moreInfo">+ info</span> </a>
+                        <a [routerLink]="['/serie',serie.id]"> <span class="moreInfo">+ info</span> </a>
                       </p>
                       <div class="available stockAvailable">
                         <span class="glyphicon glyphicon-ok-circle"></span>
@@ -56,15 +59,129 @@
                   </div>
                 </div>
               </ng-template>
-              <div *ngIf="moreProductsActive">
-                <button (click)="addProducts(true)" type="button" class="btn btn-lg btn-block btn-view-more">Ver más
+              <div *ngIf="moreseriesActive">
+                <button (click)="addseries(true)" type="button" class="btn btn-lg btn-block btn-view-more">Ver más
                   libros
                 </button>
               </div>
             </ng-template>
           </div>
         
-      
+          <hr>
+          <h1>Movies</h1>
+          <hr>
+
+          <div class="listItems">
+            <div *ngIf="movies.length == 0; else chargedmovies">
+              <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
+            </div>
+            <ng-template #chargedmovies>
+              <ng-template ngFor let-movie [ngForOf]="movies">
+                <div class="row item">
+                  <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="coverItem">
+                      <div *ngIf="movie.urlimg == undefined; else chargedImage">
+                        <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
+                      </div>
+                      <ng-template #chargedImage>
+                        <img [src]="sanitizer.bypassSecurityTrustUrl(img_url + movie.urlimg)" class="img-responsive"/>
+                      </ng-template>
+                      <div>
+                        <div *ngIf="isLogged">
+                          <div>
+                            <div *ngIf="movie.genre; else notEnough">
+                              <button (click)="reserveResource(movie)" class="btn btn-reserve">Reservar</button>
+                            </div>
+                            <ng-template #notEnough>
+                              <p class="btn btn-notEnough">No disponible</p>
+                            </ng-template>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-8 col-lg-7 informationItem">
+                    <h3 class="title">{{movie.name}}</h3>
+                    <h5 class="authorName">por {{movie.genre}}</h5>
+                    <div class="description">
+                      <p>
+                        {{movie.description}}
+                        <span>...</span>
+                        <a [routerLink]="['/movie',movie.id]"> <span class="moreInfo">+ info</span> </a>
+                      </p>
+                      <div class="available stockAvailable">
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                        <span class="textAvailable">Disponible</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <div *ngIf="moremoviesActive">
+                <button (click)="addmovies(true)" type="button" class="btn btn-lg btn-block btn-view-more">Ver más
+                  libros
+                </button>
+              </div>
+            </ng-template>
+          </div>
+        
+          <hr>
+          <h1>Videogames</h1>
+          <hr>
+
+          <div class="listItems">
+            <div *ngIf="videogames.length == 0; else chargedVideogames">
+              <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
+            </div>
+            <ng-template #chargedVideogames>
+              <ng-template ngFor let-videogame [ngForOf]="videogames">
+                <div class="row item">
+                  <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="coverItem">
+                      <div *ngIf="videogame.urlimg == undefined; else chargedImage">
+                        <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
+                      </div>
+                      <ng-template #chargedImage>
+                        <img [src]="sanitizer.bypassSecurityTrustUrl(img_url + videogame.urlimg)" class="img-responsive"/>
+                      </ng-template>
+                      <div>
+                        <div *ngIf="isLogged">
+                          <div>
+                            <div *ngIf="videogame.genre; else notEnough">
+                              <button (click)="reserveResource(videogame)" class="btn btn-reserve">Reservar</button>
+                            </div>
+                            <ng-template #notEnough>
+                              <p class="btn btn-notEnough">No disponible</p>
+                            </ng-template>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-8 col-lg-7 informationItem">
+                    <h3 class="title">{{videogame.name}}</h3>
+                    <h5 class="authorName">por {{videogame.genre}}</h5>
+                    <div class="description">
+                      <p>
+                        {{videogame.description}}
+                        <span>...</span>
+                        <a [routerLink]="['/videogame',videogame.id]"> <span class="moreInfo">+ info</span> </a>
+                      </p>
+                      <div class="available stockAvailable">
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                        <span class="textAvailable">Disponible</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <div *ngIf="morevideogamesActive">
+                <button (click)="addvideogames(true)" type="button" class="btn btn-lg btn-block btn-view-more">Ver más
+                  libros
+                </button>
+              </div>
+            </ng-template>
+          </div>
     
   </div>
 </div>
