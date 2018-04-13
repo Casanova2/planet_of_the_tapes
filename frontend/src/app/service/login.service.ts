@@ -29,7 +29,7 @@ export class LoginService {
 
         const options = new RequestOptions({ withCredentials: true, headers });
 
-        this.http.get(BASE_URL + '/logIn', options).subscribe(
+        this.http.get(BASE_URL + 'logIn', options).subscribe(
             response => this.processLogInResponse(response),
             error => {
                 if (error.status !== 401) {
@@ -57,7 +57,7 @@ export class LoginService {
 
         const options = new RequestOptions({ withCredentials: true, headers });
 
-        return this.http.get(BASE_URL + '/logIn', options).map(
+        return this.http.get(BASE_URL + 'logIn', options).map(
             response => {
                 this.processLogInResponse(response);
                 return this.user;
@@ -67,7 +67,7 @@ export class LoginService {
 
     logOut() {
 
-        return this.http.get(BASE_URL + '/logOut', { withCredentials: true }).map(
+        return this.http.get(BASE_URL + 'logOut', { withCredentials: true }).map(
             response => {
                 this.isLogged = false;
                 this.isAdmin = false;

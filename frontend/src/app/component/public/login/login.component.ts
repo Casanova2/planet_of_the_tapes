@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../../service/login.service';
+import {UserService } from '../../../service/user.service';
+
 
 @Component({
-  selector: 'login',
+  selector: 'app-login',
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
