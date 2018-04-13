@@ -10,7 +10,7 @@ import { LoginService} from './service/login.service';
 import { UserService } from './service/user.service';
 import {ProductService} from './service/product.service';
 
-// Components
+// COMPONENTS INDEX
 import { HeaderComponent } from './component/public/header/header.component';
 import { AppComponent } from './app.component';
 import { AboutComponent } from './component/public/about/about.component';
@@ -24,8 +24,16 @@ import { SeriesComponent } from './component/public/series/series.component';
 import { MoviesComponent } from './component/public/movies/movies.component';
 import { PublicComponent } from './component/public/public.component';
 
+// COMPONENTS ADMIN
+import { AdminComponent } from './component/admin/admin.component';
+import { AdminDashboardComponent } from './component/admin/dashboard/dashboard.component';
+import { AdminHeaderComponent } from './component/admin/header/header.component';
+import { AdminSidebarComponent } from './component/admin/sidebar/sidebar.component';
+
 @NgModule({
   declarations: [
+
+    // INDEX
     PublicComponent,
     HomeComponent,
     VideoGamesComponent,
@@ -37,7 +45,14 @@ import { PublicComponent } from './component/public/public.component';
     AppComponent,
     HeaderComponent,
     SeriesComponent,
-    MoviesComponent
+    MoviesComponent,
+
+    //ADMIN
+    AdminComponent,
+    AdminDashboardComponent,
+    AdminHeaderComponent,
+    AdminSidebarComponent
+
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],
   providers: [LoginService, UserService, ProductService],
