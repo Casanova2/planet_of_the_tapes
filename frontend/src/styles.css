@@ -82,7 +82,7 @@ header .logo h1 {
 }
 
 .userdrop {
-  background-color: #215E5D;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 #search-input {
@@ -127,7 +127,7 @@ header .logo h1 {
 }
 
 .menuNav {
-  background-color: rgba(10, 78, 77, 0.9);
+  background-color: rgba(3, 75, 158, 0.9);
 }
 
 .menuNav .navbar-collapse {
@@ -487,7 +487,7 @@ html {
 }*/
 
 footer {
-  background-color: #9a5c28;
+  background-color:  rgba(0, 0, 0, 0.75);
   /*position: absolute;*/
   bottom: 0;
   width: 100%;

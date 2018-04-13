@@ -18,12 +18,11 @@ export class VideoGamesComponent {
     this.img_url = PRODUCTS_IMG_URL;
   }
 
-    // tslint:disable-next-line:use-life-cycle-interface
     ngOnInit() {
         this.service.getAllProducts(3).subscribe(
         products => this.products = products,
         error => console.log(error)
       );
+      
     }
   }
->>>>>>> 38e73377c0f6806b75db0b30ad0fd77aa6a82298
