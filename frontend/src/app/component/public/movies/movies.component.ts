@@ -1,8 +1,8 @@
 import { Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import { Product } from '../../../model/product.model';
-import { ProductService } from '../../../service/product.service';
+import { Product, ProductService } from '../../../service/product.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import {STATUS_NO_CONTENT, PRODUCTS_IMG_URL} from "../../../util";
 
 @Component({
   selector: 'app-movies',
@@ -11,19 +11,17 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 export class MoviesComponent {
 
-  movies: Product[];
+  products: Product[];
+  img_url: string;
 
-  constructor(private productService: ProductService, private activatedRoute: ActivatedRoute,
-    public sanitizer: DomSanitizer) {}
+  constructor(private service: ProductService, private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute) {
+    this.img_url = PRODUCTS_IMG_URL;
+  }
 
     // tslint:disable-next-line:use-life-cycle-interface
     ngOnInit() {
-      this.productService.getAllProducts(this.activatedRoute.snapshot.params[2]).subscribe(
-
-        movies => {
-          this.movies = movies;
-          console.log(this.movies);
-        },
+        this.service.getAllProducts(2).subscribe(
+        products => this.products = products,
         error => console.log(error)
       );
     }

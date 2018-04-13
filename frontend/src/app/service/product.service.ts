@@ -56,7 +56,7 @@ export class ProductService {
   getAllProducts(enlace?: number) {
     const url = PRODUCTS_URL + '?enlace=' + enlace;
     return this.http.get(url)
-      .map(response => response.json().content)
+      .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
   }
 
