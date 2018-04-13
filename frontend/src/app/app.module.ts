@@ -1,23 +1,46 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
-import { AppComponent } from './app.component';
-import {LoginService} from './service/login.service';
-import { LoginComponent } from './component/login/login.component';
 import { routing } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
-import { PublicComponent } from './component/public.component';
+
+// Services
+import { LoginService} from './service/login.service';
+import { UserService } from './service/user.service';
+import {ProductService} from './service/product.service';
+
+// Components
+import { HeaderComponent } from './component/public/header/header.component';
+import { AppComponent } from './app.component';
+import { AboutComponent } from './component/public/about/about.component';
+import { FooterComponent } from './component/public/footer/footer.component';
+import { HomeComponent } from './component/public/home/home.component';
+import { LoginComponent } from './component/public/login/login.component';
+import { RegisterComponent } from './component/public/register/register.component';
+import { ProductComponent } from './component/public/product/product.component';
+import { VideoGamesComponent } from './component/public/videogames/videogames.component';
+import { SeriesComponent } from './component/public/series/series.component';
+import { MoviesComponent } from './component/public/movies/movies.component';
+import { PublicComponent } from './component/public/public.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    PublicComponent,
+    HomeComponent,
+    VideoGamesComponent,
+    ProductComponent,
     LoginComponent,
-    PublicComponent
+    RegisterComponent,
+    AboutComponent,
+    FooterComponent,
+    AppComponent,
+    HeaderComponent,
+    SeriesComponent,
+    MoviesComponent
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],
-  providers: [LoginService],
+  providers: [LoginService, UserService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
