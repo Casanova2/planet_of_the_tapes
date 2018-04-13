@@ -29,6 +29,8 @@ import { AdminComponent } from './component/admin/admin.component';
 import { AdminDashboardComponent } from './component/admin/dashboard/dashboard.component';
 import { AdminHeaderComponent } from './component/admin/header/header.component';
 import { AdminSidebarComponent } from './component/admin/sidebar/sidebar.component';
+import { AdminProductsComponent } from './component/admin/aproducts/aproducts.component';
+import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { AdminSidebarComponent } from './component/admin/sidebar/sidebar.compone
     AdminComponent,
     AdminDashboardComponent,
     AdminHeaderComponent,
-    AdminSidebarComponent
+    AdminSidebarComponent,
+    AdminProductsComponent,
+    AdminUsersComponent
 
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],

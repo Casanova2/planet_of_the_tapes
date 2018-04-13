@@ -38,7 +38,7 @@ export class ProductService {
   constructor(private http: Http) {}
 
   getProducts() {
-    return this.http.get(PRODUCTS_URL, { withCredentials: true })
+    return this.http.get(ALLPRODUCTS_URL, { withCredentials: true })
       .map(response => response.json())
       .catch(error => this.handleError(error));
   }

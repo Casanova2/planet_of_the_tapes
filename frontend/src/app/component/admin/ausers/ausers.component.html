@@ -1,0 +1,23 @@
+<div class="row">
+        <div class="row">
+              <div class="col-sm-12">
+                    <h1>Users</h1>
+                      <div class="listItems">
+                        <div *ngIf="users.length == 0; else chargedProducts">
+                          <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
+                        </div>
+                        <ng-template #chargedProducts>
+                          <ng-template ngFor let-user [ngForOf]="users">
+                            <div class="row item">
+                              <div class="col-sm-12 col-md-8 col-lg-7 informationItem">
+                              <ul>
+                                <li><h3 class="title">{{user.name}}</h3></li>
+                              </ul>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </ng-template>
+                      </div> 
+              </div>
+          </div>
+      </div>

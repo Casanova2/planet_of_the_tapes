@@ -19,6 +19,8 @@ import { AdminComponent } from './component/admin/admin.component';
 import { AdminDashboardComponent } from './component/admin/dashboard/dashboard.component';
 import { AdminHeaderComponent } from './component/admin/header/header.component';
 import { AdminSidebarComponent } from './component/admin/sidebar/sidebar.component';
+import { AdminProductsComponent } from './component/admin/aproducts/aproducts.component';
+import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 
 const appRoutes = [
 
@@ -40,7 +42,9 @@ const appRoutes = [
 	{ path: 'admin', component: AdminComponent, useAsDefault: true,
 		children: [
 			{path: 'dashboard', component: AdminDashboardComponent},
-		    {path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+			{path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+			{path: 'products', component: AdminProductsComponent},
+			{path: 'users', component: AdminUsersComponent}
 		]
 	}
 ];

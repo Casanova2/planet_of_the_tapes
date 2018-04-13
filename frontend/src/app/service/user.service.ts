@@ -6,6 +6,22 @@ import 'rxjs/Rx';
 import { USER_URL } from '../util';
 
 import { User } from '../model/user.model';
+import { POrder } from '../model/pOrder.model';
+
+export interface User {
+  id?: number;
+  name: string;
+  passwordHash?: string;
+  dni: string;
+  email: string;
+  telephone: string;
+  viewTelephone?: boolean;
+  address?: string;
+  roles?: string[];
+  hasPhoto?: boolean;
+  orders?: POrder[];
+}
+
 
 @Injectable()
 export class UserService {
@@ -25,14 +41,10 @@ export class UserService {
     return this.user;
   }
 
-  getUsers(page?: number) {
-    this.authCreds = localStorage.getItem('creds');
-    const headers: Headers = new Headers();
-    headers.append('Authorization', 'Basic ' + this.authCreds);
-    const url = (page) ? USER_URL + '?page=' + page : USER_URL;
-    return this.http.get(url, { headers: headers })
-      .map(response => response.json().content)
-      .catch(error => Observable.throw('Server error'));
+  getUsers() {
+    return this.http.get(USER_URL, { withCredentials: true })
+      .map(response => response.json())
+      .catch(error => this.handleError(error));
   }
 
   getUser(id: number) {
@@ -99,4 +111,10 @@ export class UserService {
       .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
   }
+
+  private handleError(error: any) {
+    console.error(error);
+    return Observable.throw('Server error (' + error.status + '): ' + error.text());
+  }
+
 }
