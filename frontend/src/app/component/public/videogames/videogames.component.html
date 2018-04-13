@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12">
+    <ul class="breadcrumb">
+      <li class="active"><i class="fa fa-home" aria-hidden="true"></i>Videogames</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    
+        <h1>Videogames</h1>
+          <div class="listItems">
+            <div *ngIf="products.length == 0; else chargedProducts">
+              <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
+            </div>
+            <ng-template #chargedProducts>
+              <ng-template ngFor let-product [ngForOf]="products">
+                <div class="row item">
+                  <div class="col-sm-12 col-md-4 col-lg-3">
+                    <div class="coverItem">
+                      <div *ngIf="product.urlimg == undefined; else chargedImage">
+                        <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
+                      </div>
+                      <ng-template #chargedImage>
+                        <img [src]="sanitizer.bypassSecurityTrustUrl(img_url + product.urlimg)" class="img-responsive"/>
+                      </ng-template>
+                      <div>
+                        <div *ngIf="isLogged">
+                          <div>
+                            <div *ngIf="product.genre; else notEnough">
+                              <button (click)="reserveResource(product)" class="btn btn-reserve">Reservar</button>
+                            </div>
+                            <ng-template #notEnough>
+                              <p class="btn btn-notEnough">No disponible</p>
+                            </ng-template>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-8 col-lg-7 informationItem">
+                    <h3 class="title">{{product.name}}</h3>
+                    <h5 class="authorName">por {{product.genre}}</h5>
+                    <div class="description">
+                      <p>
+                        {{product.description}}
+                        <span>...</span>
+                        <a [routerLink]="['/product',product.id]"> <span class="moreInfo">+ info</span> </a>
+                      </p>
+                      <div class="available stockAvailable">
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                        <span class="textAvailable">Disponible</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+              <div *ngIf="moreProductsActive">
+                <button (click)="addProducts(true)" type="button" class="btn btn-lg btn-block btn-view-more">Ver más
+                  libros
+                </button>
+              </div>
+            </ng-template>
+          </div>
+        
+      
+    
+  </div>
+</div>
