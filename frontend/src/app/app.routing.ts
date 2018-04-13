@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+// INDEX
 import { AppComponent } from './app.component';
 import { PublicComponent } from './component/public/public.component';
 import { AboutComponent } from './component/public/about/about.component';
@@ -13,6 +14,12 @@ import { VideoGamesComponent } from './component/public/videogames/videogames.co
 import { SeriesComponent } from './component/public/series/series.component';
 import { MoviesComponent } from './component/public/movies/movies.component';
 
+//ADMIN
+import { AdminComponent } from './component/admin/admin.component';
+import { AdminDashboardComponent } from './component/admin/dashboard/dashboard.component';
+import { AdminHeaderComponent } from './component/admin/header/header.component';
+import { AdminSidebarComponent } from './component/admin/sidebar/sidebar.component';
+
 const appRoutes = [
 
  	{ path: '', component: PublicComponent, useAsDefault: true,
@@ -21,11 +28,19 @@ const appRoutes = [
 			{path: 'home', component: HomeComponent},
 			{path: 'videogames', component: VideoGamesComponent},
 			{path: 'product', component: ProductComponent},
+			{path: 'product/:id', component: ProductComponent},
 			{path: 'login', component: LoginComponent},
-		    {path: 'register', component: RegisterComponent},
-		    {path: 'series', component: SeriesComponent},
-		    {path: 'movies', component: MoviesComponent},
-		    {path: '', redirectTo: 'home', pathMatch: 'full' }
+		  {path: 'register', component: RegisterComponent},
+		  {path: 'series', component: SeriesComponent},
+		  {path: 'movies', component: MoviesComponent},
+		  {path: '', redirectTo: 'home', pathMatch: 'full' }
+		]
+	},
+
+	{ path: 'admin', component: AdminComponent, useAsDefault: true,
+		children: [
+			{path: 'dashboard', component: AdminDashboardComponent},
+		    {path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 		]
 	}
 ];

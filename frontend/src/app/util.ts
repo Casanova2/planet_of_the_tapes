@@ -6,7 +6,7 @@ export const PRODUCTS_URL = BASE_URL + 'mplist/';
 export const USER_URL = BASE_URL + 'admin-userList/';
 export const PACKS_URL = BASE_URL + 'mplist/packs/';
 export const ORDERS_URL = BASE_URL + 'admin-orderlist/';
-export const SINGLEPRODUCT_URL = BASE_URL + 'product/';
+export const SINGLEPRODUCT_URL = BASE_URL + 'product';
 export const ALLPRODUCTS_URL = BASE_URL + 'admin-products/';
 
 export const PRODUCTS_IMG_URL = './assets/img/ProductImages/';

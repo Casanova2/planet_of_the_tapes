@@ -18,7 +18,6 @@ export class SeriesComponent {
     this.img_url = PRODUCTS_IMG_URL;
   }
 
-    // tslint:disable-next-line:use-life-cycle-interface
     ngOnInit() {
         this.service.getAllProducts(1).subscribe(
         products => this.products = products,
