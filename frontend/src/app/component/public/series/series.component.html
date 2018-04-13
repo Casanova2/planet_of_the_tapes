@@ -26,16 +26,6 @@
                         <img [src]="sanitizer.bypassSecurityTrustUrl(img_url + product.urlimg)" class="img-responsive"/>
                       </ng-template>
                       <div>
-                        <div *ngIf="isLogged">
-                          <div>
-                            <div *ngIf="product.genre; else notEnough">
-                              <button (click)="reserveResource(product)" class="btn btn-reserve">Reservar</button>
-                            </div>
-                            <ng-template #notEnough>
-                              <p class="btn btn-notEnough">No disponible</p>
-                            </ng-template>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -46,19 +36,15 @@
                       <p>
                         {{product.description}}
                         <span>...</span>
-                        <a [routerLink]="['/product',product.id]"> <span class="moreInfo">+ info</span> </a>
+                        <a [routerLink]="['/product', product.id]"><button class="btn">+ info</button></a> 
                       </p>
-                      <div class="available stockAvailable">
-                        <span class="glyphicon glyphicon-ok-circle"></span>
-                        <span class="textAvailable">Disponible</span>
-                      </div>
                     </div>
                   </div>
                 </div>
               </ng-template>
               <div *ngIf="moreProductsActive">
-                <button (click)="addProducts(true)" type="button" class="btn btn-lg btn-block btn-view-more">Ver más
-                  libros
+                <button (click)="addProducts(true)" type="button" class="btn btn-lg btn-block btn-view-more">
+                  More Series
                 </button>
               </div>
             </ng-template>

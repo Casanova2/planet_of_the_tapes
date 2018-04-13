@@ -21,6 +21,7 @@ const appRoutes = [
 			{path: 'home', component: HomeComponent},
 			{path: 'videogames', component: VideoGamesComponent},
 			{path: 'product', component: ProductComponent},
+			{path: 'product/:id', component: ProductComponent},
 			{path: 'login', component: LoginComponent},
 		    {path: 'register', component: RegisterComponent},
 		    {path: 'series', component: SeriesComponent},

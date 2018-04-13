@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
+import {Router, ActivatedRoute, NavigationEnd} from '@angular/router';
 import { Product, ProductService } from '../../../service/product.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import {STATUS_NO_CONTENT, PRODUCTS_IMG_URL} from "../../../util";
@@ -11,6 +11,7 @@ import {STATUS_NO_CONTENT, PRODUCTS_IMG_URL} from "../../../util";
 
 export class MoviesComponent {
 
+  router: Router;
   products: Product[];
   img_url: string;
 
@@ -18,8 +19,8 @@ export class MoviesComponent {
     this.img_url = PRODUCTS_IMG_URL;
   }
 
-    // tslint:disable-next-line:use-life-cycle-interface
     ngOnInit() {
+
         this.service.getAllProducts(2).subscribe(
         products => this.products = products,
         error => console.log(error)
