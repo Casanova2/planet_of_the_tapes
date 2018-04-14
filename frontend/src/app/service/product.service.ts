@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+// tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
 
 import { PRODUCTS_URL, SINGLEPRODUCT_URL, ALLPRODUCTS_URL } from '../util';
@@ -61,7 +62,7 @@ export class ProductService {
   }
 
   getAllListProducts() {
-    let url = ALLPRODUCTS_URL;
+    const url = ALLPRODUCTS_URL;
     return this.http.get(url)
       .map(response => response.json())
       .catch(error => Observable.throw('Server error'));

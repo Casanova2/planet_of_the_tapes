@@ -9,6 +9,8 @@ import { HttpModule, JsonpModule } from '@angular/http';
 import { LoginService} from './service/login.service';
 import { UserService } from './service/user.service';
 import {ProductService} from './service/product.service';
+import {SessionService} from './service/session.service';
+
 
 // COMPONENTS INDEX
 import { HeaderComponent } from './component/public/header/header.component';
@@ -59,7 +61,7 @@ import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],
-  providers: [LoginService, UserService, ProductService],
+  providers: [LoginService, UserService, ProductService,SessionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

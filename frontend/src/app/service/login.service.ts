@@ -1,5 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
+// tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
 
 import { BASE_URL } from '../util';
