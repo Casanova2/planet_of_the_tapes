@@ -23,9 +23,6 @@ export class ProductComponent implements OnInit {
     this.service.getProduct(this.activatedRoute.snapshot.params['id']).subscribe(
       product => { 
        this.product = product; 
-       if (this.product.type=="Movie"){
-        this.movieP=true;
-      }
        console.log(this.product.name)
      },
      error => console.log(error)

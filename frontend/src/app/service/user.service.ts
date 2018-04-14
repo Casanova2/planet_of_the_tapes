@@ -20,6 +20,7 @@ export interface User {
   roles?: string[];
   hasPhoto?: boolean;
   orders?: POrder[];
+  avatar?:string;
 }
 
 

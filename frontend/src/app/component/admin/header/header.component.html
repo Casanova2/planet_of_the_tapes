@@ -1,6 +1,6 @@
 <header class="main-header">
   <a [routerLink]="['/admin']" class="logo" height="40px">
-    <img [src]="imgLogo">
+    <img src="../../../../assets/img/logo.png">
     <span class="logo-mini">PLANET OF THE TAPES</span>
   </a>
   <nav class="navbar navbar-static-top" role="navigation">
@@ -11,11 +11,9 @@
       <ul class="nav navbar-nav">
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <div *ngIf="userImage == undefined; else chargedImage">
-              <img src="../../../../assets/img/loadingImages.svg" width="20px" height="20px" align="middle">
-            </div>
+
             <ng-template #chargedImage>
-              <img [src]="sanitizer.bypassSecurityTrustUrl(userImage)" class="user-image" />
+              <img [src]="sanitizer.bypassSecurityTrustUrl("../../../../assets/img/"+ user.avatar)" class="user-image" />
             </ng-template>
             <span class="hidden-xs">{{user?.firstName}} {{user?.lastName1}}</span>
           </a>

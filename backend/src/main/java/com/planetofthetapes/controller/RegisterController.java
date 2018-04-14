@@ -31,7 +31,7 @@ public class RegisterController extends MasterService {
 	public String addUser(@RequestParam String name, @RequestParam String password, @RequestParam String dni, @RequestParam String email, @RequestParam String telephone,
 			@RequestParam String address, String avatar, Model model, HttpServletRequest request, RedirectAttributes redirectAttrs) {
 		this.session(model, request, redirectAttrs);
-		User user = new User(name, password, dni, email, telephone, address,"img/userAvatar.jpg", "ROLE_USER");
+		User user = new User(name, password, dni, email, telephone, address,"img/admin/avatar/userAvatar.jpg", "ROLE_USER");
 		try {
 			userRepository.save(user);
 		} catch (Exception e) {
