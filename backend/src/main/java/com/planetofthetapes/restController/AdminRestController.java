@@ -323,7 +323,7 @@ public class AdminRestController {
 
 			productRepository.save(newproduct);
 				
-			return new ResponseEntity<>(product, HttpStatus.OK);
+			return new ResponseEntity<>(newproduct, HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}

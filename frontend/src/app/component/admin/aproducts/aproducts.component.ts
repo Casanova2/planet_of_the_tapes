@@ -8,7 +8,7 @@ import {STATUS_NO_CONTENT} from '../../../util';
   templateUrl: 'aproducts.component.html'
 })
 
-export class AdminProductsComponent {
+export class AdminProductsComponent implements OnInit{
 
   products: Product[];
 

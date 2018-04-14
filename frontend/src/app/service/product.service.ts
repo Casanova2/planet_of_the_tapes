@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
 
-import { PRODUCTS_URL, SINGLEPRODUCT_URL, ALLPRODUCTS_URL } from '../util';
+import { PRODUCTS_URL, SINGLEPRODUCT_URL, ALLPRODUCTS_URL, ADDPRODUCT_URL } from '../util';
 
 import { Product } from '../model/product.model';
 
@@ -12,7 +12,7 @@ import {Pack} from '../model/pack.model';
 import {POrder} from '../model/pOrder.model';
 
 export interface Product {
-  id?: number;
+  id: number;
   name: string;
   description: string;
   type: string;
@@ -97,18 +97,19 @@ export class ProductService {
   }
 
   createProduct(product: Product) {
+
     const body = JSON.stringify(product);
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Authorization': 'Basic ' + this.authCreds
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
 
-    this.authCreds = localStorage.getItem('creds');
-
-    const headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('X-Requested-With', 'XMLHttpRequest');
-    headers.append('Authorization', 'Basic ' + this.authCreds);
-    return this.http.post(PRODUCTS_URL, body, { headers: headers })
-      .map(response => response.json())
-      .catch(error => Observable.throw('Server error'));
-  }
+      return this.http.post(ADDPRODUCT_URL, body, options)
+        .map(response => response.json())
+        .catch(error => this.handleError(error));
+    }
 
   updateFile(formData: FormData, id: number) {
     const headers: Headers = new Headers();
