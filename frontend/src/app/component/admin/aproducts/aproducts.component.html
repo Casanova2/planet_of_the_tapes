@@ -1,23 +1,34 @@
-<div class="row">
-  <div class="row">
-        <div class="col-sm-12">
-              <h1>Products</h1>
-                <div class="listItems">
-                  <div *ngIf="products.length == 0; else chargedProducts">
-                    <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
-                  </div>
-                  <ng-template #chargedProducts>
-                    <ng-template ngFor let-product [ngForOf]="products">
-                      <div class="row item">
-                        <div class="col-sm-12 col-md-8 col-lg-7 informationItem">
-                        <ul>
-                          <li><h3 class="title">{{product.name}}</h3></li>
-                        </ul>
-                        </div>
-                      </div>
-                    </ng-template>
-                  </ng-template>
-                </div> 
-        </div>
+<section>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th width="14%">Name</th>
+        <th width="8%">Director</th>
+        <th width="5%">Genre</th>
+        <th width="5%">Type</th>
+        <th width="3%">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.name }}</td>
+          <td>{{ product.director }}</td>
+          <td>{{ product.genre }}</td>
+          <td>{{ product.type }}</td>
+          <!-- <td>
+            <a [routerLink]="['./', resource.id]">
+              <button type="button" class="btn btn-success"><span class="fa fa-pencil"></span></button>
+            </a>
+            <button type="button" class="btn btn-warning" (click)=""><span class="fa fa-trash"></span></button>
+          </td> -->
+        </tr>
+    </tbody>
+  </table>
+  <div>
+    <div class="pull-left">
+      <a [routerLink]="['./new']">
+        <button type="button" class="btn btn-primary"><span class="fa fa-plus-circle">  </span>&nbsp;New product</button>
+      </a>
     </div>
-</div>
+  </div>
+</section>
