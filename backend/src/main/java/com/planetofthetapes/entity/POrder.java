@@ -29,6 +29,7 @@ public class POrder {
 	public interface Basic {}
 	public interface ProductRelationOrder{}
 	public interface PackRelation{}
+	public interface UserRelation{}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,6 +45,10 @@ public class POrder {
 	@JsonView(PackRelation.class)
 	private List<Pack> packs = new ArrayList<Pack>();
 
+	@ManyToOne
+	@JsonView(UserRelation.class)
+	private User user;
+	
 	@JsonView(Basic.class)
 	private String state;
 	@JsonView(Basic.class)
@@ -62,7 +67,6 @@ public POrder(String state, String pay, String type, double total) {
 	this.pay = pay;
 	this.type = type;
 	this.total = total;
-	//this.user = user;
 }
 
 public List<Product> getProducts() {

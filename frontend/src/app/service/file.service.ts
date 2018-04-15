@@ -22,9 +22,9 @@ export class FileService {
       .catch(error => Observable.throw('Server error'));
   }
 
-  getResourceFile(id: number) {
+  /*getResourceFile(id: number) {
     return this.http.get(FILE_URL + '/resource/' + id)
       .map(response => JSON.stringify(response))
       .catch(error => Observable.throw('Server error'));
-  }
+  }*/
 }

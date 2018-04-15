@@ -311,7 +311,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(ProductDetails.class)
-	@RequestMapping(value="/admin-add-product", method=RequestMethod.POST)
+	@RequestMapping(value="/newproduct", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Product> addProductRest(HttpServletResponse response, @RequestBody Product product, 
 			HttpServletRequest request) throws IOException, ServletException {

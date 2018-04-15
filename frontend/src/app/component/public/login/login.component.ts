@@ -20,6 +20,7 @@ export class LoginComponent {
       u => console.log(u),
       error => alert('Invalid user or password')
     );
+    window.history.back();
   }
 
   logOut() {

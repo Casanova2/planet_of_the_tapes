@@ -19,7 +19,7 @@ export class AddProductComponent {
 
     addProduct() {        
         this.service.createProduct(this.product).subscribe(
-            product => { },
+            product => {  this.router.navigate(['/admin/products']);},
             error => console.log(error)
         );
         window.history.back();

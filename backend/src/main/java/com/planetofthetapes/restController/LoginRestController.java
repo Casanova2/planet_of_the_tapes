@@ -19,7 +19,7 @@ import com.planetofthetapes.component.*;
 @RestController
 public class LoginRestController{
 
-	public interface UserDetails extends User.Basic, User.OrderRelationUser, POrder.Basic {}
+	public interface UserDetails extends User.Basic {}
 	private static final Logger log = LoggerFactory.getLogger(LoginRestController.class);
 
 	@Autowired
