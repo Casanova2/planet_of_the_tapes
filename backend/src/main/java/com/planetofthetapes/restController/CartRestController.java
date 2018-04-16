@@ -73,7 +73,7 @@ public class CartRestController{
 	// PRODUCTS//
 
 	@JsonView(OrderDetails.class)
-	@RequestMapping(value = "/{id}/{id2}/buy", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}/{id2}/product", method = RequestMethod.PUT)
 	public ResponseEntity<POrder> reserveRestResource(HttpServletResponse response, HttpServletRequest request,
 			@PathVariable Integer id, @PathVariable Integer id2, @RequestBody POrder orderUpdate)
 			throws IOException, ServletException {
@@ -107,7 +107,7 @@ public class CartRestController{
 	}
 
 	@JsonView(OrderDetails.class)
-	@RequestMapping(value = "/{id2}/buy", method = RequestMethod.POST)
+	@RequestMapping(value = "/{id2}/product", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<POrder> createNewRestOrder(HttpServletResponse response, HttpServletRequest request,
 			@PathVariable Integer id2, @RequestBody POrder order) throws IOException, ServletException {
@@ -137,7 +137,7 @@ public class CartRestController{
 
 	}
 
-	@RequestMapping(value = "/{id}/{id1}/remove", method = RequestMethod.PUT)
+	@RequestMapping(value = "/{id}/{id1}/r", method = RequestMethod.PUT)
 	@JsonView(OrderDetails.class)
 	public ResponseEntity<POrder> removeRestResource(HttpServletResponse response, @PathVariable Integer id, @PathVariable Integer id1,
 			@RequestBody POrder orderUpdate, HttpServletRequest request) throws IOException, ServletException {
@@ -162,7 +162,7 @@ public class CartRestController{
 
 	// PACKS//
 	@JsonView(OrderDetails.class)
-	@RequestMapping(value = "/pack/{id}/{id2}/buy", method = RequestMethod.PUT)
+	@RequestMapping(value = "/pack/{id}/{id2}/product", method = RequestMethod.PUT)
 	public ResponseEntity<POrder> packRestbuy(HttpServletResponse response, @PathVariable Integer id, @PathVariable Integer id2,
 			HttpServletRequest request, @RequestBody POrder orderUpdated) throws IOException, ServletException {
 
@@ -193,7 +193,7 @@ public class CartRestController{
 	}
 
 	@JsonView(OrderDetails.class)
-	@RequestMapping(value = "/pack/{id2}/buy", method = RequestMethod.POST)
+	@RequestMapping(value = "/pack/{id2}/product", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<POrder> createNewRestPackOrder(HttpServletResponse response, HttpServletRequest request,
 			@PathVariable Integer id2, @RequestBody POrder order) throws IOException, ServletException {
@@ -220,7 +220,7 @@ public class CartRestController{
 	}
 
 	@JsonView(OrderDetails.class)
-	@RequestMapping(value = "/pack/{id}/{id1}/remove", method = RequestMethod.PUT)
+	@RequestMapping(value = "/pack/{id}/{id1}/r", method = RequestMethod.PUT)
 	public ResponseEntity<POrder> removeRestPack(HttpServletResponse response, @PathVariable Integer id, @PathVariable Integer id1,
 			@RequestBody POrder orderUpdate, HttpServletRequest request) throws IOException, ServletException {
 

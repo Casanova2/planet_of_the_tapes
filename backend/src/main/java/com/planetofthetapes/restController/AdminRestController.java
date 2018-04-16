@@ -54,7 +54,7 @@ public class AdminRestController {
 /////////// ******************** ORDERS ************************* ////////
 	
 	@JsonView(OrderDetails.class)
-	@RequestMapping(value="/admin-orderlist", method=RequestMethod.GET)
+	@RequestMapping(value="/orders", method=RequestMethod.GET)
 	public ResponseEntity<List<POrder>> orderlistRest(HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
@@ -70,7 +70,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(OrderDetails.class)
-	@RequestMapping(value="/user-orderlist", method=RequestMethod.GET)
+	@RequestMapping(value="/uorders", method=RequestMethod.GET)
 	public ResponseEntity<List<POrder>> userOrderListRest(HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
@@ -89,7 +89,7 @@ public class AdminRestController {
 /////////// ******************** PACKS ************************* ////////
 
 	@JsonView(PackDetails.class)
-	@RequestMapping(value="/admin-packlist", method=RequestMethod.GET)
+	@RequestMapping(value="/packs", method=RequestMethod.GET)
 	public ResponseEntity<List<Pack>> adminPackListRest(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
@@ -106,7 +106,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(PackDetails.class)
-	@RequestMapping(value="/admin-add-pack-action/{id1}/{id2}/{id3}", method=RequestMethod.POST)
+	@RequestMapping(value="/pack/{id1}/{id2}/{id3}", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Pack> addPackActionRest(HttpServletResponse response, HttpServletRequest request, @RequestBody Pack pack, 
 			@PathVariable Integer id1, @PathVariable Integer id2, @PathVariable Integer id3) throws IOException, ServletException {
@@ -137,7 +137,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(PackDetails.class)
-	@RequestMapping(value="/admin/pack/modify/pack-{id}/{id1}-{id2}-{id3}", method=RequestMethod.PUT) // modify
+	@RequestMapping(value="/pack/{id}/{id1}-{id2}-{id3}", method=RequestMethod.PUT) // modify
 	public ResponseEntity<Pack> modifyPackActionRest(HttpServletResponse response, @PathVariable Integer id, @RequestBody Pack pack,
 			@PathVariable Integer id1, @PathVariable Integer id2, @PathVariable Integer id3, HttpServletRequest request) throws IOException, ServletException {
 		
@@ -173,7 +173,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(PackDetails.class)
-	@RequestMapping(value="/admin/pack/remove/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/pack/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<Pack> removePackAction(HttpServletResponse response, @PathVariable Integer id, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
@@ -195,7 +195,7 @@ public class AdminRestController {
 /////////// ******************** USERS ************************* ////////
 	
 	@JsonView(UserDetails.class)
-	@RequestMapping(value="/admin-userList", method=RequestMethod.GET)
+	@RequestMapping(value="/users", method=RequestMethod.GET)
 	public ResponseEntity<List<User>> adminUserListRest(HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
@@ -211,7 +211,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(UserDetails.class)
-	@RequestMapping(value="/admin-user", method=RequestMethod.GET)
+	@RequestMapping(value="/user", method=RequestMethod.GET)
 	public ResponseEntity<User> adminuserprofileRest(HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
@@ -228,7 +228,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(UserDetails.class)
-	@RequestMapping(value="/admin-modify-user/{id}", method=RequestMethod.PUT)
+	@RequestMapping(value="/user/{id}", method=RequestMethod.PUT)
 	public ResponseEntity<User> adminmodifyuserRest(HttpServletResponse response, @PathVariable Integer id, @RequestBody User user, HttpServletRequest request)
 			throws IOException, ServletException {
 			
@@ -254,7 +254,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(UserDetails.class)
-	@RequestMapping(value="/admin-add-user", method=RequestMethod.POST)
+	@RequestMapping(value="/user", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> addUserRest(HttpServletResponse response, @RequestBody User user, HttpServletRequest request) throws IOException, ServletException {
 		
@@ -276,7 +276,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(UserDetails.class)
-	@RequestMapping(value="/admin/user/remove/{id}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/user/{id}", method=RequestMethod.DELETE)
 	public ResponseEntity<User> removeUsertActionRest(HttpServletResponse response, @PathVariable Integer id, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
@@ -295,7 +295,7 @@ public class AdminRestController {
 	/////////// ******************** PRODUCTS ************************* ////////
 	
 	@JsonView(ProductDetails.class)
-	@RequestMapping(value="/admin-products", method=RequestMethod.GET)
+	@RequestMapping(value="/products", method=RequestMethod.GET)
 	public ResponseEntity<List<Product>> adminproductsRest(HttpServletResponse response, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
@@ -311,7 +311,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(ProductDetails.class)
-	@RequestMapping(value="/newproduct", method=RequestMethod.POST)
+	@RequestMapping(value="/product", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<Product> addProductRest(HttpServletResponse response, @RequestBody Product product, 
 			HttpServletRequest request) throws IOException, ServletException {
@@ -330,7 +330,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(ProductDetails.class)
-	@RequestMapping(value="/admin/product/remove/{id}", method=RequestMethod.DELETE) // remove
+	@RequestMapping(value="/product/{id}", method=RequestMethod.DELETE) // remove
 	public ResponseEntity<Product> removeProductRest(HttpServletResponse response, @PathVariable Integer id, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
@@ -347,7 +347,7 @@ public class AdminRestController {
 	}
 	
 	@JsonView(ProductDetails.class)
-	@RequestMapping(value="/admin/product/modify/{id}", method=RequestMethod.PUT) // modify
+	@RequestMapping(value="/product/{id}", method=RequestMethod.PUT) // modify
 	public ResponseEntity<Product> modifyProductRest(HttpServletResponse response, @PathVariable Integer id, @RequestBody Product product,
 			HttpServletRequest request) throws IOException, ServletException {
 		
