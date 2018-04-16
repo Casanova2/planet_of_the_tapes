@@ -102,11 +102,11 @@ export class ProductService {
     const headers = new Headers({
       'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
-     // 'Authorization': 'Basic ' + this.authCreds
+     // 'Authorization': 'Basic ' + this.authCreds(linea infernal)
     });
     const options = new RequestOptions({ withCredentials: true, headers });
-    console.log(BASE_URL + 'newproduct');
-      return this.http.post(BASE_URL + 'newproduct', newproduct, options)
+    console.log(BASE_URL + 'product');
+      return this.http.post(BASE_URL + 'product', newproduct, options)
         .map(response => response.json())
         .catch(error => this.handleError(error));
     }

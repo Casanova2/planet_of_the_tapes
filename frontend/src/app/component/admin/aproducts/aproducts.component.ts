@@ -4,7 +4,7 @@ import { Product, ProductService } from '../../../service/product.service';
 import {STATUS_NO_CONTENT} from '../../../util';
 
 @Component({
-  selector: 'app-adminproducts',
+  selector: 'products',
   templateUrl: 'aproducts.component.html'
 })
 
