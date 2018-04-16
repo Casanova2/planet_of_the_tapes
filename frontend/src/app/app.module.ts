@@ -34,6 +34,7 @@ import { AdminSidebarComponent } from './component/admin/sidebar/sidebar.compone
 import { AdminProductsComponent } from './component/admin/aproducts/aproducts.component';
 import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 import { AddProductComponent} from './component/admin/aproducts/addProduct/addproduct.component';
+import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AddProductComponent} from './component/admin/aproducts/addProduct/addpr
     AdminSidebarComponent,
     AdminProductsComponent,
     AdminUsersComponent,
-    AddProductComponent
+    AddProductComponent,
+    AddUserComponent
 
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],
