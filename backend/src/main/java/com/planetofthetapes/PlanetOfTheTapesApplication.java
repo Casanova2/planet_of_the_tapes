@@ -9,6 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 import com.planetofthetapes.controller.MasterService;
 import com.planetofthetapes.controller.storage.StorageProperties;
@@ -22,7 +24,13 @@ public class PlanetOfTheTapesApplication extends MasterService{
 	public MasterService masterService(){
 		return new MasterService();
 	}
-	
+	@Bean
+	public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+	    StrictHttpFirewall firewall = new StrictHttpFirewall();
+	    firewall.setAllowUrlEncodedSlash(true);
+	    firewall.setAllowSemicolon(true);
+	    return firewall;
+	}
 	@Bean
     CommandLineRunner init(StorageService storageService) {
         return (args) -> {

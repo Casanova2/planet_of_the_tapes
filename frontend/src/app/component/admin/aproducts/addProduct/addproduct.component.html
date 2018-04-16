@@ -8,58 +8,61 @@
               <div class="col-lg-8">
                 <div class="form-group">
                   <label>Product Name</label>
-                  <input type="text" class="form-control" placeholder="name" required [(ngModel)]="newProduct.name">
+                  <input type="text" class="form-control" placeholder="name" required  #name>
+                </div>
+                <div *ngIf="product.id">
+                  <label>Id: </label>{{product.id}}
                 </div>
                 <div class="form-group">
                   <label>Product Description</label>
-                  <input type="text" class="form-control" placeholder="description" [(ngModel)]="newProduct.description">
+                  <input type="text" class="form-control" placeholder="description"  #description>
                 </div>
                 <div class="form-group">
                   <label>Product Type</label>
-                  <input type="text" class="form-control" placeholder="type" required [(ngModel)]="newProduct.type">
+                  <input type="text" class="form-control" placeholder="type" required  #type>
                 </div>
                 <div class="form-group">
                   <label>Product Genre</label>
-                  <input type="text" class="form-control" placeholder="genre" required [(ngModel)]="newProduct.genre">
+                  <input type="text" class="form-control" placeholder="genre" required #genre>
                 </div>
                 <div class="form-group">
                   <label>Stock</label>
-                  <input type="number" class="form-control" placeholder="stock" [(ngModel)]="newProduct.stock">
+                  <input type="number" class="form-control" placeholder="stock"  #stock>
                 </div>
                 <div class="form-group">
                   <label>Buy Price</label>
-                  <input type="number" class="form-control" placeholder="pbuy" [(ngModel)]="newProduct.pbuy">
+                  <input type="number" class="form-control" placeholder="pbuy"  #pbuy>
                 </div>
                 <div class="form-group">
                   <label>Rent Price</label>
-                  <input type="number" class="form-control" placeholder="prent" required [(ngModel)]="newProduct.prent">
+                  <input type="number" class="form-control" placeholder="prent"  #prent>
                 </div>
                 <div class="form-group">
                     <label>Score</label>
-                    <input type="number" class="form-control" placeholder="score" required [(ngModel)]="newProduct.score">
+                    <input type="number" class="form-control" placeholder="score" #score>
                 </div>
                 <div class="form-group">
                     <label>Trailer</label>
-                    <input type="text" class="form-control" placeholder="trailer" required [(ngModel)]="newProduct.trailer">
+                    <input type="text" class="form-control" placeholder="trailer"  #trailer>
                 </div>
                 <div class="form-group">
                     <label>Director</label>
-                    <input type="text" class="form-control" placeholder="director" required [(ngModel)]="newProduct.director">
+                    <input type="text" class="form-control" placeholder="director"  #director>
                 </div>
                 <div class="form-group">
                     <label>Cast</label>
-                    <input type="text" class="form-control" placeholder="cast" required [(ngModel)]="newProduct.cast">
+                    <input type="text" class="form-control" placeholder="cast"  #cast>
                 </div>
                 <div class="form-group">
                     <label>Year</label>
-                    <input type="number" class="form-control" placeholder="year" required [(ngModel)]="newProduct.year">
+                    <input type="number" class="form-control" placeholder="year"  #year>
                 </div>
                 <div class="form-group">
                     <label>Image</label>
-                    <input type="text" class="form-control" placeholder="urlimg" required [(ngModel)]="newProduct.urlimg">
+                    <input type="text" class="form-control" placeholder="urlimg"  #urlimg>
                 </div>
                 <div class="pull-left">
-                    <button (click)="addProduct()">Save</button>
+                    <button (click)="addProduct(name.value, description.value,type.value,genre.value,stock.value,pbuy.value,prent.value,score.value,trailer.value,director.value,cast.value,year.value)">Save</button>
                     <button (click)="cancel()">Cancel</button>
                 </div>
             </div>

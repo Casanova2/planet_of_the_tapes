@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 import { PRODUCTS_URL, SINGLEPRODUCT_URL, ALLPRODUCTS_URL, ADDPRODUCT_URL } from '../util';
-
+import {BASE_URL} from "../util";
 import { Product } from '../model/product.model';
 
 import {Pack} from '../model/pack.model';
@@ -96,17 +96,17 @@ export class ProductService {
       .catch(error => Observable.throw('Server error'));
   }
 
-  createProduct(product: Product) {
-
-    const body = JSON.stringify(product);
+  createProduct(name:string, description:string,type:string,genre:string,stock:number,pbuy:number,prent:number,score:number,trailer:string,director:string,cast:string,year:number) {
+    let newproduct:Product;
+    newproduct={name:name,description:description,type:type,genre:genre,stock:stock,pbuy:pbuy,prent:prent,score:score,trailer:trailer,director:director,cast:cast,year:year};
     const headers = new Headers({
       'Content-Type': 'application/json',
-      'X-Requested-With': 'XMLHttpRequest',
-      'Authorization': 'Basic ' + this.authCreds
+      'X-Requested-With': 'XMLHttpRequest'
+     // 'Authorization': 'Basic ' + this.authCreds
     });
     const options = new RequestOptions({ withCredentials: true, headers });
-
-      return this.http.post(ADDPRODUCT_URL, body, options)
+    console.log(BASE_URL + 'newproduct');
+      return this.http.post(BASE_URL + 'newproduct', newproduct, options)
         .map(response => response.json())
         .catch(error => this.handleError(error));
     }

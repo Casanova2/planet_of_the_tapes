@@ -9,16 +9,20 @@ import { Product, ProductService } from '../../../../service/product.service';
 
 export class AddProductComponent {
 
-  product: Product;
+  private product: Product;
   newProduct: boolean;
   
   constructor(private service: ProductService, activatedRoute: ActivatedRoute, private router: Router) {
-    
-    this.newProduct = false;  
-  }
+    const id = activatedRoute.snapshot.params['id'];
+    this.newProduct = true;
+}
 
-    addProduct() {        
-        this.service.createProduct(this.product).subscribe(
+  
+  
+    addProduct(name:string, description:string,type:string,genre:string,stock:number,pbuy:number,prent:number,score:number,trailer:string,director:string,cast:string,year:number) {    
+      //let newproduct :Product;
+     // newproduct={name:name,description:description,type:type,genre:genre,stock:stock,pbuy:pbuy,prent:prent,score:score,trailer:trailer,director:director,cast:cast,year:year};
+        this.service.createProduct(name,description,type,genre,stock,pbuy,prent,score,trailer,director,cast,year).subscribe(
             product => {  this.router.navigate(['/admin/products']);},
             error => console.log(error)
         );

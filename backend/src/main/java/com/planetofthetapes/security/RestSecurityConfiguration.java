@@ -36,7 +36,7 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/user-orderlist").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/admin-user").hasAnyRole("USER");
         
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/admin-add-product").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/newproduct").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/admin-add-user").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/admin-add-pack-action/{id1}/{id2}/{id3}").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/{id2}/buy").hasAnyRole("ADMIN");
