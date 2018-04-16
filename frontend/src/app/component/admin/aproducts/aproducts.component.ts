@@ -4,13 +4,14 @@ import { Product, ProductService } from '../../../service/product.service';
 import {STATUS_NO_CONTENT} from '../../../util';
 
 @Component({
-  selector: 'products',
+  selector: 'app-products',
   templateUrl: 'aproducts.component.html'
 })
 
 export class AdminProductsComponent implements OnInit{
 
   products: Product[];
+  message: String;
 
   constructor(private service: ProductService, private activatedRoute: ActivatedRoute) {
   }
@@ -23,4 +24,17 @@ export class AdminProductsComponent implements OnInit{
       );
 
     }
+
+
+    deleteProduct(id: number) {
+      this.service.removeProduct(id).subscribe(
+        response => {
+          this.message = 'Product deleted successfully.';
+        },
+        error => {
+          this.message = 'Not found.'
+        }
+      );
+    }  
   }
+  
