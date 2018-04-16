@@ -25,10 +25,10 @@ export class AdminSidebarComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer, private userService: UserService) { }  
   ngOnInit() {
     this.update('index');
-    this.userService.getUser(Number(localStorage.getItem('id'))).subscribe(
+    /*this.userService.getUser(Number(localStorage.getItem('id'))).subscribe(
       user => this.user = user,
       error => console.log("Fail trying to get user information.")
-    );
+    );*/
     /*this.fileService.getUserFile(Number(localStorage.getItem('id'))).subscribe(
       data => {
         let dataRecieved: string[] = data.split('"');

@@ -22,6 +22,7 @@ import { AdminSidebarComponent } from './component/admin/sidebar/sidebar.compone
 import { AdminProductsComponent } from './component/admin/aproducts/aproducts.component';
 import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 import { AddProductComponent} from './component/admin/aproducts/addProduct/addproduct.component';
+import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 
 const appRoutes = [
 
@@ -46,7 +47,8 @@ const appRoutes = [
 			{path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 			{path: 'products', component: AdminProductsComponent},
 			{path: 'users', component: AdminUsersComponent},
-			{ path: 'products/new', component: AddProductComponent },
+			{path: 'products/new', component: AddProductComponent },
+			{path: 'users/new', component: AddUserComponent },
 		]
 	}
 ];

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
-import { USER_URL } from '../util';
+import { USER_URL, BASE_URL } from '../util';
 
 import { User } from '../model/user.model';
 import { POrder } from '../model/pOrder.model';
@@ -101,17 +101,19 @@ export class UserService {
       .catch(error => Observable.throw('Server error'));
   }
 
-  createUser(user: User) {
-    this.authCreds = localStorage.getItem('creds');
-    const body = JSON.stringify(user);
-    const headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('X-Requested-With', 'XMLHttpRequest');
-    headers.append('Authorization', 'Basic ' + this.authCreds);
-    return this.http.post(USER_URL, body, { headers: headers })
-      .map(response => response.json())
-      .catch(error => Observable.throw('Server error'));
-  }
+  createUser(name:string, password:string, dni:string, email:string, telephone:string, address:string) {
+    let newuser: User;
+    newuser={name:name, passwordHash:password, dni:dni, email:email, telephone:telephone, address:address};
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+     // 'Authorization': 'Basic ' + this.authCreds
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
+      return this.http.post(BASE_URL + 'user', newuser, options)
+        .map(response => response.json())
+        .catch(error => this.handleError(error));
+    }
 
   private handleError(error: any) {
     console.error(error);
