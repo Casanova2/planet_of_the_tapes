@@ -1,96 +1,101 @@
 <div class="row">
   <div class="col-sm-12">
 
-          <h1 class="text-center">Series</h1>
-          <hr>
-        
-          <!-- <div class="row">
-              <div class="col-sm-4">.col-sm-4</div>
-              <div class="col-sm-4">.col-sm-4</div>
-              <div class="col-sm-4">.col-sm-4</div>
-            </div> -->
+    <div class="col-sm-12">
+      <hr>
+      <h1 class="text-center">Series</h1>
+      <hr>
+    </div>
 
-          <div class="row">
-            <div *ngIf="series.length == 0; else chargedseries">
-              <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
+    <div class="row">
+      <div *ngIf="series.length == 0; else chargedseries">
+        <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
+      </div>
+      <ng-template #chargedseries>
+        <ng-template ngFor let-serie [ngForOf]="series">
+          
+            <div class="col-md-3">
+              <h3 class="center title">{{serie.name}}</h3>
+              <div class="coverItem">
+                <div *ngIf="serie.urlimg == undefined; else chargedImage">
+                  <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
+                </div>
+                <ng-template #chargedImage>
+                  <a [routerLink]="['/product', serie.id]"><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + serie.urlimg)" class="img-responsive"/></a>
+                </ng-template>
+                <div>
+                </div>
+              </div>
             </div>
-            <ng-template #chargedseries>
-              <ng-template ngFor let-serie [ngForOf]="series">
-                
-                  <div class="col-md-4">
-                    <h3 class="title">{{serie.name}}</h3>
-                    <div class="coverItem">
-                      <div *ngIf="serie.urlimg == undefined; else chargedImage">
-                        <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
-                      </div>
-                      <ng-template #chargedImage>
-                        <a [routerLink]="['/product', serie.id]"><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + serie.urlimg)" class="img-responsive"/></a>
-                      </ng-template>
-                      <div>
-                      </div>
-                    </div>
-                  </div>
-                  
-              </ng-template>
-              <a routerLink="/series"><button class="btn btn-success pull-left" > More Series</button></a>
-            </ng-template>
-          </div>
-        
-          <hr>
-          <h1 class="text-center">Movies</h1>
-          <hr>
+            
+        </ng-template>
+      </ng-template>
+      <div class="col-md-offset-5">
+        <a routerLink="/series"><button class="btn btn-success pull-left" > More Series</button></a>
+      </div>
+    </div>
+  
+    <div class="col-sm-12">
+      <hr>
+      <h1 class="text-center">Movies</h1>
+      <hr>
+    </div>
 
-          <div class="listItems">
-            <div *ngIf="movies.length == 0; else chargedmovies">
-              <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
+    <div class="listItems">
+      <div *ngIf="movies.length == 0; else chargedmovies">
+        <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
+      </div>
+      <ng-template #chargedmovies>
+        <ng-template ngFor let-movie [ngForOf]="movies">
+            <div class="col-md-3">
+                <h3 class="title">{{movie.name}}</h3>
+              <div class="coverItem">
+                <div *ngIf="movie.urlimg == undefined; else chargedImage">
+                  <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
+                </div>
+                <ng-template #chargedImage>
+                    <a [routerLink]="['/product', movie.id]"><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + movie.urlimg)" class="img-responsive"/></a>
+                </ng-template>
+              </div>
             </div>
-            <ng-template #chargedmovies>
-              <ng-template ngFor let-movie [ngForOf]="movies">
-                  <div class="col-md-4">
-                      <h3 class="title">{{movie.name}}</h3>
-                    <div class="coverItem">
-                      <div *ngIf="movie.urlimg == undefined; else chargedImage">
-                        <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
-                      </div>
-                      <ng-template #chargedImage>
-                          <a [routerLink]="['/product', movie.id]"><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + movie.urlimg)" class="img-responsive"/></a>
-                      </ng-template>
-                      <div>
-                      </div>
-                    </div>
-                  </div>
-              </ng-template>
-              <a routerLink="/movies"><button class="btn btn-success pull-left" > More Movies</button></a>
-            </ng-template>
-          </div>
-        
-          <hr>
-          <h1 class="text-center">Videogames</h1>
-          <hr>
+        </ng-template>
+      </ng-template>
+      <div class="col-md-offset-5">
+        <a routerLink="/movies"><button class="btn btn-success pull-left" > More Movies</button></a>
+      </div>
+    </div>
+  
+    <div class="col-md-12">
+      <hr>
+      <h1 class="text-center">Videogames</h1>
+      <hr>
+    </div>
 
-          <div class="listItems">
-            <div *ngIf="videogames.length == 0; else chargedVideogames">
-              <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
+    <div class="col-md-offset-5">
+      <a routerLink="/videogames"><button class="btn btn-success pull-left" > More videogames</button></a>
+    </div> 
+
+    <div class="listItems">
+      <div *ngIf="videogames.length == 0; else chargedVideogames">
+        <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
+      </div>
+      <ng-template #chargedVideogames>
+        <ng-template ngFor let-videogame [ngForOf]="videogames">
+            <div class="col-md-3">
+                <h3 class="title">{{videogame.name}}</h3>
+              <div class="coverItem">
+                <div *ngIf="videogame.urlimg == undefined; else chargedImage">
+                  <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
+                </div>
+                <ng-template #chargedImage>
+                    <a [routerLink]="['/product', videogame.id]"><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + videogame.urlimg)" class="img-responsive"/></a>
+                </ng-template>
+                <div>
+                </div>
+              </div>
             </div>
-            <ng-template #chargedVideogames>
-              <ng-template ngFor let-videogame [ngForOf]="videogames">
-                  <div class="col-md-4">
-                      <h3 class="title">{{videogame.name}}</h3>
-                    <div class="coverItem">
-                      <div *ngIf="videogame.urlimg == undefined; else chargedImage">
-                        <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
-                      </div>
-                      <ng-template #chargedImage>
-                          <a [routerLink]="['/product', videogame.id]"><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + videogame.urlimg)" class="img-responsive"/></a>
-                      </ng-template>
-                      <div>
-                      </div>
-                    </div>
-                  </div>
-              </ng-template>
-              <a routerLink="/videogames"><button class="btn btn-success pull-left" > More videogames</button></a>
-            </ng-template>
-          </div>
-    
+        </ng-template>              
+      </ng-template>
+    </div>
   </div>
 </div>
