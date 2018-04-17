@@ -183,7 +183,11 @@ src/main/resources/application.properties
 /app/**/*.js.map
 
 # dependencies
-/node_modules
+!/node_modules/
+/node_modules/**
+!/node_modules/admin-lte
+!/node_modules/bootstrap-sass
+!/node_modules/font-awesome
 /bower_components
 
 # IDEs and editors
