@@ -15,7 +15,7 @@
         <ng-template ngFor let-serie [ngForOf]="series">
           
             <div class="col-md-3">
-              <h3 class="center title">{{serie.name}}</h3>
+              <h3 class="center title" style= "text-align: center">{{serie.name}}</h3>
               <div class="coverItem">
                 <div *ngIf="serie.urlimg == undefined; else chargedImage">
                   <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
@@ -48,7 +48,7 @@
       <ng-template #chargedmovies>
         <ng-template ngFor let-movie [ngForOf]="movies">
             <div class="col-md-3">
-                <h3 class="title">{{movie.name}}</h3>
+                <h3 class="title" style= "text-align: center">{{movie.name}}</h3>
               <div class="coverItem">
                 <div *ngIf="movie.urlimg == undefined; else chargedImage">
                   <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
@@ -72,7 +72,7 @@
     </div>
 
     <div class="col-md-offset-5">
-      <a routerLink="/videogames"><button class="btn btn-success pull-left" > More videogames</button></a>
+      <a routerLink="/videogames"><button class="btn btn-success fa-pull-left" > More videogames</button></a>
     </div> 
 
     <div class="listItems">
@@ -82,7 +82,7 @@
       <ng-template #chargedVideogames>
         <ng-template ngFor let-videogame [ngForOf]="videogames">
             <div class="col-md-3">
-                <h3 class="title">{{videogame.name}}</h3>
+                <h3 class="title" style= "text-align: center">{{videogame.name}}</h3>
               <div class="coverItem">
                 <div *ngIf="videogame.urlimg == undefined; else chargedImage">
                   <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">

@@ -1,0 +1,22 @@
+<section>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th width="15%">Products</th>
+          <th width="8%">State</th>
+          <th width="5%">Pay</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let order of orders">
+            <tbody *ngFor="let product of order.products">
+                    <li>{{ product.name }}</li>
+            </tbody>
+            <td>{{ order.state }}</td>
+            <td>{{ order.pay }}</td>
+          </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+  </section>

@@ -10,6 +10,7 @@ import { LoginService} from './service/login.service';
 import { UserService } from './service/user.service';
 import {ProductService} from './service/product.service';
 import {SessionService} from './service/session.service';
+import {OrderService} from './service/order.service';
 
 
 // COMPONENTS INDEX
@@ -35,6 +36,8 @@ import { AdminProductsComponent } from './component/admin/aproducts/aproducts.co
 import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 import { AddProductComponent} from './component/admin/aproducts/addProduct/addproduct.component';
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
+import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
+
 
 @NgModule({
   declarations: [
@@ -61,11 +64,12 @@ import { AddUserComponent } from './component/admin/ausers/addUser/adduser.compo
     AdminProductsComponent,
     AdminUsersComponent,
     AddProductComponent,
-    AddUserComponent
+    AddUserComponent,
+    AdminOrdersComponent
 
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],
-  providers: [LoginService, UserService, ProductService,SessionService],
+  providers: [LoginService, UserService, ProductService,SessionService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

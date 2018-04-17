@@ -23,6 +23,7 @@ import { AdminProductsComponent } from './component/admin/aproducts/aproducts.co
 import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 import { AddProductComponent} from './component/admin/aproducts/addProduct/addproduct.component';
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
+import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 
 const appRoutes = [
 
@@ -49,6 +50,7 @@ const appRoutes = [
 			{path: 'users', component: AdminUsersComponent},
 			{path: 'products/new', component: AddProductComponent },
 			{path: 'users/new', component: AddUserComponent },
+			{path: 'orders', component: AdminOrdersComponent}
 		]
 	}
 ];

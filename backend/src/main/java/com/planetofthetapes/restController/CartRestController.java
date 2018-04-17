@@ -107,10 +107,10 @@ public class CartRestController{
 	}
 
 	@JsonView(OrderDetails.class)
-	@RequestMapping(value = "/{id2}/product", method = RequestMethod.POST)
+	@RequestMapping(value = "/order/{id2}", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<POrder> createNewRestOrder(HttpServletResponse response, HttpServletRequest request,
-			@PathVariable Integer id2, @RequestBody POrder order) throws IOException, ServletException {
+			@PathVariable Integer id2) throws IOException, ServletException {
 
 		if (request.authenticate(response)) {
 			double total = 0.0;
@@ -118,7 +118,8 @@ public class CartRestController{
 			User user = userRepository.findByName(request.getUserPrincipal().getName());
 
 			if (p.getStock() > 0) {
-				POrder neworder = new POrder(order.getState(), order.getPay(), order.getType(), order.getTotal());
+				
+				POrder neworder = new POrder("progress", "Credit card", "Buy", 0);
 				neworder.getProducts().add(p);
 				p.setStock(p.getStock() - 1);
 				total = neworder.getTotal() + p.getPbuy();
