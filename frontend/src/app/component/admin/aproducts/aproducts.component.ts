@@ -30,6 +30,10 @@ export class AdminProductsComponent implements OnInit{
       this.service.removeProduct(id).subscribe(
         response => {
           this.message = 'Product deleted successfully.';
+          this.service.getProducts().subscribe(
+            products => this.products = products,
+            error => console.log(error)
+          );
         },
         error => {
           this.message = 'Not found.'

@@ -26,6 +26,10 @@ export class AdminUsersComponent implements OnInit{
       this.service.removeUser(id).subscribe(
         response => {
           this.message = 'User deleted successfully.';
+          this.service.getUsers().subscribe(
+            users => this.users = users,
+            error => console.log(error)
+          );
         },
         error => {
           this.message = 'Not found.'
