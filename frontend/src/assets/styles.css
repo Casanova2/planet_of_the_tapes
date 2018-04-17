@@ -11,18 +11,6 @@ html {
   border: 1px solid #AAA;
 }
 
-hr {
-  -moz-border-bottom-colors: none;
-  -moz-border-image: none;
-  -moz-border-left-colors: none;
-  -moz-border-right-colors: none;
-  -moz-border-top-colors: none;
-  border-color: #EEEEEE -moz-use-text-color #FFFFFF;
-  border-style: solid none;
-  border-width: 1px 0;
-  margin: 18px 0;
-}
-
 
 /************************
         GENERALES
@@ -94,7 +82,7 @@ header .logo h1 {
 }
 
 .userdrop {
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: #215E5D;
 }
 
 #search-input {
@@ -139,7 +127,7 @@ header .logo h1 {
 }
 
 .menuNav {
-  background-color: rgba(3, 75, 158, 0.9);
+  background-color: rgba(10, 78, 77, 0.9);
 }
 
 .menuNav .navbar-collapse {
@@ -472,16 +460,6 @@ header .logo h1 {
   color: #A09F9F;
 }
 
-.btn-warning {
-  background-color: #0084ffc7;
-  border-color:  #0084ffc7;
-}
-.btn-warning:hover,
-.btn-warning:active,
-.btn-warning.hover {
-  background-color:  #0084ffc7;
-}
-
 .btn-view-more {
   background-color: rgba(10, 78, 77, 0.9);
   color: #ffffff;
@@ -509,7 +487,7 @@ html {
 }*/
 
 footer {
-  background-color:  rgba(0, 0, 0, 0.75);
+  background-color: #9a5c28;
   /*position: absolute;*/
   bottom: 0;
   width: 100%;
