@@ -90,15 +90,17 @@ export class UserService {
       .catch(error => Observable.throw('Server error'));
   }
 
-  deleteUser(id: number) {
-    this.authCreds = localStorage.getItem('creds');
-    const headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('X-Requested-With', 'XMLHttpRequest');
-    headers.append('Authorization', 'Basic ' + this.authCreds);
-    return this.http.delete(USER_URL + '/' + id, { headers: headers })
-      .map(response => response.json())
-      .catch(error => Observable.throw('Server error'));
+  removeUser(id: number) {
+
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
+
+    return this.http.delete(BASE_URL + 'user/' + id, options)
+      .map(response => response.json)
+      .catch(error => this.handleError(error));
   }
 
   createUser(name:string, password:string, dni:string, email:string, telephone:string, address:string) {

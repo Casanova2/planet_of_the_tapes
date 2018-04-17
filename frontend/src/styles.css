@@ -472,6 +472,16 @@ header .logo h1 {
   color: #A09F9F;
 }
 
+.btn-warning {
+  background-color: #0084ffc7;
+  border-color:  #0084ffc7;
+}
+.btn-warning:hover,
+.btn-warning:active,
+.btn-warning.hover {
+  background-color:  #0084ffc7;
+}
+
 .btn-view-more {
   background-color: rgba(10, 78, 77, 0.9);
   color: #ffffff;

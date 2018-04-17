@@ -15,20 +15,17 @@
           <td>{{ product.director }}</td>
           <td>{{ product.genre }}</td>
           <td>{{ product.type }}</td>
-          <!-- <td>
-            <a [routerLink]="['./', resource.id]">
-              <button type="button" class="btn btn-success"><span class="fa fa-pencil"></span></button>
-            </a>
-            <button type="button" class="btn btn-warning" (click)=""><span class="fa fa-trash"></span></button>
-          </td> -->
+          <td>
+            <button type="button" class="btn btn-warning" (click)="deleteProduct(product.id)"><span class="fa fa-trash"></span></button>
+          </td>
         </tr>
     </tbody>
   </table>
-  <div>
-    <div class="pull-left">
-      <a [routerLink]="['./new']">
-        <button type="button" class="btn btn-primary"><span class="fa fa-plus-circle">  </span>&nbsp;New product</button>
-      </a>
-    </div>
+  <div class="pull-left">
+    <a [routerLink]="['./new']">
+      <button type="button" class="btn btn-primary"><span class="fa fa-plus-circle">  </span>&nbsp;New product</button>
+    </a>
   </div>
+  <br>
+  <br>
 </section>

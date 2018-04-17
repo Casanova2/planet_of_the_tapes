@@ -11,7 +11,7 @@ import {STATUS_NO_CONTENT} from '../../../util';
 export class AdminUsersComponent implements OnInit{
 
   users: User[];
-
+  message: string;
   constructor(private service: UserService, private activatedRoute: ActivatedRoute) {
   }
 
@@ -21,4 +21,15 @@ export class AdminUsersComponent implements OnInit{
         error => console.log(error)
       );
     }
+
+    deleteUser(id: number) {
+      this.service.removeUser(id).subscribe(
+        response => {
+          this.message = 'User deleted successfully.';
+        },
+        error => {
+          this.message = 'Not found.'
+        }
+      );
+    }  
   }

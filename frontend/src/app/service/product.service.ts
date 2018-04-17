@@ -75,12 +75,6 @@ export class ProductService {
       .catch(error => Observable.throw('Server error'));
   }
 
-  searchProducts(name: string, page: number) {
-    return this.http.get(PRODUCTS_URL + '?name=' + name + '&page=' + page)
-      .map(response => response.json().content)
-      .catch(error => Observable.throw('Server error'));
-  }
-
   updateProduct(product: Product) {
     const body = JSON.stringify(product);
 
@@ -120,17 +114,17 @@ export class ProductService {
       .catch(error => Observable.throw('Server error'));
   }
 
-  deleteProduct(id: number) {
-    this.authCreds = localStorage.getItem('creds');
+  removeProduct(id: number) {
 
-    const headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('X-Requested-With', 'XMLHttpRequest');
-    headers.append('Authorization', 'Basic ' + this.authCreds);
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
 
-    return this.http.delete(PRODUCTS_URL + '/' + id, { headers: headers })
-      .map(response => response.json())
-      .catch(error => Observable.throw('Server error'));
+    return this.http.delete(BASE_URL + 'product/' + id, options)
+      .map(response => response.json)
+      .catch(error => this.handleError(error));
   }
 
   private handleError(error: any) {

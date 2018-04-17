@@ -11,12 +11,9 @@
           <tr *ngFor="let user of users">
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
-            <!-- <td>
-              <a [routerLink]="['./', resource.id]">
-                <button type="button" class="btn btn-success"><span class="fa fa-pencil"></span></button>
-              </a>
-              <button type="button" class="btn btn-warning" (click)=""><span class="fa fa-trash"></span></button>
-            </td> -->
+            <td>
+              <button type="button" class="btn btn-warning" (click)="deleteUser(user.id)"><span class="fa fa-trash"></span></button>
+            </td>
           </tr>
       </tbody>
     </table>
@@ -27,4 +24,6 @@
         </a>
       </div>
     </div>
+    <br>
+    <br>
   </section>
