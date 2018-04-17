@@ -174,20 +174,8 @@ Servers/Pivotal tc Server Developer Edition v3.2-config/jmxremote.access
 src/main/resources/application.properties
 src/main/resources/application.properties
 
-### Angular ###
-## Angular ##
-# compiled output
-/dist
-/tmp
-/app/**/*.js
-/app/**/*.js.map
-
 # dependencies
-!/node_modules/admin-lte
-!/node_modules/bootstrap-sass
-!/node_modules/font-awesome
-
-/node_modules/**
+/node_modules
 
 /bower_components
 
