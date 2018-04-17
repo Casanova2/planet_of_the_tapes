@@ -19,7 +19,6 @@ target/
 nbproject/private/
 build/
 nbbuild/
-dist/
 nbdist/
 .nb-gradle/
 Servers/Pivotal tc Server Developer Edition v3.2-config/context.xml
