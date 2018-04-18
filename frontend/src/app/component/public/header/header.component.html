@@ -27,8 +27,17 @@
           <li><a [routerLink]="['/movies']">Movies</a></li>
           <li><a [routerLink]="['/videogames']">Videogames</a></li>
           <li><a [routerLink]="['/contact']">Contact</a></li>
-          <li><a [routerLink]="['/login']">Login</a></li>
-          <li><a [routerLink]="['/register']">Register</a></li>
+          <li *ngIf="service.isUserLogged(); else notLogged">
+            <a [routerLink]="['/admin']">{{service.user.name}}</a>
+          </li>
+          <li *ngIf="service.isUserLogged()">
+              <button class="btn btn-default navbar-btn" (click)="logOut()" type="button">Log Out</button>
+          </li>
+
+          <ng-template #notLogged>
+            <li><a [routerLink]="['/login']">Login</a></li>
+            <li><a [routerLink]="['/register']">Register</a></li>
+          </ng-template>
 
         </ul>
         <!--

@@ -10,13 +10,13 @@ import {UserService } from '../../../service/user.service';
 })
 export class LoginComponent {
 
-  constructor(private loginService: SessionService, private activatedRoute: ActivatedRoute) { }
+  constructor(public service: SessionService, private activatedRoute: ActivatedRoute) { }
 
   logIn(event: any, user: string, pass: string) {
 
     event.preventDefault();
 
-    this.loginService.logIn(user, pass).subscribe(
+    this.service.logIn(user, pass).subscribe(
       u => console.log(u),
       error => alert('Invalid user or password')
     );
@@ -24,7 +24,7 @@ export class LoginComponent {
   }
 
   logOut() {
-    this.loginService.logOut().subscribe(
+    this.service.logOut().subscribe(
       response => { },
       error => console.log('Error when trying to log out: ' + error)
     );

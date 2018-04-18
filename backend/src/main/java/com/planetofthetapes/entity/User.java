@@ -41,15 +41,15 @@ public class User {
 	@Column(unique = true)
 	@JsonView({Basic.class, LoginInt.class})
 	private String name;
-	@JsonView({Basic.class, LoginInt.class})
+	
 	private String passwordHash;
-	@JsonView(Basic.class)
+	
 	private String dni;
 	@JsonView(Basic.class)
 	private String email;
-	@JsonView(Basic.class)
+	
 	private String telephone;
-	@JsonView(Basic.class)
+	
 	private boolean viewTelephone;
 	@JsonView(Basic.class)
 	private String address;

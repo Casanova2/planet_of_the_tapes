@@ -21,11 +21,11 @@ export class SessionService implements OnDestroy {
   isAdmin = false;
 
   ngOnDestroy() {
-    console.log("localStorage called from ngOnDestroy");
+    console.log('localStorage called from ngOnDestroy');
     localStorage.clear();
   }
 
-  
+
   constructor(private http: Http, private userService: UserService ){
     this.reqIsLogged();
   }
