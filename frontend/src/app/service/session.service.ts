@@ -55,6 +55,9 @@ private processLogInResponse(response) {
     this.isAdmin = this.user.roles.indexOf('ROLE_ADMIN') !== -1;
 }
 
+isUserLogged(){
+    return this.isLogged;
+}
 logIn(user: string, pass: string) {
 
     const userPass = user + ':' + pass;
@@ -69,6 +72,7 @@ logIn(user: string, pass: string) {
     return this.http.get(BASE_URL + 'logIn', options).map(
         response => {
             this.processLogInResponse(response);
+            this.isLogged = true;
             return this.user;
         }
     );

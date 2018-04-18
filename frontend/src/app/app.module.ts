@@ -6,11 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
 // Services
-import { LoginService} from './service/login.service';
 import { UserService } from './service/user.service';
 import {ProductService} from './service/product.service';
 import {SessionService} from './service/session.service';
 import {OrderService} from './service/order.service';
+import { CanActivateViaAuthGuard } from './service/guard/guard';
 
 
 // COMPONENTS INDEX
@@ -37,6 +37,7 @@ import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 import { AddProductComponent} from './component/admin/aproducts/addProduct/addproduct.component';
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
+
 
 
 @NgModule({
@@ -69,7 +70,7 @@ import { AdminOrdersComponent } from './component/admin/aorders/aorders.componen
 
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],
-  providers: [LoginService, UserService, ProductService,SessionService, OrderService],
+  providers: [UserService, ProductService, SessionService, OrderService, CanActivateViaAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

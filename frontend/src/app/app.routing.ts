@@ -24,6 +24,7 @@ import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 import { AddProductComponent} from './component/admin/aproducts/addProduct/addproduct.component';
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
+import { CanActivateViaAuthGuard } from './service/guard/guard';
 
 const appRoutes = [
 
@@ -42,7 +43,7 @@ const appRoutes = [
 		]
 	},
 
-	{ path: 'admin', component: AdminComponent, useAsDefault: true,
+	{ path: 'admin', component: AdminComponent, useAsDefault: true, canActivateChild: [CanActivateViaAuthGuard],
 		children: [
 			{path: 'dashboard', component: AdminDashboardComponent},
 			{path: '', redirectTo: 'dashboard', pathMatch: 'full' },

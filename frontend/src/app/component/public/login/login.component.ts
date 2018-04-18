@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoginService } from '../../../service/login.service';
+import { SessionService } from '../../../service/session.service';
 import {UserService } from '../../../service/user.service';
 
 
@@ -10,7 +10,7 @@ import {UserService } from '../../../service/user.service';
 })
 export class LoginComponent {
 
-  constructor(private loginService: LoginService, private activatedRoute: ActivatedRoute) { }
+  constructor(private loginService: SessionService, private activatedRoute: ActivatedRoute) { }
 
   logIn(event: any, user: string, pass: string) {
 
