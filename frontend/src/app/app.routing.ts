@@ -13,6 +13,7 @@ import { ProductComponent } from './component/public/product/product.component';
 import { VideoGamesComponent } from './component/public/videogames/videogames.component';
 import { SeriesComponent } from './component/public/series/series.component';
 import { MoviesComponent } from './component/public/movies/movies.component';
+import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit.component';
 
 //ADMIN
 import { AdminComponent } from './component/admin/admin.component';
@@ -51,7 +52,8 @@ const appRoutes = [
 			{path: 'users', component: AdminUsersComponent},
 			{path: 'products/new', component: AddProductComponent },
 			{path: 'users/new', component: AddUserComponent },
-			{path: 'orders', component: AdminOrdersComponent}
+			{path: 'orders', component: AdminOrdersComponent},
+			{path: 'products/edit/:id', component: AdminEditProductComponent}
 		]
 	}
 ];

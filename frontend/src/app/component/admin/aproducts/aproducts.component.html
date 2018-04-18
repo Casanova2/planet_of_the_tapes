@@ -16,6 +16,9 @@
           <td>{{ product.genre }}</td>
           <td>{{ product.type }}</td>
           <td>
+          <a [routerLink]="['edit', product.id]">
+            <button type="button" class="btn btn-success"><span class="fa fa-pencil"></span></button>
+          </a>
             <button type="button" class="btn btn-warning" (click)="deleteProduct(product.id)"><span class="fa fa-trash"></span></button>
           </td>
         </tr>

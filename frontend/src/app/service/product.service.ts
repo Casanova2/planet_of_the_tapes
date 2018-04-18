@@ -77,15 +77,11 @@ export class ProductService {
 
   updateProduct(product: Product) {
     const body = JSON.stringify(product);
-
-    this.authCreds = localStorage.getItem('creds');
-
     const headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+    headers.append('Content-type', 'application/json');
     headers.append('X-Requested-With', 'XMLHttpRequest');
-    headers.append('Authorization', 'Basic ' + this.authCreds);
-
-    return this.http.put(PRODUCTS_URL + '/' + product.id, body, { headers: headers })
+    const options = new RequestOptions({ withCredentials: true, headers });
+    return this.http.put(BASE_URL + 'product/' + product.id, body, options)
       .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
   }
