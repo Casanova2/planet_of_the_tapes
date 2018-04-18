@@ -11,6 +11,9 @@ html {
   border: 1px solid #AAA;
 }
 
+agm-map {
+  height: 300px;
+}
 
 /************************
         GENERALES

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ApplicationRef  } from '@angular/core';
 
 import { routing } from './app.routing';
 import { FormsModule } from '@angular/forms';
@@ -10,7 +10,8 @@ import { LoginService} from './service/login.service';
 import { UserService } from './service/user.service';
 import {ProductService} from './service/product.service';
 import {SessionService} from './service/session.service';
-
+//Alerts
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 // COMPONENTS INDEX
 import { HeaderComponent } from './component/public/header/header.component';
@@ -25,7 +26,9 @@ import { VideoGamesComponent } from './component/public/videogames/videogames.co
 import { SeriesComponent } from './component/public/series/series.component';
 import { MoviesComponent } from './component/public/movies/movies.component';
 import { PublicComponent } from './component/public/public.component';
-
+//GoogleMaps
+import { AgmCoreModule } from '@agm/core';
+import { CommonModule } from '@angular/common';
 // COMPONENTS ADMIN
 import { AdminComponent } from './component/admin/admin.component';
 import { AdminDashboardComponent } from './component/admin/dashboard/dashboard.component';
@@ -64,8 +67,11 @@ import { AddUserComponent } from './component/admin/ausers/addUser/adduser.compo
     AddUserComponent
 
   ],
-  imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing],
+  imports: [BrowserModule,NgbModule,CommonModule, FormsModule, HttpModule, JsonpModule, routing,AgmCoreModule.forRoot({
+    apiKey: 'AIzaSyDdPvoqoU3MtyCSXlGpWTZgD-_mmHWvZgg'
+  })],
   providers: [LoginService, UserService, ProductService,SessionService],
   bootstrap: [AppComponent]
+ 
 })
 export class AppModule { }

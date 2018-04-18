@@ -1,3 +1,4 @@
+
 <div class="row">
   <div class="col-sm-12">
 
@@ -11,12 +12,7 @@
             </div> -->
 
           <div class="row">
-            <div *ngIf="series.length == 0; else chargedseries">
-              <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
-            </div>
-            <ng-template #chargedseries>
               <ng-template ngFor let-serie [ngForOf]="series">
-                
                   <div class="col-md-4">
                     <h3 class="title">{{serie.name}}</h3>
                     <div class="coverItem">
@@ -33,7 +29,6 @@
                   
               </ng-template>
               <a routerLink="/series"><button class="btn btn-success pull-left" > More Series</button></a>
-            </ng-template>
           </div>
         
           <hr>
@@ -41,10 +36,6 @@
           <hr>
 
           <div class="listItems">
-            <div *ngIf="movies.length == 0; else chargedmovies">
-              <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
-            </div>
-            <ng-template #chargedmovies>
               <ng-template ngFor let-movie [ngForOf]="movies">
                   <div class="col-md-4">
                       <h3 class="title">{{movie.name}}</h3>
@@ -61,18 +52,13 @@
                   </div>
               </ng-template>
               <a routerLink="/movies"><button class="btn btn-success pull-left" > More Movies</button></a>
-            </ng-template>
+            
           </div>
         
           <hr>
           <h1 class="text-center">Videogames</h1>
           <hr>
 
-          <div class="listItems">
-            <div *ngIf="videogames.length == 0; else chargedVideogames">
-              <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
-            </div>
-            <ng-template #chargedVideogames>
               <ng-template ngFor let-videogame [ngForOf]="videogames">
                   <div class="col-md-4">
                       <h3 class="title">{{videogame.name}}</h3>
@@ -89,8 +75,6 @@
                   </div>
               </ng-template>
               <a routerLink="/videogames"><button class="btn btn-success pull-left" > More videogames</button></a>
-            </ng-template>
-          </div>
     
   </div>
 </div>

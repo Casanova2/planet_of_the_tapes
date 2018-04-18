@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
+import { Product, ProductService } from '../../../service/product.service';
+import { User, UserService } from '../../../service/user.service';
 
 /*import {SessionService} from '../../../service/session.service';*/
 
@@ -8,15 +11,26 @@ import {Router} from '@angular/router';
   templateUrl: 'dashboard.component.html'
 })
 export class AdminDashboardComponent implements OnInit {
-	constructor(private router: Router) { }
-	ngOnInit() {}
-/*
-  constructor(private router: Router, private sessionService: SessionService) { }
 
-  ngOnInit() {
-    if (!this.sessionService.checkCredentials()) {
-      this.router.navigate(["/login"]);
-    }
-  }*/
+  products: Product[];
+  lenght:number;
+  users:User[];
+
+	constructor(private service: ProductService,private service1: UserService, private activatedRoute: ActivatedRoute) { 
+
+  }
+	ngOnInit() {
+    this.service.getProducts().subscribe(
+    products => this.products = products,
+    error => console.log(error),
+   );
+   this.service1.getUsers().subscribe(
+    users => this.users = users,
+    error => console.log(error)
+   );
+  }
+
 
 }
+
+
