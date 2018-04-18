@@ -19,7 +19,7 @@ export class HeaderComponent {
   profileActive = false;
   @Output() openModalLogin: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private router: Router, /*public sessionService: SessionService*/) {
+  constructor(private router: Router, public service: SessionService) {
     this.isAdmin = false;
   }
 
@@ -33,12 +33,10 @@ export class HeaderComponent {
   }
 
   logOut() {
-   /* this.sessionService.logOut().subscribe(
-      success => {
-        this.router.navigate(['']);
-      },
-      fail => console.log(fail)
-    );*/
+    this.service.logOut().subscribe(
+      response => { },
+      error => console.log('Error when trying to log out: ' + error)
+    );
   }
 
   update(page: string) {
