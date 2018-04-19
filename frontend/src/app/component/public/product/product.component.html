@@ -1,39 +1,43 @@
 <div class="row">
-      <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center">
-          <h2>{{product.name}}</h2>
-        </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12" style="text-align: center">
+        <h2>{{product.name}}</h2>
       </div>
-      <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12">
-          <div class="row">
-            <div class="col-lg-3">
-              <div class="coverItem">
-                    <img [src]="sanitizer.bypassSecurityTrustUrl(img_url + product.urlimg)" class="img-responsive"/>
-              </div>
-            </div>
-            <div class="col-lg-9 information">
-              <h5 class="authorName">
-                <span>Director </span>{{product.director}}
-              </h5>
-              <div class="mt-2 mb-1">
-                {{product.description}}
-              </div>
-             
-              <h5 class="authorName">
-                <span></span>{{product.genre}}
-              </h5>
-              <h5 class="authorName">
-                <span>Score </span>{{product.score}}
-              </h5>
-              <h5 class="authorName">
-                <span>Trailer </span>{{product.trailer}}
-              </h5>
-              <button type="button" class="btn btn-success" (click)="addToCart(product.id)">Buy</button>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-lg-3">
+            <div class="coverItem">
+                  <img [src]="sanitizer.bypassSecurityTrustUrl(img_url + product.urlimg)" class="img-responsive"/>
+
             </div>
           </div>
+          <div class="col-lg-9 information">
+            <h5 class="authorName">
+              <span>Director </span>{{product.director}}
+            </h5>
+            <div class="mt-2 mb-1">
+              {{product.description}}
+            </div> 
+            <h5 class="authorName">
+              <span></span>{{product.genre}}
+            </h5>
+            <h5 class="authorName">
+              <span>Score </span>{{product.score}}
+            </h5>
+            <h5 class="authorName">
+              <span>Trailer </span>{{product.trailer}}
+            </h5>
+                <!-- <div *ngIf="condition; then thenBlock else elseBlock"></div>
+                <ng-template #thenBlock>...</ng-template>
+                <ng-template #elseBlock>...</ng-template> -->
+                <div *ngIf="orders.length == 0; else add">
+                  <button type="button" class="btn btn-success" (click)="addToCart(product.id)">Buy</button>
+                </div>
+              <ng-template #add>
+                    <button type="button" class="btn btn-success" (click)="updateCart(order, product.id)">Buy</button>
+              </ng-template>
         </div>
-        
       </div>
       
-      
+    </div>
