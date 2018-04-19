@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-12">
+
+    <h1>Cart</h1>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <tbody *ngFor="let product of order.products">
+          <li>
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="coverItem">
+                  <img [src]="sanitizer.bypassSecurityTrustUrl(img_url + product.urlimg)" class="img-responsive" />
+                </div>
+              </div>
+              <div class="col-lg-9 information">
+                <h3 class="mt-2 mb-1">
+                  <span>Product Name</span>
+                  <br>
+                </h3>
+                {{product.name}}
+                <br>
+                Price
+                <br> {{product.pbuy}}
+                <br>
+                <a [routerLink]="['/product', product.id]"><button class="btn">+ info</button></a>
+              </div>
+            </div>
+          </li>
+          {{order.total}}
+        </tbody>
+      </tr>
+    </tbody>
+    <div ng-value="let order of orders">
+      <button class="btn btn-default navbar-btn" (click)="checkOut(order[0].id)" type="button">Pay</button>
+    </div>
+  </div>
+</div>
