@@ -16,33 +16,42 @@
     </div>
     <ul class="sidebar-menu">
       <li class="header">MENU</li>
-      <li [class.active]="indexActive">
+
+      <li [class.active]="profileActive">
+        <a [routerLink]="['/admin/profile']" (click)="update('profile')"><i class="fa fa-user"></i>
+          <span>
+            Profile
+          </span>
+        </a>
+      </li>
+
+      <li *ngIf="session.isAdmin" [class.active]="indexActive">
         <a [routerLink]="['/admin']"><i class="fa fa-home"></i><span>
           Dashboard</span>
         </a>
       </li>
-      <li [class.active]="resourcesActive">
+      <li *ngIf="session.isAdmin" [class.active]="resourcesActive">
         <a [routerLink]="['/admin/products']"><i class="fa fa-book"></i> 
           <span>
             Products
           </span>
         </a>
       </li>
-      <li [class.active]="loansActive">
+      <li *ngIf="session.isAdmin" [class.active]="loansActive">
         <a [routerLink]="['/admin/orders']" (click)="update('loans')"><i class="fa fa-book"></i>
           <span>
             Orders
           </span>
         </a>
       </li>
-      <li [class.active]="finesActive">
+      <li *ngIf="session.isAdmin" [class.active]="finesActive">
         <a [routerLink]="['/admin/packs']" (click)="update('fines')"><i class="fa fa-book"></i>
           <span>
             Packs
           </span>
         </a>
       </li>
-      <li [class.active]="usersActive">
+      <li *ngIf="session.isAdmin" [class.active]="usersActive">
         <a [routerLink]="['/admin/users']"><i class="fa fa-users"></i>
           <span>
             Users

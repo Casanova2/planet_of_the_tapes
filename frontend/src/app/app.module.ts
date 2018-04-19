@@ -42,6 +42,7 @@ import { AddProductComponent} from './component/admin/aproducts/addProduct/addpr
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit.component';
+import { ProfileComponent } from './component/admin/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit
     AddProductComponent,
     AddUserComponent,
     AdminOrdersComponent,
-    AdminEditProductComponent
+    AdminEditProductComponent,
+    ProfileComponent
     
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing, NgbModule, CommonModule,AgmCoreModule.forRoot({
