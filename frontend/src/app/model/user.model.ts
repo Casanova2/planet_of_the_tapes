@@ -1,6 +1,6 @@
 import {POrder} from './pOrder.model';
-
- id?: number;
+  export interface User {
+  id?: number;
   name: string;
   passwordHash?: string;
   dni: string;
@@ -10,7 +10,5 @@ import {POrder} from './pOrder.model';
   address?: string;
   roles?: string[];
   hasPhoto?: boolean;
-  orders?: POrder[];export interface User {
- 
-
-}
+  orders?: POrder[];
+  }

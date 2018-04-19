@@ -10,6 +10,7 @@ import { HomeComponent } from './component/public/home/home.component';
 import { LoginComponent } from './component/public/login/login.component';
 import { RegisterComponent } from './component/public/register/register.component';
 import { ProductComponent } from './component/public/product/product.component';
+import { CartComponent } from './component/public/cart/cart.component';
 import { VideoGamesComponent } from './component/public/videogames/videogames.component';
 import { SeriesComponent } from './component/public/series/series.component';
 import { MoviesComponent } from './component/public/movies/movies.component';
@@ -40,7 +41,8 @@ const appRoutes = [
 			{path: 'login', component: LoginComponent},
 		  {path: 'register', component: RegisterComponent},
 		  {path: 'series', component: SeriesComponent},
-		  {path: 'movies', component: MoviesComponent},
+      {path: 'movies', component: MoviesComponent},
+      {path: 'cart', component: CartComponent},
 		  {path: '', redirectTo: 'home', pathMatch: 'full' }
 		]
 	},
@@ -55,7 +57,7 @@ const appRoutes = [
 			{path: 'users/new', component: AddUserComponent },
 			{path: 'orders', component: AdminOrdersComponent},
 			{path: 'products/edit/:id', component: AdminEditProductComponent},
-			{path: 'profile/:id', component: ProfileComponent},
+			{path: 'profile', component: ProfileComponent},
 			
 		]
 	}
