@@ -43,11 +43,12 @@ public class User {
 	private String name;
 	
 	private String passwordHash;
-	
+	@JsonView(Basic.class)
 	private String dni;
 	@JsonView(Basic.class)
 	private String email;
 	
+	@JsonView(Basic.class)
 	private String telephone;
 	
 	private boolean viewTelephone;

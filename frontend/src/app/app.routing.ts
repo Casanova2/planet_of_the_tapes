@@ -26,6 +26,7 @@ import { AddProductComponent} from './component/admin/aproducts/addProduct/addpr
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 import { CanActivateViaAuthGuard } from './service/guard/guard';
+import { ProfileComponent } from './component/admin/myProfile/profile.component';
 
 const appRoutes = [
 
@@ -53,7 +54,9 @@ const appRoutes = [
 			{path: 'products/new', component: AddProductComponent },
 			{path: 'users/new', component: AddUserComponent },
 			{path: 'orders', component: AdminOrdersComponent},
-			{path: 'products/edit/:id', component: AdminEditProductComponent}
+			{path: 'products/edit/:id', component: AdminEditProductComponent},
+			{path: 'profile/:id', component: ProfileComponent},
+			
 		]
 	}
 ];

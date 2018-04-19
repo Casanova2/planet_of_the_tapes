@@ -35,6 +35,13 @@
           </span>
         </a>
       </li>
+      <li  [class.active]="loansActive">
+          <a [routerLink]="['/admin/profile',user.id]" (click)="update('loans')"><i class="fa fa-book"></i>
+            <span>
+              My Profile
+            </span>
+          </a>
+        </li>
       <li [class.active]="finesActive">
         <a [routerLink]="['/admin/packs']" (click)="update('fines')"><i class="fa fa-book"></i>
           <span>
