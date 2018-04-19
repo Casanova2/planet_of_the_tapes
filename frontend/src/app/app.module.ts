@@ -41,8 +41,7 @@ import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 import { AddProductComponent} from './component/admin/aproducts/addProduct/addproduct.component';
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
-
-
+import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -70,8 +69,9 @@ import { AdminOrdersComponent } from './component/admin/aorders/aorders.componen
     AdminUsersComponent,
     AddProductComponent,
     AddUserComponent,
-    AdminOrdersComponent
-
+    AdminOrdersComponent,
+    AdminEditProductComponent
+    
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing, NgbModule, CommonModule,AgmCoreModule.forRoot({
     apiKey: 'AIzaSyDdPvoqoU3MtyCSXlGpWTZgD-_mmHWvZgg'
