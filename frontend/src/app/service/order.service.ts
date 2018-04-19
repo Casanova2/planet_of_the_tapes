@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
 
-import { PRODUCTS_URL, SINGLEPRODUCT_URL, ALLPRODUCTS_URL, ADDPRODUCT_URL, ORDERS_URL, ORDER_URL } from '../util';
+import { PRODUCTS_URL, SINGLEPRODUCT_URL, ALLPRODUCTS_URL, ADDPRODUCT_URL, ORDERS_URL, ORDER_URL, UORDERS_URL } from '../util';
 import {BASE_URL} from "../util";
 import { Product } from '../model/product.model';
 
@@ -68,6 +68,20 @@ export class OrderService {
         .map(response => response.json())
         .catch(error => this.handleError(error));
     }
+
+  addProductToOrder(order:POrder, id: number){
+
+    const body = JSON.stringify(order);
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
+
+    return this.http.put(BASE_URL + order.id + '/' + id + '/product', body, options)
+      .map(response => response.json())
+      .catch(error => this.handleError(error));
+  }
 
   private handleError(error: any) {
     console.error(error);

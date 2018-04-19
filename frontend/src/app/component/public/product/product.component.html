@@ -18,8 +18,7 @@
               </h5>
               <div class="mt-2 mb-1">
                 {{product.description}}
-              </div>
-              <button type="button" class="btn btn-success" (click)="addToCart(product.id)">Buy</button>
+              </div> 
               <h5 class="authorName">
                 <span></span>{{product.genre}}
               </h5>
@@ -29,8 +28,15 @@
               <h5 class="authorName">
                 <span>Trailer </span>{{product.trailer}}
               </h5>
-              <button type="button" class="btn btn-success">Buy</button>
-            </div>
+                  <!-- <div *ngIf="condition; then thenBlock else elseBlock"></div>
+                  <ng-template #thenBlock>...</ng-template>
+                  <ng-template #elseBlock>...</ng-template> -->
+                  <div *ngIf="!orders; else add">
+                    <button type="button" class="btn btn-success" (click)="addToCart(product.id)">Buy</button>
+                  </div>
+                  <ng-template #add>
+                      <button type="button" class="btn btn-success" (click)="updateCart(order, product.id)">Buy</button>
+                  </ng-template>
           </div>
         </div>
         
