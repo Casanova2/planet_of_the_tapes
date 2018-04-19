@@ -10,6 +10,7 @@ import { HomeComponent } from './component/public/home/home.component';
 import { LoginComponent } from './component/public/login/login.component';
 import { RegisterComponent } from './component/public/register/register.component';
 import { ProductComponent } from './component/public/product/product.component';
+import { CartComponent } from './component/public/cart/cart.component';
 import { VideoGamesComponent } from './component/public/videogames/videogames.component';
 import { SeriesComponent } from './component/public/series/series.component';
 import { MoviesComponent } from './component/public/movies/movies.component';
@@ -25,6 +26,7 @@ import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 import { AddProductComponent} from './component/admin/aproducts/addProduct/addproduct.component';
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
+import { ProfileComponent } from './component/admin/profile/profile.component';
 import { CanActivateViaAuthGuard } from './service/guard/guard';
 
 const appRoutes = [
@@ -39,7 +41,8 @@ const appRoutes = [
 			{path: 'login', component: LoginComponent},
 		  {path: 'register', component: RegisterComponent},
 		  {path: 'series', component: SeriesComponent},
-		  {path: 'movies', component: MoviesComponent},
+      {path: 'movies', component: MoviesComponent},
+      {path: 'cart', component: CartComponent},
 		  {path: '', redirectTo: 'home', pathMatch: 'full' }
 		]
 	},
@@ -49,6 +52,7 @@ const appRoutes = [
 			{path: 'dashboard', component: AdminDashboardComponent},
 			{path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 			{path: 'products', component: AdminProductsComponent},
+			{path: 'profile', component: ProfileComponent},
 			{path: 'users', component: AdminUsersComponent},
 			{path: 'products/new', component: AddProductComponent },
 			{path: 'users/new', component: AddUserComponent },

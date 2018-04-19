@@ -28,6 +28,8 @@ import { VideoGamesComponent } from './component/public/videogames/videogames.co
 import { SeriesComponent } from './component/public/series/series.component';
 import { MoviesComponent } from './component/public/movies/movies.component';
 import { PublicComponent } from './component/public/public.component';
+import { CartComponent } from './component/public/cart/cart.component';
+
 //GoogleMaps
 import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
@@ -42,6 +44,7 @@ import { AddProductComponent} from './component/admin/aproducts/addProduct/addpr
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit.component';
+import { ProfileComponent } from './component/admin/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,7 @@ import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit
     HeaderComponent,
     SeriesComponent,
     MoviesComponent,
+    CartComponent,
 
     //ADMIN
     AdminComponent,
@@ -70,14 +74,15 @@ import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit
     AddProductComponent,
     AddUserComponent,
     AdminOrdersComponent,
-    AdminEditProductComponent
-    
+    AdminEditProductComponent,
+    ProfileComponent
+
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing, NgbModule, CommonModule,AgmCoreModule.forRoot({
     apiKey: 'AIzaSyDdPvoqoU3MtyCSXlGpWTZgD-_mmHWvZgg'
   })],
   providers: [UserService, ProductService, SessionService, OrderService, CanActivateViaAuthGuard],
   bootstrap: [AppComponent]
- 
+
 })
 export class AppModule { }
