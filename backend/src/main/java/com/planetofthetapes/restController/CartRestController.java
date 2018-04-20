@@ -54,12 +54,12 @@ public class CartRestController{
 	@JsonView(OrderDetails.class)
 	@RequestMapping(value = "/checkout/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<POrder> checkoutRest(HttpServletResponse response, HttpServletRequest request,
-			@PathVariable Integer id, @RequestBody POrder orderUpdate) throws IOException, ServletException {
+			@PathVariable Integer id) throws IOException, ServletException {
 
 		if (request.authenticate(response)) {
 			POrder order = POrderRepository.findById(id);
 			if (order != null) {
-				order.setState(orderUpdate.getState());
+				order.setState("completed");
 				POrderRepository.save(order);
 				return new ResponseEntity<>(order, HttpStatus.OK);
 			} else {

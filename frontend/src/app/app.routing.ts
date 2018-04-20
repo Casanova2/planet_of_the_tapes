@@ -10,6 +10,7 @@ import { HomeComponent } from './component/public/home/home.component';
 import { LoginComponent } from './component/public/login/login.component';
 import { RegisterComponent } from './component/public/register/register.component';
 import { ProductComponent } from './component/public/product/product.component';
+import { CartComponent } from './component/public/cart/cart.component';
 import { VideoGamesComponent } from './component/public/videogames/videogames.component';
 import { SeriesComponent } from './component/public/series/series.component';
 import { MoviesComponent } from './component/public/movies/movies.component';
@@ -28,6 +29,7 @@ import { AdminOrdersComponent } from './component/admin/aorders/aorders.componen
 import { CanActivateViaAuthGuard } from './service/guard/guard';
 import { AdminPacksComponent } from './component/admin/apacks/apacks.component';
 import { AdminAddPackComponent } from './component/admin/apacks/addPack/addpack.component';
+import { ProfileComponent } from './component/admin/myProfile/profile.component';
 
 const appRoutes = [
 
@@ -41,7 +43,8 @@ const appRoutes = [
 			{path: 'login', component: LoginComponent},
 		  {path: 'register', component: RegisterComponent},
 		  {path: 'series', component: SeriesComponent},
-		  {path: 'movies', component: MoviesComponent},
+      {path: 'movies', component: MoviesComponent},
+      {path: 'cart', component: CartComponent},
 		  {path: '', redirectTo: 'home', pathMatch: 'full' }
 		]
 	},
@@ -53,12 +56,18 @@ const appRoutes = [
 			{path: 'users', component: AdminUsersComponent},
 			{path: 'users/new', component: AddUserComponent },
 			{path: 'orders', component: AdminOrdersComponent},
+<<<<<<< HEAD
 			{path: 'products', component: AdminProductsComponent},
 			{path: 'products/new', component: AddProductComponent },
 			{path: 'products/edit/:id', component: AdminEditProductComponent},
 			{path: 'packs', component: AdminPacksComponent},
 			{path: 'packs/new', component: AdminAddPackComponent },
 			{path: 'packs/edit/:id', component: AdminPacksComponent}
+=======
+			{path: 'products/edit/:id', component: AdminEditProductComponent},
+			{path: 'profile', component: ProfileComponent},
+			
+>>>>>>> 619db9abfee966c0b17f14e992b8b8400e90a52a
 		]
 	}
 ];

@@ -4,10 +4,14 @@ export const BASE_URL = environment.API_URL;
 
 export const PRODUCTS_URL = BASE_URL + 'mplist/';
 export const USER_URL = BASE_URL + 'users';
-export const PACKS_URL = BASE_URL + 'packs/';
 export const PACK_URL = BASE_URL + 'pack';
-export const ORDERS_URL = BASE_URL + 'orders/';
+export const ONE_USER_URL = BASE_URL + 'user';
+export const PACKS_URL = BASE_URL + 'mplist/packs/';
+export const ORDERS_URL = BASE_URL + 'orders';
+export const UORDERS_URL = BASE_URL + 'uorders';
 export const ORDER_URL = BASE_URL + 'order';
+export const CHECKOUT_URL = BASE_URL + 'checkout/';
+
 export const SINGLEPRODUCT_URL = BASE_URL + 'product';
 export const ALLPRODUCTS_URL = BASE_URL + 'products';
 export const ADDPRODUCT_URL = BASE_URL + 'product';

@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
-
+import { SessionService } from '../../../service/session.service';
 import {User} from '../../../model/user.model';
 
 /*import {FileService} from '../../../service/file.service';*/
-import {UserService} from '../../../service/user.service';
+import { UserService } from '../../../service/user.service';
+
 
 @Component({
   selector: 'app-admin-sidebar',
@@ -13,6 +14,7 @@ import {UserService} from '../../../service/user.service';
 export class AdminSidebarComponent implements OnInit {
 
   indexActive: boolean;
+  profileActive: boolean;
   resourcesActive: boolean;
   loansActive: boolean;
   finesActive: boolean;
@@ -22,13 +24,11 @@ export class AdminSidebarComponent implements OnInit {
   url:any;
   
 
-  constructor(private sanitizer: DomSanitizer, private userService: UserService) { }  
+
+  constructor(private sanitizer: DomSanitizer, private userService: UserService, public session: SessionService) { }  
+
   ngOnInit() {
     this.update('index');
-    /*this.userService.getUser(Number(localStorage.getItem('id'))).subscribe(
-      user => this.user = user,
-      error => console.log("Fail trying to get user information.")
-    );*/
     /*this.fileService.getUserFile(Number(localStorage.getItem('id'))).subscribe(
       data => {
         let dataRecieved: string[] = data.split('"');
@@ -43,6 +43,15 @@ export class AdminSidebarComponent implements OnInit {
     switch (page) {
       case 'index':
         this.indexActive = true;
+        this.profileActive = false;
+        this.resourcesActive = false;
+        this.loansActive = false;
+        this.finesActive = false;
+        this.usersActive = false;
+        break;
+      case 'profile':
+        this.indexActive = true;
+        this.profileActive = false;
         this.resourcesActive = false;
         this.loansActive = false;
         this.finesActive = false;
@@ -50,6 +59,7 @@ export class AdminSidebarComponent implements OnInit {
         break;
       case 'resources':
         this.indexActive = false;
+        this.profileActive = false;
         this.resourcesActive = true;
         this.loansActive = false;
         this.finesActive = false;
@@ -57,6 +67,7 @@ export class AdminSidebarComponent implements OnInit {
         break;
       case 'loans':
         this.indexActive = false;
+        this.profileActive = false;
         this.resourcesActive = false;
         this.loansActive = true;
         this.finesActive = false;
@@ -64,6 +75,7 @@ export class AdminSidebarComponent implements OnInit {
         break;
       case 'fines':
         this.indexActive = false;
+        this.profileActive = false;
         this.resourcesActive = false;
         this.loansActive = false;
         this.finesActive = true;
@@ -71,6 +83,7 @@ export class AdminSidebarComponent implements OnInit {
         break;
       case 'users':
         this.indexActive = false;
+        this.profileActive = false;
         this.resourcesActive = false;
         this.loansActive = false;
         this.finesActive = false;
