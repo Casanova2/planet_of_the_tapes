@@ -103,7 +103,7 @@ export class UserService {
       .catch(error => this.handleError(error));
   }
 
-  createUser(name:string, password:string, dni:string, email:string, telephone:string, address:string) {
+  createUser(name:string, password:string, dni:string, email:string, telephone:number, address:string) {
     let newuser: User;
     newuser={name:name, passwordHash:password, dni:dni, email:email, telephone:telephone, address:address};
     const headers = new Headers({

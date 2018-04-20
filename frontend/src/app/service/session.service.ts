@@ -112,7 +112,7 @@ checkCredentials() {
     return (localStorage.getItem("user") !== null);
 }
 
-register(name:string, passwordHash: string, dni: string, email: string, telephone: string, address:string){
+register(name:string, passwordHash: string, dni: string, email: string, telephone: number, address:string){
     let newUser: User;
     newUser = {name: name, passwordHash: passwordHash, dni: dni, email: email, telephone: telephone, address: address};
     return this.http.post(BASE_URL + 'register/add', newUser);
