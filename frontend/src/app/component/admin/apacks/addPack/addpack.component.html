@@ -1,0 +1,75 @@
+      <section class="content">
+        <div class="box box-default">
+          <div class="box-header with-border">
+            <h3 class="box-title">New Product</h3>
+          </div>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="form-group">
+                  <label>Pack Name</label>
+                  <input type="text" class="form-control" [(ngModel)]="pack.name" placeholder="name">
+                </div>
+
+                <div class="form-group">
+                  <label>Pack Price</label>
+                  <input type="number" class="form-control" [(ngModel)]="pack.price" placeholder="price">
+                </div>
+                <div class="form-group mb-lg">
+                  <label>Product 1</label>
+
+                  <select class="form-control form-control-lg mb-3" [(ngModel)]="pack.products" (ngModelChange)="onChange($event)">
+
+                    <option *ngFor="let product of products" [ngValue]="product">{{product.name}}</option>
+
+                  </select>
+                </div>
+                <div class="form-group mb-lg">
+                  <label>Product 2</label>
+
+                  <select class="form-control form-control-lg mb-3" [(ngModel)]="pack.products" (ngModelChange)="onChange($event)">
+
+                    <option *ngFor="let product of products" [ngValue]="product">{{product.name}}</option>
+
+                  </select>
+                </div>
+                <div class="form-group mb-lg">
+                  <label>Product 3</label>
+
+                  <select class="form-control form-control-lg mb-3" [(ngModel)]="pack.products" (ngModelChange)="onChange($event)">
+
+                    <option *ngFor="let product of products" [ngValue]="product">{{product.name}}</option>
+
+                  </select>
+                </div>
+                <!--<div class="form-group mb-lg">
+                  <label>Product 2</label>
+
+                  <select class="form-control form-control-lg mb-3" #p2>
+
+                    <option *ngFor="let product of products">{{product.name}}</option>
+
+                  </select>
+                </div>
+                <div class="form-group mb-lg">
+                  <label>Product 3</label>
+
+                  <select class="form-control form-control-lg mb-3" #p3>
+
+                    <option *ngFor="let product of products">{{product.name}}</option>
+
+                  </select>
+                </div>-->
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="text" class="form-control" placeholder="urlimg">
+                </div>
+                <div class="pull-left">
+                    <button (click)="addPack()">Save</button>
+                    <button (click)="cancel()">Cancel</button>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
