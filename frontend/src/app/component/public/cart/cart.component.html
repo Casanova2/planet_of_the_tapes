@@ -4,6 +4,8 @@
     <h1>Cart</h1>
     <tbody>
       <tr *ngFor="let order of orders">
+        <div *ngIf="order.state=='completed'; else orderInProgress"></div>
+        <ng-template #orderInProgress>
         <tbody *ngFor="let product of order.products">
           <li>
             <div class="row">
@@ -27,9 +29,10 @@
             </div>
           </li>
           Total Price: {{order.total}}
-      <button class="btn btn-default navbar-btn" (click)="checkOut(order[0].id)" type="button">Pay</button>
+      <button class="btn btn-default navbar-btn" (click)="checkOut(order)" type="button">Pay</button>
         
         </tbody>
+      </ng-template>
       </tr>
     
       
