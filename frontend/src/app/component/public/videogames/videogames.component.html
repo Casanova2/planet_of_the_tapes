@@ -3,7 +3,7 @@
   <div class="row">
         <div class="col-sm-12">
           
-              <h1>Videogames</h1>
+              <h1 style="text-align: center">Videogames</h1>
                 <div class="listItems">
                   <div *ngIf="products.length == 0; else chargedProducts">
                     <img src="../../../../assets/img/img.png" style="margin-left: 40%;">
@@ -22,27 +22,20 @@
                           </div>
                         </div>
                         <div class="col-sm-12 col-md-8 col-lg-7 informationItem">
-                          <h3 class="title">{{product.name}}</h3>
-                          <h5 class="authorName">por {{product.genre}}</h5>
+                          <h3 class="name">{{product.name}}</h3>
+                          <h5 class="genre">Genre: {{product.genre}}</h5>
                           <div class="description">
                             <p>
                               {{product.description}}
                               <span>...</span>
-                              <a [routerLink]="['/product', product.id]"><button class="btn">+ info</button></a> 
                             </p>
                           </div>
+                          <h5 class="price">Price: {{product.pbuy}}</h5>
+                          <a [routerLink]="['/product', product.id]"><button class="btn">Go to shopping</button></a>
                         </div>
                       </div>
                     </ng-template>
-                    <div *ngIf="moreProductsActive">
-                      <button (click)="addProducts(true)" type="button" class="btn btn-lg btn-block btn-view-more">
-                        More VideoGames
-                      </button>
-                    </div>
                   </ng-template>
                 </div>
-              
-            
-          
         </div>
       </div>
