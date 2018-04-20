@@ -59,8 +59,8 @@
                     <input type="text" class="form-control" [(ngModel)]="product.urlimg" placeholder="{{product.urlimg}}"  #urlimg>
                 </div>
                 <div class="pull-left">
-                    <button (click)="updateProduct()">Save</button> 
-                    <button (click)="cancel()">Cancel</button>
+                    <button class="btn btn-success" (click)="updateProduct()">Save</button> 
+                    <a routerLink="/admin/dashboard"><button>Cancel</button></a>
                 </div>
             </div>
             </div>

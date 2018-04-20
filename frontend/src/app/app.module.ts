@@ -33,6 +33,7 @@ import { CartComponent } from './component/public/cart/cart.component';
 //GoogleMaps
 import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
+
 // COMPONENTS ADMIN
 import { AdminComponent } from './component/admin/admin.component';
 import { AdminDashboardComponent } from './component/admin/dashboard/dashboard.component';
@@ -44,8 +45,7 @@ import { AddProductComponent} from './component/admin/aproducts/addProduct/addpr
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit.component';
-
-import { ProfileComponent } from './component/admin/myProfile/profile.component';
+import { ProfileComponent } from './component/admin/ausers/modifyUser/profile.component';
 
 
 @NgModule({

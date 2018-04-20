@@ -27,7 +27,7 @@ import { AddProductComponent} from './component/admin/aproducts/addProduct/addpr
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 import { CanActivateViaAuthGuard } from './service/guard/guard';
-import { ProfileComponent } from './component/admin/myProfile/profile.component';
+import { ProfileComponent } from './component/admin/ausers/modifyUser/profile.component';
 
 const appRoutes = [
 

@@ -13,7 +13,7 @@ export interface User {
   passwordHash?: string;
   dni: string;
   email: string;
-  telephone: string;
+  telephone: number;
   viewTelephone?: boolean;
   address?: string;
   roles?: string[];
@@ -101,7 +101,7 @@ getUser(){
     return this.user;
 }
 
-register(name:string, passwordHash: string, dni: string, email: string, telephone: number, address:string){
+register(name:string, passwordHash: string, dni: string, email: string, telephone: string, address:string){
     let newUser: User;
     newUser = {name: name, passwordHash: passwordHash, dni: dni, email: email, telephone: telephone, address: address};
     return this.http.post(BASE_URL + 'register/add', newUser);

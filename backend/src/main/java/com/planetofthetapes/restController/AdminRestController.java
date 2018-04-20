@@ -228,23 +228,23 @@ public class AdminRestController {
 	}
 	
 	@JsonView(UserDetails.class)
-	@RequestMapping(value="/user/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<User> adminmodifyuserRest(HttpServletResponse response, @PathVariable Integer id, @RequestBody User user, HttpServletRequest request)
+	@RequestMapping(value="/user", method=RequestMethod.PUT)
+	public ResponseEntity<User> adminmodifyuserRest(HttpServletResponse response, @RequestBody User updatedUser, HttpServletRequest request)
 			throws IOException, ServletException {
 			
 		if (request.authenticate(response)) {	
-			User userUpdated = userRepository.findById(id);
+			User user = userRepository.findByName(request.getUserPrincipal().getName());
 					
-			if(userUpdated!=null) {
-				userUpdated.setAddress(user.getAddress());
-				userUpdated.setDni(user.getDni());
-				userUpdated.setEmail(user.getEmail());
-				userUpdated.setPasswordHash(user.getPasswordHash());
-				userUpdated.setAvatar(user.getAvatar());
-				userUpdated.setTelephone(user.getTelephone());
+			if(user != null) {
+				
+				user.setDni(updatedUser.getDni());
+				user.setEmail(updatedUser.getEmail());
+				user.setTelephone(updatedUser.getTelephone());
+				user.setAddress(updatedUser.getAddress());
+				
 					
-				userRepository.save(userUpdated);
-				return new ResponseEntity<>(userUpdated, HttpStatus.OK);
+				userRepository.save(user);
+				return new ResponseEntity<>(user, HttpStatus.OK);
 			}else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}

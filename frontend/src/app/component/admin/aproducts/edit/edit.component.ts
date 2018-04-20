@@ -25,12 +25,10 @@ export class AdminEditProductComponent {
   }
 
   updateProduct() {    
-      //let newproduct :Product;
-     // newproduct={name:name,description:description,type:type,genre:genre,stock:stock,pbuy:pbuy,prent:prent,score:score,trailer:trailer,director:director,cast:cast,year:year};
+
         this.service.updateProduct(this.product).subscribe(
             product => {  this.router.navigate(['/admin/products']);},
             error => console.log(error)
         );
-    }
-
+      }
 }

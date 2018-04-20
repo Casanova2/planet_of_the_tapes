@@ -14,7 +14,7 @@ export interface User {
   passwordHash?: string;
   dni: string;
   email: string;
-  telephone: number;
+  telephone: string;
   viewTelephone?: boolean;
   address?: string;
   roles?: string[];
@@ -43,7 +43,7 @@ export class UserService {
       .catch(error => this.handleError(error));
   }
 
-   getUser1() {
+   getUser() {
    
     const headers: Headers = new Headers();
 
@@ -60,13 +60,12 @@ export class UserService {
   updateUser(user: User) {
     const body = JSON.stringify(user);
     
-    const headers: Headers = new Headers();
-      
-      headers.append('Content-Type', 'application/json');
-      headers.append('X-Requested-With', 'XMLHttpRequest');
-    
-      const options = new RequestOptions({ withCredentials: true, headers });
-    return this.http.put(BASE_URL + 'user/' + user.id, body,options)
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
+    return this.http.put(BASE_URL + 'user', body, options)
       .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
   }
@@ -84,7 +83,7 @@ export class UserService {
       .catch(error => this.handleError(error));
   }
 
-  createUser(name:string, password:string, dni:string, email:string, telephone:number, address:string) {
+  createUser(name:string, password:string, dni:string, email:string, telephone:string, address:string) {
     let newuser: User;
     newuser={name:name, passwordHash:password, dni:dni, email:email, telephone:telephone, address:address};
     const headers = new Headers({
