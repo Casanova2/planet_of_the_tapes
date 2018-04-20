@@ -10,8 +10,8 @@
 
           <div class="row">
               <ng-template ngFor let-serie [ngForOf]="series">
-                  <div class="col-md-4">
-                    <h3 class="title">{{serie.name}}</h3>
+                  <div class="col-md-3">
+                    <h3 style="text-align: center" class="title">{{serie.name}}</h3>
                     <div class="coverItem">
                       <div *ngIf="serie.urlimg == undefined; else chargedImage">
                         <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
@@ -34,8 +34,8 @@
 
           <div class="listItems">
               <ng-template ngFor let-movie [ngForOf]="movies">
-                  <div class="col-md-4">
-                      <h3 class="title">{{movie.name}}</h3>
+                  <div class="col-md-3">
+                      <h3 style="text-align: center" class="title">{{movie.name}}</h3>
                     <div class="coverItem">
                       <div *ngIf="movie.urlimg == undefined; else chargedImage">
                         <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
@@ -57,8 +57,8 @@
           <hr>
 
               <ng-template ngFor let-videogame [ngForOf]="videogames">
-                  <div class="col-md-4">
-                      <h3 class="title">{{videogame.name}}</h3>
+                  <div class="col-md-3">
+                      <h3 style="text-align: center" class="title">{{videogame.name}}</h3>
                     <div class="coverItem">
                       <div *ngIf="videogame.urlimg == undefined; else chargedImage">
                         <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">

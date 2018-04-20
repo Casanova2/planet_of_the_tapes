@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
 editProfile() {    
   this.uservice.updateUser(this.user).subscribe(
-        user => { this.router.navigate(['/admin/dashboard']);},
+        user => { this.router.navigate(['/admin/users']);},
         error => console.log(error)
     );
 }

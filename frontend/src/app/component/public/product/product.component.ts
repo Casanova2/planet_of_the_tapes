@@ -45,7 +45,7 @@ export class ProductComponent implements OnInit {
   addToCart(){
     
         this.oService.createOrder(this.activatedRoute.snapshot.params['id']).subscribe(
-          response => {  this.router.navigate(['/']);},
+          response => {  this.router.navigate(['/cart']);},
           error => console.log(error) 
         );
       }
@@ -56,7 +56,7 @@ export class ProductComponent implements OnInit {
     this.oService.getUOrder(order.id);
       if (order.state == "progress"){
         this.oService.addProductToOrder(order, this.activatedRoute.snapshot.params['id']).subscribe(
-          response => {  this.router.navigate(['/']);},
+          response => {  this.router.navigate(['/cart']);},
           error => console.log(error) 
         );
       } else if (order.state == "completed"){

@@ -20,7 +20,6 @@ import { PRODUCTS_URL, SINGLEPRODUCT_URL, ALLPRODUCTS_URL, ADDPRODUCT_URL, CHECK
   templateUrl: 'cart.component.html'
 })
 
-
 export class CartComponent implements OnInit{
 
   products: Product[];
@@ -46,4 +45,6 @@ export class CartComponent implements OnInit{
         );
       }
     }
+
+    
   }
