@@ -5,6 +5,7 @@ import {User} from '../model/user.model';
 import {UserService} from '../service/user.service';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/Rx';
+import { POrder } from '../model/pOrder.model';
 
 export interface User {
   id?: number;
