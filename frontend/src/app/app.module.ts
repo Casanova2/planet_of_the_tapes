@@ -44,7 +44,9 @@ import { AddProductComponent} from './component/admin/aproducts/addProduct/addpr
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit.component';
-import { ProfileComponent } from './component/admin/profile/profile.component';
+
+import { ProfileComponent } from './component/admin/myProfile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -76,7 +78,6 @@ import { ProfileComponent } from './component/admin/profile/profile.component';
     AdminOrdersComponent,
     AdminEditProductComponent,
     ProfileComponent
-
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing, NgbModule, CommonModule,AgmCoreModule.forRoot({
     apiKey: 'AIzaSyDdPvoqoU3MtyCSXlGpWTZgD-_mmHWvZgg'

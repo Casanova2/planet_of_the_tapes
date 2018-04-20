@@ -4,6 +4,7 @@ export const BASE_URL = environment.API_URL;
 
 export const PRODUCTS_URL = BASE_URL + 'mplist/';
 export const USER_URL = BASE_URL + 'users';
+export const ONE_USER_URL = BASE_URL + 'user';
 export const PACKS_URL = BASE_URL + 'mplist/packs/';
 export const ORDERS_URL = BASE_URL + 'orders';
 export const UORDERS_URL = BASE_URL + 'uorders';

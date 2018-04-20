@@ -26,8 +26,8 @@ import { AdminUsersComponent } from './component/admin/ausers/ausers.component';
 import { AddProductComponent} from './component/admin/aproducts/addProduct/addproduct.component';
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
-import { ProfileComponent } from './component/admin/profile/profile.component';
 import { CanActivateViaAuthGuard } from './service/guard/guard';
+import { ProfileComponent } from './component/admin/myProfile/profile.component';
 
 const appRoutes = [
 
@@ -52,12 +52,13 @@ const appRoutes = [
 			{path: 'dashboard', component: AdminDashboardComponent},
 			{path: '', redirectTo: 'dashboard', pathMatch: 'full' },
 			{path: 'products', component: AdminProductsComponent},
-			{path: 'profile', component: ProfileComponent},
 			{path: 'users', component: AdminUsersComponent},
 			{path: 'products/new', component: AddProductComponent },
 			{path: 'users/new', component: AddUserComponent },
 			{path: 'orders', component: AdminOrdersComponent},
-			{path: 'products/edit/:id', component: AdminEditProductComponent}
+			{path: 'products/edit/:id', component: AdminEditProductComponent},
+			{path: 'profile', component: ProfileComponent},
+			
 		]
 	}
 ];

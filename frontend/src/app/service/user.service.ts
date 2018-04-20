@@ -3,7 +3,7 @@ import { Headers, Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 // tslint:disable-next-line:import-blacklist
 import 'rxjs/Rx';
-import { USER_URL, BASE_URL } from '../util';
+import { USER_URL, BASE_URL,ONE_USER_URL } from '../util';
 
 import { User } from '../model/user.model';
 import { POrder } from '../model/pOrder.model';
@@ -14,7 +14,7 @@ export interface User {
   passwordHash?: string;
   dni: string;
   email: string;
-  telephone: string;
+  telephone: number;
   viewTelephone?: boolean;
   address?: string;
   roles?: string[];
@@ -59,25 +59,25 @@ export class UserService {
       })
       .catch(error => Observable.throw('Server error'));
   }
-
-  updateUser(user: User, current: boolean) {
+   getUser1() {
     this.authCreds = localStorage.getItem('creds');
+    const headers: Headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('X-Requested-With', 'XMLHttpRequest');
+    const options = new RequestOptions({ withCredentials: true, headers });
+    return this.http.get(ONE_USER_URL,options)
+      .map(response => response.json())
+      .catch(error => Observable.throw('Server error'));
+  }
+
+  updateUser(user: User) {
     const body = JSON.stringify(user);
     const headers: Headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('X-Requested-With', 'XMLHttpRequest');
-    headers.append('Authorization', 'Basic ' + this.authCreds);
-    return this.http.put(USER_URL + '/' + user.id, body, { headers: headers })
-      .map(response => {
-        if (current) {
-          this.getUser(user.id).subscribe(
-            // tslint:disable-next-line:no-shadowed-variable
-            user => this.user = user,
-            error => error
-          );
-        }
-        return response.json();
-      })
+    const options = new RequestOptions({ withCredentials: true, headers });
+    return this.http.put(BASE_URL + 'user/' + user.id, body,options)
+      .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
   }
 
@@ -103,7 +103,7 @@ export class UserService {
       .catch(error => this.handleError(error));
   }
 
-  createUser(name:string, password:string, dni:string, email:string, telephone:string, address:string) {
+  createUser(name:string, password:string, dni:string, email:string, telephone:number, address:string) {
     let newuser: User;
     newuser={name:name, passwordHash:password, dni:dni, email:email, telephone:telephone, address:address};
     const headers = new Headers({

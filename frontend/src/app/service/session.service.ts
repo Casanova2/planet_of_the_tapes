@@ -7,9 +7,17 @@ import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/Rx';
 
 export interface User {
-    id?: number;
-    name: string;
-    passwordHash?: string;
+  id?: number;
+  name: string;
+  passwordHash?: string;
+  dni: string;
+  email: string;
+  telephone: string;
+  viewTelephone?: boolean;
+  address?: string;
+  roles?: string[];
+  hasPhoto?: boolean;
+  orders?: POrder[];
 }
 
 @Injectable()
@@ -95,11 +103,16 @@ return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, function (match, 
 }));
 }
 
+getUser(){
+    return this.user;
+}
+
+
 checkCredentials() {
     return (localStorage.getItem("user") !== null);
 }
 
-register(name:string, passwordHash: string, dni: string, email: string, telephone: string, address:string){
+register(name:string, passwordHash: string, dni: string, email: string, telephone: number, address:string){
     let newUser: User;
     newUser = {name: name, passwordHash: passwordHash, dni: dni, email: email, telephone: telephone, address: address};
     return this.http.post(BASE_URL + 'register/add', newUser);

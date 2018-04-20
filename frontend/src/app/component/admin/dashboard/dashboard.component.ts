@@ -15,8 +15,9 @@ export class AdminDashboardComponent implements OnInit {
   products: Product[];
   lenght:number;
   users:User[];
+  user:User;
 
-	constructor(private service: ProductService,private service1: UserService, private activatedRoute: ActivatedRoute) { 
+	constructor(private router: Router,private service: ProductService,private service1: UserService, private activatedRoute: ActivatedRoute) { 
 
   }
 	ngOnInit() {
@@ -28,8 +29,9 @@ export class AdminDashboardComponent implements OnInit {
     users => this.users = users,
     error => console.log(error)
    );
-  }
+ 
 
+}
 
 }
 
