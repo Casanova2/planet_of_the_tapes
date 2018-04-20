@@ -8,6 +8,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 // Services
 import { UserService } from './service/user.service';
 import {ProductService} from './service/product.service';
+import {PackService} from './service/pack.service';
 import {SessionService} from './service/session.service';
 import {OrderService} from './service/order.service';
 import { CanActivateViaAuthGuard } from './service/guard/guard';
@@ -46,7 +47,8 @@ import { AddUserComponent } from './component/admin/ausers/addUser/adduser.compo
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit.component';
 import { ProfileComponent } from './component/admin/ausers/modifyUser/profile.component';
-
+import { AdminPacksComponent } from './component/admin/apacks/apacks.component';
+import { AdminAddPackComponent } from './component/admin/apacks/addPack/addpack.component';
 
 @NgModule({
   declarations: [
@@ -77,12 +79,14 @@ import { ProfileComponent } from './component/admin/ausers/modifyUser/profile.co
     AddUserComponent,
     AdminOrdersComponent,
     AdminEditProductComponent,
+    AdminPacksComponent,
+    AdminAddPackComponent,
     ProfileComponent
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing, NgbModule, CommonModule,AgmCoreModule.forRoot({
     apiKey: 'AIzaSyDdPvoqoU3MtyCSXlGpWTZgD-_mmHWvZgg'
   })],
-  providers: [UserService, ProductService, SessionService, OrderService, CanActivateViaAuthGuard],
+  providers: [UserService, ProductService, SessionService, OrderService, PackService, CanActivateViaAuthGuard],
   bootstrap: [AppComponent]
 
 })

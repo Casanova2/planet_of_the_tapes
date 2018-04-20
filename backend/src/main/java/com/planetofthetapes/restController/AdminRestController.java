@@ -106,29 +106,30 @@ public class AdminRestController {
 	}
 	
 	@JsonView(PackDetails.class)
-	@RequestMapping(value="/pack/{id1}/{id2}/{id3}", method=RequestMethod.POST)
+	@RequestMapping(value="/pack", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Pack> addPackActionRest(HttpServletResponse response, HttpServletRequest request, @RequestBody Pack pack, 
-			@PathVariable Integer id1, @PathVariable Integer id2, @PathVariable Integer id3) throws IOException, ServletException {
-		
+	public ResponseEntity<Pack> addPackActionRest(HttpServletResponse response, HttpServletRequest request, @RequestBody Pack pack) throws IOException, ServletException {
+		System.out.println("Hola-> "+pack);
 		if (request.authenticate(response)) {
-			List<Product> all =productRepository.findAll();
+			//List<Product> all =productRepository.findAll();
 	
-			Pack newpack = new Pack(pack.getName(), pack.getPrice());
+			//Pack newpack = new Pack(pack.getName(), pack.getPrice());
 			
-			List<Product> l = new ArrayList<Product>();
-			l.add(all.get(id1-1));
+			//List<Product> l = new ArrayList<Product>();
+			//List<Product> productsofpack = pack.getProducts();
+			//l = productsofpack;
+			/*l.add(all.get(id1-1));
 			l.add(all.get(id2-1));
-			l.add(all.get(id3-1));
+			l.add(all.get(id3-1));*/
 	
-			pack.setProducts(l);
+			//pack.setProducts(l);
 			
 			String imgName = "packi.jpg";
 			pack.setImg(imgName);
 			
-			newpack.setProducts(pack.getProducts());
-			newpack.setImg(pack.getImg());
-			packRepository.save(newpack);
+			//newpack.setProducts(pack.getProducts());
+			//newpack.setImg(pack.getImg());
+			packRepository.save(pack);
 			
 			return new ResponseEntity<>(pack, HttpStatus.OK);
 		} else {

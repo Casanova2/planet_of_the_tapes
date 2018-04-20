@@ -28,6 +28,9 @@ import { AddUserComponent } from './component/admin/ausers/addUser/adduser.compo
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 import { CanActivateViaAuthGuard } from './service/guard/guard';
 import { ProfileComponent } from './component/admin/ausers/modifyUser/profile.component';
+import { AdminPacksComponent } from './component/admin/apacks/apacks.component';
+import { AdminAddPackComponent } from './component/admin/apacks/addPack/addpack.component';
+
 
 const appRoutes = [
 
@@ -51,14 +54,16 @@ const appRoutes = [
 		children: [
 			{path: 'dashboard', component: AdminDashboardComponent},
 			{path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-			{path: 'products', component: AdminProductsComponent},
 			{path: 'users', component: AdminUsersComponent},
-			{path: 'products/new', component: AddProductComponent },
 			{path: 'users/new', component: AddUserComponent },
 			{path: 'orders', component: AdminOrdersComponent},
+			{path: 'products', component: AdminProductsComponent},
+			{path: 'products/new', component: AddProductComponent },
 			{path: 'products/edit/:id', component: AdminEditProductComponent},
-			{path: 'profile', component: ProfileComponent},
-			
+			{path: 'packs', component: AdminPacksComponent},
+			{path: 'packs/new', component: AdminAddPackComponent },
+			{path: 'packs/edit/:id', component: AdminPacksComponent},
+			{path: 'profile', component: ProfileComponent}
 		]
 	}
 ];
