@@ -8,64 +8,37 @@
               <div class="col-lg-8">
                 <div class="form-group">
                   <label>Pack Name</label>
-                  <input type="text" class="form-control" [(ngModel)]="pack.name" placeholder="name">
+                  <input type="text" class="form-control" #name placeholder="name">
                 </div>
 
                 <div class="form-group">
                   <label>Pack Price</label>
-                  <input type="number" class="form-control" [(ngModel)]="pack.price" placeholder="price">
+                  <input type="number" class="form-control" #price placeholder="price">
                 </div>
                 <div class="form-group mb-lg">
                   <label>Product 1</label>
-
-                  <select class="form-control form-control-lg mb-3" [(ngModel)]="pack.products" (ngModelChange)="onChange($event)">
-
-                    <option *ngFor="let product of products" [ngValue]="product">{{product.name}}</option>
-
+                  <select class="form-control form-control-lg mb-3" #p1>
+                    <option *ngFor="let product of products" value="{{product.id}}">{{product.name}}</option>
                   </select>
                 </div>
                 <div class="form-group mb-lg">
                   <label>Product 2</label>
-
-                  <select class="form-control form-control-lg mb-3" [(ngModel)]="pack.products" (ngModelChange)="onChange($event)">
-
-                    <option *ngFor="let product of products" [ngValue]="product">{{product.name}}</option>
-
-                  </select>
-                </div>
-                <div class="form-group mb-lg">
-                  <label>Product 3</label>
-
-                  <select class="form-control form-control-lg mb-3" [(ngModel)]="pack.products" (ngModelChange)="onChange($event)">
-
-                    <option *ngFor="let product of products" [ngValue]="product">{{product.name}}</option>
-
-                  </select>
-                </div>
-                <!--<div class="form-group mb-lg">
-                  <label>Product 2</label>
-
                   <select class="form-control form-control-lg mb-3" #p2>
-
-                    <option *ngFor="let product of products">{{product.name}}</option>
-
+                    <option *ngFor="let product of products" value="{{product.id}}">{{product.name}}</option>
                   </select>
                 </div>
                 <div class="form-group mb-lg">
                   <label>Product 3</label>
-
                   <select class="form-control form-control-lg mb-3" #p3>
-
-                    <option *ngFor="let product of products">{{product.name}}</option>
-
+                    <option *ngFor="let product of products" value="{{product.id}}">{{product.name}}</option>
                   </select>
-                </div>-->
+                </div>
                 <div class="form-group">
                     <label>Image</label>
                     <input type="text" class="form-control" placeholder="urlimg">
                 </div>
                 <div class="pull-left">
-                    <button (click)="addPack()">Save</button>
+                    <button (click)="addPack2(name.value, price.value, p1.value, p2.value, p3.value)">Save</button>
                     <button (click)="cancel()">Cancel</button>
                 </div>
             </div>

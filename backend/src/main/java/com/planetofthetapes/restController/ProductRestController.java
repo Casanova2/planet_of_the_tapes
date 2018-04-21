@@ -54,7 +54,7 @@ public class ProductRestController{
 		}
 	}
 	
-	@JsonView(PackDetails.class)
+	/*@JsonView(PackDetails.class)
 	@RequestMapping(value="/pack/{id}", method=RequestMethod.GET)
 	public ResponseEntity<Pack> pack(@PathVariable Integer id) {
 		
@@ -73,7 +73,7 @@ public class ProductRestController{
 		}else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-	}
+	}*/
 	
 	@JsonView(PackDetails.class)
 	@RequestMapping(value="/pack/{id}/related", method=RequestMethod.GET)

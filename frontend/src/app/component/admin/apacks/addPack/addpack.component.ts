@@ -42,8 +42,15 @@ export class AdminAddPackComponent {
     );
   }
   
-  addPack() {
-      this.servicePack.createPack(this.pack).subscribe(
+  addPack1() {
+      this.servicePack.createPack1(this.pack).subscribe(
+          product => {  this.router.navigate(['/admin/packs']);},
+          error => console.log(error)
+      );
+  }
+
+  addPack2(name:string,price:number,p1:number,p2:number,p3:number) {
+      this.servicePack.createPack2(name,price,p1,p2,p3).subscribe(
           product => {  this.router.navigate(['/admin/packs']);},
           error => console.log(error)
       );

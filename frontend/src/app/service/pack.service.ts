@@ -49,7 +49,7 @@ export class PackService {
   constructor(private http: Http) {}
 
   getPack(id: number) {
-    return this.http.get(PACKS_URL + id, { withCredentials: true })
+    return this.http.get(PACK_URL + '/' + id, { withCredentials: true })
       .map(response => response.json())
       .catch(error => this.handleError(error));
   }
@@ -67,18 +67,7 @@ export class PackService {
       console.log(this.curUser);
   }
 
-  /*updateProduct(product: Product) {
-    const body = JSON.stringify(product);
-    const headers: Headers = new Headers();
-    headers.append('Content-type', 'application/json');
-    headers.append('X-Requested-With', 'XMLHttpRequest');
-    const options = new RequestOptions({ withCredentials: true, headers });
-    return this.http.put(BASE_URL + 'product/' + product.id, body, options)
-      .map(response => response.json())
-      .catch(error => Observable.throw('Server error'));
-  }*/
-
-  createPack(pack: Pack){
+  createPack1(pack: Pack){
     /*let newPack: Pack;*/
 
    /* this.products.push(
@@ -103,7 +92,79 @@ export class PackService {
         .catch(error => this.handleError(error));
   }
 
-  updatePack(pack: Pack) {
+  createPack2(name:string,price:number,p1:number,p2:number,p3:number){
+    /*let newPack: Pack;*/
+
+    let newPack:Pack;
+    /*let nproducts: Product[];
+    nproducts = [];
+    nproducts.push(p1);
+    nproducts.push(p2);
+    nproducts.push(p3);*/
+
+    newPack={name:name,price:price,products:null};
+
+    //newPack={name:name,price:price,products:{p1:p1,p2:p2,p3:p3}};
+
+    /* this.products.push(
+      {p1},
+      {p2},
+      {p3}
+    )
+    
+    newPack={name:name,price:price,products:this.products};*/
+
+    const body = JSON.stringify(newPack);
+    const headers = new Headers({
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+    });
+
+    console.log(newPack);
+
+    const options = new RequestOptions({ withCredentials: true, headers });
+      return this.http.post(PACK_URL + '/' + p1 +  '/' + p2 +  '/' + p3, newPack, options)
+        .map(response => response.json())
+        .catch(error => this.handleError(error));
+  }
+
+  updatePack(id:number, name:string,price:number,p1:number,p2:number,p3:number){
+    /*let newPack: Pack;*/
+
+    let newPack:Pack;
+    /*let nproducts: Product[];
+    nproducts = [];
+    nproducts.push(p1);
+    nproducts.push(p2);
+    nproducts.push(p3);*/
+
+    newPack={id:id,name:name,price:price,products:null};
+
+    //newPack={name:name,price:price,products:{p1:p1,p2:p2,p3:p3}};
+
+    /* this.products.push(
+      {p1},
+      {p2},
+      {p3}
+    )
+    
+    newPack={name:name,price:price,products:this.products};*/
+
+    const body = JSON.stringify(newPack);
+    const headers = new Headers({
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+    });
+
+    console.log(newPack);
+
+    const options = new RequestOptions({ withCredentials: true, headers });
+      return this.http.put(PACK_URL + '/' + id + '/' + p1 +  '/' + p2 +  '/' + p3, newPack, options)
+        .map(response => response.json())
+        .catch(error => this.handleError(error));
+  }
+
+  /*updatePack(pack: Pack) {
     const body = JSON.stringify(pack);
     const headers: Headers = new Headers();
     headers.append('Content-type', 'application/json');
@@ -112,7 +173,7 @@ export class PackService {
     return this.http.put(PACK_URL + pack.id, body, options)
       .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
-  }
+  }*/
 
   removePack(id: number) {
 
@@ -122,7 +183,7 @@ export class PackService {
     });
     const options = new RequestOptions({ withCredentials: true, headers });
 
-    return this.http.delete(PACK_URL + id, options)
+    return this.http.delete(PACK_URL+ '/' + id, options)
       .map(response => response.json)
       .catch(error => this.handleError(error));
   }

@@ -30,7 +30,7 @@ import { CanActivateViaAuthGuard } from './service/guard/guard';
 import { ProfileComponent } from './component/admin/ausers/modifyUser/profile.component';
 import { AdminPacksComponent } from './component/admin/apacks/apacks.component';
 import { AdminAddPackComponent } from './component/admin/apacks/addPack/addpack.component';
-
+import { AdminEditPackComponent } from './component/admin/apacks/edit/edit.component';
 
 const appRoutes = [
 
@@ -62,7 +62,7 @@ const appRoutes = [
 			{path: 'products/edit/:id', component: AdminEditProductComponent},
 			{path: 'packs', component: AdminPacksComponent},
 			{path: 'packs/new', component: AdminAddPackComponent },
-			{path: 'packs/edit/:id', component: AdminPacksComponent},
+			{path: 'packs/edit/:id', component: AdminEditPackComponent},
 			{path: 'profile', component: ProfileComponent}
 		]
 	}
