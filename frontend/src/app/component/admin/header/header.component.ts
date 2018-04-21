@@ -5,8 +5,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { User } from '../../../model/user.model';
 
 import { UserService } from '../../../service/user.service';
-import { FileService } from '../../../service/file.service';
-
 
 @Component({
   selector: 'app-admin-header',

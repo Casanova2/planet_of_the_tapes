@@ -9,14 +9,15 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import com.planetofthetapes.repository.UserRepositoryAuthenticationProvider;
+import com.planetofthetapes.repository.UserRepositoryAuthProvider;
+
 
 @Configuration
 @Order(1)
 public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
-	public UserRepositoryAuthenticationProvider userRepoAuthProvider;
+	public UserRepositoryAuthProvider userRepoAuthProvider;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -24,7 +25,6 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.antMatcher("/api/**");
 		
 		http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/logIn").authenticated();
-
 		// URLs that need authentication to access to it in API REST
 
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/admin").hasAnyRole("ADMIN");
@@ -38,7 +38,7 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
         
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/product").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/user").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/pack/{id1}/{id2}/{id3}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/pack").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/order/{id2}").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/pack/{id2}/product").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/order/{id2}").hasAnyRole("USER");
@@ -47,14 +47,14 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/product/{id}").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/pack/{id}/{id1}-{id2}-{id3}").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/checkout/{id}").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/user/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/user").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/{id}/{id2}/product").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/pack/{id}/{id2}/product").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/{id}/{id1}/r").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/pack/{id}/{id1}/r").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/admin-modify-user/{id}").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/checkout/{id}").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/user/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/user").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/{id}/{id2}/product").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/pack/{id}/{id2}/product").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/{id}/{id1}/r").hasAnyRole("USER");

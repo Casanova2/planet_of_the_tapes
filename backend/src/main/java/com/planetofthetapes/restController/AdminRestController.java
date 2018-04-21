@@ -26,6 +26,8 @@ import com.planetofthetapes.repository.POrderRepository;
 import com.planetofthetapes.repository.PackRepository;
 import com.planetofthetapes.repository.ProductRepository;
 import com.planetofthetapes.repository.UserRepository;
+import com.planetofthetapes.restController.ProductRestController.ProductDetails;
+
 import java.util.List;
 
 
@@ -106,42 +108,74 @@ public class AdminRestController {
 	}
 	
 	@JsonView(PackDetails.class)
+	@RequestMapping(value="/pack/{id}", method=RequestMethod.GET)
+	public ResponseEntity<Pack> getPack(@PathVariable Integer id) {
+	
+		Pack pack = packRepository.findOne(id);
+		if (!pack.equals(null)){
+			return new ResponseEntity<>(pack, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@JsonView(PackDetails.class)
 	@RequestMapping(value="/pack/{id1}/{id2}/{id3}", method=RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<Pack> addPackActionRest(HttpServletResponse response, HttpServletRequest request, @RequestBody Pack pack, 
-			@PathVariable Integer id1, @PathVariable Integer id2, @PathVariable Integer id3) throws IOException, ServletException {
-		
+	public ResponseEntity<Pack> addPackActionRest(HttpServletResponse response, HttpServletRequest request, @RequestBody Pack pack, @PathVariable Integer id1, @PathVariable Integer id2, @PathVariable Integer id3) throws IOException, ServletException {
+		System.out.println("Hola-> "+pack);
 		if (request.authenticate(response)) {
 			List<Product> all =productRepository.findAll();
 	
 			Pack newpack = new Pack(pack.getName(), pack.getPrice());
 			
 			List<Product> l = new ArrayList<Product>();
-			l.add(all.get(id1-1));
+			System.out.println(id1);
+			System.out.println(id2);
+			System.out.println(id3);
+			
+			Product p1 = productRepository.findById(id1);
+			Product p2 = productRepository.findById(id2);
+			Product p3 = productRepository.findById(id3);
+			
+			/*l.add(all.get(id1-1));
 			l.add(all.get(id2-1));
-			l.add(all.get(id3-1));
+			l.add(all.get(id3-1));*/
+			
+			l.add(p1);
+			l.add(p2);
+			l.add(p3);
 	
 			pack.setProducts(l);
+			
+			System.out.println("Pack anterior "+pack);
 			
 			String imgName = "packi.jpg";
 			pack.setImg(imgName);
 			
 			newpack.setProducts(pack.getProducts());
 			newpack.setImg(pack.getImg());
+			//packRepository.save(pack);
+			
+			int oldId = packRepository.findAll().size();
+			pack.setId(oldId+1);
+			
+			System.out.println("Pack nuevo "+pack);
+			
 			packRepository.save(newpack);
 			
-			return new ResponseEntity<>(pack, HttpStatus.OK);
+			return new ResponseEntity<>(newpack, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
 	
 	@JsonView(PackDetails.class)
-	@RequestMapping(value="/pack/{id}/{id1}-{id2}-{id3}", method=RequestMethod.PUT) // modify
-	public ResponseEntity<Pack> modifyPackActionRest(HttpServletResponse response, @PathVariable Integer id, @RequestBody Pack pack,
-			@PathVariable Integer id1, @PathVariable Integer id2, @PathVariable Integer id3, HttpServletRequest request) throws IOException, ServletException {
+	@RequestMapping(value="/pack/{id}/{id1}/{id2}/{id3}", method=RequestMethod.PUT) // modify
+	public ResponseEntity<Pack> modifyPackActionRest(HttpServletResponse response, @PathVariable Integer id, @PathVariable Integer id1, @PathVariable Integer id2, @PathVariable Integer id3, @RequestBody Pack pack, HttpServletRequest request) throws IOException, ServletException {
 		
 		if (request.authenticate(response)) {
+			
 			List<Product> all =productRepository.findAll();
 			
 			Pack packUpdated = packRepository.findById(id);
@@ -151,9 +185,18 @@ public class AdminRestController {
 				packUpdated.setPrice(pack.getPrice());
 			
 				List<Product> l = new ArrayList<Product>();
-				l.add(all.get(id1-1));
+				
+				Product p1 = productRepository.findById(id1);
+				Product p2 = productRepository.findById(id2);
+				Product p3 = productRepository.findById(id3);
+				
+				/*l.add(all.get(id1-1));
 				l.add(all.get(id2-1));
-				l.add(all.get(id3-1));
+				l.add(all.get(id3-1));*/
+				
+				l.add(p1);
+				l.add(p2);
+				l.add(p3);
 
 				pack.setProducts(l);
 				pack.setImg("packi.jpg");
@@ -228,23 +271,23 @@ public class AdminRestController {
 	}
 	
 	@JsonView(UserDetails.class)
-	@RequestMapping(value="/user/{id}", method=RequestMethod.PUT)
-	public ResponseEntity<User> adminmodifyuserRest(HttpServletResponse response, @PathVariable Integer id, @RequestBody User user, HttpServletRequest request)
+	@RequestMapping(value="/user", method=RequestMethod.PUT)
+	public ResponseEntity<User> adminmodifyuserRest(HttpServletResponse response, @RequestBody User updatedUser, HttpServletRequest request)
 			throws IOException, ServletException {
 			
 		if (request.authenticate(response)) {	
-			User userUpdated = userRepository.findById(id);
+			User user = userRepository.findByName(request.getUserPrincipal().getName());
 					
-			if(userUpdated!=null) {
-				userUpdated.setAddress(user.getAddress());
-				userUpdated.setDni(user.getDni());
-				userUpdated.setEmail(user.getEmail());
-				userUpdated.setPasswordHash(user.getPasswordHash());
-				userUpdated.setAvatar(user.getAvatar());
-				userUpdated.setTelephone(user.getTelephone());
+			if(user != null) {
+				
+				user.setDni(updatedUser.getDni());
+				user.setEmail(updatedUser.getEmail());
+				user.setTelephone(updatedUser.getTelephone());
+				user.setAddress(updatedUser.getAddress());
+				
 					
-				userRepository.save(userUpdated);
-				return new ResponseEntity<>(userUpdated, HttpStatus.OK);
+				userRepository.save(user);
+				return new ResponseEntity<>(user, HttpStatus.OK);
 			}else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}

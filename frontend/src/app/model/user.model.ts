@@ -5,7 +5,7 @@ import {POrder} from './pOrder.model';
   passwordHash?: string;
   dni: string;
   email: string;
-  telephone: number;
+  telephone: string;
   viewTelephone?: boolean;
   address?: string;
   roles?: string[];

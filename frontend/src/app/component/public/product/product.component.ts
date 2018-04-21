@@ -15,11 +15,12 @@ export class ProductComponent implements OnInit {
   img_url: string;
   private movieP :boolean;
   private orders: POrder [];
+  private order: POrder;
 
   constructor(private router: Router, private service: ProductService, private sanitizer: DomSanitizer, private activatedRoute: ActivatedRoute, 
     private oService: OrderService) {
-    this.img_url = PRODUCTS_IMG_URL;
-    this.movieP=false;
+    
+      this.img_url = PRODUCTS_IMG_URL;
   }
 
   ngOnInit() {
@@ -37,24 +38,30 @@ export class ProductComponent implements OnInit {
       },
       error => console.log(error)
     );
+
+
   }
 
   addToCart(){
     
         this.oService.createOrder(this.activatedRoute.snapshot.params['id']).subscribe(
-          response => {  this.router.navigate(['/']);},
+          response => {  this.router.navigate(['/cart']);},
           error => console.log(error) 
         );
       }
       
   updateCart(){
+
     for (let order of this.orders){
-      if (order.state = "progress"){
+    this.oService.getUOrder(order.id);
+      if (order.state == "progress"){
         this.oService.addProductToOrder(order, this.activatedRoute.snapshot.params['id']).subscribe(
-          response => {  this.router.navigate(['/']);},
+          response => {  this.router.navigate(['/cart']);},
           error => console.log(error) 
         );
-        }
+      } else if (order.state == "completed"){
+        this.addToCart();
       }
     }
+}
 }

@@ -1,11 +1,13 @@
 <div class="row">
-  <div class="col-sm-12">
+  <div class="col-md-10">
 
     <h1>Cart</h1>
     <tbody>
       <tr *ngFor="let order of orders">
+        <div *ngIf="order.state=='completed'; else orderInProgress"></div>
+        <ng-template #orderInProgress>
         <tbody *ngFor="let product of order.products">
-          <li>
+          <li style="list-style-type: none;">
             <div class="row">
               <div class="col-lg-3">
                 <div class="coverItem">
@@ -13,27 +15,24 @@
                 </div>
               </div>
               <div class="col-lg-9 information">
-                <h3 class="mt-2 mb-1">
-                  <span>Product Name</span>
-                  <br>
-                </h3>
-                {{product.name}}
+                  <h4><span>Product Name:</span></h4>
+                  <h5>* {{product.name}}</h5>
                 <br>
-                Price
-                <br> {{product.pbuy}}
+                <h4><span>Price</span></h4>
+                <h5>* {{product.pbuy}} €</h5>
                 <br>
                 <a [routerLink]="['/product', product.id]"><button class="btn">+ info</button></a>
               </div>
             </div>
-          </li>
-          Total Price: {{order.total}}
-      <button class="btn btn-default navbar-btn" (click)="checkOut(order[0].id)" type="button">Pay</button>
-        
+          </li>  
         </tbody>
+        <p>Total Price: {{order.total}}</p>
+      </ng-template>
+      <br>
       </tr>
-    
-      
     </tbody>
-
+  </div>
+  <div class="col-md-2">
+    <button style="font-size: 32px;" class="btn btn-success" (click)="checkOut(order)" type="button">Pay</button>
   </div>
 </div>

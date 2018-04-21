@@ -14,7 +14,7 @@ export class AddUserComponent {
   constructor(private service: UserService, activatedRoute: ActivatedRoute, private router: Router) {}
 
   
-    addUser(name:string, password:string, dni:string, email:string, telephone:string, address:string) {    
+    addUser(name:string, password:string, dni:string, email:string, telephone: string, address:string) {    
     
         this.service.createUser(name, password, dni, email, telephone, address).subscribe(
             user => {  this.router.navigate(['/admin/users']);},

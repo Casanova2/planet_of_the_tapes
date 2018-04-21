@@ -34,18 +34,12 @@ export interface Product {
 @Injectable()
 export class ProductService {
 
-  authCreds: string;
-
   constructor(private http: Http) {}
 
   getProducts() {
     return this.http.get(ALLPRODUCTS_URL, { withCredentials: true })
       .map(response => response.json())
       .catch(error => this.handleError(error));
-  }
-
-  setAuthHeaders(authCreds: string) {
-    this.authCreds = authCreds;
   }
 
   getProduct(id: number) {
@@ -68,13 +62,6 @@ export class ProductService {
       .catch(error => Observable.throw('Server error'));
   }
 
-  getPageProduct(page?: number) {
-    const url = (page) ? PRODUCTS_URL + '?page=' + page : PRODUCTS_URL;
-    return this.http.get(url)
-      .map(response => response.json().content)
-      .catch(error => Observable.throw('Server error'));
-  }
-
   updateProduct(product: Product) {
     const body = JSON.stringify(product);
     const headers: Headers = new Headers();
@@ -92,7 +79,6 @@ export class ProductService {
     const headers = new Headers({
       'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest'
-     // 'Authorization': 'Basic ' + this.authCreds(linea infernal)
     });
     const options = new RequestOptions({ withCredentials: true, headers });
     console.log(BASE_URL + 'product');
@@ -100,15 +86,6 @@ export class ProductService {
         .map(response => response.json())
         .catch(error => this.handleError(error));
     }
-
-  updateFile(formData: FormData, id: number) {
-    const headers: Headers = new Headers();
-    headers.append('Accept', 'application/json');
-    headers.append('Authorization', 'Basic ' + this.authCreds);
-    return this.http.put(PRODUCTS_URL + '/' + id + '/upload', formData, { headers: headers })
-      .map(response => console.log('Success. The file has been successfully added to server directories.'))
-      .catch(error => Observable.throw('Server error'));
-  }
 
   removeProduct(id: number) {
 

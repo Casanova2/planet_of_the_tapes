@@ -1,10 +1,11 @@
-import {Injectable, OnDestroy} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {BASE_URL} from "../util";
 import {User} from '../model/user.model';
 import {UserService} from '../service/user.service';
 import { Http, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/Rx';
+import { POrder } from '../model/pOrder.model';
 
 export interface User {
   id?: number;
@@ -12,27 +13,19 @@ export interface User {
   passwordHash?: string;
   dni: string;
   email: string;
-  telephone: string;
+  telephone: number;
   viewTelephone?: boolean;
   address?: string;
   roles?: string[];
   hasPhoto?: boolean;
-  orders?: POrder[];
 }
 
 @Injectable()
-export class SessionService implements OnDestroy {
+export class SessionService {
 
   user: User;
-  authCreds: string;
   isLogged = false;
   isAdmin = false;
-
-  ngOnDestroy() {
-    console.log('localStorage called from ngOnDestroy');
-    localStorage.clear();
-  }
-
 
   constructor(private http: Http, private userService: UserService ){
     this.reqIsLogged();
@@ -66,6 +59,7 @@ private processLogInResponse(response) {
 isUserLogged(){
     return this.isLogged;
 }
+
 logIn(user: string, pass: string) {
 
     const userPass = user + ':' + pass;
@@ -107,12 +101,7 @@ getUser(){
     return this.user;
 }
 
-
-checkCredentials() {
-    return (localStorage.getItem("user") !== null);
-}
-
-register(name:string, passwordHash: string, dni: string, email: string, telephone: number, address:string){
+register(name:string, passwordHash: string, dni: string, email: string, telephone: string, address:string){
     let newUser: User;
     newUser = {name: name, passwordHash: passwordHash, dni: dni, email: email, telephone: telephone, address: address};
     return this.http.post(BASE_URL + 'register/add', newUser);

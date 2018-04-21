@@ -61,6 +61,11 @@ export class OrderService {
       .catch(error => this.handleError(error));
   }
 
+  getUOrder(id:number): Observable<POrder>{
+    return this.getUOrders()
+      .map(orders => orders.find(order => order.id))
+  }
+
   createOrder(id: number){
 
     let newOrder: POrder;
@@ -95,8 +100,16 @@ export class OrderService {
     return Observable.throw('Server error (' + error.status + '): ' + error.text());
   }
 
-  checkOut(id: number) {
-    return this.http.put(CHECKOUT_URL + id, { withCredentials: true })
+  checkOut(order:POrder) {
+    const body = JSON.stringify(order);
+
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    });
+    const options = new RequestOptions({ withCredentials: true, headers });
+    
+    return this.http.put(CHECKOUT_URL + order.id, body, options)
       .map(response => response.json())
       .catch(error => this.handleError(error));
   }

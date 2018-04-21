@@ -43,36 +43,6 @@
           </ng-template>
 
         </ul>
-        <!--
-        <div class="col-lg-7">
-          <div class="row">
-            <div class="col-lg-4 col-lg-offset-7 paddingNone userDropdownMenu">
-              <div *ngIf="LoginService.reqIsLogged; else notLogged">
-                <div class="dropdown" dropdown>
-                  <button class="btn btn-primary dropdown-toggle" dropdown-open>
-                    <img src="../../../assets/img/user_undefined_f_40x40.jpg" class="img-circle" />
-                    {{LoginService.user?.name}}</button>
-                  <ul class="dropdown-menu">
-                    <li><a [routerLink]="['/profile']" (click)="update('profile')">Perfil <span class="glyphicon glyphicon-user"></span></a>
-                      <li *ngIf="LoginService.isAdmin"><a [routerLink]="['/admin']">Panel de administración <span class="glyphicon glyphicon-cog"></span></a></li>
-                      <li><a href="#" (click)="logOut()">Cerrar sesión <span class="glyphicon glyphicon-log-out"></span></a></li>
-                  </ul>
-                </div>
-              </div>
-              <ng-template #notLogged>
-                <div class="btn-group iconMenu" role="group" aria-label="...">
-                  <div class="btn-group" role="group">
-                    <button type="button" class="btn btn-default dropdown-toggle" (click)="login()">
-                      <img src="../../../assets/img/user_undefined_f_40x40.jpg" class="img-circle" />
-                      <span>Iniciar sesión</span> <span class="fa fa-power-off"></span>
-                    </button>
-                  </div>
-                </div>
-              </ng-template>
-            </div>
-          </div>
-        </div>
-        -->
       </div>
     </div>
   </div>

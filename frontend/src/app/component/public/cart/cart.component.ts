@@ -20,31 +20,31 @@ import { PRODUCTS_URL, SINGLEPRODUCT_URL, ALLPRODUCTS_URL, ADDPRODUCT_URL, CHECK
   templateUrl: 'cart.component.html'
 })
 
-
-export class CartComponent {
+export class CartComponent implements OnInit{
 
   products: Product[];
   img_url: string;
   orders: POrder[];
 
-  constructor(private orderservice: OrderService, public sanitizer: DomSanitizer, private http: Http, private activatedRoute: ActivatedRoute) {
+  constructor(private router: Router, private orderservice: OrderService, public sanitizer: DomSanitizer, private http: Http, private activatedRoute: ActivatedRoute) {
     this.img_url = PRODUCTS_IMG_URL;
   }
 
-    // tslint:disable-next-line:use-life-cycle-interface
     ngOnInit() {
         this.orderservice.getUOrders().subscribe(
         orders => this.orders = orders,
         error => console.log(error)
       );
     }
-    checkOut(id: number) {
-      return this.http.put(CHECKOUT_URL + id, { withCredentials: true })
-        .map(response => response.json())
-        .catch(error => this.handleError(error));
+
+    checkOut() {
+      for (let order of this.orders){
+      this.orderservice.checkOut(order).subscribe(
+        response => {  this.router.navigate(['/']);},
+        error => console.log(error) 
+        );
+      }
     }
-    private handleError(error: any) {
-      console.error(error);
-      return Observable.throw('Server error (' + error.status + '): ' + error.text());
-    }
+
+    
   }

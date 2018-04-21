@@ -14,7 +14,7 @@ export interface User {
   passwordHash?: string;
   dni: string;
   email: string;
-  telephone: number;
+  telephone: string;
   viewTelephone?: boolean;
   address?: string;
   roles?: string[];
@@ -29,13 +29,8 @@ export class UserService {
 
   user: User;
   users: User[];
-  authCreds: string;
 
   constructor(private http: Http) {
-  }
-
-  setAuthHeaders(authCreds: string) {
-    this.authCreds = authCreds;
   }
 
   getUserCompleted() {
@@ -48,45 +43,30 @@ export class UserService {
       .catch(error => this.handleError(error));
   }
 
-  getUser(id: number) {
-    this.authCreds = localStorage.getItem('creds');
+   getUser() {
+   
     const headers: Headers = new Headers();
-    headers.append('Authorization', 'Basic ' + this.authCreds);
-    return this.http.get(USER_URL + '/' + id.toString(), { headers: headers })
-      .map(response => {
-        this.user = response.json();
-        return response.json();
-      })
-      .catch(error => Observable.throw('Server error'));
-  }
-   getUser1() {
-    this.authCreds = localStorage.getItem('creds');
-    const headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('X-Requested-With', 'XMLHttpRequest');
-    const options = new RequestOptions({ withCredentials: true, headers });
-    return this.http.get(ONE_USER_URL,options)
+
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-Requested-With', 'XMLHttpRequest');
+    
+      const options = new RequestOptions({ withCredentials: true, headers });
+    
+      return this.http.get(ONE_USER_URL,options)
       .map(response => response.json())
       .catch(error => Observable.throw('Server error'));
   }
 
   updateUser(user: User) {
     const body = JSON.stringify(user);
-    const headers: Headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('X-Requested-With', 'XMLHttpRequest');
+    
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest'
+    });
     const options = new RequestOptions({ withCredentials: true, headers });
-    return this.http.put(BASE_URL + 'user/' + user.id, body,options)
+    return this.http.put(BASE_URL + 'user', body, options)
       .map(response => response.json())
-      .catch(error => Observable.throw('Server error'));
-  }
-
-  updateFile(formData: FormData, user: User) {
-    const headers: Headers = new Headers();
-    headers.append('Accept', 'application/json');
-    headers.append('Authorization', 'Basic ' + this.authCreds);
-    return this.http.put(USER_URL + '/' + user.id + '/upload', formData, { headers: headers })
-      .map(response => console.log('Success. The file has been successfully added to server directories.'))
       .catch(error => Observable.throw('Server error'));
   }
 
@@ -103,7 +83,7 @@ export class UserService {
       .catch(error => this.handleError(error));
   }
 
-  createUser(name:string, password:string, dni:string, email:string, telephone:number, address:string) {
+  createUser(name:string, password:string, dni:string, email:string, telephone:string, address:string) {
     let newuser: User;
     newuser={name:name, passwordHash:password, dni:dni, email:email, telephone:telephone, address:address};
     const headers = new Headers({

@@ -8,6 +8,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 // Services
 import { UserService } from './service/user.service';
 import {ProductService} from './service/product.service';
+import {PackService} from './service/pack.service';
 import {SessionService} from './service/session.service';
 import {OrderService} from './service/order.service';
 import { CanActivateViaAuthGuard } from './service/guard/guard';
@@ -33,6 +34,7 @@ import { CartComponent } from './component/public/cart/cart.component';
 //GoogleMaps
 import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
+
 // COMPONENTS ADMIN
 import { AdminComponent } from './component/admin/admin.component';
 import { AdminDashboardComponent } from './component/admin/dashboard/dashboard.component';
@@ -44,9 +46,10 @@ import { AddProductComponent} from './component/admin/aproducts/addProduct/addpr
 import { AddUserComponent } from './component/admin/ausers/addUser/adduser.component';
 import { AdminOrdersComponent } from './component/admin/aorders/aorders.component';
 import { AdminEditProductComponent } from './component/admin/aproducts/edit/edit.component';
-
-import { ProfileComponent } from './component/admin/myProfile/profile.component';
-
+import { ProfileComponent } from './component/admin/ausers/modifyUser/profile.component';
+import { AdminPacksComponent } from './component/admin/apacks/apacks.component';
+import { AdminAddPackComponent } from './component/admin/apacks/addPack/addpack.component';
+import { AdminEditPackComponent } from './component/admin/apacks/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -77,12 +80,15 @@ import { ProfileComponent } from './component/admin/myProfile/profile.component'
     AddUserComponent,
     AdminOrdersComponent,
     AdminEditProductComponent,
-    ProfileComponent
+    AdminPacksComponent,
+    AdminAddPackComponent,
+    ProfileComponent,
+    AdminEditPackComponent
   ],
   imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing, NgbModule, CommonModule,AgmCoreModule.forRoot({
     apiKey: 'AIzaSyDdPvoqoU3MtyCSXlGpWTZgD-_mmHWvZgg'
   })],
-  providers: [UserService, ProductService, SessionService, OrderService, CanActivateViaAuthGuard],
+  providers: [UserService, ProductService, SessionService, OrderService, PackService, CanActivateViaAuthGuard],
   bootstrap: [AppComponent]
 
 })

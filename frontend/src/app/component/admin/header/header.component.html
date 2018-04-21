@@ -12,7 +12,7 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-            <ng-template #chargedImage>
+            <ng-template>
               <img [src]="sanitizer.bypassSecurityTrustUrl("../../../../assets/img/"+ user.avatar)" class="user-image" />
             </ng-template>
             <span class="hidden-xs">{{user?.firstName}} {{user?.lastName1}}</span>
@@ -20,10 +20,7 @@
           <ul class="dropdown-menu">
             <li class="user-header">
               <div class="imgUploaderr">
-                <div *ngIf="userImage == undefined; else chargedImage">
-                  <img src="../../../../assets/img/loadingImages.svg" width="50px" height="50px" align="middle">
-                </div>
-                <ng-template #chargedImage>
+                <ng-template>
                   <img [src]="sanitizer.bypassSecurityTrustUrl(userImage)" class="user-image" />
                 </ng-template>
               </div>

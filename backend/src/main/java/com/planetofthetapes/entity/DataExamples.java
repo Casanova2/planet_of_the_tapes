@@ -87,49 +87,49 @@ public class DataExamples {
 				"Jack Nicholson, Shelley Duvall, Danny Lloyd", 1980, "Shining.jpg");
 		productRepository.save(prod5);
 
-		prod6 = new Product("The proposal",
+		/*prod6 = new Product("The proposal",
 				"The plot centers on a Canadian executive who learns that she may face deportation from the U.S. because of her expired visa.",
 				"Movies", "Comedy", 5, 20.0, 3.0, 70, "https://www.youtube.com/watch?v=RFL8b1p1ELY", "Anne Fletcher",
 				"Ryan Reynolds, Sandra Bullock", 2009, "TheProposal.jpg");
-		productRepository.save(prod6);
+		productRepository.save(prod6);*/
 
-		prod7 = new Product("Alienn",
+		/*prod7 = new Product("Alienn",
 				"The film's title refers to a highly aggressive extraterrestrial creature that stalks and attacks the crew of a spaceship.",
 				"Movies", "Terror", 5, 20.0, 3.0, 90, "https://www.youtube.com/watch?v=jQ5lPt9edzQ", "Ridley Scott",
 				"Sigourney Weaver, Tom Skerritt, Veronica Cartwright, Harry Dean Stanton, John Hurt, Ian Holm and Yaphet Kotto",
 				1979, "Alien.jpg");
-		productRepository.save(prod7);
+		productRepository.save(prod7);*/
 
-		prod8 = new Product("Then Lord Of The Rings: The Fellowship of the Ring",
+		/*prod8 = new Product("Then Lord Of The Rings: The Fellowship of the Ring",
 				"Set in Middle-earth, the story tells of the Dark Lord Sauron, who is seeking the One Ring. The fate of Middle-earth hangs in the balance as Frodo and eight companios.",
 				"Movies", "Fantasy", 5, 20.0, 3.0, 99, "https://www.youtube.com/watch?v=V75dMMIW2B4", "Peter Jackson",
 				"Elijah Wood, Ian McKellen, Sean Astin, Viggo Mortensen, John Rhys-Davies, Orlando Bloom, Sean Bean, Liv Tyler, Cate Blanchett, Christopher Lee, Hugo Weaving, Sala Baker,Andy Serkis",
 				2001, "TLOTR_FL.jpg");
-		productRepository.save(prod8);
+		productRepository.save(prod8);*/
 
-		prod9 = new Product("Bladen Runner: 2049",
+		/*prod9 = new Product("Bladen Runner: 2049",
 				"Thirty years after the events of the first film, a new blade runner, LAPD Officer K, unearths a long-buried secret that has the potential to plunge what's left of society into chaos.",
 				"Movies", "Sci-fi", 5, 20.0, 3.0, 83, "https://www.youtube.com/watch?v=6T2b0mp2hco", "Denis Villeneuve",
 				"Harrison Ford, Ryan Gosling, Ana de Armas", 2017, "BladeRunner2049.jpg");
-		productRepository.save(prod9);
+		productRepository.save(prod9);*/
 
-		prod10 = new Product("Backn to the Future",
+		/*prod10 = new Product("Backn to the Future",
 				" It stars Marty McFly, who is sent back in time to 1955, where he meets his future parents in high school and accidentally becomes his mother's romantic interest.",
 				"Movies", "Sci-fi", 5, 20.0, 3.0, 88, "https://www.youtube.com/watch?v=qvsgGtivCgs", "Robert Zemeckis",
 				"Michael J. Fox, Christopher Lloyd", 1985, "BTTF.jpg");
-		productRepository.save(prod10);
+		productRepository.save(prod10);*/
 
-		prod11 = new Product("Then shining",
+		/*prod11 = new Product("Then shining",
 				"The Shining is about Jack Torrance, an aspiring writer and recovering alcoholic, who accepts a position as the off-season caretaker of the isolated historic Overlook Hotel in the Colorado Rockies.",
 				"Movies", "Terror", 5, 20.0, 3.0, 89, "https://www.youtube.com/watch?v=5Cb3ik6zP2I", "Stanley Kubrick",
 				"Jack Nicholson, Shelley Duvall, Danny Lloyd", 1980, "Shining.jpg");
-		productRepository.save(prod11);
+		productRepository.save(prod11);*/
 
-		prod12 = new Product("Then proposal",
+		/*prod12 = new Product("Then proposal",
 				"The plot centers on a Canadian executive who learns that she may face deportation from the U.S. because of her expired visa.",
 				"Movies", "Comedy", 5, 20.0, 3.0, 70, "https://www.youtube.com/watch?v=RFL8b1p1ELY", "Anne Fletcher",
 				"Ryan Reynolds, Sandra Bullock", 2009, "TheProposal.jpg");
-		productRepository.save(prod12);
+		productRepository.save(prod12);*/
 		// END MOVIES
 
 		// SERIES
@@ -210,12 +210,12 @@ public class DataExamples {
 				"xone-gears4.jpg");
 		productRepository.save(prod204);
 
-		prod205 = new Product("Halo 5",
+		/*prod205 = new Product("Halo 5",
 				"Halo 5: Guardians takes place in the year 2558, and is set eight months after the events of Halo 4. The game follows the human fireteams Blue Team and Fireteam Osiris.",
 				"Videogames", "Sci-Fi", 5, 50.0, 5.0, 75, "https://www.youtube.com/watch?v=Rh_NXwqFvHc",
 				"343 Industries", "Brittany Uomoleale, Michelle Lukes, Laura Bailey, Steve Downes", 2015,
 				"xone-halo5.png");
-		productRepository.save(prod205);
+		productRepository.save(prod205);*/
 		// VIDEOGAMES
 		
 		//ORDERS
@@ -229,10 +229,10 @@ public class DataExamples {
 		porderRepository.save(order1);
 		porderRepository.save(order2);
 		
-		order1.getProducts().add(prod205);
+
 		order1.getProducts().add(prod204);
 		
-		order2.getProducts().add(prod205);
+
 		order2.getProducts().add(prod204);
 		
 		porderRepository.save(order1);
@@ -248,7 +248,6 @@ public class DataExamples {
 		
 		gamelist.add(prod200);
 		gamelist.add(prod201);
-		gamelist.add(prod205);
 		
 		filmlist.add(prod1);
 		filmlist.add(prod2);

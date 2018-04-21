@@ -38,8 +38,7 @@ export class AdminEditProductComponent {
   }
 
   updateProduct() {    
-      //let newproduct :Product;
-     // newproduct={name:name,description:description,type:type,genre:genre,stock:stock,pbuy:pbuy,prent:prent,score:score,trailer:trailer,director:director,cast:cast,year:year};
+
         this.service.updateProduct(this.product).subscribe(
             response => { 
               this._success.next(`${new Date()} - 'Product edited successfully.'`);
@@ -47,6 +46,5 @@ export class AdminEditProductComponent {
             },
             error => console.log(error)
         );
-    }
-
+      }
 }
