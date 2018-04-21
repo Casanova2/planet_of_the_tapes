@@ -198,6 +198,18 @@ Then go to the "frontend" folder and run `ng serve` for a dev server. Navigate t
 ## Deployment server
 
 You have to run the backend project, using Spring boot or launching the application.jar.
-Then navigate to `http://localhost:8443/angular/`, this will lead you to the Angular based web.
+Then navigate to `http://localhost:8443/angular/`, this will lead you to the Angular based web.  
+  
+## Images  
 
-
+These are the class diagrams of the services and the components that they inherit from them, for our Angular application:  
+  
+* ![Users](screenshots/userservice.png)  
+  
+* ![Products](screenshots/productservice.png)  
+  
+* ![Packs](screenshots/packservice.png)  
+  
+* ![Orders](screenshots/orderservice.png)  
+  
+* ![Session](screenshots/sessionservice.png)  
