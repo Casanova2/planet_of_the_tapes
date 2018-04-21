@@ -174,3 +174,28 @@ If you want to see the DOCKER documentation [click here](https://github.com/Casa
 We have created a diagram with the new controllers and their dependencies:
 * ![Controllers Rest](screenshots/DiagramRest.jpg)
 
+# Phase 5
+
+In this phase, we have implemented a SPA with Angular. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+You can use our Angular project with in two different ways: Development and Deployment.
+The spring based web is also available on `https://localhost:8080/`.
+
+## Prerequisites
+
+In order to launch this application in Development mode, you need to have installed [Node.js](https://www.npmjs.com/get-npm) , then do the following steps:
+
+1. Download the repository.
+2. Navigate to "frontend".
+3. Using your shell, execute `npm install`.
+
+## Development server
+
+First you have to run the backend project in Spring, this will load de DB and all the necessary resources.
+Then go to the "frontend" folder and run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Deployment server
+
+You have to run the backend project, using Spring boot or launching the application.jar.
+Then navigate to `http://localhost:8080/angular/`, this will lead you to the Angular based web.
+
+
