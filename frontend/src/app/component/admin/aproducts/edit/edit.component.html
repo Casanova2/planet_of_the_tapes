@@ -59,11 +59,12 @@
                     <input type="text" class="form-control" [(ngModel)]="product.urlimg" placeholder="{{product.urlimg}}"  #urlimg>
                 </div>
                 <div class="pull-left">
-                    <button (click)="updateProduct()">Save</button> 
+                     <button type="button" class="btn btn-warning" (click)="updateProduct()"><span>Save</span></button>
                     <button (click)="cancel()">Cancel</button>
                 </div>
             </div>
             </div>
           </div>
         </div>
+         <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
       </section>

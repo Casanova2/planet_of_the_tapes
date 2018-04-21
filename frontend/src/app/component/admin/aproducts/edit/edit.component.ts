@@ -2,12 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Product, ProductService } from '../../../../service/product.service';
+import {Subject} from 'rxjs/Subject';
+import {debounceTime} from 'rxjs/operator/debounceTime';
+import {NgbAlertConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-editProduct',
-  templateUrl: './edit.component.html'
+  templateUrl: './edit.component.html',
+  providers: [NgbAlertConfig]
 })
 export class AdminEditProductComponent {
+   //alerts
+  private _success = new Subject<string>();
+  staticAlertClosed = false;
+  successMessage: string;
 
   product: Product;
 
@@ -15,7 +23,12 @@ export class AdminEditProductComponent {
     private activatedRoute: ActivatedRoute, private service: ProductService) {
   }
 
-  ngOnInit() {
+  ngOnInit():void {
+    //alerts
+      setTimeout(() => this.staticAlertClosed = true, 5000);
+      this._success.subscribe((message) => this.successMessage = message);
+      debounceTime.call(this._success, 5000).subscribe(() => this.successMessage = null);
+    //--------//
     this.service.getProduct(this.activatedRoute.snapshot.params['id']).subscribe(
       product => { 
        this.product = product;
@@ -28,7 +41,10 @@ export class AdminEditProductComponent {
       //let newproduct :Product;
      // newproduct={name:name,description:description,type:type,genre:genre,stock:stock,pbuy:pbuy,prent:prent,score:score,trailer:trailer,director:director,cast:cast,year:year};
         this.service.updateProduct(this.product).subscribe(
-            product => {  this.router.navigate(['/admin/products']);},
+            response => { 
+              this._success.next(`${new Date()} - 'Product edited successfully.'`);
+              this.router.navigate(['/admin/products/edit',this.product.id]);
+            },
             error => console.log(error)
         );
     }
