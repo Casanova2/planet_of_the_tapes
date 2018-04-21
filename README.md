@@ -178,7 +178,9 @@ We have created a diagram with the new controllers and their dependencies:
 
 In this phase, we have implemented a SPA with Angular. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 You can use our Angular project with in two different ways: Development and Deployment.
-The spring based web is also available on `https://localhost:8080/`.
+The spring based web is also available on `https://localhost:8443/`.
+
+Running *all* with **docker**, just follow **[this guide](https://github.com/Casanova2/planet_of_the_tapes/blob/master/DOCKER.md)** and then navigate to http://localhost:8080/angular/ to see the Angular SPA.
 
 ## Prerequisites
 
@@ -196,6 +198,6 @@ Then go to the "frontend" folder and run `ng serve` for a dev server. Navigate t
 ## Deployment server
 
 You have to run the backend project, using Spring boot or launching the application.jar.
-Then navigate to `http://localhost:8080/angular/`, this will lead you to the Angular based web.
+Then navigate to `http://localhost:8443/angular/`, this will lead you to the Angular based web.
 
 
