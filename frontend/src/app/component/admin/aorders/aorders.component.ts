@@ -3,6 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Product} from '../../../service/product.service';
 import {STATUS_NO_CONTENT} from '../../../util';
 import { POrder, OrderService } from '../../../service/order.service';
+import { SessionService } from '../../../service/session.service';
 
 @Component({
   selector: 'app-orders',
@@ -13,8 +14,9 @@ export class AdminOrdersComponent implements OnInit{
 
     orders: POrder[];
     products: Product[];
+    uorders: POrder[];
 
-  constructor(private service: OrderService, private activatedRoute: ActivatedRoute) {
+  constructor(private service: OrderService, private activatedRoute: ActivatedRoute, public session: SessionService) {
   }
 
     // tslint:disable-next-line:use-life-cycle-interface
@@ -23,6 +25,11 @@ export class AdminOrdersComponent implements OnInit{
         orders => this.orders = orders,
         error => console.log(error)
       );
+
+        this.service.getUOrders().subscribe(
+          uorders => this.uorders = uorders,
+          error => console.log(error)
+        );
 
     }
     

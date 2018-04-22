@@ -8,6 +8,7 @@
         </tr>
       </thead>
       <tbody>
+        <div *ngIf="session.isAdmin; else isUser">
           <tr *ngFor="let order of orders">
             <tbody *ngFor="let product of order.products">
                     <li>{{ product.name }}</li>
@@ -15,6 +16,16 @@
             <td>{{ order.state }}</td>
             <td>{{ order.pay }}</td>
           </tr>
+        </div>
+        <ng-template #isUser>
+            <tr *ngFor="let order of uorders">
+                <tbody *ngFor="let product of order.products">
+                        <li>{{ product.name }}</li>
+                </tbody>
+                <td>{{ order.state }}</td>
+                <td>{{ order.pay }}</td>
+              </tr>
+        </ng-template>
       </tbody>
     </table>
     <br>

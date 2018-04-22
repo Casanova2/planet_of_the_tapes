@@ -16,9 +16,9 @@ export class AdminSidebarComponent implements OnInit {
 
   indexActive: boolean;
   profileActive: boolean;
-  resourcesActive: boolean;
-  loansActive: boolean;
-  finesActive: boolean;
+  productsActive: boolean;
+  ordersActive: boolean;
+  packsActive: boolean;
   usersActive: boolean;
   user: User;
   userImage: any;
@@ -45,49 +45,49 @@ export class AdminSidebarComponent implements OnInit {
       case 'index':
         this.indexActive = true;
         this.profileActive = false;
-        this.resourcesActive = false;
-        this.loansActive = false;
-        this.finesActive = false;
+        this.productsActive = false;
+        this.ordersActive = false;
+        this.packsActive = false;
         this.usersActive = false;
         break;
       case 'profile':
         this.indexActive = true;
         this.profileActive = false;
-        this.resourcesActive = false;
-        this.loansActive = false;
-        this.finesActive = false;
+        this.productsActive = false;
+        this.ordersActive = false;
+        this.packsActive = false;
         this.usersActive = false;
         break;
-      case 'resources':
+      case 'products':
         this.indexActive = false;
         this.profileActive = false;
-        this.resourcesActive = true;
-        this.loansActive = false;
-        this.finesActive = false;
+        this.productsActive = true;
+        this.ordersActive = false;
+        this.packsActive = false;
         this.usersActive = false;
         break;
       case 'loans':
         this.indexActive = false;
         this.profileActive = false;
-        this.resourcesActive = false;
-        this.loansActive = true;
-        this.finesActive = false;
+        this.productsActive = false;
+        this.ordersActive = true;
+        this.packsActive = false;
         this.usersActive = false;
         break;
       case 'fines':
         this.indexActive = false;
         this.profileActive = false;
-        this.resourcesActive = false;
-        this.loansActive = false;
-        this.finesActive = true;
+        this.productsActive = false;
+        this.ordersActive = false;
+        this.packsActive = true;
         this.usersActive = false;
         break;
       case 'users':
         this.indexActive = false;
         this.profileActive = false;
-        this.resourcesActive = false;
-        this.loansActive = false;
-        this.finesActive = false;
+        this.productsActive = false;
+        this.ordersActive = false;
+        this.packsActive = false;
         this.usersActive = true;
         break;
     }
