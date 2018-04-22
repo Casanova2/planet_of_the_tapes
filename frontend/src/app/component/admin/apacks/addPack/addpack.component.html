@@ -37,7 +37,7 @@
                     <label>Image</label>
                     <input type="text" class="form-control" placeholder="urlimg">
                 </div>
-                <div class="pull-left">
+                <div *ngIf="!successMessage" class="pull-left">
                     <button (click)="addPack2(name.value, price.value, p1.value, p2.value, p3.value)">Save</button>
                     <button (click)="cancel()">Cancel</button>
                 </div>
@@ -45,4 +45,5 @@
             </div>
           </div>
         </div>
+        <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
       </section>

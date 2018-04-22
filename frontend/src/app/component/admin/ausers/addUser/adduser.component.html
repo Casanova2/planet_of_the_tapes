@@ -33,7 +33,7 @@
               <label>User Address</label>
               <input type="text" class="form-control" placeholder="Fake Street, 123"  #address>
             </div>
-            <div class="pull-left">
+            <div *ngIf="!successMessage" class="pull-left">
                 <button (click)="addUser(name.value, password.value, dni.value, email.value, telephone.value, address.value)">Save</button>
                 <button (click)="cancel()">Cancel</button>
             </div>
@@ -41,4 +41,5 @@
         </div>
       </div>
     </div>
+   <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
   </section>

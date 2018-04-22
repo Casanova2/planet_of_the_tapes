@@ -22,7 +22,7 @@
                   <label>Address</label>
                   <input type="text" class="form-control" [(ngModel)]="user.address" placeholder="{{user.address}}"  >
                 </div>
-                <div class="pull-left">
+                <div *ngIf="!successMessage" class="pull-left">
                     <button class="btn btn-success"(click)="editProfile()">Save</button> 
                     <a routerLink="/admin/dashboard"><button>Cancel</button></a>
                 </div>
@@ -30,4 +30,5 @@
             </div>
           </div>
         </div>
+           <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
       </section>

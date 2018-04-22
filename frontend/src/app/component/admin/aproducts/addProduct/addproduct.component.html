@@ -59,8 +59,8 @@
                     <label>Image</label>
                     <input type="text" class="form-control" placeholder="urlimg"  #urlimg>
                 </div>
-                <div class="pull-left">
-                    <button (click)="addProduct(name.value, description.value,type.value,genre.value,stock.value,pbuy.value,prent.value,score.value,trailer.value,director.value,cast.value,year.value)">Save</button>
+                <div *ngIf="!successMessage" class="pull-left">
+                    <button  (click)="addProduct(name.value, description.value,type.value,genre.value,stock.value,pbuy.value,prent.value,score.value,trailer.value,director.value,cast.value,year.value)">Save</button>
                     <button (click)="cancel()">Cancel</button>
                 </div>
             </div>
@@ -68,3 +68,4 @@
           </div>
         </div>
       </section>
+       <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>

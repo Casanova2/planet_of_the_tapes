@@ -1,17 +1,17 @@
-<section class="content-header">
+<section *ngIf="session.isAdmin" class="content-header">
   <h1>Inicio <small>Información reciente</small></h1>
 </section>
 
 <!-- Main content -->
-<section class="content">
+<section *ngIf="session.isAdmin" class="content">
 
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
           <span class="info-box-icon bg-green"><i class="fa fa-database"></i></span>
 
           <div class="info-box-content">
-            <span class="info-box-text">Sales</span>
-            <span class="info-box-number"></span> <!-- {{products.length}} -->
+            <span class="info-box-text">Products</span>
+            <span class="info-box-number"></span>  {{products.length}} 
           </div>
           <!-- /.info-box-content -->
         </div>
@@ -23,25 +23,13 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Users</span>
-              <span class="info-box-number"></span> <!-- {{users.length}} -->
+              <span class="info-box-number"></span>  {{users.length}} 
             </div>
             <!-- /.info-box-content -->
           </div>
           <!-- /.info-box -->
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-xs-6">
-              <div class="small-box bg-aqua">
-                <div class="inner">
-                  <h3></h3>
-                  <p>Products</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-              </div>
-            </div>
-        </div>
+        
 </section>
 
 <!--Register

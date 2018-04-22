@@ -2,14 +2,22 @@ import { Component } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import { Pack, PackService } from '../../../../service/pack.service';
 import { Product, ProductService } from '../../../../service/product.service';
+import {Subject} from 'rxjs/Subject';
+import {debounceTime} from 'rxjs/operator/debounceTime';
+import {NgbAlertConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-addpack',
-  templateUrl: 'addpack.component.html'
+  templateUrl: 'addpack.component.html',
+  providers: [NgbAlertConfig]
 })
 
 export class AdminAddPackComponent {
-
+  //alerts
+  private _success = new Subject<string>();
+  staticAlertClosed = false;
+  successMessage: string;
+ 
   packs: Pack[];
   newPack : Boolean;
   pack: Pack;
@@ -32,6 +40,11 @@ export class AdminAddPackComponent {
   }
 
   ngOnInit() {
+     //alerts
+      setTimeout(() => this.staticAlertClosed = true, 8000);
+      this._success.subscribe((message) => this.successMessage = message);
+      debounceTime.call(this._success, 8000).subscribe(() => this.successMessage = null);
+    //--------//
       this.servicePack.getPacks().subscribe(
       packs => this.packs = packs,
       error => console.log(error)
@@ -51,7 +64,7 @@ export class AdminAddPackComponent {
 
   addPack2(name:string,price:number,p1:number,p2:number,p3:number) {
       this.servicePack.createPack2(name,price,p1,p2,p3).subscribe(
-          product => {  this.router.navigate(['/admin/packs']);},
+          product => { this._success.next(`${new Date()} - 'Pack added successfully.'`);},
           error => console.log(error)
       );
   }

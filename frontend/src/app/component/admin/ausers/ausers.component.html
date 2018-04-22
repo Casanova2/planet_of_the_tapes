@@ -1,4 +1,5 @@
 <section>
+   <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
     <table class="table table-bordered table-striped">
       <thead>
         <tr>

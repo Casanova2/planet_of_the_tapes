@@ -4,7 +4,7 @@ import { ActivatedRoute} from '@angular/router';
 import { Product, ProductService } from '../../../service/product.service';
 import { User, UserService } from '../../../service/user.service';
 
-/*import {SessionService} from '../../../service/session.service';*/
+import {SessionService} from '../../../service/session.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,7 +17,7 @@ export class AdminDashboardComponent implements OnInit {
   users:User[];
   user:User;
 
-	constructor(private router: Router,private service: ProductService,private service1: UserService, private activatedRoute: ActivatedRoute) { 
+	constructor( public session: SessionService,private router: Router,private service: ProductService,private service1: UserService, private activatedRoute: ActivatedRoute) { 
 
   }
 	ngOnInit() {
