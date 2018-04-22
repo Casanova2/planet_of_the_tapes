@@ -139,6 +139,7 @@ header .logo h1 {
 
 .navbar {
   border: none;
+  margin-bottom: 0px;
 }
 
 .menuNav {

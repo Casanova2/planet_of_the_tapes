@@ -1,4 +1,27 @@
 
+<div class="container">
+    <div ng2-carouselamos class="slides-wrapper"
+        [items]="items"
+        [width]="1800"
+        [$prev]="prev"
+        [$next]="next"
+        [$item]="item"
+        >
+    </div>
+    <ng-template #prev>
+            <img src="assets/img/back.png" id="left">
+    </ng-template>
+     <ng-template #next>
+            <img src="assets/img/next.png" id="right">
+    </ng-template>
+    <ng-template #item let-item let-i="index" >
+        <div class="items">
+            <img src="{{item.name}}">
+        </div>
+    </ng-template>
+</div>
+
+
 <div class="row">
   <div class="col-sm-12">
 
@@ -17,7 +40,7 @@
                         <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
                       </div>
                       <ng-template #chargedImage>
-                        <a><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + serie.urlimg)" class="img-responsive"/></a>
+                        <a [routerLink]="['/product',serie.id]"><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + serie.urlimg)" class="img-responsive"/></a>
                       </ng-template>
                       <div>
                       </div>
@@ -41,11 +64,12 @@
                         <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
                       </div>
                       <ng-template #chargedImage>
-                          <a><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + movie.urlimg)" class="img-responsive"/></a>
+                          <a [routerLink]="['/product',movie.id]"><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + movie.urlimg)" class="img-responsive"/></a>
                       </ng-template>
                       <div>
                       </div>
                     </div>
+                   
                   </div>
               </ng-template>
               <a routerLink="/movies"><button class="btn btn-success pull-left" > More Movies</button></a>
@@ -64,7 +88,7 @@
                         <img src="../../../../assets/img/img.png" width="50px" height="150px" align="middle">
                       </div>
                       <ng-template #chargedImage>
-                          <a><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + videogame.urlimg)" class="img-responsive"/></a>
+                          <a [routerLink]="['/product',videogame.id]"><img [src]="sanitizer.bypassSecurityTrustUrl(img_url + videogame.urlimg)" class="img-responsive"/></a>
                       </ng-template>
                       <div>
                       </div>

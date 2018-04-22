@@ -15,6 +15,8 @@ import { CanActivateViaAuthGuard } from './service/guard/guard';
 
 //Alerts
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+//Carousel
+import {Ng2CarouselamosModule} from 'ng2-carouselamos';
 
 // COMPONENTS INDEX
 import { HeaderComponent } from './component/public/header/header.component';
@@ -85,7 +87,7 @@ import { AdminEditPackComponent } from './component/admin/apacks/edit/edit.compo
     ProfileComponent,
     AdminEditPackComponent
   ],
-  imports: [BrowserModule, FormsModule, HttpModule, JsonpModule, routing, NgbModule, CommonModule,AgmCoreModule.forRoot({
+  imports: [Ng2CarouselamosModule,BrowserModule, FormsModule, HttpModule, JsonpModule, routing, NgbModule, CommonModule,AgmCoreModule.forRoot({
     apiKey: 'AIzaSyDdPvoqoU3MtyCSXlGpWTZgD-_mmHWvZgg'
   })],
   providers: [UserService, ProductService, SessionService, OrderService, PackService, CanActivateViaAuthGuard],
