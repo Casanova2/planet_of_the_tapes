@@ -180,7 +180,7 @@ In this phase, we have implemented a SPA with Angular. This project was generate
 You can use our Angular project with in two different ways: Development and Deployment.
 The spring based web is also available on `https://localhost:8443/`.
 
-Running *all* with **docker**, just follow **[this guide](https://github.com/Casanova2/planet_of_the_tapes/blob/master/DOCKER.md)** and then navigate to http://localhost:8080/angular/ to see the Angular SPA.
+Running *all* with **docker**, just follow **[this guide](https://github.com/Casanova2/planet_of_the_tapes/blob/master/DOCKER.md)** and then navigate to http://localhost:8080/angular/index.html to see the Angular SPA.
 
 ## Prerequisites
 
