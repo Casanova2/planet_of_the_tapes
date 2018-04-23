@@ -23,7 +23,13 @@
         <li><i class="fa fa-phone"></i> <strong>Phone:</strong> (+34) 677 238 461</li>
         <li><i class="fa fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mail@example.com">planetofthetapes@gmail.com</a></li>
     </ul>
-
+    <div >
+    <youtube-player
+      [videoId]="id"
+      (ready)="savePlayer($event)"
+      (change)="onStateChange($event)"
+    ></youtube-player>
+   </div>
     <hr>
 
     <h4 class="heading-primary">Business <strong>Hours</strong></h4>
@@ -35,3 +41,4 @@
 
 </div>
 </div>
+

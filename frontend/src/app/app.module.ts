@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ApplicationRef  } from '@angular/core';
-
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { routing } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
@@ -17,7 +17,8 @@ import { CanActivateViaAuthGuard } from './service/guard/guard';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 //Carousel
 import {Ng2CarouselamosModule} from 'ng2-carouselamos';
-
+//Youtube
+import { YoutubePlayerModule } from 'ng2-youtube-player';
 // COMPONENTS INDEX
 import { HeaderComponent } from './component/public/header/header.component';
 import { AppComponent } from './app.component';
@@ -87,7 +88,7 @@ import { AdminEditPackComponent } from './component/admin/apacks/edit/edit.compo
     ProfileComponent,
     AdminEditPackComponent
   ],
-  imports: [Ng2CarouselamosModule,BrowserModule, FormsModule, HttpModule, JsonpModule, routing, NgbModule, CommonModule,AgmCoreModule.forRoot({
+  imports: [YoutubePlayerModule,Ng2CarouselamosModule,BrowserModule, FormsModule, HttpModule, JsonpModule, routing, NgbModule, CommonModule,AgmCoreModule.forRoot({
     apiKey: 'AIzaSyDdPvoqoU3MtyCSXlGpWTZgD-_mmHWvZgg'
   })],
   providers: [UserService, ProductService, SessionService, OrderService, PackService, CanActivateViaAuthGuard],
@@ -95,3 +96,4 @@ import { AdminEditPackComponent } from './component/admin/apacks/edit/edit.compo
 
 })
 export class AppModule { }
+platformBrowserDynamic().bootstrapModule(AppModule);
