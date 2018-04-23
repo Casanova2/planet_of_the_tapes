@@ -1,0 +1,39 @@
+<div class="row">
+    <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+  <div class="col-md-10">
+
+    <h1>Cart</h1>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <div *ngIf="order.state=='completed'; else orderInProgress"></div>
+        <ng-template #orderInProgress>
+        <tbody *ngFor="let product of order.products">
+          <li style="list-style-type: none;">
+            <div class="row">
+              <div class="col-lg-3">
+                <div class="coverItem">
+                  <img [src]="sanitizer.bypassSecurityTrustUrl(img_url + product.urlimg)" class="img-responsive" />
+                </div>
+              </div>
+              <div class="col-lg-9 information">
+                  <h4><span>Product Name:</span></h4>
+                  <h5>* {{product.name}}</h5>
+                <br>
+                <h4><span>Price</span></h4>
+                <h5>* {{product.pbuy}} €</h5>
+                <br>
+                <a [routerLink]="['/product', product.id]"><button class="btn">+ info</button></a>
+              </div>
+            </div>
+          </li>  
+        </tbody>
+        <p>Total Price: {{order.total}}</p>
+      </ng-template>
+      <br>
+      </tr>
+    </tbody>
+  </div>
+  <div  *ngIf="!successMessage" class="col-md-2">
+    <button style="font-size: 32px;" class="btn btn-success" (click)="checkOut(order)" type="button">Pay</button>
+  </div>
+</div>

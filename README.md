@@ -8,6 +8,7 @@ Rubén Calvo Martinez    r.calvoma@alumnos.urjc.es        Github User: Casanova2
 Raúl Iglesias González  rb.iglesias@alumnos.urjc.es      Github User: raulig22     
 Carlos López García     c.lopezgarcia2@alumnos.urjc.es   Github User: CarlosLopGarcia   
 Asier Ruano Peñas       a.ruano@alumnos.urjc.es          Github User: AsierRuano  
+Sergio Sánchez Vallés   s.sanchezval@alumnos.urjc.es     Github User: SergioSV96
 ```
 We are a small group from URJC university in Spain and we are doing this web app for Web Aplications Development.  
 **We will be working on a videoclub. The costumers will be able to buy films, videogames and series.**  
@@ -174,3 +175,42 @@ We have created diagrams with the new controllers and their dependencies, and wi
 * ![Controllers Rest](screenshots/RestDiagram.png)  
 * ![Templatess Rest](screenshots/TemplateDiagram.png)  
 
+# Phase 5
+
+In this phase, we have implemented a SPA with Angular. This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+You can use our Angular project with in two different ways: Development and Deployment.
+The spring based web is also available on `https://localhost:8443/`.
+
+Running *all* with **docker**, just follow **[this guide](https://github.com/Casanova2/planet_of_the_tapes/blob/master/DOCKER.md)** and then navigate to http://localhost:8080/angular/ to see the Angular SPA.
+
+## Prerequisites
+
+In order to launch this application in Development mode, you need to have installed [Node.js](https://www.npmjs.com/get-npm) , then do the following steps:
+
+1. Download the repository.
+2. Navigate to "frontend".
+3. Using your shell, execute `npm install`.
+
+## Development server
+
+First you have to run the backend project in Spring, this will load de DB and all the necessary resources.
+Then go to the "frontend" folder and run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## Deployment server
+
+You have to run the backend project, using Spring boot or launching the application.jar.
+Then navigate to `http://localhost:8443/angular/`, this will lead you to the Angular based web.  
+  
+## Images  
+
+These are the class diagrams of the services and the components that they inherit from them, for our Angular application:  
+  
+* ![Users](screenshots/userservice.png)  
+  
+* ![Products](screenshots/productservice.png)  
+  
+* ![Packs](screenshots/packservice.png)  
+  
+* ![Orders](screenshots/orderservice.png)  
+  
+* ![Session](screenshots/sessionservice.png)  

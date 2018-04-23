@@ -1,0 +1,45 @@
+<section class="content">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">New User</h3>
+      </div>
+      <div class="box-body">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="form-group">
+              <label>User Name</label>
+              <input type="text" class="form-control" placeholder="name" required  #name>
+            </div>
+            <!-- <div *ngIf="user.id">
+              <label>Id: </label>{{user.id}}
+            </div> -->
+            <div class="form-group">
+              <label>User Password</label>
+              <input type="password" class="form-control" placeholder="password"  #password>
+            </div>
+            <div class="form-group">
+              <label>User DNI</label>
+              <input type="text" class="form-control" placeholder="12345678A" required  #dni>
+            </div>
+            <div class="form-group">
+              <label>User Email</label>
+              <input type="email" class="form-control" placeholder="aaaa@aaa.com" required #email>
+            </div>
+            <div class="form-group">
+              <label>User Telephone</label>
+              <input type="text" class="form-control" placeholder="123456789"  #telephone>
+            </div>
+            <div class="form-group">
+              <label>User Address</label>
+              <input type="text" class="form-control" placeholder="Fake Street, 123"  #address>
+            </div>
+            <div *ngIf="!successMessage" class="pull-left">
+                <button (click)="addUser(name.value, password.value, dni.value, email.value, telephone.value, address.value)">Save</button>
+                <button (click)="cancel()">Cancel</button>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+   <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+  </section>

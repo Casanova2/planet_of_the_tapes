@@ -1,0 +1,34 @@
+<section class="content">
+        <div class="box box-default">
+          <div class="box-header with-border">
+            <h3 class="box-title">Edit Profile</h3>
+          </div>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="form-group">
+                  <label> Name</label>
+                  <input type="text" class="form-control"placeholder="{{user.name}}" disabled >
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input type="email" class="form-control" [(ngModel)]="user.email" placeholder="{{user.email}}" >
+                </div>
+                <div class="form-group">
+                  <label>Telephone</label>
+                  <input type="string" class="form-control" [(ngModel)]="user.telephone" placeholder="{{user.telephone}}"  >
+                </div>
+                <div class="form-group">
+                  <label>Address</label>
+                  <input type="text" class="form-control" [(ngModel)]="user.address" placeholder="{{user.address}}"  >
+                </div>
+                <div *ngIf="!successMessage" class="pull-left">
+                    <button class="btn btn-success"(click)="editProfile()">Save</button> 
+                    <a routerLink="/admin/dashboard"><button>Cancel</button></a>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+           <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+      </section>

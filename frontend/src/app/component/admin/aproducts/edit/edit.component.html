@@ -1,0 +1,70 @@
+      <section class="content">
+        <div class="box box-default">
+          <div class="box-header with-border">
+            <h3 class="box-title">Edit Product</h3>
+          </div>
+          <div class="box-body">
+            <div class="row">
+              <div class="col-lg-8">
+                <div class="form-group">
+                  <label>Product Name</label>
+                  <input type="text" class="form-control" [(ngModel)]="product.name" placeholder="{{product.name}}"  #name>
+                </div>
+                <div class="form-group">
+                  <label>Product Description</label>
+                  <input type="text" class="form-control" [(ngModel)]="product.description" placeholder="{{product.description}}"  #description>
+                </div>
+                <div class="form-group">
+                  <label>Product Type</label>
+                  <input type="text" class="form-control" [(ngModel)]="product.type" placeholder="{{product.type}}"  #type>
+                </div>
+                <div class="form-group">
+                  <label>Product Genre</label>
+                  <input type="text" class="form-control" [(ngModel)]="product.genre" placeholder="{{product.genre}}" #genre>
+                </div>
+                <div class="form-group">
+                  <label>Stock</label>
+                  <input type="number" class="form-control" [(ngModel)]="product.stock" placeholder="{{product.stock}}"  #stock>
+                </div>
+                <div class="form-group">
+                  <label>Buy Price</label>
+                  <input type="number" class="form-control" [(ngModel)]="product.pbuy" placeholder="{{product.pbuy}}"  #pbuy>
+                </div>
+                <div class="form-group">
+                  <label>Rent Price</label>
+                  <input type="number" class="form-control" [(ngModel)]="product.prent" placeholder="{{product.prent}}"  #prent>
+                </div>
+                <div class="form-group">
+                    <label>Score</label>
+                    <input type="number" class="form-control" [(ngModel)]="product.score" placeholder="{{product.score}}" #score>
+                </div>
+                <div class="form-group">
+                    <label>Trailer</label>
+                    <input type="text" class="form-control" [(ngModel)]="product.trailer" placeholder="{{product.trailer}}"  #trailer>
+                </div>
+                <div class="form-group">
+                    <label>Director</label>
+                    <input type="text" class="form-control" [(ngModel)]="product.director" placeholder="{{product.director}}"  #director>
+                </div>
+                <div class="form-group">
+                    <label>Cast</label>
+                    <input type="text" class="form-control" [(ngModel)]="product.cast" placeholder="{{product.cast}}"  #cast>
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="number" class="form-control" [(ngModel)]="product.year" placeholder="{{product.year}}"  #year>
+                </div>
+                <div class="form-group">
+                    <label>Image</label>
+                    <input type="text" class="form-control" [(ngModel)]="product.urlimg" placeholder="{{product.urlimg}}"  #urlimg>
+                </div>
+                <div class="pull-left">
+                    <button class="btn btn-success" (click)="updateProduct()">Save</button> 
+                    <a routerLink="/admin/dashboard"><button>Cancel</button></a>
+                </div>
+            </div>
+            </div>
+          </div>
+        </div>
+         <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+      </section>

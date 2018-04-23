@@ -19,7 +19,6 @@ target/
 nbproject/private/
 build/
 nbbuild/
-dist/
 nbdist/
 .nb-gradle/
 Servers/Pivotal tc Server Developer Edition v3.2-config/context.xml
@@ -173,3 +172,27 @@ Servers/Pivotal tc Server Developer Edition v3.2-config/jmxremote.access
 .metadata/.plugins/org.springsource.ide.eclipse.commons.gettingstarted/dashboard/1518092537981/common/css/dashboard.css
 src/main/resources/application.properties
 src/main/resources/application.properties
+
+# dependencies
+/node_modules
+
+/bower_components
+
+# IDEs and editors
+/.idea
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store

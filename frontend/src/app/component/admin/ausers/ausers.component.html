@@ -1,0 +1,30 @@
+<section>
+   <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th width="14%">Name</th>
+          <th width="8%">Email</th>
+          <th width="3%">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <button type="button" class="btn btn-warning" (click)="deleteUser(user.id)"><span class="fa fa-trash"></span></button>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+    <div>
+      <div class="pull-left">
+        <a [routerLink]="['./new']">
+          <button type="button" class="btn btn-primary"><span class="fa fa-plus-circle">  </span>&nbsp;New user</button>
+        </a>
+      </div>
+    </div>
+    <br>
+    <br>
+  </section>
