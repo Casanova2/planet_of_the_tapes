@@ -30,6 +30,9 @@ In order to run multi-containers, them being MySQL and Java (JRE server):
 **That's it.**  
 Congratulations, now you have two containers up and running our Application and it's MySQL Server.
 
+Now you can access the application on `https://localhost:8080/`
+And the SPA with Angular on `https://localhost:8080/angular/`
+
 To stop the containers:
 
 * If you are not running them in detached mode you can press `Ctrl + C`
