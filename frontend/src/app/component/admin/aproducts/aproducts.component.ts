@@ -48,7 +48,7 @@ export class AdminProductsComponent implements OnInit{
             products => this.products = products,
             error => console.log(error)
           );
-          this._success.next(`${new Date()} - Message successfully changed.`);
+          this._success.next(`${new Date()} - Product deleted successfully.`);
         },
         error => {
           this.message = 'Not found.'

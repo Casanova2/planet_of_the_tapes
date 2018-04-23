@@ -1,4 +1,5 @@
 <div class="row">
+    <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
   <div class="col-md-10">
 
     <h1>Cart</h1>
@@ -32,7 +33,7 @@
       </tr>
     </tbody>
   </div>
-  <div class="col-md-2">
+  <div  *ngIf="!successMessage" class="col-md-2">
     <button style="font-size: 32px;" class="btn btn-success" (click)="checkOut(order)" type="button">Pay</button>
   </div>
 </div>

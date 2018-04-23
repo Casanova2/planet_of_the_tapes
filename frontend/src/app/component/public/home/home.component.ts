@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
 	constructor(private router: Router, private sanitizer: DomSanitizer, private service: ProductService) { 
 		this.img_url = PRODUCTS_IMG_URL;
 		this.items=[
+			{name:'assets/img/logo2.png'},
 			{name:'assets/img/slide/slide1.jpg'},
 			{name:'assets/img/slide/slide2.jpg'},
 			{name:'assets/img/slide/slide3.jpg'},
