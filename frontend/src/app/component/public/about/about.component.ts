@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import { YoutubePlayerModule } from 'ng2-youtube-player';
+import { YoutubePlayerModule} from 'ng2-youtube-player';
 
 @Component({
   templateUrl: 'about.component.html'
@@ -11,7 +11,7 @@ export class AboutComponent {
   lng: number = -3.8790321;
   //youtube
   player: YT.Player;
-  private id: string = 'ZWJH7JQCjLM';
+  private id: string = 'tBHlcQbaJFs';
  
     savePlayer (player) {
     this.player = player;
